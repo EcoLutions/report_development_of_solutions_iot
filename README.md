@@ -5575,6 +5575,78 @@ Flujo donde el colaborador confirma la recolección en el último contenedor y r
 
 ![daySummary.png](assets/images/chapter5/userFlows/colaboradores/daySummary.png)
 
+### Web Applications User Flow Diagrams
+
+### Flujo de usuario: Municipalidad (Administrador)
+
+**User Goal: Inicio de sesión administrador**
+Flujo donde el administrador accede al sistema con sus credenciales para gestionar los recursos municipales.
+
+* *Happy path*: credenciales correctas permiten el ingreso al panel principal.
+* *Unhappy path*: credenciales incorrectas impiden el acceso y muestran un mensaje de error.
+
+![loginAdmin.png](assets/images/chapter5/userFlows/municipalidad/loginAdmin.png)
+
+**User Goal: Gestión de colaboradores**
+
+**a. Invitar colaborador**
+Flujo para registrar e invitar a nuevos colaboradores al sistema, asignándoles un rol o perfil específico.
+
+* *Happy path*: se completa el formulario y el colaborador recibe su acceso.
+
+![inviteCollaborator.png](assets/images/chapter5/userFlows/municipalidad/inviteCollaborator.png)
+
+**b. Editar colaborador**
+Flujo que permite al administrador actualizar la información o rol de colaboradores ya registrados.
+
+* *Happy path*: los cambios se guardan exitosamente en el sistema.
+
+![editCollaborator.png](assets/images/chapter5/userFlows/municipalidad/editCollaborator.png)
+
+**User Goal: Gestión de rutas de recolección**
+Flujo donde el administrador puede generar y asignar rutas de recolección de residuos, así como consultar el historial de rutas ejecutadas.
+
+* *Happy path*: se visualizan las rutas activas y se consulta el historial correctamente.
+
+![manageRoutes.png](assets/images/chapter5/userFlows/municipalidad/manageRoutes.png)
+
+**User Goal: Gestión de dispositivos IoT**
+
+**a. Registrar dispositivo IoT**
+Flujo para registrar nuevos dispositivos IoT destinados a monitorear contenedores u otros puntos de control.
+
+* *Happy path*: el dispositivo queda correctamente registrado en el sistema.
+
+![registerIoT.png](assets/images/chapter5/userFlows/municipalidad/registerIoT.png)
+
+**b. Editar dispositivo IoT**
+Flujo que permite actualizar datos o reconfigurar dispositivos IoT existentes.
+
+* *Happy path*: los cambios de configuración se guardan y se confirma la actualización.
+
+![editIoT.png](assets/images/chapter5/userFlows/municipalidad/editIoT.png)
+
+**User Goal: Gestión de reportes ciudadanos**
+Flujo que muestra los reportes enviados por ciudadanos (ej. incidencias en el servicio de limpieza), con opciones para revisarlos, visualizar evidencia y darles seguimiento.
+
+* *Happy path*: el estado del reporte se actualiza correctamente y queda registrado en el historial.
+
+![manageReports.png](assets/images/chapter5/userFlows/municipalidad/manageReports.png)
+
+**User Goal: Gestión de sesión y perfil**
+Flujo donde el administrador puede actualizar su información básica, cambiar contraseña o cerrar sesión.
+
+* *Happy path*: al cerrar sesión se redirige a la pantalla de acceso.
+
+![adminProfile.png](assets/images/chapter5/userFlows/municipalidad/adminProfile.png)
+
+**User Goal: Registro de vehículos**
+Flujo para registrar vehículos municipales, asociarlos a rutas y mantener actualizado el inventario de la flota.
+
+* *Happy path*: se guarda un nuevo vehículo y aparece en la lista de gestión de flota.
+
+![registerVehicle.png](assets/images/chapter5/userFlows/municipalidad/registerVehicle.png)
+
 ## 4.5. Mobile Applications Prototyping
 El propósito de esta sección es presentar los prototipos interactivos desarrollados para las aplicaciones móviles del ciudadano y del colaborador municipal (chofer). Estos prototipos permiten simular la experiencia de usuario final, facilitando la evaluación de la usabilidad, la navegación y la interacción con las funcionalidades clave antes de la implementación técnica.
 
