@@ -5753,37 +5753,172 @@ El equipo mantuvo una comunicación constante a través de herramientas colabora
 
 | Sprint | User Story | Task Id | Title | Description | Estimation (Hours) | Assigned To | Status |
 |--------|-------------|----------|--------|--------------|--------------------|--------------|--------|
-| Sprint 1 | US001 | WT-001 | Mostrar nivel de llenado | Visualizar el porcentaje de llenado actual de cada contenedor. | 8 | Maria Diaz | Done |
-| Sprint 1 | US002 | WT-002 | Filtro por estado | Permitir filtrar los contenedores según su estado. | 10 | Joaquin Rivadeneyra | Done |
-| Sprint 1 | US003 | WT-003 | Alertas por sobrellenado | Detectar y notificar si un contenedor sobrepasa el umbral de llenado. | 8 | Daniel Valverde | Done |
-| Sprint 1 | US004 | WT-004 | Generar ruta automáticamente | Generar rutas óptimas de recolección con base en los niveles de llenado. | 12 | Anthony Avalos | Done |
-| Sprint 1 | US011 | WT-005 | Registrar sensores | Permitir registrar sensores IoT. | 8 | Nicolas Cortes | Done |
-| Sprint 1 | US012 | WT-006 | Ver último dato de sensor | Consultar la última fecha y hora en que un sensor envió datos. | 6 | Maria Diaz | Done |
-| Sprint 1 | US013 | WT-007 | Ver estado de sensor | Visualizar si un sensor ha dejado de enviar información. | 8 | Daniel Valverde | Done |
+| Sprint 1 | US001 | WT-001 | Mostrar nivel de llenado | Visualizar el porcentaje de llenado actual de cada contenedor. | 8 | Erick Hernández | Done |
+| Sprint 1 | US002 | WT-002 | Filtro por estado | Permitir filtrar los contenedores según su estado. | 10 | Joaquín Rivadeneyra | Done |
+| Sprint 1 | US003 | WT-003 | Alertas por sobrellenado | Detectar y notificar si un contenedor sobrepasa el umbral de llenado. | 8 | Jhosepmyr Orlando | Done |
+| Sprint 1 | US004 | WT-004 | Generar ruta automáticamente | Generar rutas óptimas de recolección con base en los niveles de llenado. | 12 | Elmer Augusto | Done |
+| Sprint 1 | US011 | WT-005 | Registrar sensores | Permitir registrar sensores IoT. | 8 | Carlos Andrés | Done |
+| Sprint 1 | US012 | WT-006 | Ver último dato de sensor | Consultar la última fecha y hora en que un sensor envió datos. | 6 | Erick Hernández | Done |
+| Sprint 1 | US013 | WT-007 | Ver estado de sensor | Visualizar si un sensor ha dejado de enviar información. | 8 | Joaquín Rivadeneyra | Done |
 
 ---
 
 #### 6.2.1.4. Development Evidence for Sprint Review
 
-**Landing Page:**  
-[Repositorio](https://github.com/Arq-de-Software-Emergentes-Grupo-3/landing-page)  
-Commit ID: `6fc844ed8edb9bc1af065d37f7117a29763ed8e0`  
-Fecha: 2025-05-12  
+- **Development Evidence Landing Page**
 
-**Frontend:**  
-[Repositorio](https://github.com/Arq-de-Software-Emergentes-Grupo-3/frontend-application-wastetrack)  
-Commit ID: `3f0341780f30c9f1b16cc2260eff2ecfa1366328`  
-Fecha: 2025-05-15  
+**Link del repositorio:**  
+[https://github.com/EcoLutions/waste_track_landing_page](https://github.com/EcoLutions/waste_track_landing_page)
 
-**Backend:**  
-[Repositorio](https://github.com/Arq-de-Software-Emergentes-Grupo-3/wastetrack-api)  
-Commit ID: `12718d20d251d353a36d0f63751c69ee9c8086df`  
-Fecha: 2025-06-14  
+<!DOCTYPE html>
+<html>
+<body>
+  <table>
+    <thead>
+      <tr>
+        <th>Repository</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Commit Message</th>
+        <th>Commit Message Body</th>
+        <th>Committed On (Date)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>landing-page</td>
+        <td>main</td>
+        <td>6fc844ed8edb9bc1af065d37f7117a29763ed8e0</td>
+        <td>Create project</td>
+        <td>N/A</td>
+        <td>2025-10-08</td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>
 
-**IoT:**  
-[Repositorio](https://github.com/Arq-de-Software-Emergentes-Grupo-3/wastetrack-iot)  
-Commit ID: `404f9bb433fedba3c69bc48061f33f94f87dd28d`  
-Fecha: 2025-06-14  
+- **Development Evidence Frontend**
+
+**Link del repositorio:**  
+[https://github.com/EcoLutions/waste_track_super_admin_app](https://github.com/EcoLutions/waste_track_super_admin_app)
+
+<!DOCTYPE html>
+<html>
+<body>
+  <table>
+    <thead>
+      <tr>
+        <th>Repository</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Commit Message</th>
+        <th>Commit Message Body</th>
+        <th>Committed On (Date)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>wastetrack-frontend</td>
+        <td>main</td>
+        <td>3f0341780f30c9f1b16cc2260eff2ecfa1366328</td>
+        <td>Create project</td>
+        <td>N/A</td>
+        <td>2025-10-08</td>
+      </tr>
+      <tr>
+        <td>wastetrack-frontend</td>
+        <td>main</td>
+        <td>eaeb164af2e21ed661b8a08320bc6599fe1339a4</td>
+        <td>Initial commit from Create Next App</td>
+        <td>N/A</td>
+        <td>2025-10-08</td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>
+
+- **Development Evidence Backend**
+
+**Link del repositorio:**  
+[https://github.com/EcoLutions/waste_track_platform](https://github.com/EcoLutions/waste_track_platform)
+
+<!DOCTYPE html>
+<html>
+<body>
+  <table>
+    <thead>
+      <tr>
+        <th>Repository</th>
+        <th>Branch</th>
+        <th>Commit ID</th>
+        <th>Commit Message</th>
+        <th>Commit Message Body</th>
+        <th>Committed On (Date)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>wastetrack-api</td>
+        <td>main</td>
+        <td>12718d20d251d353a36d0f63751c69ee9c8086df</td>
+        <td>✨ Feat (app): Add main entry point to run the FastAPI application</td>
+        <td>N/A</td>
+        <td>2025-10-08</td>
+      </tr>
+      <tr>
+        <td>wastetrack-api</td>
+        <td>main</td>
+        <td>8e3156bab339d159bbd6ae2197a6133345ba88ac</td>
+        <td>⚙️ Chore (config): Add config for deployment</td>
+        <td>N/A</td>
+        <td>2025-10-08</td>
+      </tr>
+      <tr>
+        <td>wastetrack-api</td>
+        <td>main</td>
+        <td>dcc92bba235f47a62b3b60cc45e8b5a8e50efc82</td>
+        <td>♻️ Refactor (routes): Add user and auth routers</td>
+        <td>N/A</td>
+        <td>2025-10-08</td>
+      </tr>
+      <tr>
+        <td>wastetrack-api</td>
+        <td>main</td>
+        <td>f9f26031f2f3dad582893019e013e985aeb97b0c</td>
+        <td>✨ Feat (geolocation): Add geolocation to get coordinates from address</td>
+        <td>N/A</td>
+        <td>2025-10-08</td>
+      </tr>
+      <tr>
+        <td>wastetrack-api</td>
+        <td>main</td>
+        <td>7a7dcb0886e235cc693c48b266050d23a12bf4ec</td>
+        <td>✨ Feat (auth, user): Implement user authentication</td>
+        <td>N/A</td>
+        <td>2025-10-08</td>
+      </tr>
+      <tr>
+        <td>wastetrack-api</td>
+        <td>main</td>
+        <td>e1dfa95cc513a475338fd46ccf65b243b1e2ba5d</td>
+        <td>♻️ Refactor (config): Update db and app config</td>
+        <td>N/A</td>
+        <td>2025-10-08</td>
+      </tr>
+      <tr>
+        <td>wastetrack-api</td>
+        <td>main</td>
+        <td>a2d389ba50d7a7996c9ec1917ccf51ea1be764f2</td>
+        <td>first commit</td>
+        <td>N/A</td>
+        <td>2025-10-08</td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>   
 
 ---
 
@@ -5869,82 +6004,504 @@ El objetivo de este conjunto de pruebas es validar las funcionalidades desarroll
 
 #### 6.2.1.6. Execution Evidence for Sprint Review
 
-**Landing Page:**  
-<img src="./assets/img/chapter-VI/sprint-1/landing-1.png">  
-[https://v0-wastetrack-landing-page.vercel.app/](https://v0-wastetrack-landing-page.vercel.app/)
+A continuación, se presentan las evidencias de implementación y despliegue de los distintos componentes desarrollados durante el **Sprint 1**, correspondientes a la Landing Page, Frontend, Backend e IoT del sistema **WasteTrack**.
 
-**Frontend:**  
-<img src="./assets/img/chapter-VI/sprint-1/frontend-1.png">  
-[https://waste-track.netlify.app/](https://waste-track.netlify.app/)
+---
 
-**Backend:**  
-<img src="./assets/img/chapter-VI/sprint-1/backend-1.png">  
-[https://wastetrack-api.onrender.com/docs#/](https://wastetrack-api.onrender.com/docs#/)
+- **Landing Page:**  
 
-**IoT:**  
-<img src="./assets/img/chapter-VI/sprint-1/wokwi-1.png">  
-[https://wokwi.com/projects/433761407805975553](https://wokwi.com/projects/433761407805975553)
+Página principal del sistema WasteTrack, donde se comunica la propuesta de valor, beneficios y enlaces directos a las aplicaciones móviles y web.  
+
+![landing-1.png](assets/images/chapter5/landing-1.png)  
+
+[Link del proyecto desplegado: https://v0-wastetrack-landing-page.vercel.app/](https://v0-wastetrack-landing-page.vercel.app/)  
+
+---
+
+- **Frontend:**  
+
+Interfaz web que permite visualizar el nivel de llenado de los contenedores, su estado actual y realizar acciones de gestión por parte de los funcionarios municipales.  
+
+![frontend-1.png](assets/images/chapter5/frontend-1.png)  
+
+[Link del proyecto desplegado: https://waste-track.netlify.app/](https://waste-track.netlify.app/)  
+
+---
+
+- **Backend:**  
+
+Servicio que gestiona los endpoints principales del sistema, incluyendo autenticación, gestión de usuarios y control de contenedores.  
+Cuenta con documentación técnica mediante **Swagger UI**, asegurando transparencia en la comunicación entre servicios.  
+
+![backend-1.png](assets/images/chapter5/backend-1.png)  
+
+[Link del proyecto desplegado: https://wastetrack-api.onrender.com/docs#/](https://wastetrack-api.onrender.com/docs#/)  
+
+---
+
+- **IoT:**  
+
+Prototipo funcional desarrollado en **Wokwi**, encargado de simular el comportamiento de los sensores IoT que miden en tiempo real el nivel de llenado de los contenedores y transmiten los datos al sistema central.  
+
+![wokwi-1.png](assets/images/chapter5/wokwi-1.png)  
+
+[ Link del proyecto desplegado: https://wokwi.com/projects/433761407805975553](https://wokwi.com/projects/433761407805975553)  
+
 
 ---
 
 #### 6.2.1.7. Services Documentation Evidence for Sprint Review
 
 Durante el **Sprint 1**, se documentaron todos los servicios desarrollados en la capa de backend del sistema WasteTrack, con el objetivo de garantizar trazabilidad, mantenibilidad y estandarización en las futuras iteraciones.  
-La documentación se elaboró en formato **OpenAPI (Swagger)**, facilitando la visualización y prueba de los endpoints por parte de los desarrolladores y testers.
 
-**Servicios principales documentados:**
-1. **Servicio de Contenedores (Container Service):**
-   - *GET /api/containers* → Lista todos los contenedores registrados.  
-   - *GET /api/containers/{id}* → Devuelve los detalles del contenedor según su identificador.  
-   - *POST /api/containers* → Registra un nuevo contenedor IoT en el sistema.  
-   - *PUT /api/containers/{id}* → Actualiza el estado o nivel de llenado de un contenedor.  
+##### Auth Endpoints
+<table>
+  <thead>
+    <tr>
+      <th>Endpoint</th>
+      <th>Method</th>
+      <th>Description</th>
+      <th>Parameters</th>
+      <th>Request Body</th>
+      <th>Response Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>/api/v1/auth/signup</td>
+      <td>POST</td>
+      <td>Register a new user</td>
+      <td>None</td>
+      <td>
+        <pre><code>{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "password": "securepassword",
+  "role": "citizen",
+  "address": "123 Main St",
+  "phone": "+1234567890"
+}</code></pre>
+      </td>
+      <td>
+        <pre><code>// Status: 201 Created
+{
+  "message": "User created successfully",
+  "user_id": "550e8400-e29b-41d4-a716-446655440000"
+}</code></pre>
+      </td>
+    </tr>
+    <tr>
+      <td>/api/v1/auth/signin</td>
+      <td>POST</td>
+      <td>User login and token generation</td>
+      <td>None</td>
+      <td>
+        <pre><code>{
+  "email": "john@example.com",
+  "password": "securepassword"
+}</code></pre>
+      </td>
+      <td>
+        <pre><code>// Status: 200 OK
+{
+  "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "token_type": "bearer",
+  "user": {
+    "guid": "550e8400-e29b-41d4-a716-446655440000",
+    "name": "John Doe",
+    "email": "john@example.com",
+    "role": "citizen"
+  }
+}</code></pre>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-2. **Servicio de Rutas (Route Service):**
-   - *GET /api/routes* → Obtiene las rutas activas y programadas.  
-   - *POST /api/routes* → Permite registrar nuevas rutas de recolección.  
-   - *PUT /api/routes/{id}/status* → Actualiza el estado de una ruta (pendiente, en curso, completada).  
+##### User Endpoints
 
-3. **Servicio de Alertas (Alert Service):**
-   - *GET /api/alerts* → Lista de alertas activas generadas por sensores IoT.  
-   - *POST /api/alerts* → Reporta nuevas incidencias detectadas.  
-   - *PUT /api/alerts/{id}/resolve* → Marca una alerta como resuelta.  
+<table>
+  <thead>
+    <tr>
+      <th>Endpoint</th>
+      <th>Method</th>
+      <th>Description</th>
+      <th>Parameters</th>
+      <th>Request Body</th>
+      <th>Response Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>/api/v1/user/{guid}</td>
+      <td>GET</td>
+      <td>Get user by GUID</td>
+      <td>Path parameter: guid (string, required)</td>
+      <td>None</td>
+      <td>
+        <pre><code>// Status: 200 OK
+{
+  "guid": "550e8400-e29b-41d4-a716-446655440000",
+  "name": "John Doe",
+  "email": "john@example.com",
+  "role": "citizen",
+  "address": "123 Main St",
+  "phone": "+1234567890",
+  "latitude": "37.7749",
+  "longitude": "-122.4194",
+  "created_at": "2023-06-01T10:00:00Z"
+}</code></pre>
+      </td>
+    </tr>
+    <tr>
+      <td>/api/v1/user/</td>
+      <td>PUT</td>
+      <td>Update user information</td>
+      <td>None</td>
+      <td>
+        <pre><code>{
+  "name": "John Updated",
+  "phone": "+1987654321",
+  "role": "citizen"
+}</code></pre>
+      </td>
+      <td>
+        <pre><code>// Status: 200 OK
+{
+  "message": "User updated successfully",
+  "user": {
+    "guid": "550e8400-e29b-41d4-a716-446655440000",
+    "name": "John Updated"
+  }
+}</code></pre>
+      </td>
+    </tr>
+    <tr>
+      <td>/api/v1/user/</td>
+      <td>DELETE</td>
+      <td>Delete current user</td>
+      <td>None</td>
+      <td>None</td>
+      <td>
+        <pre><code>// Status: 200 OK
+{
+  "message": "User deleted successfully"
+}</code></pre>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-4. **Servicio de Usuarios (User Service):**
-   - *POST /api/users/login* → Autenticación y generación de token JWT.  
-   - *GET /api/users/profile* → Obtiene información del usuario autenticado.  
-   - *POST /api/users/register* → Registro de nuevos usuarios del sistema.  
+##### Container Endpoints
 
-Toda la documentación técnica se centralizó en un repositorio compartido dentro de **GitHub Wiki**, complementada con diagramas de flujo, modelos de datos y ejemplos de peticiones/respuestas JSON.
+<table>
+  <thead>
+    <tr>
+      <th>Endpoint</th>
+      <th>Method</th>
+      <th>Description</th>
+      <th>Parameters</th>
+      <th>Request Body</th>
+      <th>Response Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>/api/v1/containers/</td>
+      <td>GET</td>
+      <td>Get a list of all containers</td>
+      <td>None</td>
+      <td>None</td>
+      <td>
+        <pre><code>// Status: 200 OK
+[
+  {
+    "guid": "550e8400-e29b-41d4-a716-446655440001",
+    "name": "Container A",
+    "latitude": "37.7749",
+    "longitude": "-122.4194",
+    "capacity": 75,
+    "status": "active",
+    "isFavorite": false
+  },
+  {
+    "guid": "550e8400-e29b-41d4-a716-446655440002",
+    "name": "Container B",
+    "latitude": "37.7848",
+    "longitude": "-122.4294",
+    "capacity": 30,
+    "status": "active",
+    "isFavorite": true
+  }
+]</code></pre>
+      </td>
+    </tr>
+    <tr>
+      <td>/api/v1/containers/</td>
+      <td>POST</td>
+      <td>Create a new container</td>
+      <td>None</td>
+      <td>
+        <pre><code>{
+  "name": "Container C",
+  "latitude": "37.7849",
+  "longitude": "-122.4295",
+  "capacity": 100
+}</code></pre>
+      </td>
+      <td>
+        <pre><code>// Status: 201 Created
+{
+  "message": "Container created successfully",
+  "container_id": "550e8400-e29b-41d4-a716-446655440003"
+}</code></pre>
+      </td>
+    </tr>
+    <tr>
+      <td>/api/v1/containers/{guid}</td>
+      <td>GET</td>
+      <td>Get a container by GUID</td>
+      <td>Path parameter: guid (string, required)</td>
+      <td>None</td>
+      <td>
+        <pre><code>// Status: 200 OK
+{
+  "guid": "550e8400-e29b-41d4-a716-446655440001",
+  "name": "Container A",
+  "latitude": "37.7749",
+  "longitude": "-122.4194",
+  "capacity": 75,
+  "status": "active",
+  "isFavorite": false
+}</code></pre>
+      </td>
+    </tr>
+    <tr>
+      <td>/api/v1/containers/{guid}</td>
+      <td>PUT</td>
+      <td>Update a container by GUID</td>
+      <td>Path parameter: guid (string, required)</td>
+      <td>
+        <pre><code>{
+  "name": "Container A Updated",
+  "latitude": "37.7750",
+  "longitude": "-122.4195",
+  "capacity": 80,
+  "status": "active",
+  "isFavorite": true
+}</code></pre>
+      </td>
+      <td>
+        <pre><code>// Status: 200 OK
+{
+  "message": "Container updated successfully",
+  "container": {
+    "guid": "550e8400-e29b-41d4-a716-446655440001",
+    "name": "Container A Updated"
+  }
+}</code></pre>
+      </td>
+    </tr>
+    <tr>
+      <td>/api/v1/containers/{guid}</td>
+      <td>DELETE</td>
+      <td>Delete a container by GUID</td>
+      <td>Path parameter: guid (string, required)</td>
+      <td>None</td>
+      <td><pre><code>// Status: 204 No Content</code></pre></td>
+    </tr>
+    <tr>
+      <td>/api/v1/containers/status/{status}</td>
+      <td>GET</td>
+      <td>Get containers by status</td>
+      <td>Path parameter: status (string, required)</td>
+      <td>None</td>
+      <td>
+        <pre><code>// Status: 200 OK
+[
+  {
+    "guid": "550e8400-e29b-41d4-a716-446655440001",
+    "name": "Container A",
+    "latitude": "37.7749",
+    "longitude": "-122.4194",
+    "capacity": 75,
+    "status": "active",
+    "isFavorite": false
+  },
+  {
+    "guid": "550e8400-e29b-41d4-a716-446655440002",
+    "name": "Container B",
+    "latitude": "37.7848",
+    "longitude": "-122.4294",
+    "capacity": 30,
+    "status": "active",
+    "isFavorite": true
+  }
+]</code></pre>
+      </td>
+    </tr>
+    <tr>
+      <td>/api/v1/containers/{guid}/alert</td>
+      <td>POST</td>
+      <td>Send capacity alert for a container</td>
+      <td>Path parameter: guid (string, required)</td>
+      <td>None</td>
+      <td>
+        <pre><code>// Status: 200 OK
+{
+  "message": "Alert sent successfully",
+  "container_id": "550e8400-e29b-41d4-a716-446655440001"
+}</code></pre>
+      </td>
+    </tr>
+    <tr>
+      <td>/api/v1/containers/{guid}/status</td>
+      <td>PUT</td>
+      <td>Update container status</td>
+      <td>
+        Path parameter: guid (string, required)<br>
+        Query parameter: new_status (string, required)
+      </td>
+      <td>None</td>
+      <td>
+        <pre><code>// Status: 200 OK
+{
+  "message": "Container status updated successfully",
+  "container": {
+    "guid": "550e8400-e29b-41d4-a716-446655440001",
+    "status": "inactive"
+  }
+}</code></pre>
+      </td>
+    </tr>
+    <tr>
+      <td>/api/v1/containers/{guid}/favorite</td>
+      <td>PUT</td>
+      <td>Update isFavorite status</td>
+      <td>Path parameter: guid (string, required)</td>
+      <td>
+        <pre><code>{
+  "isFavorite": true
+}</code></pre>
+      </td>
+      <td>
+        <pre><code>// Status: 200 OK
+{
+  "message": "Favorite status updated successfully",
+  "container": {
+    "guid": "550e8400-e29b-41d4-a716-446655440001",
+    "isFavorite": true
+  }
+}</code></pre>
+      </td>
+    </tr>
+    <tr>
+      <td>/api/v1/containers/{guid}/capacity</td>
+      <td>PUT</td>
+      <td>Update container capacity</td>
+      <td>Path parameter: guid (string, required)</td>
+      <td>
+        <pre><code>{
+  "capacity": 85
+}</code></pre>
+      </td>
+      <td>
+        <pre><code>// Status: 200 OK
+{
+  "message": "Container capacity updated successfully",
+  "container": {
+    "guid": "550e8400-e29b-41d4-a716-446655440001",
+    "capacity": 85
+  }
+}</code></pre>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-![servicesDocumentation.png](assets/images/chapter6/sprint1/servicesDocumentation.png)
+##### Capturas
 
+<img src="assets/images/chapter5/backend-1.png">
+
+Parámetros y Responses de los endpoints **"User"**
+
+<img src="assets/images/chapter5/backend-2.png">
+
+Parámetros y Responses de los endpoints **"Containers"**
+
+<img src="assets/images/chapter5/backend-3.png">
+
+<img src="assets/images/chapter5/backend-4.png">
+
+**Link de los web services:**  
+[https://wastetrack-api.onrender.com/docs#/](https://wastetrack-api.onrender.com/docs#/)
+
+ 
 ---
 
 #### 6.2.1.8. Software Deployment Evidence for Sprint Review
 
-El proceso de despliegue del sistema WasteTrack se realizó bajo una infraestructura **Cloud-Native** utilizando **Google Cloud Platform (GCP)**, garantizando disponibilidad, escalabilidad y rendimiento óptimo para cada servicio del ecosistema.
+- **Despliegue de Landing Page:**
 
-**Configuración de despliegue:**
-- **Backend:** Desplegado como microservicio en contenedores Docker sobre **Google Kubernetes Engine (GKE)**.  
-- **Base de Datos:** Instancia gestionada de **PostgreSQL** mediante **Cloud SQL**.  
-- **Frontend Web:** Alojado en **Firebase Hosting** con soporte HTTPS y CI/CD automatizado.  
-- **Aplicación Móvil:** Distribuida mediante **Firebase App Distribution** para pruebas internas.  
-- **Monitorización:** Integración con **Google Cloud Logging** y **Prometheus** para registro y análisis de métricas.  
+Pasos para desplegar un landing page en Vercel
 
-**Pipeline de despliegue (CI/CD):**
-1. Commit de código en rama principal (`main`) → Activación del pipeline.  
-2. Compilación y pruebas automatizadas (GitHub Actions).  
-3. Creación y publicación de imagen Docker en **Artifact Registry**.  
-4. Despliegue automático a **GKE** con revisión de logs y validación de estado.  
+<img src="assets/images/chapter5/vercel.png"> 
 
-**Evidencias de despliegue:**
-- Capturas del panel de despliegue en GCP.  
-- Logs de ejecución exitosos en pipelines CI/CD.  
-- Pruebas funcionales de endpoints en producción controlada.  
-
-![deploymentEvidence.png](assets/images/chapter6/sprint1/deploymentEvidence.png)
+1. Preparación del repositorio funcional en ambiente local  
+2. Crear una cuenta en Vercel  
+3. Desplegar desde GitHub  
+   - Build command: `npm run build` o `yarn build`  
+   - Publish directory: `build`  
+4. Desplegar la aplicación  
 
 ---
+
+- **Despliegue de Frontend:**
+
+Pasos para desplegar un frontend React en Netlify
+
+<img src="assets/images/chapter5/netlify.png"> 
+
+1. Preparación del proyecto React (Verificar que el `package.json` incluya el script de build: `"build": "react-scripts build"`)  
+2. Crear una cuenta en Netlify  
+3. Desplegar desde GitHub  
+   - Build command: `npm run build` o `yarn build`  
+   - Publish directory: `build`  
+4. Desplegar la aplicación  
+
+<img src="assets/images/chapter5/deploy-frontend.png">  
+
+---
+
+- **Despliegue de Backend:**
+
+Pasos para desplegar una API de FastAPI en Render
+
+<img src="assets/images/chapter5/render.png"> 
+
+1. Preparación del repositorio (Un archivo requirements.txt con todas las dependencias)  
+2. Crear cuenta en Render  
+3. Crear un nuevo Web Service  
+4. Conectar el repositorio de GitHub  
+5. Configurar el servicio  
+```
+  Nombre: Escoger un nombre para el servicio
+  Runtime: Seleccionar "Python 3"
+  Región: Eligir la ubicación del servidor más cercana
+  Branch: Seleccionar la rama principal (main/master)
+  Build Command: pip install -r requirements.txt
+  Start Command: uvicorn app:app --host 0.0.0.0 --port $PORT
+  ```
+  6. Configurar variables de entorno
+  ```
+  SECRET_KEY
+  ALGORITHM
+  ACCESS_TOKEN_EXPIRE_MINUTES
+  DATABASE_URL
+  ```
+  7. Desplegar la aplicación
+
+<img src="./assets/images/chapter5/deploy-backend.jpg"> 
 
 #### 6.2.1.9. Team Collaboration Insights during Sprint
 
@@ -5967,7 +6524,7 @@ El desarrollo del **Sprint 1** se caracterizó por una **colaboración ágil y m
 - Mejor comunicación interfuncional entre los equipos técnico y de diseño.  
 - Consolidación de un flujo de trabajo estable con integración continua.  
 
-![teamCollaboration.png](assets/images/chapter6/sprint1/teamCollaboration.png)
+![teamCollaboration.png](assets/images/chapter5/insights.jpg)
 
 ---
 
