@@ -5507,6 +5507,93 @@ Debe aparecer como confirmación o feedback inmediato después de que el adminis
 
 ### 5.4.4. Applications User Flow Diagrams
 
+### Mobile Applications User Flow Diagrams
+
+Los **User Flow Diagrams** muestran de manera detallada la secuencia de pantallas y decisiones que sigue cada usuario para alcanzar un objetivo específico dentro de la aplicación. A diferencia de los Wireflows, aquí se representan tanto la ruta esperada (*happy path*) como las rutas alternativas o excepcionales (*unhappy paths*), evidenciando las condiciones de validación y mensajes que se presentan en cada escenario.
+
+#### Flujo de usuario: Ciudadano
+
+**User goal: Configuración inicial**
+Flujo donde el ciudadano selecciona su municipalidad y define su ubicación inicial. El *happy path* considera la elección correcta de la municipalidad y la carga del mapa.
+
+![configLocation.png](assets/images/chapter5/userFlows/ciudadanos/configLocation.png)
+
+**User goal: Ubicación de contenedores**
+Flujo que muestra el mapa interactivo con los contenedores cercanos. El *happy path* es la visualización normal de los puntos en el mapa.
+
+![viewContainers.png](assets/images/chapter5/userFlows/ciudadanos/viewContainers.png)
+
+**User goal: Reportar incidencias**
+Flujo para registrar incidencias relacionadas al servicio. El *happy path* ocurre al seleccionar un tipo de incidencia, añadir detalles opcionales y enviar exitosamente el reporte. Los *unhappy paths* incluyen no seleccionar el tipo de incidencia (se muestra un mensaje de error) o problemas de conexión que impiden el envío.
+
+![reportIncident.png](assets/images/chapter5/userFlows/ciudadanos/reportIncident.png)
+
+**User goal: Notificaciones de servicio**
+Flujo donde el ciudadano accede a la bandeja de notificaciones para ver alertas sobre la recolección, resolución de reportes o recordatorios de reciclaje. El *happy path* contempla notificaciones disponibles.
+
+![notifications.png](assets/images/chapter5/userFlows/ciudadanos/notifications.png)
+
+**User goal: Consulta de otra municipalidad**
+Flujo que permite cambiar la municipalidad configurada inicialmente para consultar información en otra jurisdicción. El *happy path* es la selección correcta de una nueva municipalidad, que actualiza el mapa.
+
+![selectMunicipality.png](assets/images/chapter5/userFlows/ciudadanos/selectMunicipality.png)
+
+#### Flujo de usuario: Colaborador municipal (Chofer)
+
+**User goal: Inicio de sesión**
+Flujo donde el colaborador accede a la aplicación con sus credenciales para comenzar la jornada.
+
+* *Happy path*: ingreso correcto y acceso a la ruta asignada.
+* *Unhappy path*: credenciales incorrectas, mostrando mensaje de error e impidiendo avanzar.
+  ![loginDriver.png](assets/images/chapter5/userFlows/colaboradores/loginDriver.png)
+
+**User goal: Ruta asignada**
+Flujo que muestra las paradas del día y permite iniciar la jornada.
+
+* *Happy path*: el conductor visualiza sus contenedores asignados y comienza el recorrido.
+* *Unhappy path*: no hay ruta asignada en el sistema, mostrando un mensaje que indica al colaborador contactar a su supervisor.
+  ![assignedRoute.png](assets/images/chapter5/userFlows/colaboradores/assignedRoute.png)
+
+**User goal: Navegación a contenedores**
+Flujo que guía al colaborador hacia el contenedor seleccionado mediante GPS integrado.
+
+* *Happy path*: se inicia la navegación hasta el contenedor y se muestra la llegada estimada.
+  ![navigateContainers.png](assets/images/chapter5/userFlows/colaboradores/navigateContainers.png)
+
+
+**User goal: Reportar incidencias**
+Flujo para registrar incidencias encontradas en un contenedor durante la jornada.
+
+* *Happy path*: selección del tipo de incidencia, notas opcionales, foto y envío exitoso.
+* *Unhappy path*: no seleccionar el tipo de incidencia impide completar el reporte y se muestra un mensaje de error.
+  ![reportIncidentDriver.png](assets/images/chapter5/userFlows/colaboradores/reportIncidentDriver.png)
+
+**User goal: Cierre de jornada**
+Flujo donde el colaborador confirma la recolección en el último contenedor y revisa un resumen con paradas completadas, incidencias reportadas y duración total del turno.
+
+* *Happy path*: la jornada se completa con éxito y se muestra el resumen final.
+
+![daySummary.png](assets/images/chapter5/userFlows/colaboradores/daySummary.png)
+
+## 4.5. Mobile Applications Prototyping
+El propósito de esta sección es presentar los prototipos interactivos desarrollados para las aplicaciones móviles del ciudadano y del colaborador municipal (chofer). Estos prototipos permiten simular la experiencia de usuario final, facilitando la evaluación de la usabilidad, la navegación y la interacción con las funcionalidades clave antes de la implementación técnica.
+
+A continuación, se presentan capturas y los enlaces a los videos explicativos que detallan los flujos de usuario relacionados:
+
+![pictureCitizensVideo.png](assets/images/chapter5/mobileApplicationUxUi/prototyping/pictureCitizensVideo.png)
+
+Enlace para acceder al video explicativo del [Mobile Application Prototyping para Ciudadano](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202220829_upc_edu_pe/EfacU1lOl0dDhVjvsiQTz80BNf47Kehz1Po42sXwE1Mz2A?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D&e=dJxpJk)
+
+![pictureDriversVideo.png](assets/images/chapter5/mobileApplicationUxUi/prototyping/pictureDriversVideo.png)
+
+Enlace para acceder al video explicativo del [Mobile Application Prototyping para Colaborador Municipal (Chofer)](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202220829_upc_edu_pe/EfA-tJfVYVdIufJ9c54xT7IB57K_1VjP_IFEgWfgSYoRbg?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D&e=5sZlbF)
+
+Asimismo, a continuación se presentan los enlaces que llevan a los flujos por cada perfil de usuario:
+
+* [Mobile Application Prototyping para Ciudadano](https://www.figma.com/proto/SYYxFeZgRViEvSUVEYlhZq/PRODUCT?node-id=148-1571&t=D0tjx3N2qsot8HmY-1&scaling=min-zoom&content-scaling=fixed&page-id=108%3A2&starting-point-node-id=148%3A1571&show-proto-sidebar=1)
+
+* [Mobile Application Prototyping para Colaborador Municipal (Chofer)](https://www.figma.com/proto/SYYxFeZgRViEvSUVEYlhZq/PRODUCT?node-id=148-2635&t=D0tjx3N2qsot8HmY-1&scaling=min-zoom&content-scaling=fixed&page-id=108%3A2&starting-point-node-id=148%3A2635&show-proto-sidebar=1)
+
 ## 5.5. Applications Prototyping
 
 ### Mobile Applications Prototyping
