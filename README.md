@@ -5301,6 +5301,124 @@ Debe aparecer como confirmación o feedback inmediato después de que el adminis
 
 ### 5.4.2. Applications Wire flow Diagrams
 
+Los Wire Flow Diagrams representan de manera visual la navegación y los principales puntos de interacción dentro de las aplicaciones móviles, diferenciados según los perfiles de usuario: Ciudadano y Colaborador Municipal (Conductor). Estos diagramas combinan la estructura de los wireframes con la lógica de los flujos de usuario, mostrando cómo cada pantalla se conecta con la siguiente y qué acciones permiten avanzar en el proceso.
+
+#### Mobile Applications Wire flow Diagrams
+
+**Flujo de usuario: Ciudadano**
+
+**1. Configuración inicial**
+
+Pantallas donde el ciudadano puede establecer su ubicación principal (distrito o dirección) para personalizar la información del servicio.
+![configLocation.png](assets/images/chapter5/mobileWireflows/ciudadanos/configLocation.png)
+
+**2. Ubicación de contenedores**
+
+Muestra en un mapa interactivo los contenedores de basura más cercanos a la ubicación del ciudadano, con detalles básicos.
+![viewContainers.png](assets/images/chapter5/mobileWireflows/ciudadanos/viewContainers.png)
+
+**3. Reportar incidencias**
+
+Permite registrar incidencias relacionadas al servicio de limpieza (contenedores llenos, basura acumulada, etc.), adjuntando fotos y comentarios.
+![reportIncident.png](assets/images/chapter5/mobileWireflows/ciudadanos/reportIncident.png)
+
+**4. Notificaciones de servicio**
+
+Pantalla donde el usuario recibe notificaciones sobre el estado de sus reportes e información general del servicio de limpieza.
+![notifications.png](assets/images/chapter5/mobileWireflows/ciudadanos/notifications.png)
+
+**5. Consulta de otra municipalidad**
+
+Opción para seleccionar y consultar información de otra municipalidad distinta a la configurada inicialmente.
+![selectMunicipality.png](assets/images/chapter5/mobileWireflows/ciudadanos/selectMunicipality.png)
+
+**Flujo de usuario: Colaborador municipal (Chofer)**
+
+**1. Inicio de sesión**
+
+Pantalla donde el colaborador accede a la aplicación con sus credenciales de usuario para comenzar la jornada.
+![loginDriver.png](assets/images/chapter5/mobileWireflows/colaboradores/loginDriver.png)
+
+**2. Ruta asignada**
+
+Muestra la ruta diaria asignada al conductor, incluyendo paradas y horarios planificados.
+![assignedRoute.png](assets/images/chapter5/mobileWireflows/colaboradores/assignedRoute.png)
+
+**3. Navegación a contenedores**
+
+Permite visualizar y seguir el recorrido hacia los contenedores asignados de manera eficiente, con apoyo de mapas o GPS integrado.
+
+![navigateContainers.png](assets/images/chapter5/mobileWireflows/colaboradores/navigateContainers.png)
+
+
+**4. Reportar incidencias**
+
+Pantalla para registrar incidencias detectadas en los contenedores durante la jornada, adjuntando fotos y comentarios.
+![reportIncidentDriver.png](assets/images/chapter5/mobileWireflows/colaboradores/reportIncidentDriver.png)
+
+**5. Cierre de jornada**
+
+Al finalizar la jornada, el colaborador puede confirmar el fin de su turno y acceder a un resumen con paradas completadas, incidencias reportadas y tiempo total trabajado.
+![daySummary.png](assets/images/chapter5/mobileWireflows/colaboradores/daySummary.png)
+
+#### Web Applications Wire flow Diagrams
+
+#### Flujo de usuario: Municipalidad (Administrador)
+
+**User Goal:  Inicio de sesión administrador**
+
+Flujo donde el administrador accede al sistema con sus credenciales para gestionar los recursos municipales.
+
+![loginAdmin.png](assets/images/chapter5/mobileWireflows/municipalidad/adminProfile.png)
+
+**User Goal: Gestión de colaboradores**
+
+**a. Invitar colaborador**
+Flujo para registrar e invitar a nuevos colaboradores al sistema, asignándoles un rol o perfil específico.
+
+![inviteCollaborator.png](assets/images/chapter5/mobileWireflows/municipalidad/inviteCollaborator.png)
+
+**b. Editar colaborador**
+Flujo que permite al administrador actualizar la información o rol de colaboradores ya registrados.
+
+![editCollaborator.png](assets/images/chapter5/mobileWireflows/municipalidad/editCollaborator.png)
+
+**User Goal: Gestión de rutas de recolección**
+
+Flujo donde el administrador puede generar y asignar rutas de recolección de residuos, asignándolas a colaboradores.
+
+![manageRoutes.png](assets/images/chapter5/mobileWireflows/municipalidad/manageRoutes.png)
+
+**User Goal: Gestión de dispositivos IoT**
+
+**a. Registrar dispositivo IoT**
+Flujo para registrar nuevos dispositivos IoT destinados a monitorear contenedores u otros puntos de control.
+
+![registerIoT.png](assets/images/chapter5/mobileWireflows/municipalidad/registerIoT.png)
+
+**b. Editar dispositivo IoT**
+Flujo que permite actualizar datos o reconfigurar dispositivos IoT existentes.
+
+![editIoT.png](assets/images/chapter5/mobileWireflows/municipalidad/editIoT.png)
+
+**User Goal: Gestión de reportes ciudadanos**
+
+Flujo que muestra los reportes enviados por ciudadanos (ej. incidencias en el servicio de limpieza), con opciones para revisarlos y darles seguimiento.
+
+![manageReports.png](assets/images/chapter5/mobileWireflows/municipalidad/manageReports.png)
+
+**User Goal: Gestión de sesión y perfil**
+
+Flujo donde el administrador puede actualizar su información básica, cambiar contraseña o cerrar sesión.
+
+![adminProfile.png](assets/images/chapter5/mobileWireflows/municipalidad/adminProfile.png)
+
+**User Goal: Registro de vehículos**
+
+Flujo para registrar vehículos municipales, asociarlos a rutas y mantener actualizado el inventario de la flota.
+
+![registerVehicle.png](assets/images/chapter5/mobileWireflows/municipalidad/registerVehicle.png)
+
 ### 5.4.3. Applications Mock-ups
 
 ### Mobile Applications Mock-ups
@@ -5506,6 +5624,165 @@ Debe aparecer como confirmación o feedback inmediato después de que el adminis
 
 
 ### 5.4.4. Applications User Flow Diagrams
+
+### Mobile Applications User Flow Diagrams
+
+Los **User Flow Diagrams** muestran de manera detallada la secuencia de pantallas y decisiones que sigue cada usuario para alcanzar un objetivo específico dentro de la aplicación. A diferencia de los Wireflows, aquí se representan tanto la ruta esperada (*happy path*) como las rutas alternativas o excepcionales (*unhappy paths*), evidenciando las condiciones de validación y mensajes que se presentan en cada escenario.
+
+#### Flujo de usuario: Ciudadano
+
+**User goal: Configuración inicial**
+Flujo donde el ciudadano selecciona su municipalidad y define su ubicación inicial. El *happy path* considera la elección correcta de la municipalidad y la carga del mapa.
+
+![configLocation.png](assets/images/chapter5/userFlows/ciudadanos/configLocation.png)
+
+**User goal: Ubicación de contenedores**
+Flujo que muestra el mapa interactivo con los contenedores cercanos. El *happy path* es la visualización normal de los puntos en el mapa.
+
+![viewContainers.png](assets/images/chapter5/userFlows/ciudadanos/viewContainers.png)
+
+**User goal: Reportar incidencias**
+Flujo para registrar incidencias relacionadas al servicio. El *happy path* ocurre al seleccionar un tipo de incidencia, añadir detalles opcionales y enviar exitosamente el reporte. Los *unhappy paths* incluyen no seleccionar el tipo de incidencia (se muestra un mensaje de error) o problemas de conexión que impiden el envío.
+
+![reportIncident.png](assets/images/chapter5/userFlows/ciudadanos/reportIncident.png)
+
+**User goal: Notificaciones de servicio**
+Flujo donde el ciudadano accede a la bandeja de notificaciones para ver alertas sobre la recolección, resolución de reportes o recordatorios de reciclaje. El *happy path* contempla notificaciones disponibles.
+
+![notifications.png](assets/images/chapter5/userFlows/ciudadanos/notifications.png)
+
+**User goal: Consulta de otra municipalidad**
+Flujo que permite cambiar la municipalidad configurada inicialmente para consultar información en otra jurisdicción. El *happy path* es la selección correcta de una nueva municipalidad, que actualiza el mapa.
+
+![selectMunicipality.png](assets/images/chapter5/userFlows/ciudadanos/selectMunicipality.png)
+
+#### Flujo de usuario: Colaborador municipal (Chofer)
+
+**User goal: Inicio de sesión**
+Flujo donde el colaborador accede a la aplicación con sus credenciales para comenzar la jornada.
+
+* *Happy path*: ingreso correcto y acceso a la ruta asignada.
+* *Unhappy path*: credenciales incorrectas, mostrando mensaje de error e impidiendo avanzar.
+  ![loginDriver.png](assets/images/chapter5/userFlows/colaboradores/loginDriver.png)
+
+**User goal: Ruta asignada**
+Flujo que muestra las paradas del día y permite iniciar la jornada.
+
+* *Happy path*: el conductor visualiza sus contenedores asignados y comienza el recorrido.
+* *Unhappy path*: no hay ruta asignada en el sistema, mostrando un mensaje que indica al colaborador contactar a su supervisor.
+  ![assignedRoute.png](assets/images/chapter5/userFlows/colaboradores/assignedRoute.png)
+
+**User goal: Navegación a contenedores**
+Flujo que guía al colaborador hacia el contenedor seleccionado mediante GPS integrado.
+
+* *Happy path*: se inicia la navegación hasta el contenedor y se muestra la llegada estimada.
+  ![navigateContainers.png](assets/images/chapter5/userFlows/colaboradores/navigateContainers.png)
+
+
+**User goal: Reportar incidencias**
+Flujo para registrar incidencias encontradas en un contenedor durante la jornada.
+
+* *Happy path*: selección del tipo de incidencia, notas opcionales, foto y envío exitoso.
+* *Unhappy path*: no seleccionar el tipo de incidencia impide completar el reporte y se muestra un mensaje de error.
+  ![reportIncidentDriver.png](assets/images/chapter5/userFlows/colaboradores/reportIncidentDriver.png)
+
+**User goal: Cierre de jornada**
+Flujo donde el colaborador confirma la recolección en el último contenedor y revisa un resumen con paradas completadas, incidencias reportadas y duración total del turno.
+
+* *Happy path*: la jornada se completa con éxito y se muestra el resumen final.
+
+![daySummary.png](assets/images/chapter5/userFlows/colaboradores/daySummary.png)
+
+### Web Applications User Flow Diagrams
+
+### Flujo de usuario: Municipalidad (Administrador)
+
+**User Goal: Inicio de sesión administrador**
+Flujo donde el administrador accede al sistema con sus credenciales para gestionar los recursos municipales.
+
+* *Happy path*: credenciales correctas permiten el ingreso al panel principal.
+* *Unhappy path*: credenciales incorrectas impiden el acceso y muestran un mensaje de error.
+
+![loginAdmin.png](assets/images/chapter5/userFlows/municipalidad/loginAdmin.png)
+
+**User Goal: Gestión de colaboradores**
+
+**a. Invitar colaborador**
+Flujo para registrar e invitar a nuevos colaboradores al sistema, asignándoles un rol o perfil específico.
+
+* *Happy path*: se completa el formulario y el colaborador recibe su acceso.
+
+![inviteCollaborator.png](assets/images/chapter5/userFlows/municipalidad/inviteCollaborator.png)
+
+**b. Editar colaborador**
+Flujo que permite al administrador actualizar la información o rol de colaboradores ya registrados.
+
+* *Happy path*: los cambios se guardan exitosamente en el sistema.
+
+![editCollaborator.png](assets/images/chapter5/userFlows/municipalidad/editCollaborator.png)
+
+**User Goal: Gestión de rutas de recolección**
+Flujo donde el administrador puede generar y asignar rutas de recolección de residuos, así como consultar el historial de rutas ejecutadas.
+
+* *Happy path*: se visualizan las rutas activas y se consulta el historial correctamente.
+
+![manageRoutes.png](assets/images/chapter5/userFlows/municipalidad/manageRoutes.png)
+
+**User Goal: Gestión de dispositivos IoT**
+
+**a. Registrar dispositivo IoT**
+Flujo para registrar nuevos dispositivos IoT destinados a monitorear contenedores u otros puntos de control.
+
+* *Happy path*: el dispositivo queda correctamente registrado en el sistema.
+
+![registerIoT.png](assets/images/chapter5/userFlows/municipalidad/registerIoT.png)
+
+**b. Editar dispositivo IoT**
+Flujo que permite actualizar datos o reconfigurar dispositivos IoT existentes.
+
+* *Happy path*: los cambios de configuración se guardan y se confirma la actualización.
+
+![editIoT.png](assets/images/chapter5/userFlows/municipalidad/editIoT.png)
+
+**User Goal: Gestión de reportes ciudadanos**
+Flujo que muestra los reportes enviados por ciudadanos (ej. incidencias en el servicio de limpieza), con opciones para revisarlos, visualizar evidencia y darles seguimiento.
+
+* *Happy path*: el estado del reporte se actualiza correctamente y queda registrado en el historial.
+
+![manageReports.png](assets/images/chapter5/userFlows/municipalidad/manageReports.png)
+
+**User Goal: Gestión de sesión y perfil**
+Flujo donde el administrador puede actualizar su información básica, cambiar contraseña o cerrar sesión.
+
+* *Happy path*: al cerrar sesión se redirige a la pantalla de acceso.
+
+![adminProfile.png](assets/images/chapter5/userFlows/municipalidad/adminProfile.png)
+
+**User Goal: Registro de vehículos**
+Flujo para registrar vehículos municipales, asociarlos a rutas y mantener actualizado el inventario de la flota.
+
+* *Happy path*: se guarda un nuevo vehículo y aparece en la lista de gestión de flota.
+
+![registerVehicle.png](assets/images/chapter5/userFlows/municipalidad/registerVehicle.png)
+
+## 4.5. Mobile Applications Prototyping
+El propósito de esta sección es presentar los prototipos interactivos desarrollados para las aplicaciones móviles del ciudadano y del colaborador municipal (chofer). Estos prototipos permiten simular la experiencia de usuario final, facilitando la evaluación de la usabilidad, la navegación y la interacción con las funcionalidades clave antes de la implementación técnica.
+
+A continuación, se presentan capturas y los enlaces a los videos explicativos que detallan los flujos de usuario relacionados:
+
+![pictureCitizensVideo.png](assets/images/chapter5/mobileApplicationUxUi/prototyping/pictureCitizensVideo.png)
+
+Enlace para acceder al video explicativo del [Mobile Application Prototyping para Ciudadano](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202220829_upc_edu_pe/EfacU1lOl0dDhVjvsiQTz80BNf47Kehz1Po42sXwE1Mz2A?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D&e=dJxpJk)
+
+![pictureDriversVideo.png](assets/images/chapter5/mobileApplicationUxUi/prototyping/pictureDriversVideo.png)
+
+Enlace para acceder al video explicativo del [Mobile Application Prototyping para Colaborador Municipal (Chofer)](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202220829_upc_edu_pe/EfA-tJfVYVdIufJ9c54xT7IB57K_1VjP_IFEgWfgSYoRbg?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D&e=5sZlbF)
+
+Asimismo, a continuación se presentan los enlaces que llevan a los flujos por cada perfil de usuario:
+
+* [Mobile Application Prototyping para Ciudadano](https://www.figma.com/proto/SYYxFeZgRViEvSUVEYlhZq/PRODUCT?node-id=148-1571&t=D0tjx3N2qsot8HmY-1&scaling=min-zoom&content-scaling=fixed&page-id=108%3A2&starting-point-node-id=148%3A1571&show-proto-sidebar=1)
+
+* [Mobile Application Prototyping para Colaborador Municipal (Chofer)](https://www.figma.com/proto/SYYxFeZgRViEvSUVEYlhZq/PRODUCT?node-id=148-2635&t=D0tjx3N2qsot8HmY-1&scaling=min-zoom&content-scaling=fixed&page-id=108%3A2&starting-point-node-id=148%3A2635&show-proto-sidebar=1)
 
 ## 5.5. Applications Prototyping
 
