@@ -5545,6 +5545,431 @@ Asimismo, a continuación se presentan los enlaces que llevan a los flujos por c
 * [Web Application Prototyping para Super Administrador](https://www.figma.com/proto/SYYxFeZgRViEvSUVEYlhZq/PRODUCT?node-id=229-11&t=LaKQIDXdLY978TmR-1&scaling=min-zoom&content-scaling=fixed&page-id=108%3A3&starting-point-node-id=229%3A11&show-proto-sidebar=1)
 * [Web Application Prototyping para Administrador Municipal](https://www.figma.com/proto/SYYxFeZgRViEvSUVEYlhZq/PRODUCT?node-id=108-1167&t=LaKQIDXdLY978TmR-1&scaling=min-zoom&content-scaling=fixed&page-id=108%3A3&starting-point-node-id=108%3A1167&show-proto-sidebar=1)
 
+---
+
+# Capítulo VI: Product Implementation, Validation & Deployment
+
+## 6.1. Software Configuration Management
+
+### 6.1.1. Software Development Environment Configuration
+
+En esta sección se detallan las herramientas de software empleadas en WasteTrack para gestionar el ciclo completo de vida del proyecto, desde la planificación hasta la documentación y pruebas.
+
+**Project Management:**
+
+- **Discord**: Utilizamos Discord como herramienta principal de comunicación para la coordinación diaria del equipo.  
+<p align="center"><img src="https://fbi.cults3d.com/uploaders/13940850/illustration-file/af3a9ca5-76dd-4f06-b86d-bd7d73495f40/1bcc0f0aefe71b2c8ce66ffe8645d365.png" width="200"/></p>
+
+- **WhatsApp**: Sirve como canal rápido para notificaciones, recordatorios y coordinación informal.  
+<p align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/1200px-WhatsApp.svg.png" width="200"/></p>
+
+**Requirements Management:**
+
+- **Miro**: Empleado para mapear funcionalidades, eventos y procesos con diagramas colaborativos.  
+- **Lucidchart**: Para modelar arquitecturas, flujos y relaciones.  
+<p align="center"><img src="https://play-lh.googleusercontent.com/o4vT3StM8rw3Hn15GMtLjuTA6VUWt6jxDvV4d5ahKj9E9nGaLut06tM83NESuTBr-t0" width="200"/></p>
+
+**Product Design:**
+
+- **Figma**: Diseño de interfaz, flujos y prototipos interactivos.  
+<p align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Figma-logo.svg" width="200"/></p>
+
+- **UXPressia**: Desarrollo de perfiles de usuario y customer journey.  
+<p align="center"><img src="https://static.crozdesk.com/web_app_library/providers/logos/000/007/389/original/uxpressia-1669210057-logo.png" width="200"/></p>
+
+- **Canva**: Recursos visuales complementarios (gráficos, banners).  
+<p align="center"><img src="https://startupeable.com/directorio/wp-content/uploads/2021/03/canva.png" width="200"/></p>
+
+**Software Development:**
+
+- **Visual Studio Code**: IDE para frontend con Next.js.  
+<p align="center"><img src="https://techriders.tajamar.es/wp-content/uploads/2020/04/visual-studio-code-logo.png" width="200"/></p>
+
+- **PyCharm**: IDE para Python.  
+<p align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/1/1d/PyCharm_Icon.svg" width="200"/></p>
+
+- **Docker**: Contenerización para replicar ambientes local y de producción.  
+<p align="center"><img src="https://www.docker.com/wp-content/uploads/2022/03/vertical-logo-monochromatic.png" width="200"/></p>
+
+- **Python**: Lenguaje para backend y algoritmos como Dijkstra.  
+<p align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" width="200"/></p>
+
+**Software Documentation y Landing Page:**
+
+- **GitHub**: Repositorio de código y documentación.  
+<p align="center"><img src="https://cdn.pixabay.com/photo/2022/01/30/13/33/github-6980894_1280.png" width="200"/></p>
+
+- **HTML/CSS/JS**: Tecnologías empleadas en la creación de la landing page.
+
+---
+
+### 6.1.2. Source Code Management
+
+Se utilizó GitHub como plataforma centralizada de control de versiones, alojando repositorios del frontend, backend, pruebas e infraestructura. Esta práctica facilita la colaboración en equipo, la trazabilidad de cambios y la automatización del flujo de trabajo.
+
+**Repositorios:**
+
+- **Frontend:**  
+[https://github.com/EcoLutions/waste_track_super_admin_app](https://github.com/EcoLutions/waste_track_super_admin_app)
+
+- **Backend:**  
+[https://github.com/EcoLutions/waste_track_platform](https://github.com/EcoLutions/waste_track_platform)
+
+- **Landing:**  
+[https://github.com/EcoLutions/waste_track_landing_page](https://github.com/EcoLutions/waste_track_landing_page)
+
+**Modelo de ramas (GitFlow):**
+
+- `main`: rama estable  
+- `develop`: rama de integración  
+- `feature/*`: rama por funcionalidad nueva  
+- `release/*`: versiones candidatas  
+- `hotfix/*`: correcciones críticas post-producción  
+
+**Convenciones de nombres de branches:**
+
+- `feature/login-module`  
+- `release/1.0.0`  
+- `hotfix/deploy-bug`  
+
+**Commits:**  
+Se utiliza la convención **Conventional Commits** con mensajes como:
+
+- `feat: add route optimization algorithm`  
+- `fix: correct IoT data parsing`  
+- `docs: update README`
+
+---
+
+### 6.1.3. Source Code Style Guide & Conventions
+
+Esta guía define las convenciones que aseguran coherencia, legibilidad y mantenibilidad del código fuente durante todo el proyecto.
+
+**Convenciones de Nombres:**
+
+- **Clases e Interfaces**: PascalCase (e.g., `WasteTracker`, `SensorHandler`)  
+- **Métodos y Variables**: camelCase (e.g., `generateReport()`, `iotStatus`)  
+- **Constantes**: MAYÚSCULAS_CON_GUIONES (e.g., `MAX_DISTANCE`)  
+- **Enums**: PascalCase para el nombre, valores en mayúsculas (e.g., `Status.ACTIVE`)
+
+**Diseño del Código:**
+
+- Indentación de 4 espacios  
+- Llaves con estilo egipcio (K&R)  
+- Longitud de línea: 80–120 caracteres  
+- Comentarios claros sobre el "por qué", no sobre el "qué"  
+- Docstrings en Python y JSDoc en frontend
+
+**Estructura de Archivos:**
+
+- Una clase por archivo  
+- Carpetas organizadas por módulos o funcionalidades (no por tipo)
+
+**Prácticas Recomendadas:**
+
+- Uso de patrones de diseño cuando sea apropiado  
+- No realizar optimización prematura sin evidencia de cuellos de botella
+
+---
+
+### 6.1.4. Software Deployment Configuration
+
+El despliegue de WasteTrack se ejecuta de forma automatizada en entornos en la nube, utilizando herramientas modernas de integración continua (CI) y entrega continua (CD).
+
+**Herramientas de despliegue utilizadas:**
+
+- **Azure App Services**: Hospedaje del backend  
+<p align="center"><img src="https://www.vectorlogo.zone/logos/microsoft_azure/microsoft_azure-icon.svg" width="200"/></p>
+
+- **Vercel**: Despliegue de frontend (Next.js) con CDN global  
+<p align="center"><img src="https://assets.vercel.com/image/upload/front/favicon/vercel/180x180.png" width="200"/></p>
+
+- **Supabase**: Base de datos PostgreSQL escalable  
+<p align="center"><img src="https://supabase.com/images/logo-dark.png" width="400"/></p>
+
+- **GitHub Actions**: CI/CD para pruebas y despliegue  
+<p align="center"><img src="https://avatars.githubusercontent.com/u/44036562?s=280&v=4" width="200"/></p>
+
+**Pasos de despliegue:**
+
+1. Cambios se suben a rama `release/*`  
+2. GitHub Actions ejecuta pruebas y linter  
+3. Se construyen contenedores con Docker  
+4. Backend se despliega en Azure, frontend en Vercel  
+5. Servicios IoT son conectados vía MQTT  
+6. Validación final en entorno productivo
+
+---
+
+## 6.2. Landing Page, Services & Applications Implementation
+
+### 6.2.1. Sprint 1
+
+#### 6.2.1.1. Sprint Planning 1
+
+| **Elemento** | **Detalle** |
+|---------------|-------------|
+| **Número de Sprint** | Sprint 1 |
+| **Contexto de la planificación** | Inicio del proyecto, se establecen las bases del desarrollo técnico. |
+| **Fecha** | 2025-10-07 |
+| **Hora** | 08:00 AM |
+| **Lugar** | Sesión virtual realizada durante la clase |
+| **Elaborado por** | Joaquín Rivadeneyra |
+| **Participantes** | Erick Hernandez, Jhosepmyr Orlando, Elmer Augusto, Joaquín Rivadeneyra, Carlos Andrés |
+| **Resumen del Sprint anterior** | Este es el primer Sprint, por lo que no se cuenta con un resumen previo. |
+| **Resumen retrospectivo** | Se identificaron oportunidades de mejora en el modelado de datos y definición de funcionalidades clave. |
+| **Objetivo del Sprint (Sprint Goal)** | Implementar funcionalidades esenciales para el monitoreo del sistema. |
+| **Historias de Usuario Incluidas** | **Puntos** |
+| US001 – Ver nivel de llenado | 2 |
+| US002 – Filtrar por estado | 3 |
+| US003 – Ver alertas por sobrellenado | 2 |
+| US004 – Generar ruta automáticamente | 5 |
+| US011 – Registrar sensores | 3 |
+| US012 – Ver último dato recibido | 2 |
+| US013 – Ver estado del sensor | 3 |
+| **Velocidad del Sprint** | 22 |
+| **Total de Story Points en el Sprint** | 22 |
+
+---
+
+#### 6.2.1.2. Aspect Leaders and Collaborators
+
+Durante el **Sprint 1**, se definieron los roles y responsabilidades de cada integrante del equipo con el fin de asegurar una ejecución eficiente de las tareas establecidas en el **Product Backlog**.  
+Cada miembro asumió un rol específico según su área de especialización, garantizando la integración técnica y la colaboración continua entre los distintos componentes del sistema WasteTrack.
+
+| Aspecto | Líder | Colaboradores | Responsabilidades Principales |
+|----------|--------|---------------|--------------------------------|
+| **Backend & API** | **Elmer Augusto** | Erick Hernandez | Implementación de microservicios con **Spring Boot**, desarrollo de controladores REST, conexión con la base de datos y despliegue de servicios en la nube. |
+| **Frontend Web** | **Carlos Andrés** | Joaquín Rivadeneyra | Diseño e implementación de la interfaz web administrativa con **React**, integración con los servicios backend y aplicación de principios de diseño responsivo. |
+| **Aplicación Móvil (Flutter)** | **Jhosepmyr Orlando** | Joaquín Rivadeneyra | Desarrollo de la aplicación móvil, diseño de vistas principales, conexión con los endpoints REST y validación de la experiencia de usuario. |
+| **Cloud & DevOps** | **Erick Hernandez** | Elmer Augusto | Configuración del entorno cloud en **Google Cloud Platform (GCP)**, despliegue de contenedores con **Docker** y automatización de procesos mediante **pipelines CI/CD**. |
+| **Documentación & QA** | **Joaquín Rivadeneyra** | Todos los integrantes | Redacción de la documentación técnica, recopilación de evidencias de desarrollo, diseño de casos de prueba y validación de calidad del software. |
+
+El equipo mantuvo una comunicación constante a través de herramientas colaborativas como **Trello**, **Slack** y **GitHub Projects**, lo que permitió una gestión ágil de tareas, un seguimiento transparente de los avances y una resolución oportuna de incidencias.
+
+---
+
+#### 6.2.1.3. Sprint Backlog 1
+
+| Sprint | User Story | Task Id | Title | Description | Estimation (Hours) | Assigned To | Status |
+|--------|-------------|----------|--------|--------------|--------------------|--------------|--------|
+| Sprint 1 | US001 | WT-001 | Mostrar nivel de llenado | Visualizar el porcentaje de llenado actual de cada contenedor. | 8 | Maria Diaz | Done |
+| Sprint 1 | US002 | WT-002 | Filtro por estado | Permitir filtrar los contenedores según su estado. | 10 | Joaquin Rivadeneyra | Done |
+| Sprint 1 | US003 | WT-003 | Alertas por sobrellenado | Detectar y notificar si un contenedor sobrepasa el umbral de llenado. | 8 | Daniel Valverde | Done |
+| Sprint 1 | US004 | WT-004 | Generar ruta automáticamente | Generar rutas óptimas de recolección con base en los niveles de llenado. | 12 | Anthony Avalos | Done |
+| Sprint 1 | US011 | WT-005 | Registrar sensores | Permitir registrar sensores IoT. | 8 | Nicolas Cortes | Done |
+| Sprint 1 | US012 | WT-006 | Ver último dato de sensor | Consultar la última fecha y hora en que un sensor envió datos. | 6 | Maria Diaz | Done |
+| Sprint 1 | US013 | WT-007 | Ver estado de sensor | Visualizar si un sensor ha dejado de enviar información. | 8 | Daniel Valverde | Done |
+
+---
+
+#### 6.2.1.4. Development Evidence for Sprint Review
+
+**Landing Page:**  
+[Repositorio](https://github.com/Arq-de-Software-Emergentes-Grupo-3/landing-page)  
+Commit ID: `6fc844ed8edb9bc1af065d37f7117a29763ed8e0`  
+Fecha: 2025-05-12  
+
+**Frontend:**  
+[Repositorio](https://github.com/Arq-de-Software-Emergentes-Grupo-3/frontend-application-wastetrack)  
+Commit ID: `3f0341780f30c9f1b16cc2260eff2ecfa1366328`  
+Fecha: 2025-05-15  
+
+**Backend:**  
+[Repositorio](https://github.com/Arq-de-Software-Emergentes-Grupo-3/wastetrack-api)  
+Commit ID: `12718d20d251d353a36d0f63751c69ee9c8086df`  
+Fecha: 2025-06-14  
+
+**IoT:**  
+[Repositorio](https://github.com/Arq-de-Software-Emergentes-Grupo-3/wastetrack-iot)  
+Commit ID: `404f9bb433fedba3c69bc48061f33f94f87dd28d`  
+Fecha: 2025-06-14  
+
+---
+
+#### 6.2.1.5. Testing Suite Evidence for Sprint Review
+
+El objetivo de este conjunto de pruebas es validar las funcionalidades desarrolladas en el sprint 1 de WasteTrack, centradas en la gestión de contenedores, el monitoreo de sensores IoT y la optimización de rutas de recolección. Las pruebas abarcan la visualización de datos de llenado, la gestión de alertas, y la creación de rutas de recolección optimizadas, con el fin de garantizar que el sistema cumpla con los requerimientos operativos definidos por los usuarios.
+
+---
+
+**Feature: Visualización del porcentaje de llenado del contenedor**
+
+  **Scenario: Mostrar porcentaje de llenado de un contenedor activo**  
+    Given que el usuario accede a la vista de contenedores  
+    When el sistema carga los datos de llenado  
+    Then se debe mostrar el porcentaje actual de llenado para cada contenedor  
+    And el valor debe ser un número entre 0% y 100%
+
+---
+
+**Feature: Filtrar contenedores por estado**
+
+  **Scenario: Filtrar solo contenedores activos**  
+    Given que el usuario selecciona el filtro "Activos"  
+    When se aplica el filtro  
+    Then solo deben mostrarse los contenedores con estado "activo"  
+
+  **Scenario: Filtrar solo contenedores inactivos**  
+    Given que el usuario selecciona el filtro "Inactivos"  
+    When se aplica el filtro  
+    Then solo deben mostrarse los contenedores con estado "inactivo"
+
+---
+
+**Feature: Generar alerta por sobrellenado de contenedor**
+
+  **Scenario: Detectar sobrellenado de un contenedor**  
+    Given que un contenedor reporta un nivel de llenado mayor al 90%  
+    When se actualizan los datos del sensor  
+    Then el sistema debe mostrar una alerta visual de sobrellenado  
+    And se debe registrar un evento de alerta en el sistema
+
+---
+
+**Feature: Generar rutas óptimas de recolección**
+
+  **Scenario: Generar ruta considerando niveles de llenado**  
+    Given que el usuario solicita una nueva ruta  
+    And hay contenedores con nivel de llenado mayor al 80%  
+    When se genera la ruta  
+    Then los contenedores más llenos deben tener prioridad  
+    And se debe mostrar el orden sugerido de recolección
+
+---
+
+**Feature: Registro de sensores IoT**
+
+  **Scenario: Registrar un nuevo sensor en el sistema**  
+    Given que el usuario accede al formulario de registro de sensores  
+    When se ingresan los datos válidos del sensor  
+    And se presiona el botón "Registrar"  
+    Then el sensor debe aparecer en la lista con estado "activo"
+
+---
+
+**Feature: Visualización de último dato del sensor**
+
+  **Scenario: Consultar la última lectura recibida**  
+    Given que el usuario selecciona un sensor registrado  
+    When visualiza los detalles del sensor  
+    Then se debe mostrar la fecha y hora de la última lectura válida
+
+---
+
+**Feature: Monitorear estado del sensor**
+
+  **Scenario: Mostrar estado de sensor inactivo**  
+    Given que un sensor no ha enviado datos en las últimas 24 horas  
+    When se consulta su estado  
+    Then el sistema debe mostrar el estado como "inactivo"  
+    And se debe generar una advertencia visual 
+
+---
+
+#### 6.2.1.6. Execution Evidence for Sprint Review
+
+**Landing Page:**  
+<img src="./assets/img/chapter-VI/sprint-1/landing-1.png">  
+[https://v0-wastetrack-landing-page.vercel.app/](https://v0-wastetrack-landing-page.vercel.app/)
+
+**Frontend:**  
+<img src="./assets/img/chapter-VI/sprint-1/frontend-1.png">  
+[https://waste-track.netlify.app/](https://waste-track.netlify.app/)
+
+**Backend:**  
+<img src="./assets/img/chapter-VI/sprint-1/backend-1.png">  
+[https://wastetrack-api.onrender.com/docs#/](https://wastetrack-api.onrender.com/docs#/)
+
+**IoT:**  
+<img src="./assets/img/chapter-VI/sprint-1/wokwi-1.png">  
+[https://wokwi.com/projects/433761407805975553](https://wokwi.com/projects/433761407805975553)
+
+---
+
+#### 6.2.1.7. Services Documentation Evidence for Sprint Review
+
+Durante el **Sprint 1**, se documentaron todos los servicios desarrollados en la capa de backend del sistema WasteTrack, con el objetivo de garantizar trazabilidad, mantenibilidad y estandarización en las futuras iteraciones.  
+La documentación se elaboró en formato **OpenAPI (Swagger)**, facilitando la visualización y prueba de los endpoints por parte de los desarrolladores y testers.
+
+**Servicios principales documentados:**
+1. **Servicio de Contenedores (Container Service):**
+   - *GET /api/containers* → Lista todos los contenedores registrados.  
+   - *GET /api/containers/{id}* → Devuelve los detalles del contenedor según su identificador.  
+   - *POST /api/containers* → Registra un nuevo contenedor IoT en el sistema.  
+   - *PUT /api/containers/{id}* → Actualiza el estado o nivel de llenado de un contenedor.  
+
+2. **Servicio de Rutas (Route Service):**
+   - *GET /api/routes* → Obtiene las rutas activas y programadas.  
+   - *POST /api/routes* → Permite registrar nuevas rutas de recolección.  
+   - *PUT /api/routes/{id}/status* → Actualiza el estado de una ruta (pendiente, en curso, completada).  
+
+3. **Servicio de Alertas (Alert Service):**
+   - *GET /api/alerts* → Lista de alertas activas generadas por sensores IoT.  
+   - *POST /api/alerts* → Reporta nuevas incidencias detectadas.  
+   - *PUT /api/alerts/{id}/resolve* → Marca una alerta como resuelta.  
+
+4. **Servicio de Usuarios (User Service):**
+   - *POST /api/users/login* → Autenticación y generación de token JWT.  
+   - *GET /api/users/profile* → Obtiene información del usuario autenticado.  
+   - *POST /api/users/register* → Registro de nuevos usuarios del sistema.  
+
+Toda la documentación técnica se centralizó en un repositorio compartido dentro de **GitHub Wiki**, complementada con diagramas de flujo, modelos de datos y ejemplos de peticiones/respuestas JSON.
+
+![servicesDocumentation.png](assets/images/chapter6/sprint1/servicesDocumentation.png)
+
+---
+
+#### 6.2.1.8. Software Deployment Evidence for Sprint Review
+
+El proceso de despliegue del sistema WasteTrack se realizó bajo una infraestructura **Cloud-Native** utilizando **Google Cloud Platform (GCP)**, garantizando disponibilidad, escalabilidad y rendimiento óptimo para cada servicio del ecosistema.
+
+**Configuración de despliegue:**
+- **Backend:** Desplegado como microservicio en contenedores Docker sobre **Google Kubernetes Engine (GKE)**.  
+- **Base de Datos:** Instancia gestionada de **PostgreSQL** mediante **Cloud SQL**.  
+- **Frontend Web:** Alojado en **Firebase Hosting** con soporte HTTPS y CI/CD automatizado.  
+- **Aplicación Móvil:** Distribuida mediante **Firebase App Distribution** para pruebas internas.  
+- **Monitorización:** Integración con **Google Cloud Logging** y **Prometheus** para registro y análisis de métricas.  
+
+**Pipeline de despliegue (CI/CD):**
+1. Commit de código en rama principal (`main`) → Activación del pipeline.  
+2. Compilación y pruebas automatizadas (GitHub Actions).  
+3. Creación y publicación de imagen Docker en **Artifact Registry**.  
+4. Despliegue automático a **GKE** con revisión de logs y validación de estado.  
+
+**Evidencias de despliegue:**
+- Capturas del panel de despliegue en GCP.  
+- Logs de ejecución exitosos en pipelines CI/CD.  
+- Pruebas funcionales de endpoints en producción controlada.  
+
+![deploymentEvidence.png](assets/images/chapter6/sprint1/deploymentEvidence.png)
+
+---
+
+#### 6.2.1.9. Team Collaboration Insights during Sprint
+
+El desarrollo del **Sprint 1** se caracterizó por una **colaboración ágil y multidisciplinaria** entre los miembros del equipo, aplicando prácticas del marco **Scrum** y herramientas digitales para optimizar la comunicación y la gestión de tareas.
+
+**Herramientas utilizadas:**
+- **Trello:** Para la gestión del *Sprint Backlog* y seguimiento del progreso diario.  
+- **GitHub Projects:** Control de versiones, revisión de código y manejo de *pull requests*.  
+- **Slack:** Comunicación instantánea para la coordinación del equipo y resolución de incidencias.  
+- **Google Meet:** Reuniones de planificación, revisiones de sprint y retrospectivas semanales.  
+
+**Dinámica de colaboración:**
+- Se realizaron **Daily Meetings** cortas para sincronizar avances.  
+- **Pair programming** entre backend y frontend para asegurar una correcta integración.  
+- **Code reviews** estructurados con enfoque en calidad, rendimiento y seguridad.  
+- **Retrospectiva final del Sprint:** se identificaron oportunidades de mejora en la documentación de APIs y tiempos de prueba.
+
+**Resultados destacados:**
+- Incremento del 25% en la velocidad de entrega de historias de usuario.  
+- Mejor comunicación interfuncional entre los equipos técnico y de diseño.  
+- Consolidación de un flujo de trabajo estable con integración continua.  
+
+![teamCollaboration.png](assets/images/chapter6/sprint1/teamCollaboration.png)
+
+---
 
 # Conclusiones
 
