@@ -2623,32 +2623,31 @@ Representa el agregado principal del dominio, encapsulando toda la información 
 
 **Atributos principales:**
 
-| Atributo             | Tipo                  | Visibilidad | Descripción                                         |
-|----------------------|-----------------------|-------------|-----------------------------------------------------|
-| `id`                 | `Long`                | `private`   | Identificador único del contenedor en base de datos |
-| `containerId`        | `ContainerId`         | `private`   | Identificador de dominio del contenedor             |
-| `location`           | `Location`            | `private`   | Ubicación geográfica del contenedor                 |
-| `capacity`           | `ContainerCapacity`   | `private`   | Capacidad máxima del contenedor                     |
-| `currentFillLevel`   | `FillLevel`           | `private`   | Nivel actual de llenado del contenedor              |
-| `status`             | `ContainerStatus`     | `private`   | Estado operacional del contenedor                   |
-| `type`               | `ContainerType`       | `private`   | Tipo de residuos que almacena                       |
-| `lastCollectionDate` | `LocalDateTime`       | `private`   | Fecha de la última recolección                      |
-| `sensorReadings`     | `List<SensorReading>` | `private`   | Historial de lecturas de sensores                   |
-| `version`            | `Long`                | `private`   | Control de versión para optimistic locking          |
+| Atributo               | Tipo                  | Visibilidad | Descripción                                   |
+|------------------------|-----------------------|-------------|-----------------------------------------------|
+| `id`                   | `String`              | `private`   | Identificador único del contenedor            |
+| `location`             | `Location`            | `private`   | Ubicación geográfica del contenedor           |
+| `capacity`             | `ContainerCapacity`   | `private`   | Capacidad máxima del contenedor               |
+| `currentFillLevel`     | `FillLevel`           | `private`   | Nivel actual de llenado del contenedor        |
+| `status`               | `ContainerStatus`     | `private`   | Estado operacional del contenedor             |
+| `sensorId`             | `SensorId`            | `private`   | Identificador unico del sensor                |
+| `lastReadingTimestamp` | `LocalDateTime`       | `private`   | Fecha de la última lectura del sensor         |
+| `districtId`           | `DistrictId`          | `private`   | Identificador unico del distrito              |
+| `lastCollectionDate`   | `LocalDateTime`       | `private`   | Fecha de la última recolección                |
+| `collectionFrequency`  | `CollectionFrequency` | `private`   | Frecuencia de recoleccion en dias             |
+| `createdAt`            | `LocalDateTime`       | `private`   | Fecha de cuando fue creado                    |
+| `updatedAt`            | `LocalDateTime`       | `private`   | Fecha de cuando fue actualizado recientemente |
 
 **Métodos principales:**
 
-| Método                                | Tipo de Retorno | Visibilidad | Descripción                                                   |
-|---------------------------------------|-----------------|-------------|---------------------------------------------------------------|
-| `Container()`                         | `Constructor`   | `protected` | Constructor protegido para repositorio                        |
-| `Container(location, capacity, type)` | `Constructor`   | `public`    | Constructor con parámetros esenciales                         |
-| `Container(command)`                  | `Constructor`   | `public`    | Constructor desde comando usando Factory pattern              |
-| `addSensorReading(reading)`           | `void`          | `public`    | Agrega nueva lectura de sensor validando reglas de negocio    |
-| `updateFillLevel(newLevel)`           | `void`          | `public`    | Actualiza nivel de llenado y publica eventos de dominio       |
-| `markAsCollected()`                   | `void`          | `public`    | Marca contenedor como recolectado y resetea métricas          |
-| `isOverflowing()`                     | `boolean`       | `public`    | Verifica si el contenedor está desbordándose                  |
-| `needsCollection()`                   | `boolean`       | `public`    | Determina si requiere recolección basado en reglas de negocio |
-| `calculateFillRate()`                 | `double`        | `public`    | Calcula tasa de llenado para análisis predictivo              |
+| Método                                 | Tipo de Retorno | Visibilidad | Descripción                                                                |
+|----------------------------------------|-----------------|-------------|----------------------------------------------------------------------------|
+| `updateFillLevel(newLevel, timestamp)` | `void`          | `public`    | Actualiza nivel de llenado y publica eventos de dominio                    |
+| `markAsCollected(collectedAt)`         | `void`          | `public`    | Marca contenedor como recolectado y resetea métricas                       |
+| `requiresCollection()`                 | `boolean`       | `public`    | Marca contenedor como necesitado de ser recolectado                        |
+| `isOverflowing()`                      | `boolean`       | `public`    | Verifica si el contenedor está desbordándose                               |
+| `assignSensor(sensorId)`               | `boolean`       | `public`    | Asignar un sensor a un contenedor                                          |
+| `SchedulemantainanceDueToSensor()`     | `void`          | `public`    | Gestiona el mantenimiento de un contenedor segun la informacion del sensor |
 
 2. **`SensorReading` (Entity)**
 
@@ -2656,17 +2655,20 @@ Entidad que representa una lectura individual de los sensores IoT instalados en 
 
 **Atributos principales:**
 
-| Atributo       | Tipo              | Visibilidad | Descripción                            |
-|----------------|-------------------|-------------|----------------------------------------|
-| `id`           | `Long`            | `private`   | Identificador único de la lectura      |
-| `readingId`    | `SensorReadingId` | `private`   | Identificador de dominio de la lectura |
-| `containerId`  | `ContainerId`     | `private`   | Referencia al contenedor asociado      |
-| `sensorId`     | `SensorId`        | `private`   | Identificador del sensor físico        |
-| `timestamp`    | `LocalDateTime`   | `private`   | Momento de la lectura                  |
-| `fillLevel`    | `FillLevel`       | `private`   | Nivel de llenado registrado            |
-| `temperature`  | `Temperature`     | `private`   | Temperatura ambiente registrada        |
-| `sensorHealth` | `SensorHealth`    | `private`   | Estado de salud del sensor             |
-| `isValidated`  | `boolean`         | `private`   | Indica si la lectura ha sido validada  |
+| Atributo           | Tipo               | Visibilidad | Descripción                                   |
+|--------------------|--------------------|-------------|-----------------------------------------------|
+| `id`               | `Long`             | `private`   | Identificador único de la lectura             |
+| `containerId`      | `ContainerId`      | `private`   | Referencia al contenedor asociado             |
+| `fillLevel`        | `FillLevel`        | `private`   | Nivel de llenado registrado                   |
+| `batteryLevel`     | `BatteryLevel`     | `private`   | Nivel de bateria del sensor                   |
+| `isValidated`      | `boolean`          | `private`   | Indica si la lectura ha sido validada         |
+| `validationStatus` | `validationStatus` | `private`   | Cambia el estado si se valido el registro     |
+| `recordedAt`       | `LocalDateTime`    | `private`   | Fecha de cuando fue registro la informacion   |
+| `receivedAt`       | `LocalDateTime`    | `private`   | Fecha de cuando se recibio el registro        |
+| `createdAt`        | `LocalDateTime`    | `private`   | Fecha de cuando fue creado                    |
+| `updatedAt`        | `LocalDateTime`    | `private`   | Fecha de cuando fue actualizado recientemente |
+
+
 
 **Métodos principales:**
 
@@ -2679,12 +2681,14 @@ Entidad que representa una lectura individual de los sensores IoT instalados en 
 
 Los value objects implementan inmutabilidad y encapsulan validaciones de dominio específicas:
 
-- **`ContainerId`**: Identificador único con validaciones de formato
 - **`FillLevel`**: Porcentaje de llenado con métodos `isCritical()`, `isNearFull()`
 - **`ContainerCapacity`**: Volumen y peso máximo con cálculo de utilización
 - **`ContainerStatus`**: Estado operacional con transiciones válidas
-- **`SensorHealth`**: Estado de salud del sensor con indicadores de mantenimiento
 - **`Temperature`**: Temperatura con conversiones y validaciones de rango
+- **`ContainerType`**: Tipo de contenedor
+- **`CollectionFrequency`**: Los dias en que no ha sido recoggido el contenedor
+- **`BatteryLevel`**: Porcentaje de carga de la bateria del sensor
+- **`ValidationStatus`**: Estado de validacion del reporte del sensor
 
 **Factories (Creational Pattern):**
 
@@ -2824,9 +2828,6 @@ El diseño de base de datos implementa el modelo de dominio con las siguientes c
 **Tablas principales:**
 - **containers**: Aggregate root con datos principales y metadatos de auditoría
 - **sensor_readings**: Entity con optimizaciones para datos time-series
-- **maintenance_events**: Gestión de eventos de mantenimiento
-- **container_events**: Almacenamiento de domain events para procesamiento asíncrono
-- **container_analytics_cache**: Cache de análisis para optimización de rendimiento
 
 **Optimizaciones implementadas:**
 - **Índices geoespaciales**: GIST indexes para consultas por ubicación
@@ -2843,7 +2844,7 @@ El diseño de base de datos implementa el modelo de dominio con las siguientes c
 
 El esquema está optimizado para las operaciones identificadas en el dominio, incluyendo consultas geoespaciales, análisis de tendencias, y procesamiento de grandes volúmenes de datos IoT.
 
-### 4.2.2. Bounded Context: Route Planning
+### 4.2.2. Bounded Context: Route Planning & Execution
 
 En esta sección se presenta el análisis detallado del bounded context Route Planning, que encapsula toda la lógica de negocio relacionada con la optimización de rutas de recolección, la planificación inteligente de recorridos, y el seguimiento en tiempo real de la ejecución de rutas para maximizar la eficiencia operacional y minimizar costos ambientales.
 
@@ -2859,35 +2860,36 @@ Representa el agregado principal del dominio, encapsulando toda la información 
 
 **Atributos principales:**
 
-| Atributo              | Tipo                  | Visibilidad | Descripción                                     |
-|-----------------------|-----------------------|-------------|-------------------------------------------------|
-| `id`                  | `Long`                | `private`   | Identificador único de la ruta en base de datos |
-| `routeId`             | `RouteId`             | `private`   | Identificador de dominio de la ruta             |
-| `name`                | `String`              | `private`   | Nombre descriptivo de la ruta                   |
-| `municipalityId`      | `MunicipalityId`      | `private`   | Municipalidad propietaria de la ruta            |
-| `driverId`            | `DriverId`            | `private`   | Conductor asignado a la ruta                    |
-| `vehicleId`           | `VehicleId`           | `private`   | Vehículo asignado para la ejecución             |
-| `routeType`           | `RouteType`           | `private`   | Tipo de ruta (regular, emergencia, especial)    |
-| `status`              | `RouteStatus`         | `private`   | Estado actual de la ruta                        |
-| `scheduledDate`       | `LocalDateTime`       | `private`   | Fecha programada de ejecución                   |
-| `waypoints`           | `List<Waypoint>`      | `private`   | Lista ordenada de puntos de recolección         |
-| `optimizationMetrics` | `OptimizationMetrics` | `private`   | Métricas de optimización y rendimiento          |
-| `version`             | `Long`                | `private`   | Control de versión para optimistic locking      |
+| Atributo            | Tipo             | Visibilidad | Descripción                                     |
+|---------------------|------------------|-------------|-------------------------------------------------|
+| `id`                | `Long`           | `private`   | Identificador único de la ruta en base de datos |
+| `districtId`        | `DistrictId`     | `private`   | Identificador del distrito                      |
+| `driverId`          | `DriverId`       | `private`   | Conductor asignado a la ruta                    |
+| `vehicleId`         | `VehicleId`      | `private`   | Vehículo asignado para la ejecución             |
+| `routeType`         | `RouteType`      | `private`   | Tipo de ruta (regular, emergencia, especial)    |
+| `status`            | `RouteStatus`    | `private`   | Estado actual de la ruta                        |
+| `scheduledDate`     | `LocalDateTime`  | `private`   | Fecha programada de ejecución                   |
+| `startedAt`         | `LocalDateTime`  | `private`   | Fecha de cuando se inicio la ruta               |
+| `completedAt`       | `LocalDateTime`  | `private`   | Fecha de cuando se completo la ruta             |
+| `waypoints`         | `List<Waypoint>` | `private`   | Lista ordenada de puntos de recolección         |
+| `totalDistance`     | `Distance`       | `private`   | Distancia recorrida                             |
+| `estimatedDuration` | `Duration`       | `private`   | Duracion del recorrido estimada                 |
+| `estimatedDuration` | `Duration`       | `private`   | Duracion del recorrido final                    |
+| `createdAt`         | `LocalDateTime`  | `private`   | Fecha de cuando fue creado                      |
+| `updatedAt`         | `LocalDateTime`  | `private`   | Fecha de cuando fue actualizado recientemente   |
 
 **Métodos principales:**
 
-| Método                                   | Tipo de Retorno | Visibilidad | Descripción                                           |
-|------------------------------------------|-----------------|-------------|-------------------------------------------------------|
-| `Route()`                                | `Constructor`   | `protected` | Constructor protegido para repositorio                |
-| `Route(name, municipalityId, routeType)` | `Constructor`   | `public`    | Constructor con parámetros esenciales                 |
-| `addWaypoint(waypoint)`                  | `void`          | `public`    | Agrega waypoint validando restricciones de capacidad  |
-| `removeWaypoint(waypointId)`             | `void`          | `public`    | Elimina waypoint y recalcula secuencia                |
-| `startExecution()`                       | `void`          | `public`    | Inicia ejecución publicando eventos de dominio        |
-| `completeExecution()`                    | `void`          | `public`    | Marca ruta como completada y calcula métricas finales |
-| `optimizeWaypoints(strategy)`            | `void`          | `public`    | Optimiza orden de waypoints usando Strategy pattern   |
-| `updateProgress(currentLocation)`        | `void`          | `public`    | Actualiza progreso de ejecución en tiempo real        |
-| `isExecutable()`                         | `boolean`       | `public`    | Verifica si la ruta puede ser ejecutada               |
-| `canBeModified()`                        | `boolean`       | `public`    | Determina si la ruta permite modificaciones           |
+| Método                                         | Tipo de Retorno | Visibilidad | Descripción                                              |
+|------------------------------------------------|-----------------|-------------|----------------------------------------------------------|
+| `addWaypoint(containerId, priority)`           | `void`          | `public`    | Agrega waypoint validando restricciones de capacidad     |
+| `removeWaypoint(waypointId)`                   | `void`          | `public`    | Elimina waypoint y recalcula secuencia                   |
+| `assignToDriver(driverId, vehicleId)`          | `void`          | `public`    | Asignar conductor a esta ruta                            |
+| `startExecution()`                             | `void`          | `public`    | Inicia ejecución publicando eventos de dominio           |
+| `completeExecution()`                          | `void`          | `public`    | Marca ruta como completada y calcula métricas finales    |
+| `markWaypointAsVisited(waypointId, timestamp)` | `void`          | `public`    | Marca los waypoints visitados en el transcurso del viaje |
+| `canBeModified()`                              | `boolean`       | `public`    | Determina si la ruta permite modificaciones              |
+| `isOverdue()`                                  | `boolean`       | `public`    | Determina socurre un atraso                              |
 
 2. **`Waypoint` (Entity)**
 
@@ -2895,52 +2897,38 @@ Entidad que representa un punto individual de recolección dentro de una ruta, c
 
 **Atributos principales:**
 
-| Atributo               | Tipo             | Visibilidad | Descripción                           |
-|------------------------|------------------|-------------|---------------------------------------|
-| `id`                   | `Long`           | `private`   | Identificador único del waypoint      |
-| `waypointId`           | `WaypointId`     | `private`   | Identificador de dominio del waypoint |
-| `containerId`          | `ContainerId`    | `private`   | Referencia al contenedor a recolectar |
-| `location`             | `Location`       | `private`   | Ubicación geográfica del waypoint     |
-| `priority`             | `Priority`       | `private`   | Nivel de prioridad para optimización  |
-| `estimatedArrivalTime` | `LocalDateTime`  | `private`   | Hora estimada de llegada              |
-| `actualArrivalTime`    | `LocalDateTime`  | `private`   | Hora real de llegada registrada       |
-| `sequenceOrder`        | `Integer`        | `private`   | Orden en la secuencia de la ruta      |
-| `waypointStatus`       | `WaypointStatus` | `private`   | Estado actual del waypoint            |
+| Atributo               | Tipo             | Visibilidad | Descripción                             |
+|------------------------|------------------|-------------|-----------------------------------------|
+| `id`                   | `Long`           | `private`   | Identificador único del waypoint        |
+| `containerId`          | `ContainerId`    | `private`   | Referencia al contenedor a recolectar   |
+| `secuenceOrder`        | `Location`       | `private`   | Orden en la secuencia de la ruta        |
+| `priority`             | `Priority`       | `private`   | Nivel de prioridad para optimización    |
+| `status`               | `WaypointStatus` | `private`   | Estado actual del waypoint              |
+| `estimatedArrivalTime` | `LocalDateTime`  | `private`   | Hora estimada de llegada                |
+| `actualArrivalTime`    | `LocalDateTime`  | `private`   | Hora real de llegada registrada         |
+| `serviceTime`          | `Duration`       | `private`   | Tiempo de servicio del waypoint         |
+| `driverNote`           | `String`         | `private`   | Nota adicional escrita por el conductor |
 
 **Métodos principales:**
 
-| Método                        | Tipo de Retorno | Visibilidad | Descripción                                |
-|-------------------------------|-----------------|-------------|--------------------------------------------|
-| `markAsVisited()`             | `void`          | `public`    | Marca waypoint como visitado con timestamp |
-| `updateServiceTime(duration)` | `void`          | `public`    | Actualiza tiempo de servicio real          |
-| `canBeVisited()`              | `boolean`       | `public`    | Verifica si el waypoint puede ser visitado |
-| `isCompleted()`               | `boolean`       | `public`    | Determina si el waypoint está completado   |
+| Método                                    | Tipo de Retorno | Visibilidad | Descripción                                |
+|-------------------------------------------|-----------------|-------------|--------------------------------------------|
+| `markAsVisited(arrivalTime, serviceTime)` | `void`          | `public`    | Marca waypoint como visitado con timestamp |
+| `markAsSkipped(reason)`                   | `void`          | `public`    | Actualiza tiempo de servicio real          |
+| `canBeVisited()`                          | `boolean`       | `public`    | Verifica si el waypoint puede ser visitado |
+| `isCompleted()`                           | `boolean`       | `public`    | Determina si el waypoint está completado   |
 
-3. **`OptimizationResult` (Entity)**
-
-Entidad que almacena los resultados de algoritmos de optimización aplicados a rutas, permitiendo análisis comparativo y mejora continua.
-
-**Atributos principales:**
-
-| Atributo                   | Tipo                    | Visibilidad | Descripción                              |
-|----------------------------|-------------------------|-------------|------------------------------------------|
-| `algorithmUsed`            | `OptimizationAlgorithm` | `private`   | Algoritmo utilizado para optimización    |
-| `executionTime`            | `Duration`              | `private`   | Tiempo de ejecución del algoritmo        |
-| `optimizationScore`        | `Double`                | `private`   | Puntuación de calidad de la optimización |
-| `totalDistance`            | `Distance`              | `private`   | Distancia total de la ruta optimizada    |
-| `estimatedFuelConsumption` | `Double`                | `private`   | Consumo estimado de combustible          |
-| `co2Emissions`             | `Double`                | `private`   | Emisiones de CO2 estimadas               |
 
 **Value Objects:**
 
 Los value objects implementan inmutabilidad y encapsulan validaciones específicas del dominio:
 
-- **`RouteId`**: Identificador único con validaciones de formato
+- **`RouteType`**: Tipo de ruta de recoleccion
 - **`RouteStatus`**: Estado con transiciones válidas y restricciones de modificación
 - **`WaypointStatus`**: Estado del waypoint con validaciones de progreso
 - **`Priority`**: Nivel de prioridad comparable para algoritmos de optimización
 - **`Distance`**: Distancia con operaciones matemáticas y conversiones
-- **`OptimizationMetrics`**: Métricas complejas con cálculos de eficiencia
+- **`PriorityLevel`**: Nivel de prioridad de cada waypoint
 
 **Factories (Creational Pattern):**
 
@@ -3091,9 +3079,6 @@ El diseño de base de datos implementa el modelo de dominio con optimizaciones e
 **Tablas principales:**
 - **routes**: Aggregate root con métricas de optimización y control de ejecución
 - **waypoints**: Entity con índices geoespaciales para consultas de proximidad
-- **optimization_results**: Histórico de algoritmos con métricas de rendimiento
-- **route_progress**: Seguimiento en tiempo real con actualizaciones frecuentes
-- **algorithm_performance_cache**: Cache de rendimiento para selección automática de algoritmos
 
 **Optimizaciones especializadas:**
 - **Índices geoespaciales**: GIST indexes para consultas de ubicación y proximidad
@@ -3126,32 +3111,32 @@ Representa el agregado principal del dominio, encapsulando toda la información 
 
 **Atributos principales:**
 
-| Atributo             | Tipo                 | Visibilidad | Descripción                                       |
-|----------------------|----------------------|-------------|---------------------------------------------------|
-| `id`                 | `Long`               | `private`   | Identificador único del distrito en base de datos |
-| `districtId`         | `DistrictId`         | `private`   | Identificador de dominio del distrito             |
-| `name`               | `String`             | `private`   | Nombre oficial del distrito municipal             |
-| `municipalityId`     | `MunicipalityId`     | `private`   | Municipalidad a la que pertenece                  |
-| `administratorId`    | `AdministratorId`    | `private`   | Administrador responsable del distrito            |
-| `boundaries`         | `GeographicBoundary` | `private`   | Límites geográficos del distrito                  |
-| `population`         | `Population`         | `private`   | Datos demográficos del distrito                   |
-| `budget`             | `Budget`             | `private`   | Presupuesto asignado con categorías               |
-| `operationalStatus`  | `OperationalStatus`  | `private`   | Estado operacional actual                         |
-| `resources`          | `List<Resource>`     | `private`   | Recursos asignados al distrito                    |
-| `performanceMetrics` | `PerformanceMetrics` | `private`   | Métricas de rendimiento operacional               |
+| Atributo            | Tipo                 | Visibilidad | Descripción                                       |
+|---------------------|----------------------|-------------|---------------------------------------------------|
+| `id`                | `Long`               | `private`   | Identificador único del distrito en base de datos |
+| `name`              | `String`             | `private`   | Nombre oficial del distrito municipal             |
+| `code`              | `String`             | `private`   | Codigo oficial del distrito municipal             |
+| `boundaries`        | `GeographicBoundary` | `private`   | Límites geográficos del distrito                  |
+| `operationalStatus` | `OperationalStatus`  | `private`   | Estado operacional actual                         |
+| `serviceStartDate`  | `LocalDate`          | `private`   | Fecha de inicio del servicio                      |
+| `subscriptionId`    | `SubscriptionId`     | `private`   | Identificador unico de sus subscripcion           |
+| `maxVehicles`       | `Integer`            | `private`   | Cantidad maxima de vehiculos                      |
+| `maxDrivers`        | `Integer`            | `private`   | Cantidad maxima de conductores                    |
+| `maxContainers`     | `Integer`            | `private`   | Cantidad maxima de contenedores                   |
+| `primaryAdminEmail` | `EmailAddress`       | `private`   | Correo electronico del administrador principal    |
+| `createdAt`         | `LocalDateTime`      | `private`   | Fecha de cuando fue creado                        |
+| `updatedAt`         | `LocalDateTime`      | `private`   | Fecha de cuando fue actualizado recientemente     |
 
 **Métodos principales:**
 
-| Método                                 | Tipo de Retorno       | Visibilidad | Descripción                                            |
-|----------------------------------------|-----------------------|-------------|--------------------------------------------------------|
-| `allocateResource(resource)`           | `void`                | `public`    | Asigna recurso validando disponibilidad presupuestaria |
-| `deallocateResource(resourceId)`       | `void`                | `public`    | Libera recurso y actualiza utilización                 |
-| `updateBudget(newBudget)`              | `void`                | `public`    | Actualiza presupuesto con validaciones fiscales        |
-| `assignAdministrator(administratorId)` | `void`                | `public`    | Asigna administrador con verificación de autorización  |
-| `calculateOperationalCost()`           | `MonetaryAmount`      | `public`    | Calcula costo operacional total del distrito           |
-| `isWithinBoundaries(location)`         | `boolean`             | `public`    | Verifica si ubicación está dentro de límites           |
-| `hasAvailableCapacity()`               | `boolean`             | `public`    | Determina si hay capacidad para nuevos recursos        |
-| `getResourceUtilization()`             | `ResourceUtilization` | `public`    | Calcula utilización actual de recursos                 |
+| Método                                             | Tipo de Retorno | Visibilidad | Descripción                                               |
+|----------------------------------------------------|-----------------|-------------|-----------------------------------------------------------|
+| `activate()`                                       | `void`          | `public`    | Marca a un conductor como activo                          |
+| `suspend()`                                        | `void`          | `public`    | Suspende a un conductor                                   |
+| `isWithinServiceLimits(vehicleCount, driverCount)` | `boolean`       | `public`    | Verifica si conductor esta al limite su final de servicio |
+| `canRegisterNewVehicle()`                          | `void`          | `public`    | Verifica si se puede registrar un nuevo conductor         |
+| `canRegisterNewDriver()`                           | `void`          | `public`    | Verifica si se puede registrar un nuevo vehiculo          |
+| `isLocationWithinBoundaries(location)`             | `boolean`       | `public`    | Verifica si ubicación está dentro de límites              |
 
 2. **`Vehicle` (Aggregate Root)**
 
@@ -3159,30 +3144,33 @@ Representa un vehículo de la flota municipal con capacidades de tracking GPS, h
 
 **Atributos principales:**
 
-| Atributo              | Tipo                      | Visibilidad | Descripción                                      |
-|-----------------------|---------------------------|-------------|--------------------------------------------------|
-| `vehicleId`           | `VehicleId`               | `private`   | Identificador de dominio del vehículo            |
-| `registrationNumber`  | `String`                  | `private`   | Número de placa único                            |
-| `vehicleType`         | `VehicleType`             | `private`   | Tipo de vehículo (recolector, compactador, etc.) |
-| `capacity`            | `VehicleCapacity`         | `private`   | Capacidad de carga del vehículo                  |
-| `status`              | `VehicleStatus`           | `private`   | Estado operacional actual                        |
-| `maintenanceHistory`  | `List<MaintenanceRecord>` | `private`   | Historial completo de mantenimiento              |
-| `operationalMetrics`  | `OperationalMetrics`      | `private`   | Métricas de eficiencia y costo                   |
-| `gpsTracker`          | `GPSTracker`              | `private`   | Sistema de tracking GPS                          |
-| `nextMaintenanceDate` | `LocalDateTime`           | `private`   | Fecha programada de próximo mantenimiento        |
+| Atributo              | Tipo             | Visibilidad | Descripción                                       |
+|-----------------------|------------------|-------------|---------------------------------------------------|
+| `id`                  | `String`         | `private`   | Identificador de unico del vehículo               |
+| `districtId`          | `DistrictId`     | `private`   | Identificador unico del distrito al que pertenece |
+| `licencePlate`        | `LicencePlate`   | `private`   | Licencia del vehiculo                             |
+| `vehicleType`         | `VehicleType`    | `private`   | Tipo de vehículo (recolector, compactador, etc.)  |
+| `capacityVolume`      | `VolumeCapacity` | `private`   | Capacidad de carga de volumen del vehículo        |
+| `capacityWeight`      | `WeightCapacity` | `private`   | Capacidad de carga de peso del vehículo           |
+| `status`              | `VehicleStatus`  | `private`   | Estado operacional actual                         |
+| `lastMaintenanceDate` | `LocalDate`      | `private`   | Fecha del ultimo mantenimiento                    |
+| `nextMaintenanceDate` | `LocalDate`      | `private`   | Fecha programada de próximo mantenimiento         |
+| `assignedDriver`      | `DriverId`       | `private`   | identificador del conductoasignado al vehiculo    |
+| `createdAt`           | `LocalDateTime`  | `private`   | Fecha de cuando fue creado                        |
+| `updatedAt`           | `LocalDateTime`  | `private`   | Fecha de cuando fue actualizado recientemente     |
 
 **Métodos principales:**
 
-| Método                            | Tipo de Retorno  | Visibilidad | Descripción                                     |
-|-----------------------------------|------------------|-------------|-------------------------------------------------|
-| `assignToDistrict(districtId)`    | `void`           | `public`    | Asigna vehículo a distrito específico           |
-| `assignDriver(driverId)`          | `void`           | `public`    | Asigna conductor validando certificaciones      |
-| `scheduleMaintenance(type, date)` | `void`           | `public`    | Programa mantenimiento usando Strategy pattern  |
-| `recordMaintenance(record)`       | `void`           | `public`    | Registra mantenimiento completado               |
-| `isAvailableForRoute()`           | `boolean`        | `public`    | Verifica disponibilidad para asignación de ruta |
-| `requiresMaintenance()`           | `boolean`        | `public`    | Determina si requiere mantenimiento             |
-| `calculateOperationalCost()`      | `MonetaryAmount` | `public`    | Calcula costo operacional por período           |
-| `updateLocation(location)`        | `void`           | `public`    | Actualiza ubicación GPS en tiempo real          |
+| Método                         | Tipo de Retorno | Visibilidad | Descripción                                     |
+|--------------------------------|-----------------|-------------|-------------------------------------------------|
+| `assignToDistrict(districtId)` | `void`          | `public`    | Asigna vehículo a distrito específico           |
+| `assignDriver(driverId)`       | `void`          | `public`    | Asigna conductor validando certificaciones      |
+| `unassignDriver(driverId)`     | `void`          | `public`    | Desasigna al conductor del vehiculo             |
+| `markAsInUse()`                | `void`          | `public`    | Marca al vehiculo como ocupado                  |
+| `markAsAvailable()`            | `void`          | `public`    | Marca al vehiculo como disponible para uso      |
+| `scheduleMaintenance(date)`    | `void`          | `public`    | Programa mantenimiento usando Strategy pattern  |
+| `isAvailableForRoute()`        | `boolean`       | `public`    | Verifica disponibilidad para asignación de ruta |
+| `requiresMaintenance()`        | `boolean`       | `public`    | Determina si requiere mantenimiento             |
 
 3. **`Driver` (Aggregate Root)**
 
@@ -3190,37 +3178,39 @@ Representa un conductor municipal con información personal, certificaciones, ho
 
 **Atributos principales:**
 
-| Atributo            | Tipo                  | Visibilidad | Descripción                            |
-|---------------------|-----------------------|-------------|----------------------------------------|
-| `driverId`          | `DriverId`            | `private`   | Identificador de dominio del conductor |
-| `personalInfo`      | `PersonalInfo`        | `private`   | Información personal y documentos      |
-| `licenseInfo`       | `LicenseInfo`         | `private`   | Información de licencia de conducir    |
-| `employmentStatus`  | `EmploymentStatus`    | `private`   | Estado laboral actual                  |
-| `workSchedule`      | `WorkSchedule`        | `private`   | Horario de trabajo detallado           |
-| `performanceRecord` | `PerformanceRecord`   | `private`   | Registro de rendimiento laboral        |
-| `certifications`    | `List<Certification>` | `private`   | Certificaciones y capacitaciones       |
+| Atributo               | Tipo             | Visibilidad | Descripción                                                        |
+|------------------------|------------------|-------------|--------------------------------------------------------------------|
+| `id`                   | `String`         | `private`   | Identificador único del conductor en el sistema                    |
+| `districtId`           | `DistrictId`     | `private`   | Identificador del distrito al que pertenece el conductor           |
+| `fullName`             | `FullName`       | `private`   | Nombre completo del conductor                                      |
+| `documentNumber`       | `DocumentNumber` | `private`   | Documento de identidad del conductor                               |
+| `phoneNumber`          | `PhoneNumber`    | `private`   | Número telefónico de contacto del conductor                        |
+| `userId`               | `UserId`         | `private`   | Identificador del usuario asociado en el sistema IAM               |
+| `driverLicense`        | `DriverLicense`  | `private`   | Número de licencia de conducir del conductor                       |
+| `licenseExpiryDate`    | `LocalDate`      | `private`   | Fecha de expiración de la licencia de conducir                     |
+| `emailAddress`         | `EmailAddress`   | `private`   | Correo electrónico del conductor                                   |
+| `totalHoursWorked`     | `Integer`        | `private`   | Total de horas trabajadas por el conductor                         |
+| `lastRouteCompletedAt` | `LocalDateTime`  | `private`   | Fecha y hora de la última ruta completada                          |
+| `status`               | `DriverStatus`   | `private`   | Estado actual del conductor (AVAILABLE, ON_ROUTE, SUSPENDED, etc.) |
+| `assignedVehicleId`    | `VehicleId`      | `private`   | Identificador del vehículo asignado al conductor (si aplica)       |
+| `createdAt`            | `LocalDateTime`  | `private`   | Fecha y hora de creación del registro                              |
+| `updatedAt`            | `LocalDateTime`  | `private`   | Fecha y hora de la última actualización del registro               |
 
 **Métodos principales:**
 
-| Método                           | Tipo de Retorno | Visibilidad | Descripción                                  |
-|----------------------------------|-----------------|-------------|----------------------------------------------|
-| `assignToDistrict(districtId)`   | `void`          | `public`    | Asigna conductor a distrito específico       |
-| `assignVehicle(vehicleId)`       | `void`          | `public`    | Asigna vehículo verificando compatibilidad   |
-| `updateWorkSchedule(schedule)`   | `void`          | `public`    | Actualiza horario con validaciones laborales |
-| `recordPerformance(metrics)`     | `void`          | `public`    | Registra métricas de rendimiento             |
-| `isAvailableForAssignment()`     | `boolean`       | `public`    | Verifica disponibilidad para asignación      |
-| `canOperateVehicle(vehicleType)` | `boolean`       | `public`    | Verifica si puede operar tipo de vehículo    |
-| `calculateWorkingHours(period)`  | `Duration`      | `public`    | Calcula horas trabajadas en período          |
+| Método                       | Tipo de Retorno | Visibilidad | Descripción                                                              |
+|------------------------------|-----------------|-------------|--------------------------------------------------------------------------|
+| `startRoute()`               | `void`          | `public`    | Marca el inicio de una ruta asignada y actualiza el estado del conductor |
+| `completeRoute(hoursWorked)` | `void`          | `public`    | Registra la finalización de una ruta y actualiza las horas trabajadas    |
+| `goOffDuty()`                | `void`          | `public`    | Cambia el estado del conductor a fuera de servicio                       |
+| `suspend(reason)`            | `void`          | `public`    | Suspende al conductor indicando la razón de la suspensión                |
+| `assignVehicle(vehicleId)`   | `void`          | `public`    | Asigna un vehículo al conductor validando disponibilidad                 |
+| `unassignVehicle()`          | `void`          | `public`    | Remueve la asignación del vehículo actual del conductor                  |
+| `isAvailableForRoute()`      | `boolean`       | `public`    | Verifica si el conductor está disponible para recibir una nueva ruta     |
+| `reactive()`                 | `void`          | `public`    | Reactiva al conductor tras haber estado suspendido o inactivo            |
+| `isLicenseExpired()`         | `boolean`       | `public`    | Verifica si la licencia de conducir del conductor está vencida           |
 
 **Entities:**
-
-4. **`Resource` (Entity)**
-
-Entidad que representa recursos asignados a distritos con seguimiento de utilización y costos operacionales.
-
-5. **`MaintenanceRecord` (Entity)**
-
-Entidad que registra eventos de mantenimiento vehicular con costos, técnicos, y resultados.
 
 **Value Objects:**
 
@@ -3353,7 +3343,6 @@ El diagrama de clases del Domain Layer presenta la estructura completa del domin
 
 **Elementos DDD implementados:**
 - **Aggregate Roots**: District, Vehicle, Driver como raíces con invariantes municipales
-- **Entities**: Resource y MaintenanceRecord con identidad y ciclo de vida específicos
 - **Value Objects**: Objetos inmutables para conceptos municipales complejos
 - **Domain Services**: Servicios para operaciones municipales complejas
 - **Domain Events**: Eventos para coordinación operacional entre distritos
@@ -3376,7 +3365,7 @@ El diagrama de clases del Domain Layer presenta la estructura completa del domin
 
 ##### 4.2.3.6.2. Bounded Context Database Design Diagram
 
-![database-design-municipal-operations.png](assets/4.solution-software-design/4.2.tactical-level-domain-driven-design/3.database-design-diagram.png)
+![database-design-municipal-operations.png](assets/4.solution-software-design/4.2.tactical-level-domain-driven-design/3.database-design-diagram.jpg)
 
 El diseño de base de datos implementa el modelo de dominio con optimizaciones específicas para operaciones municipales:
 
@@ -3423,32 +3412,30 @@ Representa el agregado principal del dominio, encapsulando toda la información 
 
 **Atributos principales:**
 
-| Atributo            | Tipo                 | Visibilidad | Descripción                                            |
-|---------------------|----------------------|-------------|--------------------------------------------------------|
-| `id`                | `Long`               | `private`   | Identificador único del ciudadano en base de datos     |
-| `citizenId`         | `CitizenId`          | `private`   | Identificador de dominio del ciudadano                 |
-| `personalInfo`      | `PersonalInfo`       | `private`   | Información personal y documentos de identidad         |
-| `contactInfo`       | `ContactInfo`        | `private`   | Información de contacto y preferencias de comunicación |
-| `membershipLevel`   | `MembershipLevel`    | `private`   | Nivel de membresía en programa de recompensas          |
-| `engagementLevel`   | `EngagementLevel`    | `private`   | Nivel de participación ciudadana calculado             |
-| `engagementScore`   | `EngagementScore`    | `private`   | Puntuación numérica de engagement                      |
-| `totalRewardPoints` | `RewardPoints`       | `private`   | Puntos acumulados en sistema de recompensas            |
-| `preferences`       | `CitizenPreferences` | `private`   | Preferencias de notificación y privacidad              |
-| `registrationDate`  | `LocalDateTime`      | `private`   | Fecha de registro en la plataforma                     |
-| `lastActivity`      | `LocalDateTime`      | `private`   | Timestamp de última actividad                          |
+| Atributo                | Tipo              | Visibilidad | Descripción                                                    |
+|-------------------------|-------------------|-------------|----------------------------------------------------------------|
+| `id`                    | `String`          | `private`   | Identificador único del ciudadano en la base de datos          |
+| `userId`                | `UserId`          | `private`   | Identificador del usuario asociado al ciudadano                |
+| `districtId`            | `DistrictId`      | `private`   | Identificador del distrito al que pertenece el ciudadano       |
+| `fullName`              | `FullName`        | `private`   | Nombre completo del ciudadano                                  |
+| `email`                 | `EmailAddress`    | `private`   | Dirección de correo electrónico del ciudadano                  |
+| `phoneNumber`           | `PhoneNumber`     | `private`   | Número de teléfono del ciudadano                               |
+| `totalPoints`           | `RewardPoints`    | `private`   | Total de puntos acumulados en el sistema de recompensas        |
+| `membershipLevel`       | `MembershipLevel` | `private`   | Nivel de membresía en el programa de recompensas               |
+| `totalReportsSubmitted` | `Integer`         | `private`   | Cantidad total de reportes enviados por el ciudadano           |
+| `lastActivityDate`      | `LocalDateTime`   | `private`   | Fecha y hora de la última actividad registrada                 |
+| `createdAt`             | `LocalDateTime`   | `private`   | Fecha y hora de creación del registro del ciudadano            |
+| `updatedAt`             | `LocalDateTime`   | `private`   | Fecha y hora de la última actualización del registro ciudadano |
 
 **Métodos principales:**
 
-| Método                             | Tipo de Retorno   | Visibilidad | Descripción                                         |
-|------------------------------------|-------------------|-------------|-----------------------------------------------------|
-| `submitReport(report)`             | `void`            | `public`    | Envía reporte ciudadano validando reglas de negocio |
-| `earnRewardPoints(points, reason)` | `void`            | `public`    | Acumula puntos de recompensa con auditoría          |
-| `redeemRewards(redemption)`        | `void`            | `public`    | Canjea recompensas validando disponibilidad         |
-| `updateEngagementLevel()`          | `void`            | `public`    | Recalcula nivel de engagement basado en actividad   |
-| `canSubmitReport()`                | `boolean`         | `public`    | Verifica si puede enviar reportes según reglas      |
-| `calculateEngagementScore()`       | `EngagementScore` | `public`    | Calcula puntuación de engagement actual             |
-| `getActiveReports()`               | `List<Report>`    | `public`    | Obtiene reportes pendientes del ciudadano           |
-| `updatePreferences(preferences)`   | `void`            | `public`    | Actualiza preferencias de comunicación              |
+| Método                       | Tipo de Retorno | Visibilidad | Descripción                                                             |
+|------------------------------|-----------------|-------------|-------------------------------------------------------------------------|
+| `earnPoints(points, reason)` | `void`          | `public`    | Suma puntos de recompensa al ciudadano con una justificación específica |
+| `redeemPoints(points)`       | `void`          | `public`    | Permite canjear puntos acumulados validando disponibilidad suficiente   |
+| `submitReport()`             | `void`          | `public`    | Registra un nuevo reporte ciudadano en el sistema                       |
+| `updateMembershipLevel()`    | `void`          | `public`    | Actualiza el nivel de membresía según los puntos o actividad reciente   |
+| `isActive()`                 | `boolean`       | `public`    | Verifica si el ciudadano mantiene un estado activo en la plataforma     |
 
 2. **`Report` (Aggregate Root)**
 
@@ -3456,47 +3443,67 @@ Representa un reporte ciudadano con workflow de estados, geolocalización, y sis
 
 **Atributos principales:**
 
-| Atributo         | Tipo                | Visibilidad | Descripción                             |
-|------------------|---------------------|-------------|-----------------------------------------|
-| `reportId`       | `ReportId`          | `private`   | Identificador de dominio del reporte    |
-| `citizenId`      | `CitizenId`         | `private`   | Ciudadano que envió el reporte          |
-| `reportType`     | `ReportType`        | `private`   | Tipo de problema reportado              |
-| `title`          | `String`            | `private`   | Título descriptivo del reporte          |
-| `description`    | `String`            | `private`   | Descripción detallada del problema      |
-| `location`       | `Location`          | `private`   | Ubicación geográfica del problema       |
-| `priority`       | `Priority`          | `private`   | Nivel de prioridad del reporte          |
-| `status`         | `ReportStatus`      | `private`   | Estado actual en workflow               |
-| `images`         | `List<ReportImage>` | `private`   | Evidencia fotográfica del problema      |
-| `feedback`       | `CitizenFeedback`   | `private`   | Feedback del ciudadano sobre resolución |
-| `resolutionTime` | `Duration`          | `private`   | Tiempo total de resolución              |
+| Atributo         | Tipo            | Visibilidad | Descripción                                                             |
+|------------------|-----------------|-------------|-------------------------------------------------------------------------|
+| `id`             | `String`        | `private`   | Identificador único del reporte en el sistema                           |
+| `citizenId`      | `CitizenId`     | `private`   | Identificador del ciudadano que envió el reporte                        |
+| `location`       | `Location`      | `private`   | Ubicación geográfica del incidente reportado                            |
+| `containerId`    | `ContainerId`   | `private`   | Identificador del contenedor asociado al reporte (opcional)             |
+| `reportType`     | `ReportType`    | `private`   | Tipo de incidente o problema reportado                                  |
+| `description`    | `String`        | `private`   | Descripción detallada del problema reportado                            |
+| `status`         | `ReportStatus`  | `private`   | Estado actual del reporte (pendiente, en progreso, resuelto, etc.)      |
+| `resolutionNote` | `String`        | `private`   | Nota o comentario sobre la resolución del reporte                       |
+| `resolvedAt`     | `LocalDateTime` | `private`   | Fecha y hora en que el reporte fue resuelto                             |
+| `resolvedBy`     | `UserId`        | `private`   | Identificador del usuario que resolvió el reporte                       |
+| `submittedAt`    | `LocalDateTime` | `private`   | Fecha y hora en que el ciudadano envió el reporte                       |
+| `acknowledgedAt` | `LocalDateTime` | `private`   | Fecha y hora en que el reporte fue recibido o reconocido por el sistema |
+| `createdAt`      | `LocalDateTime` | `private`   | Fecha y hora de creación del registro del reporte                       |
+| `updatedAt`      | `LocalDateTime` | `private`   | Fecha y hora de la última actualización del reporte                     |
 
 **Métodos principales:**
 
-| Método                      | Tipo de Retorno | Visibilidad | Descripción                                   |
-|-----------------------------|-----------------|-------------|-----------------------------------------------|
-| `acknowledge()`             | `void`          | `public`    | Marca reporte como reconocido por autoridades |
-| `startProcessing()`         | `void`          | `public`    | Inicia procesamiento usando State pattern     |
-| `resolve(resolution)`       | `void`          | `public`    | Resuelve reporte con descripción de solución  |
-| `addFeedback(feedback)`     | `void`          | `public`    | Agrega feedback ciudadano sobre resolución    |
-| `calculateResolutionTime()` | `Duration`      | `public`    | Calcula tiempo total de resolución            |
-| `canBeResolved()`           | `boolean`       | `public`    | Verifica si reporte puede ser resuelto        |
-| `isOverdue()`               | `boolean`       | `public`    | Determina si reporte excede tiempo esperado   |
+| Método                       | Tipo de Retorno | Visibilidad | Descripción                                                    |
+|------------------------------|-----------------|-------------|----------------------------------------------------------------|
+| `acknowledge()`              | `void`          | `public`    | Marca el reporte como reconocido por las autoridades           |
+| `startProcessing()`          | `void`          | `public`    | Cambia el estado del reporte a “en proceso”                    |
+| `resolve(note, resolvedBy)`  | `void`          | `public`    | Marca el reporte como resuelto, registrando nota y responsable |
+| `reject(reason, rejectedBy)` | `void`          | `public`    | Rechaza el reporte con una razón y el usuario responsable      |
+| `calculateResolutionTime()`  | `Duration`      | `public`    | Calcula el tiempo total desde el envío hasta la resolución     |
+| `isOverdue()`                | `boolean`       | `public`    | Determina si el reporte ha excedido el tiempo esperado         |
 
-3. **`RewardsProgram` (Aggregate Root)**
+3. **`Evidence` (Aggregate Root)**
 
-Representa un programa de recompensas configurable con reglas específicas, opciones de canje, y métricas de participación para incentivar engagement ciudadano.
+Representa las evidencias de que un ciudadano adjunta con un reporte
 
 **Atributos principales:**
 
-| Atributo             | Tipo                     | Visibilidad | Descripción                                    |
-|----------------------|--------------------------|-------------|------------------------------------------------|
-| `programId`          | `ProgramId`              | `private`   | Identificador del programa de recompensas      |
-| `name`               | `String`                 | `private`   | Nombre del programa                            |
-| `rules`              | `RewardRules`            | `private`   | Reglas configurables de otorgamiento de puntos |
-| `redemptionOptions`  | `List<RedemptionOption>` | `private`   | Opciones disponibles para canje                |
-| `isActive`           | `boolean`                | `private`   | Estado de activación del programa              |
-| `participants`       | `Integer`                | `private`   | Número total de participantes                  |
-| `totalPointsAwarded` | `Long`                   | `private`   | Puntos totales otorgados                       |
+| Atributo         | Tipo            | Visibilidad | Descripción                                           |
+|------------------|-----------------|-------------|-------------------------------------------------------|
+| `id`             | `String`        | `private`   | Identificador único de la evidencia                   |
+| `citizenId`      | `CitizenId`     | `private`   | Identificador del ciudadano que registró la evidencia |
+| `location`       | `Location`      | `private`   | Ubicación geográfica donde se registró la evidencia   |
+| `containerId`    | `ContainerId`   | `private`   | Contenedor asociado (opcional)                        |
+| `reportType`     | `ReportType`    | `private`   | Tipo de evento o incidencia evidenciada               |
+| `description`    | `String`        | `private`   | Descripción detallada de la evidencia                 |
+| `status`         | `ReportStatus`  | `private`   | Estado actual del reporte o evidencia                 |
+| `resolutionNote` | `String`        | `private`   | Nota o detalle de resolución proporcionada            |
+| `resolvedAt`     | `LocalDateTime` | `private`   | Fecha y hora en que fue resuelta la evidencia         |
+| `resolvedBy`     | `UserId`        | `private`   | Usuario responsable de la resolución                  |
+| `submittedAt`    | `LocalDateTime` | `private`   | Fecha y hora de envío de la evidencia                 |
+| `acknowledgedAt` | `LocalDateTime` | `private`   | Fecha y hora en que fue reconocida por el sistema     |
+| `createdAt`      | `LocalDateTime` | `private`   | Fecha de creación del registro de evidencia           |
+| `updatedAt`      | `LocalDateTime` | `private`   | Fecha de última actualización del registro            |
+
+**Métodos principales:**
+
+| Método                            | Tipo de Retorno | Visibilidad | Descripción                                              |
+|-----------------------------------|-----------------|-------------|----------------------------------------------------------|
+| `isImage()`                       | `boolean`       | `public`    | Verifica si la evidencia corresponde a una imagen        |
+| `isVideo()`                       | `boolean`       | `public`    | Verifica si la evidencia corresponde a un video          |
+| `isLargeFile()`                   | `boolean`       | `public`    | Determina si el archivo supera el tamaño permitido       |
+| `updateDescription(description)`  | `void`          | `public`    | Actualiza la descripción de la evidencia                 |
+| `generateThumbnail(thumbnailUrl)` | `void`          | `public`    | Genera y asocia una miniatura (thumbnail) a la evidencia |
+
 
 **Entities:**
 
@@ -3669,7 +3676,7 @@ El diagrama de clases del Domain Layer presenta la estructura completa del domin
 
 ##### 4.2.4.6.2. Bounded Context Database Design Diagram
 
-![database-design-community-relations.png](assets/4.solution-software-design/4.2.tactical-level-domain-driven-design/4.database-design-diagram.png)
+![database-design-community-relations.png](assets/4.solution-software-design/4.2.tactical-level-domain-driven-design/4.database-design-diagram.jpg)
 
 El diseño de base de datos implementa el modelo de dominio con optimizaciones específicas para engagement ciudadano y gamificación:
 
@@ -3980,7 +3987,7 @@ El diagrama de clases del Domain Layer presenta la estructura completa del domin
 
 ##### 4.2.5.6.2. Bounded Context Database Design Diagram
 
-![database-design-payment-subscriptions.png](assets/4.solution-software-design/4.2.tactical-level-domain-driven-design/5.database-design-diagram.png)
+![database-design-payment-subscriptions.png](assets/4.solution-software-design/4.2.tactical-level-domain-driven-design/5.database-design-diagram.jpg)
 
 El diseño de base de datos implementa el modelo de dominio con optimizaciones específicas para operaciones financieras SaaS:
 
@@ -4032,36 +4039,36 @@ Representa el agregado principal del dominio, encapsulando toda la información 
 
 **Atributos principales:**
 
-| Atributo           | Tipo                    | Visibilidad | Descripción                                          |
-|--------------------|-------------------------|-------------|------------------------------------------------------|
-| `id`               | `Long`                  | `private`   | Identificador único de la solicitud en base de datos |
-| `requestId`        | `NotificationRequestId` | `private`   | Identificador de dominio de la solicitud             |
-| `sourceContext`    | `SourceContext`         | `private`   | Bounded context origen de la notificación            |
-| `recipientId`      | `RecipientId`           | `private`   | Destinatario de la notificación                      |
-| `recipientType`    | `RecipientType`         | `private`   | Tipo de destinatario (ciudadano, admin, conductor)   |
-| `messageType`      | `MessageType`           | `private`   | Tipo de mensaje (alerta, notificación, marketing)    |
-| `priority`         | `Priority`              | `private`   | Nivel de prioridad para entrega                      |
-| `channels`         | `List<DeliveryChannel>` | `private`   | Canales de entrega configurados                      |
-| `templateId`       | `TemplateId`            | `private`   | Template de mensaje a utilizar                       |
-| `templateData`     | `TemplateData`          | `private`   | Datos para renderizado del template                  |
-| `scheduledDate`    | `LocalDateTime`         | `private`   | Fecha programada de envío                            |
-| `expiryDate`       | `LocalDateTime`         | `private`   | Fecha de expiración                                  |
-| `status`           | `RequestStatus`         | `private`   | Estado actual de la solicitud                        |
-| `deliveryAttempts` | `List<DeliveryAttempt>` | `private`   | Historial de intentos de entrega                     |
+| Atributo         | Tipo                        | Visibilidad | Descripción                                                      |
+|------------------|-----------------------------|-------------|------------------------------------------------------------------|
+| `id`             | `String`                    | `private`   | Identificador único de la solicitud de notificación              |
+| `sourceContext`  | `SourceContext`             | `private`   | Contexto o módulo origen que genera la notificación              |
+| `recipientId`    | `RecipientId`               | `private`   | Identificador del destinatario de la notificación                |
+| `recipientType`  | `RecipientType`             | `private`   | Tipo de destinatario (ciudadano, administrador, conductor, etc.) |
+| `recipientEmail` | `EmailAddress`              | `private`   | Correo electrónico del destinatario                              |
+| `recipientPhone` | `PhoneNumber`               | `private`   | Número telefónico del destinatario                               |
+| `messageType`    | `MessageType`               | `private`   | Tipo de mensaje (alerta, aviso, información general, etc.)       |
+| `templateId`     | `TemplateId`                | `private`   | Identificador del template de mensaje                            |
+| `templateData`   | `Map<String, String>`       | `private`   | Datos dinámicos usados para renderizar el contenido del mensaje  |
+| `channels`       | `List<NotificationChannel>` | `private`   | Canales de entrega habilitados (correo, SMS, app, etc.)          |
+| `priority`       | `NotificationPriority`      | `private`   | Nivel de prioridad asignado a la notificación                    |
+| `scheduledFor`   | `LocalDateTime`             | `private`   | Fecha y hora programada para el envío                            |
+| `expiresAt`      | `LocalDateTime`             | `private`   | Fecha de expiración de la notificación                           |
+| `status`         | `RequestStatus`             | `private`   | Estado actual del proceso de notificación                        |
+| `sentAt`         | `LocalDateTime`             | `private`   | Fecha y hora en que fue enviada la notificación                  |
+| `createdAt`      | `LocalDateTime`             | `private`   | Timestamp de creación del registro                               |
+| `failureReason`  | `String`                    | `private`   | Razón del fallo en el envío, si aplica                           |
 
 **Métodos principales:**
 
-| Método                                 | Tipo de Retorno   | Visibilidad | Descripción                              |
-|----------------------------------------|-------------------|-------------|------------------------------------------|
-| `addDeliveryChannel(channel)`          | `void`            | `public`    | Agrega canal de entrega con validaciones |
-| `scheduleDelivery(date)`               | `void`            | `public`    | Programa entrega para fecha específica   |
-| `processDelivery()`                    | `DeliveryResult`  | `public`    | Procesa entrega usando Strategy pattern  |
-| `markAsDelivered(channel, deliveryId)` | `void`            | `public`    | Marca como entregado en canal específico |
-| `markAsFailed(channel, reason)`        | `void`            | `public`    | Marca como fallido con razón de falla    |
-| `canBeRetried()`                       | `boolean`         | `public`    | Verifica si permite reintentos           |
-| `isExpired()`                          | `boolean`         | `public`    | Determina si la notificación expiró      |
-| `getPreferredChannel()`                | `DeliveryChannel` | `public`    | Obtiene canal preferido del destinatario |
-| `requiresImmediateDelivery()`          | `boolean`         | `public`    | Verifica si requiere entrega inmediata   |
+| Método              | Tipo de Retorno | Visibilidad | Descripción                                                |
+|----------------------|-----------------|-------------|------------------------------------------------------------|
+| `send()`             | `void`          | `public`    | Envía la notificación a través de los canales configurados  |
+| `fail(reason)`       | `void`          | `public`    | Marca la notificación como fallida y registra la causa      |
+| `expire()`           | `void`          | `public`    | Expira la solicitud de notificación si supera su validez    |
+| `isExpired()`        | `boolean`       | `public`    | Verifica si la notificación ya ha expirado                  |
+| `shouldSendNow()`    | `boolean`       | `public`    | Determina si la notificación debe enviarse en el momento actual |
+| `isPending()`        | `boolean`       | `public`    | Indica si la notificación aún está pendiente de envío       |
 
 2. **`MessageTemplate` (Aggregate Root)**
 
@@ -4069,79 +4076,63 @@ Representa un template de mensaje con soporte para múltiples canales, localizac
 
 **Atributos principales:**
 
-| Atributo          | Tipo                              | Visibilidad | Descripción                                       |
-|-------------------|-----------------------------------|-------------|---------------------------------------------------|
-| `templateId`      | `TemplateId`                      | `private`   | Identificador de dominio del template             |
-| `name`            | `String`                          | `private`   | Nombre descriptivo del template                   |
-| `category`        | `TemplateCategory`                | `private`   | Categoría del template (sistema, marketing, etc.) |
-| `messageType`     | `MessageType`                     | `private`   | Tipo de mensaje soportado                         |
-| `channels`        | `List<DeliveryChannel>`           | `private`   | Canales compatibles con el template               |
-| `subjectTemplate` | `String`                          | `private`   | Template del asunto (para email)                  |
-| `bodyTemplate`    | `String`                          | `private`   | Template del cuerpo del mensaje                   |
-| `variables`       | `List<TemplateVariable>`          | `private`   | Variables disponibles en el template              |
-| `localization`    | `Map<Language, LocalizedContent>` | `private`   | Contenido localizado por idioma                   |
-| `version`         | `TemplateVersion`                 | `private`   | Versión del template                              |
-| `isActive`        | `boolean`                         | `private`   | Estado de activación                              |
-| `metadata`        | `TemplateMetadata`                | `private`   | Metadatos adicionales                             |
+| Atributo            | Tipo                        | Visibilidad | Descripción                                         |
+|---------------------|-----------------------------|-------------|-----------------------------------------------------|
+| `id`                | `String`                    | `private`   | Identificador único del template de notificación    |
+| `name`              | `String`                    | `private`   | Nombre descriptivo del template                     |
+| `category`          | `TemplateCategory`          | `private`   | Categoría del template (sistema, alerta, marketing) |
+| `supportedChannels` | `List<NotificationChannel>` | `private`   | Canales de notificación compatibles con el template |
+| `emailSubject`      | `String`                    | `private`   | Asunto del correo electrónico                       |
+| `emailBody`         | `String`                    | `private`   | Cuerpo del mensaje para el canal de correo          |
+| `smsBody`           | `String`                    | `private`   | Cuerpo del mensaje para el canal SMS                |
+| `pushTitle`         | `String`                    | `private`   | Título de la notificación push                      |
+| `pushBody`          | `String`                    | `private`   | Cuerpo de la notificación push                      |
+| `variables`         | `List<String>`              | `private`   | Variables dinámicas disponibles para el template    |
+| `isActive`          | `Boolean`                   | `private`   | Indica si el template está activo                   |
+| `createdAt`         | `LocalDateTime`             | `private`   | Fecha de creación del template                      |
+| `updatedAt`         | `LocalDateTime`             | `private`   | Fecha de última actualización del template          |
 
 **Métodos principales:**
 
-| Método                               | Tipo de Retorno    | Visibilidad | Descripción                              |
-|--------------------------------------|--------------------|-------------|------------------------------------------|
-| `updateContent(subject, body)`       | `void`             | `public`    | Actualiza contenido del template         |
-| `addLocalization(language, content)` | `void`             | `public`    | Agrega localización para idioma          |
-| `addVariable(variable)`              | `void`             | `public`    | Agrega variable al template              |
-| `renderMessage(data, language)`      | `RenderedMessage`  | `public`    | Renderiza mensaje con datos específicos  |
-| `isCompatibleWith(channel)`          | `boolean`          | `public`    | Verifica compatibilidad con canal        |
-| `validateTemplate()`                 | `ValidationResult` | `public`    | Valida sintaxis y variables del template |
-| `activate()`                         | `void`             | `public`    | Activa template para uso                 |
-| `deactivate()`                       | `void`             | `public`    | Desactiva template                       |
+| Método                                                                      | Tipo de Retorno | Visibilidad | Descripción                                                  |
+|-----------------------------------------------------------------------------|-----------------|-------------|--------------------------------------------------------------|
+| `renderForChannel(channel: NotificationChannel, data: Map<String, String>)` | `String`        | `public`    | Renderiza el contenido del template para un canal específico |
+| `supportsChannel(channel: NotificationChannel)`                             | `boolean`       | `public`    | Verifica si el template es compatible con el canal indicado  |
+| `activate()`                                                                | `void`          | `public`    | Activa el template para su uso en notificaciones             |
+| `deactivate()`                                                              | `void`          | `public`    | Desactiva el template y evita su utilización                 |
 
-3. **`DeliveryRecord` (Aggregate Root)**
+3. **`DeliveryAttempt` (Aggregate Root)**
 
-Representa un registro individual de entrega con tracking detallado de estado, costos, y métricas de performance para análisis y optimización de canales.
+Representa un intento individual de entrega con detalles específicos del proveedor y métricas de performance.
 
 **Atributos principales:**
 
-| Atributo                | Tipo                    | Visibilidad | Descripción                           |
-|-------------------------|-------------------------|-------------|---------------------------------------|
-| `recordId`              | `DeliveryRecordId`      | `private`   | Identificador de dominio del registro |
-| `requestId`             | `NotificationRequestId` | `private`   | Solicitud asociada                    |
-| `recipientId`           | `RecipientId`           | `private`   | Destinatario de la entrega            |
-| `channel`               | `DeliveryChannel`       | `private`   | Canal utilizado para entrega          |
-| `providerTransactionId` | `String`                | `private`   | ID de transacción del proveedor       |
-| `status`                | `DeliveryStatus`        | `private`   | Estado actual de la entrega           |
-| `attemptNumber`         | `Integer`               | `private`   | Número de intento actual              |
-| `deliveryDate`          | `LocalDateTime`         | `private`   | Fecha de entrega exitosa              |
-| `confirmationDate`      | `LocalDateTime`         | `private`   | Fecha de confirmación de recepción    |
-| `failureReason`         | `FailureReason`         | `private`   | Razón de falla si aplica              |
-| `cost`                  | `MonetaryAmount`        | `private`   | Costo de la entrega                   |
-| `metadata`              | `DeliveryMetadata`      | `private`   | Metadatos de entrega                  |
+| Atributo            | Tipo                    | Visibilidad | Descripción                                         |
+|---------------------|-------------------------|-------------|-----------------------------------------------------|
+| `id`                | `String`                | `private`   | Identificador único del intento de entrega          |
+| `requestId`         | `NotificationRequestId` | `private`   | Identificador de la solicitud de notificación       |
+| `channel`           | `NotificationChannel`   | `private`   | Canal utilizado para la entrega                     |
+| `provider`          | `ProviderType`          | `private`   | Proveedor del servicio de mensajería o canal        |
+| `providerMessageId` | `String`                | `private`   | Identificador del mensaje asignado por el proveedor |
+| `status`            | `AttemptStatus`         | `private`   | Estado actual del intento de entrega                |
+| `attemptNumber`     | `Integer`               | `private`   | Número de intento realizado                         |
+| `canRetry`          | `Boolean`               | `private`   | Indica si el intento puede reintentarse             |
+| `sentAt`            | `LocalDateTime`         | `private`   | Fecha y hora de envío                               |
+| `deliveredAt`       | `LocalDateTime`         | `private`   | Fecha y hora de entrega exitosa                     |
+| `errorCode`         | `String`                | `private`   | Código de error devuelto por el proveedor           |
+| `errorMessage`      | `String`                | `private`   | Descripción del error si ocurrió una falla          |
+| `cost`              | `Money`                 | `private`   | Costo asociado al intento de entrega                |
+| `createdAt`         | `LocalDateTime`         | `private`   | Fecha de creación del registro                      |
 
 **Métodos principales:**
 
-| Método                           | Tipo de Retorno | Visibilidad | Descripción                                |
-|----------------------------------|-----------------|-------------|--------------------------------------------|
-| `markAsDelivered(transactionId)` | `void`          | `public`    | Marca como entregado con ID de transacción |
-| `markAsFailed(reason)`           | `void`          | `public`    | Marca como fallido con razón específica    |
-| `markAsConfirmed()`              | `void`          | `public`    | Marca como confirmado por destinatario     |
-| `calculateDeliveryTime()`        | `Duration`      | `public`    | Calcula tiempo total de entrega            |
-| `isSuccessful()`                 | `boolean`       | `public`    | Verifica si la entrega fue exitosa         |
-| `canBeRetried()`                 | `boolean`       | `public`    | Determina si permite reintentos            |
+| Método                               | Tipo de Retorno | Visibilidad | Descripción                                                                        |
+|--------------------------------------|-----------------|-------------|------------------------------------------------------------------------------------|
+| `markAsDelivered(providerMessageId)` | `void`          | `public`    | Marca el intento como entregado exitosamente con el ID del proveedor               |
+| `markAsFailed(errorCode, retryable)` | `void`          | `public`    | Marca el intento como fallido indicando el código de error y si puede reintentarse |
+| `canBeRetried()`                     | `boolean`       | `public`    | Indica si el intento puede ser reintentado según su configuración actual           |
+| `calculateDeliveryTime()`            | `Duration`      | `public`    | Calcula la duración total entre el envío y la entrega                              |
 
-**Entities:**
-
-4. **`DeliveryAttempt` (Entity)**
-
-Entidad que representa un intento individual de entrega con detalles específicos del proveedor y métricas de performance.
-
-5. **`RecipientPreference` (Entity)**
-
-Entidad que gestiona preferencias de comunicación por destinatario, incluyendo canales preferidos, horarios de silencio, y configuraciones de frecuencia.
-
-6. **`TemplateVariable` (Entity)**
-
-Entidad que representa variables utilizables en templates con validaciones y formateo específico.
 
 **Value Objects:**
 
@@ -4295,7 +4286,7 @@ El diagrama de clases del Domain Layer presenta la estructura completa del domin
 
 ##### 4.2.6.6.2. Bounded Context Database Design Diagram
 
-![database-design-communication-hub.png](assets/4.solution-software-design/4.2.tactical-level-domain-driven-design/6.database-design-diagram.png)
+![database-design-communication-hub.png](assets/4.solution-software-design/4.2.tactical-level-domain-driven-design/6.database-design-diagram.jpg)
 
 El diseño de base de datos implementa el modelo de dominio con optimizaciones específicas para comunicaciones multi-canal:
 
@@ -4342,99 +4333,48 @@ Esta capa contiene las reglas de negocio fundamentales del dominio de perfiles d
 
 1.  **`UserProfile` (Aggregate Root)**
 
-    Representa el agregado principal del dominio, encapsulando toda la información y comportamiento de un usuario, incluyendo datos personales, de contacto, dirección, y estado del perfil.
+Representa el agregado principal del dominio, encapsulando toda la información y comportamiento de un usuario, incluyendo datos personales, de contacto, dirección, y estado del perfil.
 
 **Atributos principales:**
 
-| Atributo              | Tipo                  | Visibilidad | Descripción                                        |
-|:----------------------|:----------------------|:------------|:---------------------------------------------------|
-| `id`                  | `Long`                | `private`   | Identificador único del perfil en la base de datos |
-| `profileId`           | `ProfileId`           | `private`   | Identificador de dominio del perfil                |
-| `userId`              | `UserId`              | `private`   | ID del usuario desde el BC de IAM                  |
-| `userType`            | `UserType`            | `private`   | Tipo de usuario (Citizen, Administrator, Driver)   |
-| `personalInfo`        | `PersonalInfo`        | `private`   | Información personal del usuario                   |
-| `contactInfo`         | `ContactInfo`         | `private`   | Información de contacto (email, teléfono)          |
-| `addressInfo`         | `AddressInfo`         | `private`   | Dirección y coordenadas geográficas                |
-| `serviceArea`         | `ServiceArea`         | `private`   | Área de servicio a la que pertenece                |
-| `profileStatus`       | `ProfileStatus`       | `private`   | Estado actual del perfil (Activo, Suspendido)      |
-| `privacySettings`     | `PrivacySettings`     | `private`   | Configuraciones de privacidad y datos compartidos  |
-| `profileCompleteness` | `ProfileCompleteness` | `private`   | Puntuación de completitud del perfil               |
-| `lastLoginDate`       | `LocalDateTime`       | `private`   | Fecha del último inicio de sesión                  |
+| Atributo                    | Tipo            | Visibilidad | Descripción                                                          |
+|-----------------------------|-----------------|-------------|----------------------------------------------------------------------|
+| `id`                        | `String`        | `private`   | Identificador único del perfil en la base de datos                   |
+| `userId`                    | `UserId`        | `private`   | Identificador del usuario asociado                                   |
+| `pictureUrl`                | `String`        | `private`   | URL de la imagen de perfil del usuario                               |
+| `userType`                  | `UserType`      | `private`   | Tipo de usuario (Citizen, Administrator, Driver)                     |
+| `districtId`                | `DistrictId`    | `private`   | Identificador del distrito asociado al perfil                        |
+| `email`                     | `EmailAddress`  | `private`   | Dirección de correo electrónico del usuario                          |
+| `photo`                     | `Photo`         | `private`   | Objeto que representa la fotografía del usuario                      |
+| `phoneNumber`               | `PhoneNumber`   | `private`   | Número de teléfono del usuario                                       |
+| `emailNotificationsEnabled` | `Boolean`       | `private`   | Indica si el usuario tiene habilitadas las notificaciones por correo |
+| `smsNotificationsEnabled`   | `Boolean`       | `private`   | Indica si el usuario tiene habilitadas las notificaciones por SMS    |
+| `pushNotificationsEnabled`  | `Boolean`       | `private`   | Indica si el usuario tiene habilitadas las notificaciones push       |
+| `deviceTokens`              | `List<String>`  | `private`   | Lista de tokens de dispositivos registrados para notificaciones      |
+| `language`                  | `Language`      | `private`   | Idioma preferido del usuario                                         |
+| `timezone`                  | `String`        | `private`   | Zona horaria del usuario                                             |
+| `isActive`                  | `Boolean`       | `private`   | Indica si el perfil del usuario se encuentra activo                  |
+| `createdAt`                 | `LocalDateTime` | `private`   | Fecha de creación del perfil                                         |
+| `updatedAt`                 | `LocalDateTime` | `private`   | Fecha de la última actualización del perfil                          |
 
  **Métodos principales:**
 
-| Método                             | Tipo de Retorno     | Visibilidad | Descripción                                                                    |
-|:-----------------------------------|:--------------------|:------------|:-------------------------------------------------------------------------------|
-| `updatePersonalInfo(info)`         | `void`              | `public`    | Actualiza la información personal validando los datos                          |
-| `updateAddress(address)`           | `void`              | `public`    | Cambia la dirección y dispara la validación de elegibilidad                    |
-| `validateServiceAreaEligibility()` | `EligibilityResult` | `public`    | Verifica si la dirección del usuario está dentro de un área de servicio válida |
-| `updatePrivacySettings(settings)`  | `void`              | `public`    | Modifica las configuraciones de privacidad                                     |
-| `deactivate(reason)`               | `void`              | `public`    | Desactiva el perfil del usuario por una razón específica                       |
-| `isComplete()`                     | `boolean`           | `public`    | Verifica si el perfil tiene toda la información requerida                      |
-| `calculateProfileScore()`          | `ProfileScore`      | `public`    | Calcula una puntuación basada en la completitud y actividad                    |
-| `recordLogin()`                    | `void`              | `public`    | Registra un nuevo inicio de sesión y actualiza la fecha                        |
+| Método                                  | Tipo de Retorno | Visibilidad | Descripción                                                                |
+|-----------------------------------------|-----------------|-------------|----------------------------------------------------------------------------|
+| `updateEmail(email: EmailAddress)`      | `void`          | `public`    | Actualiza el correo electrónico del usuario.                               |
+| `updatePhoneNumber(phone: PhoneNumber)` | `void`          | `public`    | Modifica el número de teléfono del usuario.                                |
+| `enableNotificationChannel()`           | `void`          | `public`    | Habilita los canales de notificación del usuario.                          |
+| `disableNotificationChannel()`          | `void`          | `public`    | Deshabilita los canales de notificación del usuario.                       |
+| `addDeviceToken(token: String)`         | `void`          | `public`    | Registra un nuevo token de dispositivo para notificaciones push.           |
+| `removeDeviceToken(token: String)`      | `void`          | `public`    | Elimina un token de dispositivo previamente registrado.                    |
+| `isNotificationEnabledFor()`            | `boolean`       | `public`    | Verifica si las notificaciones están habilitadas para un canal específico. |
+| `deactivate()`                          | `void`          | `public`    | Desactiva el perfil del usuario.                                           |
 
-2.  **`UserPreferences` (Aggregate Root)**
-
-    Gestiona todas las configuraciones y preferencias de un usuario, como notificaciones, idioma y tema de la interfaz.
-
-**Atributos principales:**
-
-| Atributo                | Tipo                    | Visibilidad | Descripción                                             |
-|:------------------------|:------------------------|:------------|:--------------------------------------------------------|
-| `preferencesId`         | `PreferencesId`         | `private`   | Identificador de dominio de las preferencias            |
-| `profileId`             | `ProfileId`             | `private`   | Perfil de usuario asociado                              |
-| `notificationSettings`  | `NotificationSettings`  | `private`   | Configuración de canales y frecuencia de notificaciones |
-| `languagePreference`    | `Language`              | `private`   | Idioma preferido por el usuario                         |
-| `timezonePreference`    | `Timezone`              | `private`   | Zona horaria del usuario                                |
-| `themePreference`       | `ThemePreference`       | `private`   | Tema visual de la aplicación (claro/oscuro)             |
-| `accessibilitySettings` | `AccessibilitySettings` | `private`   | Configuraciones de accesibilidad                        |
-
-**Métodos principales:**
-
-| Método                                 | Tipo de Retorno | Visibilidad | Descripción                                        |
-|:---------------------------------------|:----------------|:------------|:---------------------------------------------------|
-| `updateNotificationSettings(settings)` | `void`          | `public`    | Modifica las preferencias de notificación          |
-| `updateLanguage(language)`             | `void`          | `public`    | Cambia el idioma de la interfaz para el usuario    |
-| `updateTheme(theme)`                   | `void`          | `public`    | Cambia el tema visual de la aplicación             |
-| `isChannelEnabled(channel)`            | `boolean`       | `public`    | Verifica si un canal de notificación está activado |
-
-3.  **`PersonalizationSettings` (Aggregate Root)**
-
-    Encapsula las configuraciones de personalización de la interfaz de usuario, como el layout del dashboard y los widgets.
-
-**Atributos principales:**
-
-| Atributo               | Tipo                        | Visibilidad | Descripción                                    |
-|:-----------------------|:----------------------------|:------------|:-----------------------------------------------|
-| `settingsId`           | `PersonalizationSettingsId` | `private`   | Identificador de dominio de la personalización |
-| `profileId`            | `ProfileId`                 | `private`   | Perfil de usuario asociado                     |
-| `dashboardLayout`      | `DashboardLayout`           | `private`   | Diseño del dashboard principal                 |
-| `widgetConfigurations` | `List<WidgetConfiguration>` | `private`   | Lista de widgets y sus configuraciones         |
-
- **Métodos principales:**
-
-| Método                          | Tipo de Retorno | Visibilidad | Descripción                                           |
-|:--------------------------------|:----------------|:------------|:------------------------------------------------------|
-| `updateDashboardLayout(layout)` | `void`          | `public`    | Cambia el diseño del dashboard                        |
-| `addWidget(widget)`             | `void`          | `public`    | Agrega un nuevo widget al dashboard                   |
-| `removeWidget(widgetId)`        | `void`          | `public`    | Elimina un widget del dashboard                       |
-| `resetToDefaults(userType)`     | `void`          | `public`    | Restablece la configuración a los valores por defecto |
-
-**Entities:**
-
-* **`ContactMethod`**: Representa un método de contacto (email, teléfono) con su estado de verificación.
-* **`AddressHistory`**: Mantiene un historial de las direcciones del usuario para fines de auditoría.
-* **`WidgetConfiguration`**: Configuración específica de un widget en el dashboard, como su posición y tamaño.
 
 **Value Objects:**
 
-* **`PersonalInfo`**: Encapsula datos personales con validaciones de formato (DNI, nombre).
-* **`ContactInfo`**: Agrupa métodos de contacto primarios y secundarios.
-* **`AddressInfo`**: Contiene la dirección completa y coordenadas, con métodos de validación.
-* **`NotificationSettings`**: Define qué notificaciones y en qué canales desea recibir el usuario.
-* **`PrivacySettings`**: Controla la visibilidad del perfil y el consentimiento para compartir datos.
-* **`ProfileCompleteness`**: Calcula y almacena el porcentaje de completitud del perfil.
+* **`UserType`**: Gestiona el tipo de usuario del sistema.
+
 
 **Factories (Creational Pattern):**
 
@@ -4560,7 +4500,7 @@ El diagrama de clases del Domain Layer presenta la estructura completa del domin
 
 ##### 4.2.7.6.2. Bounded Context Database Design Diagram
 
-![database-design-profile.png](assets/4.solution-software-design/4.2.tactical-level-domain-driven-design/7.database-design-diagram.png)
+![database-design-profile.png](assets/4.solution-software-design/4.2.tactical-level-domain-driven-design/7.database-design-diagram.jpg)
 
 El diseño de la base de datos implementa el modelo de dominio con optimizaciones específicas para la gestión de perfiles a gran escala:
 
@@ -4601,28 +4541,40 @@ Esta capa contiene las reglas de negocio fundamentales del dominio de seguridad 
 
 **Atributos principales:**
 
-| Atributo         | Tipo             | Visibilidad | Descripción                                              |
-|:-----------------|:-----------------|:------------|:---------------------------------------------------------|
-| `id`             | `Long`           | `private`   | Identificador único del usuario en la base de datos      |
-| `userId`         | `UserId`         | `private`   | Identificador de dominio del usuario                     |
-| `username`       | `Username`       | `private`   | Nombre de usuario único en el sistema                    |
-| `email`          | `EmailAddress`   | `private`   | Correo electrónico único para la autenticación           |
-| `hashedPassword` | `HashedPassword` | `private`   | Contraseña del usuario almacenada de forma segura (hash) |
-| `status`         | `UserStatus`     | `private`   | Estado actual del usuario (Activo, Suspendido, etc.)     |
-| `roles`          | `Set<Role>`      | `private`   | Conjunto de roles asignados al usuario                   |
-| `lastLoginAt`    | `LocalDateTime`  | `private`   | Fecha y hora del último inicio de sesión exitoso         |
+| Atributo                   | Tipo             | Visibilidad | Descripción                                                        |
+|----------------------------|------------------|-------------|--------------------------------------------------------------------|
+| `id`                       | `String`         | `private`   | Identificador único del usuario.                                   |
+| `username`                 | `Username`       | `private`   | Nombre de usuario único en el sistema.                             |
+| `email`                    | `EmailAddress`   | `private`   | Correo electrónico utilizado para autenticación.                   |
+| `hashedPassword`           | `HashedPassword` | `private`   | Contraseña cifrada almacenada de forma segura.                     |
+| `accountStatus`            | `AccountStatus`  | `private`   | Estado actual de la cuenta del usuario (activo, suspendido, etc.). |
+| `roles`                    | `Set<RoleId>`    | `private`   | Conjunto de identificadores de roles asignados al usuario.         |
+| `failedLoginAttempts`      | `Integer`        | `private`   | Número de intentos fallidos de inicio de sesión.                   |
+| `lastLoginAt`              | `LocalDateTime`  | `private`   | Fecha y hora del último inicio de sesión exitoso.                  |
+| `passwordChangedAt`        | `LocalDateTime`  | `private`   | Fecha y hora de la última actualización de contraseña.             |
+| `activationToken`          | `String`         | `private`   | Token de activación para verificación de cuenta.                   |
+| `activationTokenExpiresAt` | `LocalDateTime`  | `private`   | Fecha de expiración del token de activación.                       |
+| `createdAt`                | `LocalDateTime`  | `private`   | Fecha de creación del registro del usuario.                        |
+| `updatedAt`                | `LocalDateTime`  | `private`   | Fecha de última actualización del registro del usuario.            |
 
 **Métodos principales:**
 
-| Método                        | Tipo de Retorno | Visibilidad | Descripción                                                              |
-|:------------------------------|:----------------|:------------|:-------------------------------------------------------------------------|
-| `authenticate(password)`      | `boolean`       | `public`    | Verifica si la contraseña proporcionada coincide con la almacenada       |
-| `changePassword(newPassword)` | `void`          | `public`    | Cambia la contraseña del usuario aplicando políticas de seguridad        |
-| `assignRole(role)`            | `void`          | `public`    | Asigna un nuevo rol al usuario                                           |
-| `removeRole(role)`            | `void`          | `public`    | Revoca un rol asignado al usuario                                        |
-| `activate()`                  | `void`          | `public`    | Activa la cuenta del usuario                                             |
-| `deactivate()`                | `void`          | `public`    | Desactiva la cuenta del usuario                                          |
-| `hasPermission(permission)`   | `boolean`       | `public`    | Verifica si el usuario tiene un permiso específico a través de sus roles |
+| Método                                                     | Tipo de Retorno        | Visibilidad | Descripción                                                                       |
+|------------------------------------------------------------|------------------------|-------------|-----------------------------------------------------------------------------------|
+| `authenticate(rawPassword: String)`                        | `AuthenticationResult` | `public`    | Verifica las credenciales ingresadas y devuelve el resultado de autenticación.    |
+| `changePassword(oldPassword: String, newPassword: String)` | `void`                 | `public`    | Cambia la contraseña validando la anterior y aplicando políticas de seguridad.    |
+| `resetPassword(newPassword: String)`                       | `void`                 | `public`    | Restablece la contraseña sin requerir la anterior.                                |
+| `assignRole(roleId: RoleId)`                               | `void`                 | `public`    | Asigna un nuevo rol al usuario.                                                   |
+| `removeRole(roleId: RoleId)`                               | `void`                 | `public`    | Elimina un rol previamente asignado al usuario.                                   |
+| `hasPermission(permission: Permission)`                    | `boolean`              | `public`    | Verifica si el usuario tiene un permiso específico según sus roles.               |
+| `lockAccount()`                                            | `void`                 | `public`    | Bloquea la cuenta tras múltiples intentos fallidos o por decisión administrativa. |
+| `unlockAccount()`                                          | `void`                 | `public`    | Desbloquea la cuenta y restablece los intentos fallidos.                          |
+| `recordSuccessfulLogin()`                                  | `void`                 | `public`    | Registra un inicio de sesión exitoso y actualiza la fecha correspondiente.        |
+| `recordFailedLogin()`                                      | `void`                 | `public`    | Registra un intento fallido de inicio de sesión e incrementa el contador.         |
+| `generateActivationToken()`                                | `String`               | `public`    | Genera un nuevo token de activación para la cuenta del usuario.                   |
+| `activateAccount(token: String)`                           | `void`                 | `public`    | Activa la cuenta del usuario validando el token proporcionado.                    |
+| `isAccountLocked()`                                        | `boolean`              | `public`    | Determina si la cuenta del usuario se encuentra bloqueada.                        |
+| `requiresPasswordChange()`                                 | `boolean`              | `public`    | Indica si el usuario debe cambiar su contraseña por políticas de seguridad.       |
 
 2.  **`Role` (Aggregate Root)**
 
@@ -4630,23 +4582,28 @@ Esta capa contiene las reglas de negocio fundamentales del dominio de seguridad 
 
 **Atributos principales:**
 
-| Atributo      | Tipo              | Visibilidad | Descripción                                      |
-|:--------------|:------------------|:------------|:-------------------------------------------------|
-| `roleId`      | `RoleId`          | `private`   | Identificador de dominio del rol                 |
-| `name`        | `String`          | `private`   | Nombre único del rol (e.g., "CITIZEN", "DRIVER") |
-| `permissions` | `Set<Permission>` | `private`   | Conjunto de permisos asociados a este rol        |
+| Atributo      | Tipo              | Visibilidad | Descripción                                              |
+|---------------|-------------------|-------------|----------------------------------------------------------|
+| `id`          | `String`          | `private`   | Identificador único del rol en el sistema.               |
+| `name`        | `RoleName`        | `private`   | Nombre del rol (por ejemplo, "CITIZEN", "DRIVER").       |
+| `description` | `String`          | `private`   | Descripción detallada del propósito del rol.             |
+| `permissions` | `Set<Permission>` | `private`   | Conjunto de permisos asociados al rol.                   |
+| `roleType`    | `RoleType`        | `private`   | Tipo de rol (por ejemplo, sistema, aplicación, dominio). |
+| `isActive`    | `Boolean`         | `private`   | Indica si el rol está activo en el sistema.              |
+| `createdAt`   | `LocalDateTime`   | `private`   | Fecha y hora en que se creó el rol.                      |
+| `updatedAt`   | `LocalDateTime`   | `private`   | Fecha y hora de la última actualización del rol.         |
+
 
 **Métodos principales:**
 
-| Método                         | Tipo de Retorno | Visibilidad | Descripción                                       |
-|:-------------------------------|:----------------|:------------|:--------------------------------------------------|
-| `addPermission(permission)`    | `void`          | `public`    | Agrega un nuevo permiso al rol                    |
-| `removePermission(permission)` | `void`          | `public`    | Elimina un permiso del rol                        |
-| `hasPermission(permission)`    | `boolean`       | `public`    | Verifica si el rol contiene un permiso específico |
-
-**Entities:**
-
-* **`Permission` (Entity)**: Representa una acción granular permitida en el sistema (e.g., "VIEW_CONTAINERS", "MANAGE_USERS").
+| Método                              | Tipo de Retorno | Visibilidad | Descripción                                               |
+|------------------------------------|-----------------|-------------|-----------------------------------------------------------|
+| `addPermission(permission)`        | `void`          | `public`    | Agrega un nuevo permiso al rol.                           |
+| `removePermission(permission)`     | `void`          | `public`    | Elimina un permiso existente del rol.                     |
+| `hasPermission(permission)`        | `boolean`       | `public`    | Verifica si el rol contiene un permiso específico.         |
+| `canBeModified()`                  | `boolean`       | `public`    | Determina si el rol puede ser modificado.                 |
+| `activate()`                       | `void`          | `public`    | Activa el rol, permitiendo su uso dentro del sistema.     |
+| `deactivate()`                     | `void`          | `public`    | Desactiva el rol, impidiendo su uso en nuevas asignaciones. |
 
 **Value Objects:**
 
@@ -4757,7 +4714,7 @@ El diagrama de clases del Domain Layer presenta la estructura completa del domin
 
 ##### 4.2.8.6.2. Bounded Context Database Design Diagram
 
-![database-design-iam.png](assets/4.solution-software-design/4.2.tactical-level-domain-driven-design/8.database-design-diagram.png)
+![database-design-iam.png](assets/4.solution-software-design/4.2.tactical-level-domain-driven-design/8.database-design-diagram.jpg)
 
 El diseño de la base de datos implementa el modelo de dominio con un enfoque principal en la seguridad y la integridad de los datos de identidad.
 
