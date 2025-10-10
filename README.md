@@ -3986,36 +3986,36 @@ Representa el agregado principal del dominio, encapsulando toda la información 
 
 **Atributos principales:**
 
-| Atributo           | Tipo                    | Visibilidad | Descripción                                          |
-|--------------------|-------------------------|-------------|------------------------------------------------------|
-| `id`               | `Long`                  | `private`   | Identificador único de la solicitud en base de datos |
-| `requestId`        | `NotificationRequestId` | `private`   | Identificador de dominio de la solicitud             |
-| `sourceContext`    | `SourceContext`         | `private`   | Bounded context origen de la notificación            |
-| `recipientId`      | `RecipientId`           | `private`   | Destinatario de la notificación                      |
-| `recipientType`    | `RecipientType`         | `private`   | Tipo de destinatario (ciudadano, admin, conductor)   |
-| `messageType`      | `MessageType`           | `private`   | Tipo de mensaje (alerta, notificación, marketing)    |
-| `priority`         | `Priority`              | `private`   | Nivel de prioridad para entrega                      |
-| `channels`         | `List<DeliveryChannel>` | `private`   | Canales de entrega configurados                      |
-| `templateId`       | `TemplateId`            | `private`   | Template de mensaje a utilizar                       |
-| `templateData`     | `TemplateData`          | `private`   | Datos para renderizado del template                  |
-| `scheduledDate`    | `LocalDateTime`         | `private`   | Fecha programada de envío                            |
-| `expiryDate`       | `LocalDateTime`         | `private`   | Fecha de expiración                                  |
-| `status`           | `RequestStatus`         | `private`   | Estado actual de la solicitud                        |
-| `deliveryAttempts` | `List<DeliveryAttempt>` | `private`   | Historial de intentos de entrega                     |
+| Atributo         | Tipo                        | Visibilidad | Descripción                                                      |
+|------------------|-----------------------------|-------------|------------------------------------------------------------------|
+| `id`             | `String`                    | `private`   | Identificador único de la solicitud de notificación              |
+| `sourceContext`  | `SourceContext`             | `private`   | Contexto o módulo origen que genera la notificación              |
+| `recipientId`    | `RecipientId`               | `private`   | Identificador del destinatario de la notificación                |
+| `recipientType`  | `RecipientType`             | `private`   | Tipo de destinatario (ciudadano, administrador, conductor, etc.) |
+| `recipientEmail` | `EmailAddress`              | `private`   | Correo electrónico del destinatario                              |
+| `recipientPhone` | `PhoneNumber`               | `private`   | Número telefónico del destinatario                               |
+| `messageType`    | `MessageType`               | `private`   | Tipo de mensaje (alerta, aviso, información general, etc.)       |
+| `templateId`     | `TemplateId`                | `private`   | Identificador del template de mensaje                            |
+| `templateData`   | `Map<String, String>`       | `private`   | Datos dinámicos usados para renderizar el contenido del mensaje  |
+| `channels`       | `List<NotificationChannel>` | `private`   | Canales de entrega habilitados (correo, SMS, app, etc.)          |
+| `priority`       | `NotificationPriority`      | `private`   | Nivel de prioridad asignado a la notificación                    |
+| `scheduledFor`   | `LocalDateTime`             | `private`   | Fecha y hora programada para el envío                            |
+| `expiresAt`      | `LocalDateTime`             | `private`   | Fecha de expiración de la notificación                           |
+| `status`         | `RequestStatus`             | `private`   | Estado actual del proceso de notificación                        |
+| `sentAt`         | `LocalDateTime`             | `private`   | Fecha y hora en que fue enviada la notificación                  |
+| `createdAt`      | `LocalDateTime`             | `private`   | Timestamp de creación del registro                               |
+| `failureReason`  | `String`                    | `private`   | Razón del fallo en el envío, si aplica                           |
 
 **Métodos principales:**
 
-| Método                                 | Tipo de Retorno   | Visibilidad | Descripción                              |
-|----------------------------------------|-------------------|-------------|------------------------------------------|
-| `addDeliveryChannel(channel)`          | `void`            | `public`    | Agrega canal de entrega con validaciones |
-| `scheduleDelivery(date)`               | `void`            | `public`    | Programa entrega para fecha específica   |
-| `processDelivery()`                    | `DeliveryResult`  | `public`    | Procesa entrega usando Strategy pattern  |
-| `markAsDelivered(channel, deliveryId)` | `void`            | `public`    | Marca como entregado en canal específico |
-| `markAsFailed(channel, reason)`        | `void`            | `public`    | Marca como fallido con razón de falla    |
-| `canBeRetried()`                       | `boolean`         | `public`    | Verifica si permite reintentos           |
-| `isExpired()`                          | `boolean`         | `public`    | Determina si la notificación expiró      |
-| `getPreferredChannel()`                | `DeliveryChannel` | `public`    | Obtiene canal preferido del destinatario |
-| `requiresImmediateDelivery()`          | `boolean`         | `public`    | Verifica si requiere entrega inmediata   |
+| Método              | Tipo de Retorno | Visibilidad | Descripción                                                |
+|----------------------|-----------------|-------------|------------------------------------------------------------|
+| `send()`             | `void`          | `public`    | Envía la notificación a través de los canales configurados  |
+| `fail(reason)`       | `void`          | `public`    | Marca la notificación como fallida y registra la causa      |
+| `expire()`           | `void`          | `public`    | Expira la solicitud de notificación si supera su validez    |
+| `isExpired()`        | `boolean`       | `public`    | Verifica si la notificación ya ha expirado                  |
+| `shouldSendNow()`    | `boolean`       | `public`    | Determina si la notificación debe enviarse en el momento actual |
+| `isPending()`        | `boolean`       | `public`    | Indica si la notificación aún está pendiente de envío       |
 
 2. **`MessageTemplate` (Aggregate Root)**
 
@@ -4023,79 +4023,63 @@ Representa un template de mensaje con soporte para múltiples canales, localizac
 
 **Atributos principales:**
 
-| Atributo          | Tipo                              | Visibilidad | Descripción                                       |
-|-------------------|-----------------------------------|-------------|---------------------------------------------------|
-| `templateId`      | `TemplateId`                      | `private`   | Identificador de dominio del template             |
-| `name`            | `String`                          | `private`   | Nombre descriptivo del template                   |
-| `category`        | `TemplateCategory`                | `private`   | Categoría del template (sistema, marketing, etc.) |
-| `messageType`     | `MessageType`                     | `private`   | Tipo de mensaje soportado                         |
-| `channels`        | `List<DeliveryChannel>`           | `private`   | Canales compatibles con el template               |
-| `subjectTemplate` | `String`                          | `private`   | Template del asunto (para email)                  |
-| `bodyTemplate`    | `String`                          | `private`   | Template del cuerpo del mensaje                   |
-| `variables`       | `List<TemplateVariable>`          | `private`   | Variables disponibles en el template              |
-| `localization`    | `Map<Language, LocalizedContent>` | `private`   | Contenido localizado por idioma                   |
-| `version`         | `TemplateVersion`                 | `private`   | Versión del template                              |
-| `isActive`        | `boolean`                         | `private`   | Estado de activación                              |
-| `metadata`        | `TemplateMetadata`                | `private`   | Metadatos adicionales                             |
+| Atributo            | Tipo                        | Visibilidad | Descripción                                         |
+|---------------------|-----------------------------|-------------|-----------------------------------------------------|
+| `id`                | `String`                    | `private`   | Identificador único del template de notificación    |
+| `name`              | `String`                    | `private`   | Nombre descriptivo del template                     |
+| `category`          | `TemplateCategory`          | `private`   | Categoría del template (sistema, alerta, marketing) |
+| `supportedChannels` | `List<NotificationChannel>` | `private`   | Canales de notificación compatibles con el template |
+| `emailSubject`      | `String`                    | `private`   | Asunto del correo electrónico                       |
+| `emailBody`         | `String`                    | `private`   | Cuerpo del mensaje para el canal de correo          |
+| `smsBody`           | `String`                    | `private`   | Cuerpo del mensaje para el canal SMS                |
+| `pushTitle`         | `String`                    | `private`   | Título de la notificación push                      |
+| `pushBody`          | `String`                    | `private`   | Cuerpo de la notificación push                      |
+| `variables`         | `List<String>`              | `private`   | Variables dinámicas disponibles para el template    |
+| `isActive`          | `Boolean`                   | `private`   | Indica si el template está activo                   |
+| `createdAt`         | `LocalDateTime`             | `private`   | Fecha de creación del template                      |
+| `updatedAt`         | `LocalDateTime`             | `private`   | Fecha de última actualización del template          |
 
 **Métodos principales:**
 
-| Método                               | Tipo de Retorno    | Visibilidad | Descripción                              |
-|--------------------------------------|--------------------|-------------|------------------------------------------|
-| `updateContent(subject, body)`       | `void`             | `public`    | Actualiza contenido del template         |
-| `addLocalization(language, content)` | `void`             | `public`    | Agrega localización para idioma          |
-| `addVariable(variable)`              | `void`             | `public`    | Agrega variable al template              |
-| `renderMessage(data, language)`      | `RenderedMessage`  | `public`    | Renderiza mensaje con datos específicos  |
-| `isCompatibleWith(channel)`          | `boolean`          | `public`    | Verifica compatibilidad con canal        |
-| `validateTemplate()`                 | `ValidationResult` | `public`    | Valida sintaxis y variables del template |
-| `activate()`                         | `void`             | `public`    | Activa template para uso                 |
-| `deactivate()`                       | `void`             | `public`    | Desactiva template                       |
+| Método                                                                      | Tipo de Retorno | Visibilidad | Descripción                                                  |
+|-----------------------------------------------------------------------------|-----------------|-------------|--------------------------------------------------------------|
+| `renderForChannel(channel: NotificationChannel, data: Map<String, String>)` | `String`        | `public`    | Renderiza el contenido del template para un canal específico |
+| `supportsChannel(channel: NotificationChannel)`                             | `boolean`       | `public`    | Verifica si el template es compatible con el canal indicado  |
+| `activate()`                                                                | `void`          | `public`    | Activa el template para su uso en notificaciones             |
+| `deactivate()`                                                              | `void`          | `public`    | Desactiva el template y evita su utilización                 |
 
-3. **`DeliveryRecord` (Aggregate Root)**
+3. **`DeliveryAttempt` (Aggregate Root)**
 
-Representa un registro individual de entrega con tracking detallado de estado, costos, y métricas de performance para análisis y optimización de canales.
+Representa un intento individual de entrega con detalles específicos del proveedor y métricas de performance.
 
 **Atributos principales:**
 
-| Atributo                | Tipo                    | Visibilidad | Descripción                           |
-|-------------------------|-------------------------|-------------|---------------------------------------|
-| `recordId`              | `DeliveryRecordId`      | `private`   | Identificador de dominio del registro |
-| `requestId`             | `NotificationRequestId` | `private`   | Solicitud asociada                    |
-| `recipientId`           | `RecipientId`           | `private`   | Destinatario de la entrega            |
-| `channel`               | `DeliveryChannel`       | `private`   | Canal utilizado para entrega          |
-| `providerTransactionId` | `String`                | `private`   | ID de transacción del proveedor       |
-| `status`                | `DeliveryStatus`        | `private`   | Estado actual de la entrega           |
-| `attemptNumber`         | `Integer`               | `private`   | Número de intento actual              |
-| `deliveryDate`          | `LocalDateTime`         | `private`   | Fecha de entrega exitosa              |
-| `confirmationDate`      | `LocalDateTime`         | `private`   | Fecha de confirmación de recepción    |
-| `failureReason`         | `FailureReason`         | `private`   | Razón de falla si aplica              |
-| `cost`                  | `MonetaryAmount`        | `private`   | Costo de la entrega                   |
-| `metadata`              | `DeliveryMetadata`      | `private`   | Metadatos de entrega                  |
+| Atributo            | Tipo                    | Visibilidad | Descripción                                         |
+|---------------------|-------------------------|-------------|-----------------------------------------------------|
+| `id`                | `String`                | `private`   | Identificador único del intento de entrega          |
+| `requestId`         | `NotificationRequestId` | `private`   | Identificador de la solicitud de notificación       |
+| `channel`           | `NotificationChannel`   | `private`   | Canal utilizado para la entrega                     |
+| `provider`          | `ProviderType`          | `private`   | Proveedor del servicio de mensajería o canal        |
+| `providerMessageId` | `String`                | `private`   | Identificador del mensaje asignado por el proveedor |
+| `status`            | `AttemptStatus`         | `private`   | Estado actual del intento de entrega                |
+| `attemptNumber`     | `Integer`               | `private`   | Número de intento realizado                         |
+| `canRetry`          | `Boolean`               | `private`   | Indica si el intento puede reintentarse             |
+| `sentAt`            | `LocalDateTime`         | `private`   | Fecha y hora de envío                               |
+| `deliveredAt`       | `LocalDateTime`         | `private`   | Fecha y hora de entrega exitosa                     |
+| `errorCode`         | `String`                | `private`   | Código de error devuelto por el proveedor           |
+| `errorMessage`      | `String`                | `private`   | Descripción del error si ocurrió una falla          |
+| `cost`              | `Money`                 | `private`   | Costo asociado al intento de entrega                |
+| `createdAt`         | `LocalDateTime`         | `private`   | Fecha de creación del registro                      |
 
 **Métodos principales:**
 
-| Método                           | Tipo de Retorno | Visibilidad | Descripción                                |
-|----------------------------------|-----------------|-------------|--------------------------------------------|
-| `markAsDelivered(transactionId)` | `void`          | `public`    | Marca como entregado con ID de transacción |
-| `markAsFailed(reason)`           | `void`          | `public`    | Marca como fallido con razón específica    |
-| `markAsConfirmed()`              | `void`          | `public`    | Marca como confirmado por destinatario     |
-| `calculateDeliveryTime()`        | `Duration`      | `public`    | Calcula tiempo total de entrega            |
-| `isSuccessful()`                 | `boolean`       | `public`    | Verifica si la entrega fue exitosa         |
-| `canBeRetried()`                 | `boolean`       | `public`    | Determina si permite reintentos            |
+| Método                               | Tipo de Retorno | Visibilidad | Descripción                                                                        |
+|--------------------------------------|-----------------|-------------|------------------------------------------------------------------------------------|
+| `markAsDelivered(providerMessageId)` | `void`          | `public`    | Marca el intento como entregado exitosamente con el ID del proveedor               |
+| `markAsFailed(errorCode, retryable)` | `void`          | `public`    | Marca el intento como fallido indicando el código de error y si puede reintentarse |
+| `canBeRetried()`                     | `boolean`       | `public`    | Indica si el intento puede ser reintentado según su configuración actual           |
+| `calculateDeliveryTime()`            | `Duration`      | `public`    | Calcula la duración total entre el envío y la entrega                              |
 
-**Entities:**
-
-4. **`DeliveryAttempt` (Entity)**
-
-Entidad que representa un intento individual de entrega con detalles específicos del proveedor y métricas de performance.
-
-5. **`RecipientPreference` (Entity)**
-
-Entidad que gestiona preferencias de comunicación por destinatario, incluyendo canales preferidos, horarios de silencio, y configuraciones de frecuencia.
-
-6. **`TemplateVariable` (Entity)**
-
-Entidad que representa variables utilizables en templates con validaciones y formateo específico.
 
 **Value Objects:**
 
@@ -4296,99 +4280,48 @@ Esta capa contiene las reglas de negocio fundamentales del dominio de perfiles d
 
 1.  **`UserProfile` (Aggregate Root)**
 
-    Representa el agregado principal del dominio, encapsulando toda la información y comportamiento de un usuario, incluyendo datos personales, de contacto, dirección, y estado del perfil.
+Representa el agregado principal del dominio, encapsulando toda la información y comportamiento de un usuario, incluyendo datos personales, de contacto, dirección, y estado del perfil.
 
 **Atributos principales:**
 
-| Atributo              | Tipo                  | Visibilidad | Descripción                                        |
-|:----------------------|:----------------------|:------------|:---------------------------------------------------|
-| `id`                  | `Long`                | `private`   | Identificador único del perfil en la base de datos |
-| `profileId`           | `ProfileId`           | `private`   | Identificador de dominio del perfil                |
-| `userId`              | `UserId`              | `private`   | ID del usuario desde el BC de IAM                  |
-| `userType`            | `UserType`            | `private`   | Tipo de usuario (Citizen, Administrator, Driver)   |
-| `personalInfo`        | `PersonalInfo`        | `private`   | Información personal del usuario                   |
-| `contactInfo`         | `ContactInfo`         | `private`   | Información de contacto (email, teléfono)          |
-| `addressInfo`         | `AddressInfo`         | `private`   | Dirección y coordenadas geográficas                |
-| `serviceArea`         | `ServiceArea`         | `private`   | Área de servicio a la que pertenece                |
-| `profileStatus`       | `ProfileStatus`       | `private`   | Estado actual del perfil (Activo, Suspendido)      |
-| `privacySettings`     | `PrivacySettings`     | `private`   | Configuraciones de privacidad y datos compartidos  |
-| `profileCompleteness` | `ProfileCompleteness` | `private`   | Puntuación de completitud del perfil               |
-| `lastLoginDate`       | `LocalDateTime`       | `private`   | Fecha del último inicio de sesión                  |
+| Atributo                    | Tipo            | Visibilidad | Descripción                                                          |
+|-----------------------------|-----------------|-------------|----------------------------------------------------------------------|
+| `id`                        | `String`        | `private`   | Identificador único del perfil en la base de datos                   |
+| `userId`                    | `UserId`        | `private`   | Identificador del usuario asociado                                   |
+| `pictureUrl`                | `String`        | `private`   | URL de la imagen de perfil del usuario                               |
+| `userType`                  | `UserType`      | `private`   | Tipo de usuario (Citizen, Administrator, Driver)                     |
+| `districtId`                | `DistrictId`    | `private`   | Identificador del distrito asociado al perfil                        |
+| `email`                     | `EmailAddress`  | `private`   | Dirección de correo electrónico del usuario                          |
+| `photo`                     | `Photo`         | `private`   | Objeto que representa la fotografía del usuario                      |
+| `phoneNumber`               | `PhoneNumber`   | `private`   | Número de teléfono del usuario                                       |
+| `emailNotificationsEnabled` | `Boolean`       | `private`   | Indica si el usuario tiene habilitadas las notificaciones por correo |
+| `smsNotificationsEnabled`   | `Boolean`       | `private`   | Indica si el usuario tiene habilitadas las notificaciones por SMS    |
+| `pushNotificationsEnabled`  | `Boolean`       | `private`   | Indica si el usuario tiene habilitadas las notificaciones push       |
+| `deviceTokens`              | `List<String>`  | `private`   | Lista de tokens de dispositivos registrados para notificaciones      |
+| `language`                  | `Language`      | `private`   | Idioma preferido del usuario                                         |
+| `timezone`                  | `String`        | `private`   | Zona horaria del usuario                                             |
+| `isActive`                  | `Boolean`       | `private`   | Indica si el perfil del usuario se encuentra activo                  |
+| `createdAt`                 | `LocalDateTime` | `private`   | Fecha de creación del perfil                                         |
+| `updatedAt`                 | `LocalDateTime` | `private`   | Fecha de la última actualización del perfil                          |
 
  **Métodos principales:**
 
-| Método                             | Tipo de Retorno     | Visibilidad | Descripción                                                                    |
-|:-----------------------------------|:--------------------|:------------|:-------------------------------------------------------------------------------|
-| `updatePersonalInfo(info)`         | `void`              | `public`    | Actualiza la información personal validando los datos                          |
-| `updateAddress(address)`           | `void`              | `public`    | Cambia la dirección y dispara la validación de elegibilidad                    |
-| `validateServiceAreaEligibility()` | `EligibilityResult` | `public`    | Verifica si la dirección del usuario está dentro de un área de servicio válida |
-| `updatePrivacySettings(settings)`  | `void`              | `public`    | Modifica las configuraciones de privacidad                                     |
-| `deactivate(reason)`               | `void`              | `public`    | Desactiva el perfil del usuario por una razón específica                       |
-| `isComplete()`                     | `boolean`           | `public`    | Verifica si el perfil tiene toda la información requerida                      |
-| `calculateProfileScore()`          | `ProfileScore`      | `public`    | Calcula una puntuación basada en la completitud y actividad                    |
-| `recordLogin()`                    | `void`              | `public`    | Registra un nuevo inicio de sesión y actualiza la fecha                        |
+| Método                                  | Tipo de Retorno | Visibilidad | Descripción                                                                |
+|-----------------------------------------|-----------------|-------------|----------------------------------------------------------------------------|
+| `updateEmail(email: EmailAddress)`      | `void`          | `public`    | Actualiza el correo electrónico del usuario.                               |
+| `updatePhoneNumber(phone: PhoneNumber)` | `void`          | `public`    | Modifica el número de teléfono del usuario.                                |
+| `enableNotificationChannel()`           | `void`          | `public`    | Habilita los canales de notificación del usuario.                          |
+| `disableNotificationChannel()`          | `void`          | `public`    | Deshabilita los canales de notificación del usuario.                       |
+| `addDeviceToken(token: String)`         | `void`          | `public`    | Registra un nuevo token de dispositivo para notificaciones push.           |
+| `removeDeviceToken(token: String)`      | `void`          | `public`    | Elimina un token de dispositivo previamente registrado.                    |
+| `isNotificationEnabledFor()`            | `boolean`       | `public`    | Verifica si las notificaciones están habilitadas para un canal específico. |
+| `deactivate()`                          | `void`          | `public`    | Desactiva el perfil del usuario.                                           |
 
-2.  **`UserPreferences` (Aggregate Root)**
-
-    Gestiona todas las configuraciones y preferencias de un usuario, como notificaciones, idioma y tema de la interfaz.
-
-**Atributos principales:**
-
-| Atributo                | Tipo                    | Visibilidad | Descripción                                             |
-|:------------------------|:------------------------|:------------|:--------------------------------------------------------|
-| `preferencesId`         | `PreferencesId`         | `private`   | Identificador de dominio de las preferencias            |
-| `profileId`             | `ProfileId`             | `private`   | Perfil de usuario asociado                              |
-| `notificationSettings`  | `NotificationSettings`  | `private`   | Configuración de canales y frecuencia de notificaciones |
-| `languagePreference`    | `Language`              | `private`   | Idioma preferido por el usuario                         |
-| `timezonePreference`    | `Timezone`              | `private`   | Zona horaria del usuario                                |
-| `themePreference`       | `ThemePreference`       | `private`   | Tema visual de la aplicación (claro/oscuro)             |
-| `accessibilitySettings` | `AccessibilitySettings` | `private`   | Configuraciones de accesibilidad                        |
-
-**Métodos principales:**
-
-| Método                                 | Tipo de Retorno | Visibilidad | Descripción                                        |
-|:---------------------------------------|:----------------|:------------|:---------------------------------------------------|
-| `updateNotificationSettings(settings)` | `void`          | `public`    | Modifica las preferencias de notificación          |
-| `updateLanguage(language)`             | `void`          | `public`    | Cambia el idioma de la interfaz para el usuario    |
-| `updateTheme(theme)`                   | `void`          | `public`    | Cambia el tema visual de la aplicación             |
-| `isChannelEnabled(channel)`            | `boolean`       | `public`    | Verifica si un canal de notificación está activado |
-
-3.  **`PersonalizationSettings` (Aggregate Root)**
-
-    Encapsula las configuraciones de personalización de la interfaz de usuario, como el layout del dashboard y los widgets.
-
-**Atributos principales:**
-
-| Atributo               | Tipo                        | Visibilidad | Descripción                                    |
-|:-----------------------|:----------------------------|:------------|:-----------------------------------------------|
-| `settingsId`           | `PersonalizationSettingsId` | `private`   | Identificador de dominio de la personalización |
-| `profileId`            | `ProfileId`                 | `private`   | Perfil de usuario asociado                     |
-| `dashboardLayout`      | `DashboardLayout`           | `private`   | Diseño del dashboard principal                 |
-| `widgetConfigurations` | `List<WidgetConfiguration>` | `private`   | Lista de widgets y sus configuraciones         |
-
- **Métodos principales:**
-
-| Método                          | Tipo de Retorno | Visibilidad | Descripción                                           |
-|:--------------------------------|:----------------|:------------|:------------------------------------------------------|
-| `updateDashboardLayout(layout)` | `void`          | `public`    | Cambia el diseño del dashboard                        |
-| `addWidget(widget)`             | `void`          | `public`    | Agrega un nuevo widget al dashboard                   |
-| `removeWidget(widgetId)`        | `void`          | `public`    | Elimina un widget del dashboard                       |
-| `resetToDefaults(userType)`     | `void`          | `public`    | Restablece la configuración a los valores por defecto |
-
-**Entities:**
-
-* **`ContactMethod`**: Representa un método de contacto (email, teléfono) con su estado de verificación.
-* **`AddressHistory`**: Mantiene un historial de las direcciones del usuario para fines de auditoría.
-* **`WidgetConfiguration`**: Configuración específica de un widget en el dashboard, como su posición y tamaño.
 
 **Value Objects:**
 
-* **`PersonalInfo`**: Encapsula datos personales con validaciones de formato (DNI, nombre).
-* **`ContactInfo`**: Agrupa métodos de contacto primarios y secundarios.
-* **`AddressInfo`**: Contiene la dirección completa y coordenadas, con métodos de validación.
-* **`NotificationSettings`**: Define qué notificaciones y en qué canales desea recibir el usuario.
-* **`PrivacySettings`**: Controla la visibilidad del perfil y el consentimiento para compartir datos.
-* **`ProfileCompleteness`**: Calcula y almacena el porcentaje de completitud del perfil.
+* **`UserType`**: Gestiona el tipo de usuario del sistema.
+
 
 **Factories (Creational Pattern):**
 
