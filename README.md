@@ -4488,28 +4488,40 @@ Esta capa contiene las reglas de negocio fundamentales del dominio de seguridad 
 
 **Atributos principales:**
 
-| Atributo         | Tipo             | Visibilidad | Descripción                                              |
-|:-----------------|:-----------------|:------------|:---------------------------------------------------------|
-| `id`             | `Long`           | `private`   | Identificador único del usuario en la base de datos      |
-| `userId`         | `UserId`         | `private`   | Identificador de dominio del usuario                     |
-| `username`       | `Username`       | `private`   | Nombre de usuario único en el sistema                    |
-| `email`          | `EmailAddress`   | `private`   | Correo electrónico único para la autenticación           |
-| `hashedPassword` | `HashedPassword` | `private`   | Contraseña del usuario almacenada de forma segura (hash) |
-| `status`         | `UserStatus`     | `private`   | Estado actual del usuario (Activo, Suspendido, etc.)     |
-| `roles`          | `Set<Role>`      | `private`   | Conjunto de roles asignados al usuario                   |
-| `lastLoginAt`    | `LocalDateTime`  | `private`   | Fecha y hora del último inicio de sesión exitoso         |
+| Atributo                   | Tipo             | Visibilidad | Descripción                                                        |
+|----------------------------|------------------|-------------|--------------------------------------------------------------------|
+| `id`                       | `String`         | `private`   | Identificador único del usuario.                                   |
+| `username`                 | `Username`       | `private`   | Nombre de usuario único en el sistema.                             |
+| `email`                    | `EmailAddress`   | `private`   | Correo electrónico utilizado para autenticación.                   |
+| `hashedPassword`           | `HashedPassword` | `private`   | Contraseña cifrada almacenada de forma segura.                     |
+| `accountStatus`            | `AccountStatus`  | `private`   | Estado actual de la cuenta del usuario (activo, suspendido, etc.). |
+| `roles`                    | `Set<RoleId>`    | `private`   | Conjunto de identificadores de roles asignados al usuario.         |
+| `failedLoginAttempts`      | `Integer`        | `private`   | Número de intentos fallidos de inicio de sesión.                   |
+| `lastLoginAt`              | `LocalDateTime`  | `private`   | Fecha y hora del último inicio de sesión exitoso.                  |
+| `passwordChangedAt`        | `LocalDateTime`  | `private`   | Fecha y hora de la última actualización de contraseña.             |
+| `activationToken`          | `String`         | `private`   | Token de activación para verificación de cuenta.                   |
+| `activationTokenExpiresAt` | `LocalDateTime`  | `private`   | Fecha de expiración del token de activación.                       |
+| `createdAt`                | `LocalDateTime`  | `private`   | Fecha de creación del registro del usuario.                        |
+| `updatedAt`                | `LocalDateTime`  | `private`   | Fecha de última actualización del registro del usuario.            |
 
 **Métodos principales:**
 
-| Método                        | Tipo de Retorno | Visibilidad | Descripción                                                              |
-|:------------------------------|:----------------|:------------|:-------------------------------------------------------------------------|
-| `authenticate(password)`      | `boolean`       | `public`    | Verifica si la contraseña proporcionada coincide con la almacenada       |
-| `changePassword(newPassword)` | `void`          | `public`    | Cambia la contraseña del usuario aplicando políticas de seguridad        |
-| `assignRole(role)`            | `void`          | `public`    | Asigna un nuevo rol al usuario                                           |
-| `removeRole(role)`            | `void`          | `public`    | Revoca un rol asignado al usuario                                        |
-| `activate()`                  | `void`          | `public`    | Activa la cuenta del usuario                                             |
-| `deactivate()`                | `void`          | `public`    | Desactiva la cuenta del usuario                                          |
-| `hasPermission(permission)`   | `boolean`       | `public`    | Verifica si el usuario tiene un permiso específico a través de sus roles |
+| Método                                                     | Tipo de Retorno        | Visibilidad | Descripción                                                                       |
+|------------------------------------------------------------|------------------------|-------------|-----------------------------------------------------------------------------------|
+| `authenticate(rawPassword: String)`                        | `AuthenticationResult` | `public`    | Verifica las credenciales ingresadas y devuelve el resultado de autenticación.    |
+| `changePassword(oldPassword: String, newPassword: String)` | `void`                 | `public`    | Cambia la contraseña validando la anterior y aplicando políticas de seguridad.    |
+| `resetPassword(newPassword: String)`                       | `void`                 | `public`    | Restablece la contraseña sin requerir la anterior.                                |
+| `assignRole(roleId: RoleId)`                               | `void`                 | `public`    | Asigna un nuevo rol al usuario.                                                   |
+| `removeRole(roleId: RoleId)`                               | `void`                 | `public`    | Elimina un rol previamente asignado al usuario.                                   |
+| `hasPermission(permission: Permission)`                    | `boolean`              | `public`    | Verifica si el usuario tiene un permiso específico según sus roles.               |
+| `lockAccount()`                                            | `void`                 | `public`    | Bloquea la cuenta tras múltiples intentos fallidos o por decisión administrativa. |
+| `unlockAccount()`                                          | `void`                 | `public`    | Desbloquea la cuenta y restablece los intentos fallidos.                          |
+| `recordSuccessfulLogin()`                                  | `void`                 | `public`    | Registra un inicio de sesión exitoso y actualiza la fecha correspondiente.        |
+| `recordFailedLogin()`                                      | `void`                 | `public`    | Registra un intento fallido de inicio de sesión e incrementa el contador.         |
+| `generateActivationToken()`                                | `String`               | `public`    | Genera un nuevo token de activación para la cuenta del usuario.                   |
+| `activateAccount(token: String)`                           | `void`                 | `public`    | Activa la cuenta del usuario validando el token proporcionado.                    |
+| `isAccountLocked()`                                        | `boolean`              | `public`    | Determina si la cuenta del usuario se encuentra bloqueada.                        |
+| `requiresPasswordChange()`                                 | `boolean`              | `public`    | Indica si el usuario debe cambiar su contraseña por políticas de seguridad.       |
 
 2.  **`Role` (Aggregate Root)**
 
@@ -4517,23 +4529,28 @@ Esta capa contiene las reglas de negocio fundamentales del dominio de seguridad 
 
 **Atributos principales:**
 
-| Atributo      | Tipo              | Visibilidad | Descripción                                      |
-|:--------------|:------------------|:------------|:-------------------------------------------------|
-| `roleId`      | `RoleId`          | `private`   | Identificador de dominio del rol                 |
-| `name`        | `String`          | `private`   | Nombre único del rol (e.g., "CITIZEN", "DRIVER") |
-| `permissions` | `Set<Permission>` | `private`   | Conjunto de permisos asociados a este rol        |
+| Atributo      | Tipo              | Visibilidad | Descripción                                              |
+|---------------|-------------------|-------------|----------------------------------------------------------|
+| `id`          | `String`          | `private`   | Identificador único del rol en el sistema.               |
+| `name`        | `RoleName`        | `private`   | Nombre del rol (por ejemplo, "CITIZEN", "DRIVER").       |
+| `description` | `String`          | `private`   | Descripción detallada del propósito del rol.             |
+| `permissions` | `Set<Permission>` | `private`   | Conjunto de permisos asociados al rol.                   |
+| `roleType`    | `RoleType`        | `private`   | Tipo de rol (por ejemplo, sistema, aplicación, dominio). |
+| `isActive`    | `Boolean`         | `private`   | Indica si el rol está activo en el sistema.              |
+| `createdAt`   | `LocalDateTime`   | `private`   | Fecha y hora en que se creó el rol.                      |
+| `updatedAt`   | `LocalDateTime`   | `private`   | Fecha y hora de la última actualización del rol.         |
+
 
 **Métodos principales:**
 
-| Método                         | Tipo de Retorno | Visibilidad | Descripción                                       |
-|:-------------------------------|:----------------|:------------|:--------------------------------------------------|
-| `addPermission(permission)`    | `void`          | `public`    | Agrega un nuevo permiso al rol                    |
-| `removePermission(permission)` | `void`          | `public`    | Elimina un permiso del rol                        |
-| `hasPermission(permission)`    | `boolean`       | `public`    | Verifica si el rol contiene un permiso específico |
-
-**Entities:**
-
-* **`Permission` (Entity)**: Representa una acción granular permitida en el sistema (e.g., "VIEW_CONTAINERS", "MANAGE_USERS").
+| Método                              | Tipo de Retorno | Visibilidad | Descripción                                               |
+|------------------------------------|-----------------|-------------|-----------------------------------------------------------|
+| `addPermission(permission)`        | `void`          | `public`    | Agrega un nuevo permiso al rol.                           |
+| `removePermission(permission)`     | `void`          | `public`    | Elimina un permiso existente del rol.                     |
+| `hasPermission(permission)`        | `boolean`       | `public`    | Verifica si el rol contiene un permiso específico.         |
+| `canBeModified()`                  | `boolean`       | `public`    | Determina si el rol puede ser modificado.                 |
+| `activate()`                       | `void`          | `public`    | Activa el rol, permitiendo su uso dentro del sistema.     |
+| `deactivate()`                     | `void`          | `public`    | Desactiva el rol, impidiendo su uso en nuevas asignaciones. |
 
 **Value Objects:**
 
