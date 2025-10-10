@@ -69,6 +69,8 @@ En esta sección se documenta la colaboración del equipo en la elaboración del
 * URL del repositorio del Project Report en la organización de GitHub del equipo:
 * [https://github.com/EcoLutions/Report-Desarrollo-de-Soluciones-IoT](https://github.com/EcoLutions/Report-Desarrollo-de-Soluciones-IoT)
 
+**Trabajo parcial**
+
 Las gráficas y registros de actividad demuestran una participación constante y coordinada entre los miembros del equipo, evidenciando la distribución equilibrada de tareas, el cumplimiento de los plazos establecidos y la coherencia entre los commits realizados y las versiones finales del documento entregado.
 
 ![teamCollaboration.png](assets/images/chapter5/insights.jpg)
@@ -165,7 +167,7 @@ Las gráficas y registros de actividad demuestran una participación constante y
       * [4.2.1.6. Bounded Context Software Architecture Code Level Diagrams](#4216-bounded-context-software-architecture-code-level-diagrams)
         * [4.2.1.6.1. Bounded Context Domain Layer Class Diagrams](#42161-bounded-context-domain-layer-class-diagrams)
         * [4.2.1.6.2. Bounded Context Database Design Diagram](#42162-bounded-context-database-design-diagram)
-    * [4.2.2. Bounded Context: Route Planning](#422-bounded-context-route-planning)
+    * [4.2.2. Bounded Context: Route Planning & Execution](#422-bounded-context-route-planning--execution)
       * [4.2.2.1. Domain Layer](#4221-domain-layer)
       * [4.2.2.2. Interface Layer](#4222-interface-layer)
       * [4.2.2.3. Application Layer](#4223-application-layer)
@@ -6879,5 +6881,13 @@ La aplicación de metodologías ágiles como Lean UX y herramientas de modelado 
 **Enlace:** [https://upcedupe-my.sharepoint.com/:v:/g/personal/u202317638_upc_edu_pe/EY3S4HcDL-pHng_8hN5pKCkBdLCm81Ty9yPfmg253xjkag?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D&e=i4fq4E](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202317638_upc_edu_pe/EY3S4HcDL-pHng_8hN5pKCkBdLCm81Ty9yPfmg253xjkag?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D&e=i4fq4E)
 
 **Descripción:** Registro audiovisual de la exposición del **Trabajo Base 1 (TB1)**, en el cual se presentan los hallazgos, análisis y propuesta inicial del proyecto.
+
+**Acceso:** Enlace público de solo lectura
+
+## Anexo D: Video de Exposición TP
+
+**Enlace:** [https://upcedupe-my.sharepoint.com/:v:/g/personal/u202317638_upc_edu_pe/EeBT-dWG-AZPivHn8xM2WXsB5TLk2qx0X-ZMXDt1Oztdrw?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D&e=obyH8X](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202317638_upc_edu_pe/EeBT-dWG-AZPivHn8xM2WXsB5TLk2qx0X-ZMXDt1Oztdrw?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D&e=obyH8X)
+
+**Descripción:** Registro audiovisual de la exposición del **Trabajo Base 2 (TP)**, en el cual se presentan los hallazgos, análisis y propuesta inicial del proyecto.
 
 **Acceso:** Enlace público de solo lectura
