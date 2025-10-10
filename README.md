@@ -3058,32 +3058,32 @@ Representa el agregado principal del dominio, encapsulando toda la información 
 
 **Atributos principales:**
 
-| Atributo             | Tipo                 | Visibilidad | Descripción                                       |
-|----------------------|----------------------|-------------|---------------------------------------------------|
-| `id`                 | `Long`               | `private`   | Identificador único del distrito en base de datos |
-| `districtId`         | `DistrictId`         | `private`   | Identificador de dominio del distrito             |
-| `name`               | `String`             | `private`   | Nombre oficial del distrito municipal             |
-| `municipalityId`     | `MunicipalityId`     | `private`   | Municipalidad a la que pertenece                  |
-| `administratorId`    | `AdministratorId`    | `private`   | Administrador responsable del distrito            |
-| `boundaries`         | `GeographicBoundary` | `private`   | Límites geográficos del distrito                  |
-| `population`         | `Population`         | `private`   | Datos demográficos del distrito                   |
-| `budget`             | `Budget`             | `private`   | Presupuesto asignado con categorías               |
-| `operationalStatus`  | `OperationalStatus`  | `private`   | Estado operacional actual                         |
-| `resources`          | `List<Resource>`     | `private`   | Recursos asignados al distrito                    |
-| `performanceMetrics` | `PerformanceMetrics` | `private`   | Métricas de rendimiento operacional               |
+| Atributo            | Tipo                 | Visibilidad | Descripción                                       |
+|---------------------|----------------------|-------------|---------------------------------------------------|
+| `id`                | `Long`               | `private`   | Identificador único del distrito en base de datos |
+| `name`              | `String`             | `private`   | Nombre oficial del distrito municipal             |
+| `code`              | `String`             | `private`   | Codigo oficial del distrito municipal             |
+| `boundaries`        | `GeographicBoundary` | `private`   | Límites geográficos del distrito                  |
+| `operationalStatus` | `OperationalStatus`  | `private`   | Estado operacional actual                         |
+| `serviceStartDate`  | `LocalDate`          | `private`   | Fecha de inicio del servicio                      |
+| `subscriptionId`    | `SubscriptionId`     | `private`   | Identificador unico de sus subscripcion           |
+| `maxVehicles`       | `Integer`            | `private`   | Cantidad maxima de vehiculos                      |
+| `maxDrivers`        | `Integer`            | `private`   | Cantidad maxima de conductores                    |
+| `maxContainers`     | `Integer`            | `private`   | Cantidad maxima de contenedores                   |
+| `primaryAdminEmail` | `EmailAddress`       | `private`   | Correo electronico del administrador principal    |
+| `createdAt`         | `LocalDateTime`      | `private`   | Fecha de cuando fue creado                        |
+| `updatedAt`         | `LocalDateTime`      | `private`   | Fecha de cuando fue actualizado recientemente     |
 
 **Métodos principales:**
 
-| Método                                 | Tipo de Retorno       | Visibilidad | Descripción                                            |
-|----------------------------------------|-----------------------|-------------|--------------------------------------------------------|
-| `allocateResource(resource)`           | `void`                | `public`    | Asigna recurso validando disponibilidad presupuestaria |
-| `deallocateResource(resourceId)`       | `void`                | `public`    | Libera recurso y actualiza utilización                 |
-| `updateBudget(newBudget)`              | `void`                | `public`    | Actualiza presupuesto con validaciones fiscales        |
-| `assignAdministrator(administratorId)` | `void`                | `public`    | Asigna administrador con verificación de autorización  |
-| `calculateOperationalCost()`           | `MonetaryAmount`      | `public`    | Calcula costo operacional total del distrito           |
-| `isWithinBoundaries(location)`         | `boolean`             | `public`    | Verifica si ubicación está dentro de límites           |
-| `hasAvailableCapacity()`               | `boolean`             | `public`    | Determina si hay capacidad para nuevos recursos        |
-| `getResourceUtilization()`             | `ResourceUtilization` | `public`    | Calcula utilización actual de recursos                 |
+| Método                                             | Tipo de Retorno | Visibilidad | Descripción                                               |
+|----------------------------------------------------|-----------------|-------------|-----------------------------------------------------------|
+| `activate()`                                       | `void`          | `public`    | Marca a un conductor como activo                          |
+| `suspend()`                                        | `void`          | `public`    | Suspende a un conductor                                   |
+| `isWithinServiceLimits(vehicleCount, driverCount)` | `boolean`       | `public`    | Verifica si conductor esta al limite su final de servicio |
+| `canRegisterNewVehicle()`                          | `void`          | `public`    | Verifica si se puede registrar un nuevo conductor         |
+| `canRegisterNewDriver()`                           | `void`          | `public`    | Verifica si se puede registrar un nuevo vehiculo          |
+| `isLocationWithinBoundaries(location)`             | `boolean`       | `public`    | Verifica si ubicación está dentro de límites              |
 
 2. **`Vehicle` (Aggregate Root)**
 
@@ -3091,30 +3091,33 @@ Representa un vehículo de la flota municipal con capacidades de tracking GPS, h
 
 **Atributos principales:**
 
-| Atributo              | Tipo                      | Visibilidad | Descripción                                      |
-|-----------------------|---------------------------|-------------|--------------------------------------------------|
-| `vehicleId`           | `VehicleId`               | `private`   | Identificador de dominio del vehículo            |
-| `registrationNumber`  | `String`                  | `private`   | Número de placa único                            |
-| `vehicleType`         | `VehicleType`             | `private`   | Tipo de vehículo (recolector, compactador, etc.) |
-| `capacity`            | `VehicleCapacity`         | `private`   | Capacidad de carga del vehículo                  |
-| `status`              | `VehicleStatus`           | `private`   | Estado operacional actual                        |
-| `maintenanceHistory`  | `List<MaintenanceRecord>` | `private`   | Historial completo de mantenimiento              |
-| `operationalMetrics`  | `OperationalMetrics`      | `private`   | Métricas de eficiencia y costo                   |
-| `gpsTracker`          | `GPSTracker`              | `private`   | Sistema de tracking GPS                          |
-| `nextMaintenanceDate` | `LocalDateTime`           | `private`   | Fecha programada de próximo mantenimiento        |
+| Atributo              | Tipo             | Visibilidad | Descripción                                       |
+|-----------------------|------------------|-------------|---------------------------------------------------|
+| `id`                  | `String`         | `private`   | Identificador de unico del vehículo               |
+| `districtId`          | `DistrictId`     | `private`   | Identificador unico del distrito al que pertenece |
+| `licencePlate`        | `LicencePlate`   | `private`   | Licencia del vehiculo                             |
+| `vehicleType`         | `VehicleType`    | `private`   | Tipo de vehículo (recolector, compactador, etc.)  |
+| `capacityVolume`      | `VolumeCapacity` | `private`   | Capacidad de carga de volumen del vehículo        |
+| `capacityWeight`      | `WeightCapacity` | `private`   | Capacidad de carga de peso del vehículo           |
+| `status`              | `VehicleStatus`  | `private`   | Estado operacional actual                         |
+| `lastMaintenanceDate` | `LocalDate`      | `private`   | Fecha del ultimo mantenimiento                    |
+| `nextMaintenanceDate` | `LocalDate`      | `private`   | Fecha programada de próximo mantenimiento         |
+| `assignedDriver`      | `DriverId`       | `private`   | identificador del conductoasignado al vehiculo    |
+| `createdAt`           | `LocalDateTime`  | `private`   | Fecha de cuando fue creado                        |
+| `updatedAt`           | `LocalDateTime`  | `private`   | Fecha de cuando fue actualizado recientemente     |
 
 **Métodos principales:**
 
-| Método                            | Tipo de Retorno  | Visibilidad | Descripción                                     |
-|-----------------------------------|------------------|-------------|-------------------------------------------------|
-| `assignToDistrict(districtId)`    | `void`           | `public`    | Asigna vehículo a distrito específico           |
-| `assignDriver(driverId)`          | `void`           | `public`    | Asigna conductor validando certificaciones      |
-| `scheduleMaintenance(type, date)` | `void`           | `public`    | Programa mantenimiento usando Strategy pattern  |
-| `recordMaintenance(record)`       | `void`           | `public`    | Registra mantenimiento completado               |
-| `isAvailableForRoute()`           | `boolean`        | `public`    | Verifica disponibilidad para asignación de ruta |
-| `requiresMaintenance()`           | `boolean`        | `public`    | Determina si requiere mantenimiento             |
-| `calculateOperationalCost()`      | `MonetaryAmount` | `public`    | Calcula costo operacional por período           |
-| `updateLocation(location)`        | `void`           | `public`    | Actualiza ubicación GPS en tiempo real          |
+| Método                         | Tipo de Retorno | Visibilidad | Descripción                                     |
+|--------------------------------|-----------------|-------------|-------------------------------------------------|
+| `assignToDistrict(districtId)` | `void`          | `public`    | Asigna vehículo a distrito específico           |
+| `assignDriver(driverId)`       | `void`          | `public`    | Asigna conductor validando certificaciones      |
+| `unassignDriver(driverId)`     | `void`          | `public`    | Desasigna al conductor del vehiculo             |
+| `markAsInUse()`                | `void`          | `public`    | Marca al vehiculo como ocupado                  |
+| `markAsAvailable()`            | `void`          | `public`    | Marca al vehiculo como disponible para uso      |
+| `scheduleMaintenance(date)`    | `void`          | `public`    | Programa mantenimiento usando Strategy pattern  |
+| `isAvailableForRoute()`        | `boolean`       | `public`    | Verifica disponibilidad para asignación de ruta |
+| `requiresMaintenance()`        | `boolean`       | `public`    | Determina si requiere mantenimiento             |
 
 3. **`Driver` (Aggregate Root)**
 
@@ -3122,37 +3125,39 @@ Representa un conductor municipal con información personal, certificaciones, ho
 
 **Atributos principales:**
 
-| Atributo            | Tipo                  | Visibilidad | Descripción                            |
-|---------------------|-----------------------|-------------|----------------------------------------|
-| `driverId`          | `DriverId`            | `private`   | Identificador de dominio del conductor |
-| `personalInfo`      | `PersonalInfo`        | `private`   | Información personal y documentos      |
-| `licenseInfo`       | `LicenseInfo`         | `private`   | Información de licencia de conducir    |
-| `employmentStatus`  | `EmploymentStatus`    | `private`   | Estado laboral actual                  |
-| `workSchedule`      | `WorkSchedule`        | `private`   | Horario de trabajo detallado           |
-| `performanceRecord` | `PerformanceRecord`   | `private`   | Registro de rendimiento laboral        |
-| `certifications`    | `List<Certification>` | `private`   | Certificaciones y capacitaciones       |
+| Atributo               | Tipo             | Visibilidad | Descripción                                                        |
+|------------------------|------------------|-------------|--------------------------------------------------------------------|
+| `id`                   | `String`         | `private`   | Identificador único del conductor en el sistema                    |
+| `districtId`           | `DistrictId`     | `private`   | Identificador del distrito al que pertenece el conductor           |
+| `fullName`             | `FullName`       | `private`   | Nombre completo del conductor                                      |
+| `documentNumber`       | `DocumentNumber` | `private`   | Documento de identidad del conductor                               |
+| `phoneNumber`          | `PhoneNumber`    | `private`   | Número telefónico de contacto del conductor                        |
+| `userId`               | `UserId`         | `private`   | Identificador del usuario asociado en el sistema IAM               |
+| `driverLicense`        | `DriverLicense`  | `private`   | Número de licencia de conducir del conductor                       |
+| `licenseExpiryDate`    | `LocalDate`      | `private`   | Fecha de expiración de la licencia de conducir                     |
+| `emailAddress`         | `EmailAddress`   | `private`   | Correo electrónico del conductor                                   |
+| `totalHoursWorked`     | `Integer`        | `private`   | Total de horas trabajadas por el conductor                         |
+| `lastRouteCompletedAt` | `LocalDateTime`  | `private`   | Fecha y hora de la última ruta completada                          |
+| `status`               | `DriverStatus`   | `private`   | Estado actual del conductor (AVAILABLE, ON_ROUTE, SUSPENDED, etc.) |
+| `assignedVehicleId`    | `VehicleId`      | `private`   | Identificador del vehículo asignado al conductor (si aplica)       |
+| `createdAt`            | `LocalDateTime`  | `private`   | Fecha y hora de creación del registro                              |
+| `updatedAt`            | `LocalDateTime`  | `private`   | Fecha y hora de la última actualización del registro               |
 
 **Métodos principales:**
 
-| Método                           | Tipo de Retorno | Visibilidad | Descripción                                  |
-|----------------------------------|-----------------|-------------|----------------------------------------------|
-| `assignToDistrict(districtId)`   | `void`          | `public`    | Asigna conductor a distrito específico       |
-| `assignVehicle(vehicleId)`       | `void`          | `public`    | Asigna vehículo verificando compatibilidad   |
-| `updateWorkSchedule(schedule)`   | `void`          | `public`    | Actualiza horario con validaciones laborales |
-| `recordPerformance(metrics)`     | `void`          | `public`    | Registra métricas de rendimiento             |
-| `isAvailableForAssignment()`     | `boolean`       | `public`    | Verifica disponibilidad para asignación      |
-| `canOperateVehicle(vehicleType)` | `boolean`       | `public`    | Verifica si puede operar tipo de vehículo    |
-| `calculateWorkingHours(period)`  | `Duration`      | `public`    | Calcula horas trabajadas en período          |
+| Método                       | Tipo de Retorno | Visibilidad | Descripción                                                              |
+|------------------------------|-----------------|-------------|--------------------------------------------------------------------------|
+| `startRoute()`               | `void`          | `public`    | Marca el inicio de una ruta asignada y actualiza el estado del conductor |
+| `completeRoute(hoursWorked)` | `void`          | `public`    | Registra la finalización de una ruta y actualiza las horas trabajadas    |
+| `goOffDuty()`                | `void`          | `public`    | Cambia el estado del conductor a fuera de servicio                       |
+| `suspend(reason)`            | `void`          | `public`    | Suspende al conductor indicando la razón de la suspensión                |
+| `assignVehicle(vehicleId)`   | `void`          | `public`    | Asigna un vehículo al conductor validando disponibilidad                 |
+| `unassignVehicle()`          | `void`          | `public`    | Remueve la asignación del vehículo actual del conductor                  |
+| `isAvailableForRoute()`      | `boolean`       | `public`    | Verifica si el conductor está disponible para recibir una nueva ruta     |
+| `reactive()`                 | `void`          | `public`    | Reactiva al conductor tras haber estado suspendido o inactivo            |
+| `isLicenseExpired()`         | `boolean`       | `public`    | Verifica si la licencia de conducir del conductor está vencida           |
 
 **Entities:**
-
-4. **`Resource` (Entity)**
-
-Entidad que representa recursos asignados a distritos con seguimiento de utilización y costos operacionales.
-
-5. **`MaintenanceRecord` (Entity)**
-
-Entidad que registra eventos de mantenimiento vehicular con costos, técnicos, y resultados.
 
 **Value Objects:**
 
@@ -3285,7 +3290,6 @@ El diagrama de clases del Domain Layer presenta la estructura completa del domin
 
 **Elementos DDD implementados:**
 - **Aggregate Roots**: District, Vehicle, Driver como raíces con invariantes municipales
-- **Entities**: Resource y MaintenanceRecord con identidad y ciclo de vida específicos
 - **Value Objects**: Objetos inmutables para conceptos municipales complejos
 - **Domain Services**: Servicios para operaciones municipales complejas
 - **Domain Events**: Eventos para coordinación operacional entre distritos
