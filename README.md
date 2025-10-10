@@ -3359,32 +3359,30 @@ Representa el agregado principal del dominio, encapsulando toda la información 
 
 **Atributos principales:**
 
-| Atributo            | Tipo                 | Visibilidad | Descripción                                            |
-|---------------------|----------------------|-------------|--------------------------------------------------------|
-| `id`                | `Long`               | `private`   | Identificador único del ciudadano en base de datos     |
-| `citizenId`         | `CitizenId`          | `private`   | Identificador de dominio del ciudadano                 |
-| `personalInfo`      | `PersonalInfo`       | `private`   | Información personal y documentos de identidad         |
-| `contactInfo`       | `ContactInfo`        | `private`   | Información de contacto y preferencias de comunicación |
-| `membershipLevel`   | `MembershipLevel`    | `private`   | Nivel de membresía en programa de recompensas          |
-| `engagementLevel`   | `EngagementLevel`    | `private`   | Nivel de participación ciudadana calculado             |
-| `engagementScore`   | `EngagementScore`    | `private`   | Puntuación numérica de engagement                      |
-| `totalRewardPoints` | `RewardPoints`       | `private`   | Puntos acumulados en sistema de recompensas            |
-| `preferences`       | `CitizenPreferences` | `private`   | Preferencias de notificación y privacidad              |
-| `registrationDate`  | `LocalDateTime`      | `private`   | Fecha de registro en la plataforma                     |
-| `lastActivity`      | `LocalDateTime`      | `private`   | Timestamp de última actividad                          |
+| Atributo                | Tipo              | Visibilidad | Descripción                                                    |
+|-------------------------|-------------------|-------------|----------------------------------------------------------------|
+| `id`                    | `String`          | `private`   | Identificador único del ciudadano en la base de datos          |
+| `userId`                | `UserId`          | `private`   | Identificador del usuario asociado al ciudadano                |
+| `districtId`            | `DistrictId`      | `private`   | Identificador del distrito al que pertenece el ciudadano       |
+| `fullName`              | `FullName`        | `private`   | Nombre completo del ciudadano                                  |
+| `email`                 | `EmailAddress`    | `private`   | Dirección de correo electrónico del ciudadano                  |
+| `phoneNumber`           | `PhoneNumber`     | `private`   | Número de teléfono del ciudadano                               |
+| `totalPoints`           | `RewardPoints`    | `private`   | Total de puntos acumulados en el sistema de recompensas        |
+| `membershipLevel`       | `MembershipLevel` | `private`   | Nivel de membresía en el programa de recompensas               |
+| `totalReportsSubmitted` | `Integer`         | `private`   | Cantidad total de reportes enviados por el ciudadano           |
+| `lastActivityDate`      | `LocalDateTime`   | `private`   | Fecha y hora de la última actividad registrada                 |
+| `createdAt`             | `LocalDateTime`   | `private`   | Fecha y hora de creación del registro del ciudadano            |
+| `updatedAt`             | `LocalDateTime`   | `private`   | Fecha y hora de la última actualización del registro ciudadano |
 
 **Métodos principales:**
 
-| Método                             | Tipo de Retorno   | Visibilidad | Descripción                                         |
-|------------------------------------|-------------------|-------------|-----------------------------------------------------|
-| `submitReport(report)`             | `void`            | `public`    | Envía reporte ciudadano validando reglas de negocio |
-| `earnRewardPoints(points, reason)` | `void`            | `public`    | Acumula puntos de recompensa con auditoría          |
-| `redeemRewards(redemption)`        | `void`            | `public`    | Canjea recompensas validando disponibilidad         |
-| `updateEngagementLevel()`          | `void`            | `public`    | Recalcula nivel de engagement basado en actividad   |
-| `canSubmitReport()`                | `boolean`         | `public`    | Verifica si puede enviar reportes según reglas      |
-| `calculateEngagementScore()`       | `EngagementScore` | `public`    | Calcula puntuación de engagement actual             |
-| `getActiveReports()`               | `List<Report>`    | `public`    | Obtiene reportes pendientes del ciudadano           |
-| `updatePreferences(preferences)`   | `void`            | `public`    | Actualiza preferencias de comunicación              |
+| Método                       | Tipo de Retorno | Visibilidad | Descripción                                                             |
+|------------------------------|-----------------|-------------|-------------------------------------------------------------------------|
+| `earnPoints(points, reason)` | `void`          | `public`    | Suma puntos de recompensa al ciudadano con una justificación específica |
+| `redeemPoints(points)`       | `void`          | `public`    | Permite canjear puntos acumulados validando disponibilidad suficiente   |
+| `submitReport()`             | `void`          | `public`    | Registra un nuevo reporte ciudadano en el sistema                       |
+| `updateMembershipLevel()`    | `void`          | `public`    | Actualiza el nivel de membresía según los puntos o actividad reciente   |
+| `isActive()`                 | `boolean`       | `public`    | Verifica si el ciudadano mantiene un estado activo en la plataforma     |
 
 2. **`Report` (Aggregate Root)**
 
@@ -3392,47 +3390,67 @@ Representa un reporte ciudadano con workflow de estados, geolocalización, y sis
 
 **Atributos principales:**
 
-| Atributo         | Tipo                | Visibilidad | Descripción                             |
-|------------------|---------------------|-------------|-----------------------------------------|
-| `reportId`       | `ReportId`          | `private`   | Identificador de dominio del reporte    |
-| `citizenId`      | `CitizenId`         | `private`   | Ciudadano que envió el reporte          |
-| `reportType`     | `ReportType`        | `private`   | Tipo de problema reportado              |
-| `title`          | `String`            | `private`   | Título descriptivo del reporte          |
-| `description`    | `String`            | `private`   | Descripción detallada del problema      |
-| `location`       | `Location`          | `private`   | Ubicación geográfica del problema       |
-| `priority`       | `Priority`          | `private`   | Nivel de prioridad del reporte          |
-| `status`         | `ReportStatus`      | `private`   | Estado actual en workflow               |
-| `images`         | `List<ReportImage>` | `private`   | Evidencia fotográfica del problema      |
-| `feedback`       | `CitizenFeedback`   | `private`   | Feedback del ciudadano sobre resolución |
-| `resolutionTime` | `Duration`          | `private`   | Tiempo total de resolución              |
+| Atributo         | Tipo            | Visibilidad | Descripción                                                             |
+|------------------|-----------------|-------------|-------------------------------------------------------------------------|
+| `id`             | `String`        | `private`   | Identificador único del reporte en el sistema                           |
+| `citizenId`      | `CitizenId`     | `private`   | Identificador del ciudadano que envió el reporte                        |
+| `location`       | `Location`      | `private`   | Ubicación geográfica del incidente reportado                            |
+| `containerId`    | `ContainerId`   | `private`   | Identificador del contenedor asociado al reporte (opcional)             |
+| `reportType`     | `ReportType`    | `private`   | Tipo de incidente o problema reportado                                  |
+| `description`    | `String`        | `private`   | Descripción detallada del problema reportado                            |
+| `status`         | `ReportStatus`  | `private`   | Estado actual del reporte (pendiente, en progreso, resuelto, etc.)      |
+| `resolutionNote` | `String`        | `private`   | Nota o comentario sobre la resolución del reporte                       |
+| `resolvedAt`     | `LocalDateTime` | `private`   | Fecha y hora en que el reporte fue resuelto                             |
+| `resolvedBy`     | `UserId`        | `private`   | Identificador del usuario que resolvió el reporte                       |
+| `submittedAt`    | `LocalDateTime` | `private`   | Fecha y hora en que el ciudadano envió el reporte                       |
+| `acknowledgedAt` | `LocalDateTime` | `private`   | Fecha y hora en que el reporte fue recibido o reconocido por el sistema |
+| `createdAt`      | `LocalDateTime` | `private`   | Fecha y hora de creación del registro del reporte                       |
+| `updatedAt`      | `LocalDateTime` | `private`   | Fecha y hora de la última actualización del reporte                     |
 
 **Métodos principales:**
 
-| Método                      | Tipo de Retorno | Visibilidad | Descripción                                   |
-|-----------------------------|-----------------|-------------|-----------------------------------------------|
-| `acknowledge()`             | `void`          | `public`    | Marca reporte como reconocido por autoridades |
-| `startProcessing()`         | `void`          | `public`    | Inicia procesamiento usando State pattern     |
-| `resolve(resolution)`       | `void`          | `public`    | Resuelve reporte con descripción de solución  |
-| `addFeedback(feedback)`     | `void`          | `public`    | Agrega feedback ciudadano sobre resolución    |
-| `calculateResolutionTime()` | `Duration`      | `public`    | Calcula tiempo total de resolución            |
-| `canBeResolved()`           | `boolean`       | `public`    | Verifica si reporte puede ser resuelto        |
-| `isOverdue()`               | `boolean`       | `public`    | Determina si reporte excede tiempo esperado   |
+| Método                       | Tipo de Retorno | Visibilidad | Descripción                                                    |
+|------------------------------|-----------------|-------------|----------------------------------------------------------------|
+| `acknowledge()`              | `void`          | `public`    | Marca el reporte como reconocido por las autoridades           |
+| `startProcessing()`          | `void`          | `public`    | Cambia el estado del reporte a “en proceso”                    |
+| `resolve(note, resolvedBy)`  | `void`          | `public`    | Marca el reporte como resuelto, registrando nota y responsable |
+| `reject(reason, rejectedBy)` | `void`          | `public`    | Rechaza el reporte con una razón y el usuario responsable      |
+| `calculateResolutionTime()`  | `Duration`      | `public`    | Calcula el tiempo total desde el envío hasta la resolución     |
+| `isOverdue()`                | `boolean`       | `public`    | Determina si el reporte ha excedido el tiempo esperado         |
 
-3. **`RewardsProgram` (Aggregate Root)**
+3. **`Evidence` (Aggregate Root)**
 
-Representa un programa de recompensas configurable con reglas específicas, opciones de canje, y métricas de participación para incentivar engagement ciudadano.
+Representa las evidencias de que un ciudadano adjunta con un reporte
 
 **Atributos principales:**
 
-| Atributo             | Tipo                     | Visibilidad | Descripción                                    |
-|----------------------|--------------------------|-------------|------------------------------------------------|
-| `programId`          | `ProgramId`              | `private`   | Identificador del programa de recompensas      |
-| `name`               | `String`                 | `private`   | Nombre del programa                            |
-| `rules`              | `RewardRules`            | `private`   | Reglas configurables de otorgamiento de puntos |
-| `redemptionOptions`  | `List<RedemptionOption>` | `private`   | Opciones disponibles para canje                |
-| `isActive`           | `boolean`                | `private`   | Estado de activación del programa              |
-| `participants`       | `Integer`                | `private`   | Número total de participantes                  |
-| `totalPointsAwarded` | `Long`                   | `private`   | Puntos totales otorgados                       |
+| Atributo         | Tipo            | Visibilidad | Descripción                                           |
+|------------------|-----------------|-------------|-------------------------------------------------------|
+| `id`             | `String`        | `private`   | Identificador único de la evidencia                   |
+| `citizenId`      | `CitizenId`     | `private`   | Identificador del ciudadano que registró la evidencia |
+| `location`       | `Location`      | `private`   | Ubicación geográfica donde se registró la evidencia   |
+| `containerId`    | `ContainerId`   | `private`   | Contenedor asociado (opcional)                        |
+| `reportType`     | `ReportType`    | `private`   | Tipo de evento o incidencia evidenciada               |
+| `description`    | `String`        | `private`   | Descripción detallada de la evidencia                 |
+| `status`         | `ReportStatus`  | `private`   | Estado actual del reporte o evidencia                 |
+| `resolutionNote` | `String`        | `private`   | Nota o detalle de resolución proporcionada            |
+| `resolvedAt`     | `LocalDateTime` | `private`   | Fecha y hora en que fue resuelta la evidencia         |
+| `resolvedBy`     | `UserId`        | `private`   | Usuario responsable de la resolución                  |
+| `submittedAt`    | `LocalDateTime` | `private`   | Fecha y hora de envío de la evidencia                 |
+| `acknowledgedAt` | `LocalDateTime` | `private`   | Fecha y hora en que fue reconocida por el sistema     |
+| `createdAt`      | `LocalDateTime` | `private`   | Fecha de creación del registro de evidencia           |
+| `updatedAt`      | `LocalDateTime` | `private`   | Fecha de última actualización del registro            |
+
+**Métodos principales:**
+
+| Método                            | Tipo de Retorno | Visibilidad | Descripción                                              |
+|-----------------------------------|-----------------|-------------|----------------------------------------------------------|
+| `isImage()`                       | `boolean`       | `public`    | Verifica si la evidencia corresponde a una imagen        |
+| `isVideo()`                       | `boolean`       | `public`    | Verifica si la evidencia corresponde a un video          |
+| `isLargeFile()`                   | `boolean`       | `public`    | Determina si el archivo supera el tamaño permitido       |
+| `updateDescription(description)`  | `void`          | `public`    | Actualiza la descripción de la evidencia                 |
+| `generateThumbnail(thumbnailUrl)` | `void`          | `public`    | Genera y asocia una miniatura (thumbnail) a la evidencia |
+
 
 **Entities:**
 
