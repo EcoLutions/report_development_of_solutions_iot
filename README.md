@@ -3312,7 +3312,7 @@ El diagrama de clases del Domain Layer presenta la estructura completa del domin
 
 ##### 4.2.3.6.2. Bounded Context Database Design Diagram
 
-![database-design-municipal-operations.png](assets/4.solution-software-design/4.2.tactical-level-domain-driven-design/3.database-design-diagram.png)
+![database-design-municipal-operations.png](assets/4.solution-software-design/4.2.tactical-level-domain-driven-design/3.database-design-diagram.jpg)
 
 El diseño de base de datos implementa el modelo de dominio con optimizaciones específicas para operaciones municipales:
 
@@ -3623,7 +3623,7 @@ El diagrama de clases del Domain Layer presenta la estructura completa del domin
 
 ##### 4.2.4.6.2. Bounded Context Database Design Diagram
 
-![database-design-community-relations.png](assets/4.solution-software-design/4.2.tactical-level-domain-driven-design/4.database-design-diagram.png)
+![database-design-community-relations.png](assets/4.solution-software-design/4.2.tactical-level-domain-driven-design/4.database-design-diagram.jpg)
 
 El diseño de base de datos implementa el modelo de dominio con optimizaciones específicas para engagement ciudadano y gamificación:
 
@@ -3934,7 +3934,7 @@ El diagrama de clases del Domain Layer presenta la estructura completa del domin
 
 ##### 4.2.5.6.2. Bounded Context Database Design Diagram
 
-![database-design-payment-subscriptions.png](assets/4.solution-software-design/4.2.tactical-level-domain-driven-design/5.database-design-diagram.png)
+![database-design-payment-subscriptions.png](assets/4.solution-software-design/4.2.tactical-level-domain-driven-design/5.database-design-diagram.jpg)
 
 El diseño de base de datos implementa el modelo de dominio con optimizaciones específicas para operaciones financieras SaaS:
 
@@ -4233,7 +4233,7 @@ El diagrama de clases del Domain Layer presenta la estructura completa del domin
 
 ##### 4.2.6.6.2. Bounded Context Database Design Diagram
 
-![database-design-communication-hub.png](assets/4.solution-software-design/4.2.tactical-level-domain-driven-design/6.database-design-diagram.png)
+![database-design-communication-hub.png](assets/4.solution-software-design/4.2.tactical-level-domain-driven-design/6.database-design-diagram.jpg)
 
 El diseño de base de datos implementa el modelo de dominio con optimizaciones específicas para comunicaciones multi-canal:
 
@@ -4447,7 +4447,7 @@ El diagrama de clases del Domain Layer presenta la estructura completa del domin
 
 ##### 4.2.7.6.2. Bounded Context Database Design Diagram
 
-![database-design-profile.png](assets/4.solution-software-design/4.2.tactical-level-domain-driven-design/7.database-design-diagram.png)
+![database-design-profile.png](assets/4.solution-software-design/4.2.tactical-level-domain-driven-design/7.database-design-diagram.jpg)
 
 El diseño de la base de datos implementa el modelo de dominio con optimizaciones específicas para la gestión de perfiles a gran escala:
 
@@ -4661,7 +4661,7 @@ El diagrama de clases del Domain Layer presenta la estructura completa del domin
 
 ##### 4.2.8.6.2. Bounded Context Database Design Diagram
 
-![database-design-iam.png](assets/4.solution-software-design/4.2.tactical-level-domain-driven-design/8.database-design-diagram.png)
+![database-design-iam.png](assets/4.solution-software-design/4.2.tactical-level-domain-driven-design/8.database-design-diagram.jpg)
 
 El diseño de la base de datos implementa el modelo de dominio con un enfoque principal en la seguridad y la integridad de los datos de identidad.
 
