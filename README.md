@@ -45,17 +45,20 @@
 
 # Registro de Versiones del Informe
 
-| Versión | Fecha      | Autor                          | Descripción de modificación                                                                           |
-|---------|------------|--------------------------------|-------------------------------------------------------------------------------------------------------|
-| v1.7.0  | 20/09/2025 | Jhosepmyr, Eric, Andrés, Elmer | Agregado context mapping, nuevos Bounded Contexts, sección de entrevistas, arquitectura DDD           |
-| v1.6.0  | 19/09/2025 | Elmer Riva                     | Agregados mockups y wireframes para apps móviles y web, guías de estilo y arquitectura de información |
-| v1.5.0  | 18/09/2025 | Jhosepmyr                      | Documentación de contextos, flujos de mensajes, y Event Storming de nivel táctico                     |
-| v1.4.0  | 17/09/2025 | Jhosepmyr, Elmer, Joaquin      | Big Picture Event Storming, historias de usuario, wireframes de landing page                          |
-| v1.3.0  | 16/09/2025 | Jhosepmyr, Andrés              | Definición de Lean UX Canvas, segmentos objetivo, competencia, y análisis del problema                |
-| v1.2.0  | 12/09/2025 | Jhosepmyr                      | Diseño de entrevistas, estrategia competitiva, referencias y mejoras menores                          |
-| v1.1.0  | 09/09/2025 | Jhosepmyr                      | Estructura base del repositorio, portada y archivos iniciales                                         |
-| v1.0.0  | 05/09/2025 | Jhosepmyr                      | Commit inicial, configuración de gitignore y base del proyecto                                        |
-
+| Versión   | Fecha      | Autor                                           | Descripción de modificación                                                                                                                                                                    |
+|:----------|:-----------|:------------------------------------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| v2.1.0    | 09/10/2025 | Jhosepmyr, Eric, Andrés, Elmer, Joaquin, Carlos | Integración de la suite completa de pruebas (Unit, Integration, BDD, E2E con Postman). Consolidación y redacción de la sección de evidencia de pruebas para el informe del Sprint Review.      |
+| v2.0.0    | 06/10/2025 | Elmer, Joaquin, Jhosepmy                        | Desarrollo de interfaces para la App Web de Admin (Gestión de Dispositivos/Colaboradores) y la App Móvil (Onboarding/Mapa). Despliegue de infraestructura en Azure y configuración de Docker.  |
+| v1.9.0    | 29/09/2025 | Jhosepmyr, Eric, Carlos**                       | Implementación de endpoints core de la API RESTful, incluyendo autenticación (IAM), distritos, contenedores y vehículos. Documentación de API con Swagger.                                     |
+| v1.8.0    | 22/09/2025 | Jhosepmyr, Joaquin                              | Definición de artefactos para el Sprint 1: Sprint Goal, Sprint Planning y Sprint Backlog con desglose de tareas.                                                                               |
+| v1.7.0    | 20/09/2025 | Jhosepmyr, Eric, Andrés, Elmer                  | Agregado context mapping, nuevos Bounded Contexts, sección de entrevistas, arquitectura DDD                                                                                                    |
+| v1.6.0    | 19/09/2025 | Elmer Riva                                      | Agregados mockups y wireframes para apps móviles y web, guías de estilo y arquitectura de información                                                                                          |
+| v1.5.0    | 18/09/2025 | Jhosepmyr                                       | Documentación de contextos, flujos de mensajes, y Event Storming de nivel táctico                                                                                                              |
+| v1.4.0    | 17/09/2025 | Jhosepmyr, Elmer, Joaquin                       | Big Picture Event Storming, historias de usuario, wireframes de landing page                                                                                                                   |
+| v1.3.0    | 16/09/2025 | Jhosepmyr, Andrés                               | Definición de Lean UX Canvas, segmentos objetivo, competencia, y análisis del problema                                                                                                         |
+| v1.2.0    | 12/09/2025 | Jhosepmyr                                       | Diseño de entrevistas, estrategia competitiva, referencias y mejoras menores                                                                                                                   |
+| v1.1.0    | 09/09/2025 | Jhosepmyr                                       | Estructura base del repositorio, portada y archivos iniciales                                                                                                                                  |
+| v1.0.0    | 05/09/2025 | Jhosepmyr                                       | Commit inicial, configuración de gitignore y base del proyecto                                                                                                                                 |
 
 <div style="page-break-before: always"></div>
 
@@ -5984,28 +5987,20 @@ El despliegue de WasteTrack se ejecuta de forma automatizada en entornos en la n
 
 #### 6.2.1.1. Sprint Planning 1
 
-| **Elemento** | **Detalle** |
-|---------------|-------------|
-| **Número de Sprint** | Sprint 1 |
-| **Contexto de la planificación** | Inicio del proyecto, se establecen las bases del desarrollo técnico. |
-| **Fecha** | 2025-10-07 |
-| **Hora** | 08:00 AM |
-| **Lugar** | Sesión virtual realizada durante la clase |
-| **Elaborado por** | Joaquín Rivadeneyra |
-| **Participantes** | Erick Hernandez, Jhosepmyr Orlando, Elmer Augusto, Joaquín Rivadeneyra, Carlos Andrés |
-| **Resumen del Sprint anterior** | Este es el primer Sprint, por lo que no se cuenta con un resumen previo. |
-| **Resumen retrospectivo** | Se identificaron oportunidades de mejora en el modelado de datos y definición de funcionalidades clave. |
-| **Objetivo del Sprint (Sprint Goal)** | Implementar funcionalidades esenciales para el monitoreo del sistema. |
-| **Historias de Usuario Incluidas** | **Puntos** |
-| US001 – Ver nivel de llenado | 2 |
-| US002 – Filtrar por estado | 3 |
-| US003 – Ver alertas por sobrellenado | 2 |
-| US004 – Generar ruta automáticamente | 5 |
-| US011 – Registrar sensores | 3 |
-| US012 – Ver último dato recibido | 2 |
-| US013 – Ver estado del sensor | 3 |
-| **Velocidad del Sprint** | 22 |
-| **Total de Story Points en el Sprint** | 22 |
+| **Elemento**                           | **Detalle**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+|----------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Número de Sprint**                   | Sprint 1                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| **Contexto de la planificación**       | Inicio del proyecto, se establecen las bases del desarrollo técnico.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| **Fecha**                              | 2025-10-07                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| **Hora**                               | 08:00 AM                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| **Lugar**                              | Sesión virtual vía Discord                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| **Elaborado por**                      | Joaquín Rivadeneyra                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| **Participantes**                      | Erick Hernandez, Jhosepmyr Orlando, Elmer Augusto, Joaquín Rivadeneyra, Carlos Andrés                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| **Resumen del Sprint anterior**        | Este es el primer Sprint, por lo que no se cuenta con un resumen previo.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| **Resumen retrospectivo**              | Se identificaron oportunidades de mejora en el modelado de datos y definición de funcionalidades clave.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| **Objetivo del Sprint (Sprint Goal)**  | Nuestro enfoque es construir un "esqueleto funcional" del ecosistema WasteTrack de extremo a extremo, implementando la infraestructura base, la API central, la aplicación web para administradores y el flujo inicial de la aplicación móvil para ciudadanos. </b> Creemos que esto validará la viabilidad técnica de la arquitectura completa y nos proporcionará una base sólida para futuras iteraciones, además de permitirnos obtener retroalimentación temprana sobre las interfaces de usuario clave. </b> Esto se confirmará cuando: 1. La API central esté desplegada y operativa en Azure. 2. Un administrador pueda iniciar sesión, visualizar y gestionar dispositivos IoT en la aplicación web. 3. Un ciudadano pueda completar el flujo de bienvenida y enviar un reporte de incidencia a través de la aplicación móvil. 
+| **Velocidad del Sprint**               | 30                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| **Total de Story Points en el Sprint** | 30                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 
 ---
 
@@ -6014,13 +6009,13 @@ El despliegue de WasteTrack se ejecuta de forma automatizada en entornos en la n
 Durante el **Sprint 1**, se definieron los roles y responsabilidades de cada integrante del equipo con el fin de asegurar una ejecución eficiente de las tareas establecidas en el **Product Backlog**.  
 Cada miembro asumió un rol específico según su área de especialización, garantizando la integración técnica y la colaboración continua entre los distintos componentes del sistema WasteTrack.
 
-| Aspecto | Líder | Colaboradores | Responsabilidades Principales |
-|----------|--------|---------------|--------------------------------|
-| **Backend & API** | **Elmer Augusto** | Erick Hernandez | Implementación de microservicios con **Spring Boot**, desarrollo de controladores REST, conexión con la base de datos y despliegue de servicios en la nube. |
-| **Frontend Web** | **Carlos Andrés** | Joaquín Rivadeneyra | Diseño e implementación de la interfaz web administrativa con **React**, integración con los servicios backend y aplicación de principios de diseño responsivo. |
-| **Aplicación Móvil (Flutter)** | **Jhosepmyr Orlando** | Joaquín Rivadeneyra | Desarrollo de la aplicación móvil, diseño de vistas principales, conexión con los endpoints REST y validación de la experiencia de usuario. |
-| **Cloud & DevOps** | **Erick Hernandez** | Elmer Augusto | Configuración del entorno cloud en **Google Cloud Platform (GCP)**, despliegue de contenedores con **Docker** y automatización de procesos mediante **pipelines CI/CD**. |
-| **Documentación & QA** | **Joaquín Rivadeneyra** | Todos los integrantes | Redacción de la documentación técnica, recopilación de evidencias de desarrollo, diseño de casos de prueba y validación de calidad del software. |
+| Aspecto                        | Líder                   | Colaboradores                     | Responsabilidades Principales                                                                                                                                            |
+|--------------------------------|-------------------------|-----------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Backend & API**              | **Jhosepmyr Orlando**   | Erick Hernandez                   | Implementación de microservicios con  **Spring Boot**, desarrollo de controladores REST, conexión con la base de datos y despliegue de servicios en la nube.             |
+| **Frontend Web**               | **Carlos Andrés**       | Joaquín Rivadeneyra y Elmer Riva  | Diseño e implementación de la interfaz web administrativa con **React**, integración con los servicios backend y aplicación de principios de diseño responsivo.          |
+| **Aplicación Móvil (Flutter)** | **Elmer Riva**          | Joaquín Rivadeneyra               | Desarrollo de la aplicación móvil, diseño de vistas principales, conexión con los endpoints REST y validación de la experiencia de usuario.                              |
+| **Cloud & DevOps**             | **Erick Hernandez**     | Jhosepmyr Orlando                 | Configuración del entorno cloud en **Google Cloud Platform (GCP)**, despliegue de contenedores con **Docker** y automatización de procesos mediante **pipelines CI/CD**. |
+| **Documentación & QA**         | **Joaquín Rivadeneyra** | Todos los integrantes             | Redacción de la documentación técnica, recopilación de evidencias de desarrollo, diseño de casos de prueba y validación de calidad del software.                         |
 
 El equipo mantuvo una comunicación constante a través de herramientas colaborativas como **Trello**, **Slack** y **GitHub Projects**, lo que permitió una gestión ágil de tareas, un seguimiento transparente de los avances y una resolución oportuna de incidencias.
 
@@ -6028,15 +6023,39 @@ El equipo mantuvo una comunicación constante a través de herramientas colabora
 
 #### 6.2.1.3. Sprint Backlog 1
 
-| Sprint | User Story | Task Id | Title | Description | Estimation (Hours) | Assigned To | Status |
-|--------|-------------|----------|--------|--------------|--------------------|--------------|--------|
-| Sprint 1 | US001 | WT-001 | Mostrar nivel de llenado | Visualizar el porcentaje de llenado actual de cada contenedor. | 8 | Erick Hernández | Done |
-| Sprint 1 | US002 | WT-002 | Filtro por estado | Permitir filtrar los contenedores según su estado. | 10 | Joaquín Rivadeneyra | Done |
-| Sprint 1 | US003 | WT-003 | Alertas por sobrellenado | Detectar y notificar si un contenedor sobrepasa el umbral de llenado. | 8 | Jhosepmyr Orlando | Done |
-| Sprint 1 | US004 | WT-004 | Generar ruta automáticamente | Generar rutas óptimas de recolección con base en los niveles de llenado. | 12 | Elmer Augusto | Done |
-| Sprint 1 | US011 | WT-005 | Registrar sensores | Permitir registrar sensores IoT. | 8 | Carlos Andrés | Done |
-| Sprint 1 | US012 | WT-006 | Ver último dato de sensor | Consultar la última fecha y hora en que un sensor envió datos. | 6 | Erick Hernández | Done |
-| Sprint 1 | US013 | WT-007 | Ver estado de sensor | Visualizar si un sensor ha dejado de enviar información. | 8 | Joaquín Rivadeneyra | Done |
+### **Sprint Backlog - Detalle de Tareas (Sprint 1)**
+
+| Sprint | User Story     | Task Id | Title                                               | Description                                                                                                         | Estimation (Hours) | Assigned To         | Status |
+|:-------|:---------------|:--------|:----------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------|:-------------------|:--------------------|:-------|
+| 1      | `US32`         | T1.1    | Frontend: Desarrollar Estructura General de la LP   | Implementar los componentes de Header y Footer reutilizables para la Landing Page.                                  | 8                  | Elmer Riva          | Done   |
+| 1      | `US32`         | T1.2    | Frontend: Implementar Sección "Hero"                | Desarrollar la sección principal de la Landing Page que comunica la propuesta de valor.                             | 10                 | Elmer Riva          | Done   |
+| 1      | `US33`         | T2.1    | Frontend: Desarrollar Sección "Administradores"     | Crear la sección en la LP que detalla los beneficios y funcionalidades para los administradores municipales.        | 8                  | Elmer Riva          | Done   |
+| 1      | `US34`         | T3.1    | Frontend: Desarrollar Sección "Conductores"         | Crear la sección en la LP que presenta la aplicación móvil y sus ventajas para los conductores.                     | 6                  | Carlos Rojas        | Done   |
+| 1      | `US35`         | T4.1    | Frontend: Desarrollar Sección "Ciudadanos"          | Crear la sección en la LP que explica cómo los ciudadanos pueden participar y los beneficios que obtienen.          | 6                  | Carlos Rojas        | Done   |
+| 1      | `US36`         | T5.1    | Frontend: Desarrollar Sección "Casos de Éxito"      | Implementar un componente para mostrar testimonios o métricas de éxito de municipalidades ficticias.                | 6                  | Carlos Rojas        | Done   |
+| 1      | `US37`         | T6.1    | Frontend: Formulario de Contacto                    | Desarrollar e integrar el formulario para "Solicitud de Demo" en la Landing Page.                                   | 8                  | Elmer Riva          | Done   |
+| 1      | `US37`         | T6.2    | Backend: Endpoint para Formulario de Contacto       | Implementar un endpoint simple o una función serverless para recibir los datos del formulario de contacto.          | 6                  | Eric Hernandez      | Done   |
+| 1      | `US01`         | T7.1    | Backend: Entidad y Endpoint de Distrito             | Diseñar e implementar la entidad `District` y el endpoint `POST /api/v1/districts`.                                 | 12                 | Eric Hernandez      | Done   |
+| 1      | `US01`         | T7.2    | Testing: Pruebas E2E de Creación de Distrito        | Validar con Postman el flujo completo de creación de un distrito, enviando una petición y verificando la respuesta. | 4                  | Joaquin Rivadeneyra | Done   |
+| 1      | `US03`, `TS01` | T8.1    | Backend: Configuración de Seguridad y JWT           | Configurar Spring Security, entidades de `IAM` (`User`, `Role`) y la lógica de generación/validación de tokens JWT. | 16                 | Jhosepmyr Gutiérrez | Done   |
+| 1      | `US03`, `TS01` | T8.2    | Backend: Endpoints de Autenticación                 | Implementar los endpoints `POST /api/v1/authentication/sign-up` y `POST /api/v1/authentication/sign-in`.            | 12                 | Jhosepmyr Gutiérrez | Done   |
+| 1      | `US04`         | T9.1    | Backend: Endpoint de Gestión de Conductores         | Implementar los endpoints CRUD para `Driver` (`/api/v1/drivers`), incluyendo creación y listado.                    | 10                 | Jhosepmyr Gutiérrez | Done   |
+| 1      | `US04`         | T9.2    | Frontend (Web): Vista de Gestión de Colaboradores   | Desarrollar la tabla y el modal de edición para la gestión de colaboradores en la App de Admin.                     | 14                 | Elmer Riva          | Done   |
+| 1      | `US05`         | T10.1   | Backend: Endpoint de Gestión de Ciudadanos          | Implementar los endpoints CRUD para `Citizen` (`/api/v1/citizens`), como se evidencia en las pruebas de Postman.    | 10                 | Eric Hernandez      | Done   |
+| 1      | `US07`         | T11.1   | Backend: Endpoint de Listado de Contenedores        | Implementar el endpoint `GET /api/v1/containers` que retorne la lista de contenedores con su estado.                | 8                  | Eric Hernandez      | Done   |
+| 1      | `US07`         | T11.2   | Frontend (Web): Vista de Gestión de Dispositivos    | Desarrollar la tabla de "Gestión de Dispositivos IoT" en la App de Admin, mostrando estado y acciones.              | 12                 | Elmer Riva          | Done   |
+| 1      | `US10`         | T12.1   | Frontend (Móvil): Vista de Mapa y Onboarding        | Desarrollar las pantallas de bienvenida y la vista principal del mapa en la App de Ciudadano.                       | 12                 | Joaquin Rivadeneyra | Done   |
+| 1      | `US10`         | T12.2   | Frontend (Móvil): Consumo API de Contenedores       | Conectar la vista del mapa con la API para consumir y mostrar los contenedores como marcadores dinámicos.           | 8                  | Joaquin Rivadeneyra | Done   |
+| 1      | `US11`         | T13.1   | Backend: Endpoint de Actualización de Contenedor    | Implementar el endpoint `PUT /api/v1/containers/{id}` para actualizar los parámetros de un contenedor.              | 8                  | Eric Hernandez      | Done   |
+| 1      | `US11`         | T13.2   | Frontend (Web): Modal de Configuración              | Desarrollar el componente modal para "Configurar Dispositivo" e integrarlo con el endpoint de actualización.        | 10                 | Elmer Riva          | Done   |
+| 1      | `US12`         | T14.1   | Backend: Endpoint de Creación de Rutas              | Implementar el endpoint inicial `POST /api/v1/routes` para crear una ruta en estado `DRAFT`.                        | 8                  | Jhosepmyr Gutiérrez | Done   |
+| 1      | `US17`         | T15.1   | Backend: Endpoint de Creación de Reportes           | Implementar el endpoint `POST /api/v1/reports` para que los ciudadanos envíen incidencias.                          | 10                 | Carlos Rojas        | Done   |
+| 1      | `US17`         | T15.2   | Frontend (Móvil): Formulario de Reporte             | Desarrollar la pantalla y el formulario "Enviar Reporte" en la App de Ciudadano, incluyendo la subida de imágenes.  | 12                 | Joaquin Rivadeneyra | Done   |
+| 1      | `US22`         | T16.1   | Backend: Endpoint de Creación de Vehículos          | Implementar el endpoint `POST /api/v1/vehicles` para registrar nuevos vehículos en la flota.                        | 8                  | Eric Hernandez      | Done   |
+| 1      | `TS04`         | T17.1   | Backend: Endpoint de Recepción de Datos de Sensor   | Implementar el endpoint `POST /api/v1/sensor-readings` para recibir y procesar datos de los dispositivos IoT.       | 14                 | Jhosepmyr Gutiérrez | Done   |
+| 1      | `TS04`         | T17.2   | Testing: Pruebas BDD para API de Sensores           | Escribir y ejecutar los escenarios de Cucumber para validar el comportamiento del endpoint de datos de sensores.    | 8                  | Carlos Rojas        | Done   |
+| 1      | `SP02`         | T18.1   | Investigación y Documentación de Protocolos IoT     | Realizar y documentar el análisis comparativo de protocolos de comunicación IoT (LoRaWAN, NB-IoT).                  | 16                 | Joaquin Rivadeneyra | Done   |
+| 1      | `SP04`         | T19.1   | Investigación y Documentación de Gestión de Energía | Realizar y documentar el análisis de opciones de hardware y software para la gestión de energía de los sensores.    | 16                 | Carlos Rojas        | Done   |
 
 ---
 
@@ -6077,644 +6096,538 @@ El equipo mantuvo una comunicación constante a través de herramientas colabora
 
 - **Development Evidence Frontend**
 
-**Link del repositorio:**  
-[https://github.com/EcoLutions/waste_track_super_admin_app](https://github.com/EcoLutions/waste_track_super_admin_app)
+#### WasteTrackk citizen mobile app
+**Link del repositorio:**
+[https://github.com/EcoLutions/waste_track_citizen_app](https://github.com/EcoLutions/waste_track_citizen_app)
 
-<!DOCTYPE html>
-<html>
-<body>
-  <table>
-    <thead>
-      <tr>
-        <th>Repository</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Commit Message</th>
-        <th>Commit Message Body</th>
-        <th>Committed On (Date)</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>wastetrack-frontend</td>
-        <td>main</td>
-        <td>3f0341780f30c9f1b16cc2260eff2ecfa1366328</td>
-        <td>Create project</td>
-        <td>N/A</td>
-        <td>2025-10-08</td>
-      </tr>
-      <tr>
-        <td>wastetrack-frontend</td>
-        <td>main</td>
-        <td>eaeb164af2e21ed661b8a08320bc6599fe1339a4</td>
-        <td>Initial commit from Create Next App</td>
-        <td>N/A</td>
-        <td>2025-10-08</td>
-      </tr>
-    </tbody>
-  </table>
-</body>
-</html>
+| Branch                | Id Commit | Cabecera                                                                     | Cuerpo                |
+|-----------------------|-----------|------------------------------------------------------------------------------|-----------------------|
+| main                  | 10f798d   | Merge branch 'develop' into 'main'                                           |                       |
+| develop               | b134dd3   | Merge pull request #5 from EcoLutions/feature/notifications                  | Feature/notifications |
+| feature/notifications | f419799   | feat(notifications): build notification panel UI with permission handling    |                       |
+| N/A                   | 261fcfa   | feat(notifications): setup BLoC for state management                         |                       |
+| N/A                   | bbe6f30   | feat(notifications): implement data layer with mocked repository             |                       |
+| N/A                   | c8e9586   | feat(notifications): add domain layer                                        |                       |
+| N/A                   | 896de24   | Merge pull request #4 from EcoLutions/feature/reports                        | Feature/reports       |
+| feature/reports       | d225353   | refactor(reports): expand incident types for better usability                |                       |
+| N/A                   | c7ebf72   | feat(reports): build incident report screen UI                               |                       |
+| N/A                   | 6b01edc   | feat(reports): setup BLoC for report form state management                   |                       |
+| N/A                   | 560e5e6   | feat(reports): implement data layer with mocked repository                   |                       |
+| N/A                   | c7efa55   | feat(reports): add domain layer for incident reporting                       |                       |
+| N/A                   | 4f6913c   | Merge pull request #3 from EcoLutions/feature/home                           | Feature/home          |
+| feature/home          | f8d5888   | feat(home): implement map screen and integrate with BLoC                     |                       |
+| N/A                   | f384b45   | feat(home): build home screen with custom navigation widgets                 |                       |
+| N/A                   | 4d67acd   | feat(home): add bottom and top navigation bar components                     |                       |
+| N/A                   | b109a79   | feat(home): setup BLoCs for map state management                             |                       |
+| N/A                   | d9e8b02   | feat(home): setup BLoCs for home state management                            |                       |
+| N/A                   | 80f2bb1   | feat(home): implement data layer with mocked data                            |                       |
+| N/A                   | 9e9c197   | feat(home): add domain layer for home feature                                |                       |
+| N/A                   | 0539204   | Merge pull request #2 from EcoLutions/feature/onboarding                     | Feature/onboarding    |
+| feature/onboarding    | 7898b19   | feat(onboarding): create municipality selection screen UI                    |                       |
+| N/A                   | 14bf1e3   | feat(onboarding): build welcome UI screen with welcome illustration included |                       |
+| N/A                   | edb5c74   | feat(onboarding): build splash screen with wasteTrack Citizens logo          |                       |
+| N/A                   | dfb672a   | feat(onboarding): setup BLoC for state management                            |                       |
+| N/A                   | d255d98   | feat(onboarding): implement data layer with mocked repository                |                       |
+| N/A                   | b6e24fe   | feat(onboarding): add domain layer entities and repository contract          |                       |
+| N/A                   | 413b3fa   | Merge pull request #1 from EcoLutions/feature/core-setup                     | Feature/core setup    |
+| feature/core-setup    | e4a1b4a   | feat(core): configure dependency injection, navigation, and theme            |                       |
+| N/A                   | 7e41abc   | feat(core): initialize project structure and dependencies                    |                       |
+| N/A                   | a65675a   | Initial commit                                                               |                       |
+ 
+#### Waster Track Municipal Admin Web App
+**Link del repositorio:**
+[https://github.com/EcoLutions/waste_track_admin_app](https://github.com/EcoLutions/waste_track_admin_app)
+
+| Branch                                  | Id Commit   | Cabecera                                                                                                                   | Cuerpo                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+|-----------------------------------------|-------------|----------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| main                                    | 83e233d     | feat: set for deploy on Netlify                                                                                            |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| N/A                                     | 0dc4c59     | Merge pull request #9 from EcoLutions/hotfix/fix-component-import-paths                                                    | fix(router): correct lazy-load component import paths                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| hotfix/fix-component-import-paths       | d2783aa     | fix(router): correct lazy-load component import paths                                                                      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| N/A                                     | 7674070     | Merge pull request #8 from EcoLutions/develop                                                                              | Develop                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| develop                                 | 18952a7     | Merge branch 'main' into develop                                                                                           |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| develop                                 | dfff719     | Merge pull request #7 from EcoLutions/feature/navigation                                                                   | Feature/navigation                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| feature/navigation                      | 1be1d4b     | feat(environment): add environment configuration for production and development                                            |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| N/A                                     | 9ee92c9     | feat(shared/confirmation-dialog): add confirmation dialog component with styling and functionality                         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| N/A                                     | c86b258     | feat(shared/notification-messages): add NotificationMessagesService for toast notifications                                |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| N/A                                     | 14dec3e     | feat(shared/base-message): add BaseMessage snackbar component with level styles and icons                                  |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| N/A                                     | 54e0b74     | feat(index): update title and add Google Maps API script with libraries                                                    |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| N/A                                     | bb18b9d     | feat(shared/main-layout): add responsive main layout with sidenav and header                                               |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| N/A                                     | 42d4c95     | feat(shared/navigation): add responsive sidebar navigation component                                                       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| N/A                                     | 97e9ec3     | feat(shared/header): add responsive header with dynamic title and menu toggle                                              |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| N/A                                     | fa99025     | Merge pull request #6 from EcoLutions/feature/iot-management                                                               | Feature/iot management                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| feature/iot-management                  | 9c22147     | feat(iot): add IoT route for device management with lazy loading                                                           |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| N/A                                     | 2c3b7ef     | feat(iot): add IoT list page with table, pagination, sorting and dialog actions                                            | Add IotListComponent displaying devices (id, location, fillLevel, battery, status) with MatTable, MatPaginator and MatSort. Integrates `RegisterDeviceDialogComponent` and `ConfigDeviceDialogComponent`, opens dialogs to register/configure devices, refreshes list via `IotService` and shows user notifications via `NotificationMessagesService`. Include responsive styles and empty-state UI.                                                                                          |
+| N/A                                     | f70165c     | feat(iot): implement IoT service with mocked data for device management with CRUD operations                               |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| N/A                                     | 6e8be51     | feat(iot): add register device dialog logic with Google Maps integration and autocomplete                                  |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| N/A                                     | abb7f46     | feat(iot): add register device dialog with map and Google Places autocomplete                                              | Add dialog UI to register new IoT devices with `id` and `location` fields, Google Places address autocomplete, and a Google Map with a draggable marker to set device position. Includes Register/Cancel actions and responsive/autocomplete styles. Update `src/app/iot/components/register-device-dialog/register-device-dialog.component.html` and `src/app/iot/components/register-device-dialog/register-device-dialog.component.css`.                                                   |
+| N/A                                     | 3e17ef3     | feat(iot): add device configuration dialog logic with form and validation                                                  |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| N/A                                     | 69d7ac1     | feat(iot): add device configuration dialog with form and validation                                                        | Add a component to configure `maxFillLevel` and `status` inside a MatDialog; includes inputs, hints, Cancel/Save buttons and responsive styles. Update `src/app/iot/components/config-device-dialog/config-device-dialog.component.html` and `src/app/iot/components/config-device-dialog/config-device-dialog.component.css`.                                                                                                                                                                |
+| N/A                                     | 104e1a7     | feat(iot): add IoT device model and status enumeration                                                                     |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| N/A                                     | 499df27     | Merge pull request #5 from EcoLutions/feature/fleet                                                                        | Feature/fleet                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| feature/fleet                           | 3c136c2     | feat(fleet): add fleet management route with lazy-loaded component                                                         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| N/A                                     | 69c2bca     | feat(fleet): list vehicles with pagination, sorting and CRUD dialogs                                                       | Load and display vehicles in a MatTable with paginator and sorting; open dialog to create/edit vehicles and resolve the driver name via CollaboratorsService; add confirmation before delete. Update FleetService calls (get/add/update/delete) in `src/app/fleet/pages/fleet-list/fleet-list.component.ts`.                                                                                                                                                                                  |
+| N/A                                     | c5b36a0     | feat(fleet): agregar listado de vehículos con tabla, ordenamiento, paginación, estado vacío y estilos responsivos          |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| N/A                                     | 1a99872     | feat(fleet): add FleetService with mock vehicles and basic CRUD (get/add/update/delete)                                    |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| N/A                                     | ca46b34     | feat(fleet): implement vehicle dialog logic — form setup, validation, driver loading, and save/cancel                      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| N/A                                     | 8140e57     | feat(fleet): implement vehicle dialog logic — form handling, validation, driver assignment, and save/cancel actions        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| N/A                                     | d6a4a91     | feat(vehicle): add Vehicle model and VehicleStatus enum                                                                    |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| N/A                                     | bd38db7     | Merge pull request #4 from EcoLutions/feature/collaborators                                                                | Feature/collaborators                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| feature/collaborators                   | 8c1635c     | feat(routes): add routing for login, invitation activation, dashboard, and collaborators                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| N/A                                     | 8c09769     | feat(collaborators): load and display collaborators with sorting, pagination and invite/edit/activate/deactivate dialogs   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| N/A                                     | b4e93cd     | feat(collaborators): add CollaboratorsService with mocked data for managing collaborator data and state                    |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| N/A                                     | b5fddac     | feat(collaborators): add invite collaborator dialog component (TS) with reactive form and validation                       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| N/A                                     | 0057cac     | feat(collaborators): add Invite Collaborator dialog (HTML + CSS)                                                           | Add `src/app/collaborators/components/invite-collaborator-dialog/invite-collaborator-dialog.component.html` and `src/app/collaborators/components/invite-collaborator-dialog/invite-collaborator-dialog.component.css`.                                                                                                                                                                                                                                                                       |
+| N/A                                     | 08cdaea     | feat(collaborators): add Edit Collaborator dialog component (TS)                                                           | Add `src/app/collaborators/components/edit-collaborator-dialog/edit-collaborator-dialog.component.ts` implementing the Edit Collaborator dialog with a reactive `FormGroup`, inputs for name, readonly email and role select, Cancel/Save actions, and form validation.                                                                                                                                                                                                                       |
+| N/A                                     | 2e1b645     | feat(collaborators): add Edit Collaborator dialog UI and styles                                                            | Introduce the edit collaborator dialog UI with reactive form layout, inputs for full name, readonly email, and role select, plus Cancel/Save actions and form validation that disables saving when invalid or unchanged.                                                                                                                                                                                                                                                                      |
+| N/A                                     | 9d4b5b2     | feat(collaborators): add collaborator types and model                                                                      | Introduce strict typings for collaborators. - `src/app/collaborators/models/collabolator-status.enum.ts`: `CollaboratorStatus` union ('Activo' \| 'Inactivo' \| 'Pendiente'). - `src/app/collaborators/models/collaborator-role.enum.ts`: `CollaboratorRole` union ('Conductor' \| 'Administrador'). - `src/app/collaborators/models/collaborator.model.ts`: `Collaborator` interface (id, name, role, email, status). Provides clear contracts for collaborator data across the application. |
+| N/A                                     | 4f08d55     | Merge pull request #3 from EcoLutions/feature/dashboard                                                                    | Feature/dashboard                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| feature/dashboard                       | faa61f0     | feat(dashboard): add initial dashboard logic                                                                               |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| N/A                                     | 33d6f70     | feat(dashboard): add dashboard layout and design with summary and widget cards                                             | Introduce Dashboard layout and UI components to display key metrics and interactive widgets.                                                                                                                                                                                                                                                                                                                                                                                                  |
+| N/A                                     | 7a11cf2     | feat(dashboard-service): implement dashboard service (uses mocked data)                                                    | Introduce DashboardService with methods to fetch dashboard summary, device alerts, and efficiency metrics using in-project mocked fixtures for initial UI and dev work.                                                                                                                                                                                                                                                                                                                       |
+| N/A                                     | 77d5c81     | feat(dashboard-model): add typed models for dashboard summary and device alerts                                            | Add `dashboard-summary.model.ts` and `device-alert.model.ts` to introduce strong typing for dashboard data and device alerts.                                                                                                                                                                                                                                                                                                                                                                 |
+| N/A                                     | d580042     | Revert "Merge pull request #1 from EcoLutions/feature/login-and-invitation-activation"                                     | This reverts commit a0cf1f6d21f2306756e509cba196bf5e9504c5fd, reversing changes made to b7847dc0ae186b466eb09a70914d304c2f7fbfc5.                                                                                                                                                                                                                                                                                                                                                             |
+| N/A                                     | 1774b98     | Merge pull request #2 from EcoLutions/revert-1-feature/login-and-invitation-activation                                     | Revert 1 feature/login and invitation activation                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| login-and-invitation-activation         | c021a64     | Revert "Feature/login and invitation activation"                                                                           |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| N/A                                     | a0cf1f6     | Merge pull request #1 from EcoLutions/feature/login-and-invitation-activation                                              | Feature/login and invitation activation                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| feature/login-and-invitation-activation | ee4c835     | feat(routes): add login and invitation activation routes with redirection                                                  |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| N/A                                     | 5a0b5ae     | feat(login): add standalone login component with reactive form and navigation                                              | Introduce LoginComponent (standalone) with reactive form (email, password), validators, Angular Material imports, and router navigation to /dashboard. Prepares authentication integration.                                                                                                                                                                                                                                                                                                   |
+| N/A                                     | 39a79fc     | feat(login): add admin access UI and styles                                                                                | Add login card layout, logo and localized header text 'Acceso Administrador'. Include responsive styles, form fields and button styling for admin login page.                                                                                                                                                                                                                                                                                                                                 |
+| N/A                                     | 105b1de     | feat(invitation-activation): add starter activation logic and validation                                                   | Implement password validation and match check, wire submit handler to perform activation flow (placeholder for backend call), navigate to dashboard on success and patch email from token (TODO).                                                                                                                                                                                                                                                                                             |
+| N/A                                     | 2b4c1a5     | Revert "feat(invitation-activation): add activation logic and validation"                                                  | This reverts commit 627621b4672284084ce83a2ba78e0cf1f781fb6f.                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| N/A                                     | 627621b     | feat(invitation-activation): add activation logic and validation                                                           | Implement password validation and match check, wire submit handler to perform activation flow (placeholder for backend call), navigate to dashboard on success and patch email from token (TODO).                                                                                                                                                                                                                                                                                             |
+| N/A                                     | 89701e0     | feat(invitation-activation): add UI and green-themed design for invitation activation page                                 | Add layout, styles and form fields for the activation flow. Uses green color scheme, responsive card layout, and accessible form controls.                                                                                                                                                                                                                                                                                                                                                    |
+| N/A                                     | b7847dc     | initial commit                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 
 - **Development Evidence Backend**
 
 **Link del repositorio:**  
 [https://github.com/EcoLutions/waste_track_platform](https://github.com/EcoLutions/waste_track_platform)
 
-<!DOCTYPE html>
-<html>
-<body>
-  <table>
-    <thead>
-      <tr>
-        <th>Repository</th>
-        <th>Branch</th>
-        <th>Commit ID</th>
-        <th>Commit Message</th>
-        <th>Commit Message Body</th>
-        <th>Committed On (Date)</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>wastetrack-api</td>
-        <td>main</td>
-        <td>12718d20d251d353a36d0f63751c69ee9c8086df</td>
-        <td>✨ Feat (app): Add main entry point to run the FastAPI application</td>
-        <td>N/A</td>
-        <td>2025-10-08</td>
-      </tr>
-      <tr>
-        <td>wastetrack-api</td>
-        <td>main</td>
-        <td>8e3156bab339d159bbd6ae2197a6133345ba88ac</td>
-        <td>⚙️ Chore (config): Add config for deployment</td>
-        <td>N/A</td>
-        <td>2025-10-08</td>
-      </tr>
-      <tr>
-        <td>wastetrack-api</td>
-        <td>main</td>
-        <td>dcc92bba235f47a62b3b60cc45e8b5a8e50efc82</td>
-        <td>♻️ Refactor (routes): Add user and auth routers</td>
-        <td>N/A</td>
-        <td>2025-10-08</td>
-      </tr>
-      <tr>
-        <td>wastetrack-api</td>
-        <td>main</td>
-        <td>f9f26031f2f3dad582893019e013e985aeb97b0c</td>
-        <td>✨ Feat (geolocation): Add geolocation to get coordinates from address</td>
-        <td>N/A</td>
-        <td>2025-10-08</td>
-      </tr>
-      <tr>
-        <td>wastetrack-api</td>
-        <td>main</td>
-        <td>7a7dcb0886e235cc693c48b266050d23a12bf4ec</td>
-        <td>✨ Feat (auth, user): Implement user authentication</td>
-        <td>N/A</td>
-        <td>2025-10-08</td>
-      </tr>
-      <tr>
-        <td>wastetrack-api</td>
-        <td>main</td>
-        <td>e1dfa95cc513a475338fd46ccf65b243b1e2ba5d</td>
-        <td>♻️ Refactor (config): Update db and app config</td>
-        <td>N/A</td>
-        <td>2025-10-08</td>
-      </tr>
-      <tr>
-        <td>wastetrack-api</td>
-        <td>main</td>
-        <td>a2d389ba50d7a7996c9ec1917ccf51ea1be764f2</td>
-        <td>first commit</td>
-        <td>N/A</td>
-        <td>2025-10-08</td>
-      </tr>
-    </tbody>
-  </table>
-</body>
-</html>   
+| Branch                                                                    | Id Commit | Cabecera                                                                                                                | Cuerpo                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+|---------------------------------------------------------------------------|-----------|-------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| feature/payment-subscription-management                                   | d262f34   | feat(payment-subscriptions): add PaymentMethodController interface and implementation                                   | Introduce `PaymentMethodController` interface with Swagger annotations for PaymentMethod management endpoints. Add `PaymentMethodControllerImpl` as the concrete implementation, connecting the controller to command and query services for handling CRUD operations on payment methods. Includes: - Endpoint definitions for creation, retrieval, update, and deletion. - Integration of DTOs, mappers, and services to manage PaymentMethod data flow.                                                                   |
+| N/A                                                                       | f7566eb   | feat(payment-subscriptions): add DTOs and mappers for PaymentMethod operations                                          | Introduce DTOs (`CreatePaymentMethodResource`, `UpdatePaymentMethodResource`, `PaymentMethodResource`) and corresponding mappers to facilitate transformations between domain entities, requests, and responses for `PaymentMethod` management.                                                                                                                                                                                                                                                                             |
+| N/A                                                                       | 38f5dcf   | feat(payment-subscriptions): implement PaymentMethodCommandServiceImpl and PaymentMethodQueryServiceImpl                | Add concrete implementations for `PaymentMethodCommandService` and `PaymentMethodQueryService` to handle business operations, including creation, retrieval, updating, and deletion of payment methods. These implementations utilize `PaymentMethodRepository` for JPA persistence and include validation/error handling for operations.                                                                                                                                                                                   |
+| N/A                                                                       | 6c24363   | feat(payment-subscriptions): add PaymentMethodRepository for JPA persistence                                            | Introduce `PaymentMethodRepository` to enable JPA-based persistence operations for the `PaymentMethod` aggregate.                                                                                                                                                                                                                                                                                                                                                                                                           |
+| N/A                                                                       | 0c10627   | feat(payment-subscriptions): add command and query services for PaymentMethod management                                | Introduce `PaymentMethodCommandService` and `PaymentMethodQueryService` interfaces to handle PaymentMethod creation, update, deletion, and retrieval operations. Includes implementation of related command (`CreatePaymentMethodCommand`, `UpdatePaymentMethodCommand`, `DeletePaymentMethodCommand`) and query (`GetPaymentMethodByIdQuery`, `GetAllPaymentMethodsQuery`) objects with validation rules.                                                                                                                  |
+| N/A                                                                       | 0e66d4a   | feat: enhance PaymentMethodType with string conversion utilities and improve PlanCatalogController readability          |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| develop                                                                   | c16ba9c   | chore: bump project version to 1.2.0 in pom.xml                                                                         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| N/A                                                                       | 4e51b0b   | ci: add debugging output for deployment secrets in CI/CD workflow                                                       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| N/A                                                                       | 3b99b68   | ci: simplify deployment logic by removing temporary container health check and rollback steps                           |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| N/A                                                                       | 6ddd2f3   | chore: bump project version to 1.1.1 in pom.xml                                                                         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| N/A                                                                       | db15009   | ci: use consistent environment variable syntax in health check step                                                     |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| N/A                                                                       | fc6d773   | ci: remove redundant `PROD_HOST` environment variable from deployment step                                              |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| N/A                                                                       | 9a04542   | chore: bump project version to 1.1.0 in pom.xml                                                                         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| N/A                                                                       | 214a360   | Merge pull request #18 from EcoLutions/release/1.1.0                                                                    | Version 1.1.0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| release/1.1.0                                                             | ebdcba5   | ci: update temporary port for Docker health check in CI/CD workflow                                                     |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| N/A                                                                       | 2d90c0e   | ci: fix incorrect temporary port in CI/CD workflow steps                                                                | - Update Docker container to use port 8080 instead of 8081. - Adjust health check endpoint to match the corrected port.                                                                                                                                                                                                                                                                                                                                                                                                     |
+| N/A                                                                       | 4521c65   | Merge pull request #16 from EcoLutions/feature/payment-management                                                       | Add CRUD for payment                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| N/A                                                                       | 69b6055   | Merge pull request #15 from EcoLutions/hotfix/docker-login-error                                                        | ci: fix redundant `run` usage in Docker image build command                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| hotfix/docker-login-error                                                 | 60ca0ef   | ci: fix redundant `run` usage in Docker image build command                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| N/A                                                                       | bb80347   | Merge pull request #14 from EcoLutions/hotfix/docker-login-error                                                        | ci: simplify Docker image build command in CI/CD workflow                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| N/A                                                                       | 6230450   | ci: simplify Docker image build command in CI/CD workflow                                                               |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| N/A                                                                       | 65cddc1   | Merge pull request #13 from EcoLutions/hotfix/github-actions-secrets                                                    | ci: fix missing PROD_HOST env in blue-green deployment step                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| hotfix/github-actions-secrets                                             | afe958c   | ci: fix missing PROD_HOST env in blue-green deployment step                                                             | - Add explicit `PROD_HOST` environment variable to SSH action.                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| N/A                                                                       | 6ab527a   | Merge pull request #12 from EcoLutions/release/1.0.0                                                                    | Release/1.0.0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| release/1.0.0                                                             | 704af59   | ci: add GitHub Actions workflow for CI/CD pipeline                                                                      | - Introduce CI/CD pipeline with build, test, and deploy stages. - Automate unit and integration testing using Maven. - Build and push Docker images to Docker Hub. - Add blue-green deployment strategy for production.                                                                                                                                                                                                                                                                                                     |
+| N/A                                                                       | 94bfdf9   | refactor(build): update project metadata and build configuration                                                        | - Rename project artifactId, name, and description. - Bump version to 1.0.0 and Java version to 25. - Add Docker image build and publish configuration using Paketo Buildpacks. - Introduce `dockerPassword` property for secure Docker registry authentication.                                                                                                                                                                                                                                                            |
+| N/A                                                                       | b08fcc4   | config: make server port configurable via environment variable                                                          |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| N/A                                                                       | b6e3d25   | Merge pull request #11 from EcoLutions/feature/testing-container-monitoring                                             | Add container monitoring test                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| testing-container-monitoring                                              | 0cba8ae   | Merge branch 'develop' into feature/testing-container-monitoring                                                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| N/A                                                                       | c03b6e7   | Merge pull request #10 from EcoLutions/feature/testing-municipal-operations                                             | Add municipal operations test                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| N/A                                                                       | 81ce714   | Merge pull request #9 from EcoLutions/feature/route-planning-tests                                                      | Add route planning tests                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| feature/route-planning-tests                                              | fc642f2   | test: disable WasteTrackPlatformApplicationTests temporarily                                                            |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| N/A                                                                       | 0b02acc   | test(integration): add route controller and waypoint controller integration tests                                       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| N/A                                                                       | ccca130   | test(integration): add spring profile annotations to ignore the test profile for security configuration                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| N/A                                                                       | 80a4aef   | test(integration): add security configuration for tests                                                                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| N/A                                                                       | 8b5d1ce   | test(integration): add mocks for token service and firebase configuration                                               |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| N/A                                                                       | 1706512   | test(integration): add h2 dependency                                                                                    |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| N/A                                                                       | 0e5bb32   | test(route): add unit tests for route and waypoint aggregates                                                           |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| feature/testing-container-monitoring                                      | 6198475   | test(sensor): add Cucumber steps and feature for IoT sensor data processing                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| N/A                                                                       | 616abb0   | test(driver): remove commented code for JWT authentication in DriverSteps                                               |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| N/A                                                                       | fc7d699   | test(runner): simplify Cucumber test runner configuration                                                               |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| N/A                                                                       | 221c0bd   | test(driver): add Cucumber tests for driver management scenarios                                                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| N/A                                                                       | b02c53e   | test(pom): add dependencies for JUnit Platform and Cucumber testing                                                     |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| feature/payment-management                                                | 81fb7f3   | feat(payments): add PlanCatalogController and implementation                                                            | - Define `PlanCatalogController` interface with endpoints for managing PlanCatalogs. - Implement `PlanCatalogControllerImpl` with mappings to command and query services. - Add Swagger annotations for API documentation.                                                                                                                                                                                                                                                                                                  |
+| N/A                                                                       | 1c36a83   | feat(payments): add DTOs and assemblers for PlanCatalog operations                                                      | - Introduce request DTOs (`CreatePlanCatalogResource`, `UpdatePlanCatalogResource`) for PlanCatalog commands. - Add response DTO (`PlanCatalogResource`) for mapping PlanCatalog entities to REST responses. - Implement assemblers (`CreatePlanCatalogCommandFromResourceAssembler`, `UpdatePlanCatalogCommandFromResourceAssembler`, `PlanCatalogResourceFromEntityAssembler`) for resource-to-command and entity-to-resource transformations.                                                                            |
+| N/A                                                                       | 228569b   | feat(payments): implement command and query services for PlanCatalog operations                                         | - Add `PlanCatalogCommandServiceImpl` for handling create, update, and delete commands. - Add `PlanCatalogQueryServiceImpl` for fetching PlanCatalogs by ID or retrieving all records.                                                                                                                                                                                                                                                                                                                                      |
+| N/A                                                                       | b0901bb   | feat(payments): add PlanCatalogRepository for JPA persistence                                                           |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| N/A                                                                       | fc14215   | feat(payments): add commands, queries, and services for PlanCatalog management                                          | - Introduce commands (`CreatePlanCatalogCommand`, `UpdatePlanCatalogCommand`, `DeletePlanCatalogCommand`) with validation logic for PlanCatalog operations. - Add queries (`GetPlanCatalogByIdQuery`, `GetAllPlanCatalogsQuery`) for retrieving PlanCatalog data. - Define `PlanCatalogCommandService` and `PlanCatalogQueryService` interfaces to handle command and query operations.                                                                                                                                     |
+| N/A                                                                       | e970267   | feat(payments): add SubscriptionController and implementation                                                           | - Define `SubscriptionController` interface with endpoints for subscription management (CRUD operations). - Implement `SubscriptionControllerImpl` with mappings to service layer commands and queries.                                                                                                                                                                                                                                                                                                                     |
+| N/A                                                                       | 5ea1495   | feat(payments): implement assemblers and DTOs for subscription handling                                                 | - Add `SubscriptionResourceFromEntityAssembler` to map subscription entities to response DTOs. - Introduce `CreateSubscriptionCommandFromResourceAssembler` and `UpdateSubscriptionCommandFromResourceAssembler` for mapping request DTOs to domain commands. - Add `SubscriptionResource`, `CreateSubscriptionResource`, and `UpdateSubscriptionResource` to define request and response schemas.                                                                                                                          |
+| N/A                                                                       | 6c1df7c   | feat(payments): add SubscriptionRepository and service implementations                                                  | - Introduce `SubscriptionRepository` with methods for fetching subscriptions by district and status. - Implement `SubscriptionQueryServiceImpl` for handling query operations like retrieving all subscriptions or by ID. - Implement `SubscriptionCommandServiceImpl` for handling command operations like creating, updating, and deleting subscriptions.                                                                                                                                                                 |
+| N/A                                                                       | 8fa2018   | feat(payments): add command and query services for subscription operations                                              | - Introduce `SubscriptionCommandService` for creating, updating, and deleting subscriptions. - Add `SubscriptionQueryService` for retrieving subscriptions by ID or fetching all subscriptions. - Define supporting command and query models (`CreateSubscriptionCommand`, `UpdateSubscriptionCommand`, `DeleteSubscriptionCommand`, `GetSubscriptionByIdQuery`, `GetAllSubscriptionsQuery`) with validation logic.                                                                                                         |
+| N/A                                                                       | bbaa308   | feat(shared): add string conversion utility in Money value object                                                       | - Introduce `amountAsStringOrNull` to convert `Money` amount to string or null based on value presence.                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| N/A                                                                       | 3aa64ba   | feat(payments): introduce domain aggregates for payments, subscriptions, invoices, and plans                            | - Add core aggregate models `PaymentMethod`, `Payment`, `Invoice`, `Subscription`, and `PlanCatalog` with defining attributes and behaviors. - Ensure essential domain logic and validation across all entities.                                                                                                                                                                                                                                                                                                            |
+| N/A                                                                       | cfc8c37   | feat(payments): add value objects for payment and subscription domain models                                            | - Introduce `InvoiceNumber`, `PaymentId`, and `PlanId` as value objects with validation logic. - Add enumerations for `InvoiceStatus`, `PaymentMethodType`, `SubscriptionStatus`, and `PaymentStatus` to define standardized domain constants.                                                                                                                                                                                                                                                                              |
+| feature/testing-municipal-operations                                      | 523e5c1   | test(municipal-operations): add unit tests for Vehicle aggregate                                                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| N/A                                                                       | 062e88c   | test(municipal-operations): add unit tests for Driver aggregate                                                         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| N/A                                                                       | 8b1c58f   | test(sensor): add unit tests for SensorReading aggregate                                                                |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| N/A                                                                       | e8062d7   | test(container): add unit tests for Container aggregate                                                                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| N/A                                                                       | bd63828   | Merge pull request #8 from EcoLutions/feature/iam-management                                                            | Add Auth and User endpoints                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| feature/iam-management                                                    | 5b48498   | feat(iam): add endpoint to retrieve the currently authenticated user                                                    | - Implement `getCurrentUser` in `AuthenticationControllerImpl`. - Add `/me` endpoint in `AuthenticationController` for fetching current user details. - Integrate `UserQueryService` to handle `GetCurrentUserQuery`.                                                                                                                                                                                                                                                                                                       |
+| N/A                                                                       | eea7215   | feat(iam): implement query to retrieve the currently authenticated user                                                 | - Add `GetCurrentUserQuery` handling to `UserQueryService`. - Modify `UserQueryServiceImpl` to fetch the current user from the security context if authenticated.                                                                                                                                                                                                                                                                                                                                                           |
+| N/A                                                                       | 2bf035b   | feat(iam): add query model to retrieve the current user                                                                 | - Introduce `GetCurrentUserQuery` for fetching the currently authenticated user from the security context.                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| N/A                                                                       | d9c998f   | feat(iam): extend UserResource with additional fields and update assembler                                              | - Add `status`, `failedLoginAttempts`, `lastLoginAt`, `passwordChangedAt`, `createdAt`, and `updatedAt` fields to `UserResource`. - Update `UserResourceFromEntityAssembler` to map new fields using appropriate utilities for formatting and value conversion.                                                                                                                                                                                                                                                             |
+| N/A                                                                       | 19d0bc6   | chore(config): externalize JWT properties using environment variables                                                   | - Replace hardcoded `authorization.jwt.secret` and `authorization.jwt.expiration.days` with environment variable references for improved configurability and security (`JWT_SECRET` and `JWT_EXPIRATION_DAYS`).                                                                                                                                                                                                                                                                                                             |
+| N/A                                                                       | 4cf1245   | refactor(iam): improve token validation logic and add security annotations in authentication API                        | - Enhance `getBearerTokenFrom` to include null-check for the authorization parameter. - Add `@SecurityRequirements` annotations to sign-up and sign-in endpoints in `AuthenticationController` for better documentation and clarity.                                                                                                                                                                                                                                                                                        |
+| N/A                                                                       | fa9d94a   | feat(iam): add controllers for authentication, roles, and user management                                               | - Implement `AuthenticationController` and `AuthenticationControllerImpl` to handle sign-up and sign-in operations. - Add `RolesController` and `RolesControllerImpl` to fetch all roles. - Introduce `UserController` and `UserControllerImpl` for user retrieval by ID and fetching all users. - Integrate services and mappers for seamless data transformation and processing.                                                                                                                                          |
+| N/A                                                                       | dae140c   | feat(iam): add request/response DTOs and mappers for user and role management                                           | - Introduce resource classes for user and role request/response handling (`SignUpResource`, `SignInResource`, `UserResource`, `RoleResource`, etc.). - Implement mappers to transform between entities, commands, and resources for sign-up, sign-in, and role management. - Ensure inclusion of helper assemblers such as `RoleStringListFromEntityListAssembler` for streamlining transformations.                                                                                                                        |
+| N/A                                                                       | 15ddbc1   | feat(iam): add IAM context facade and implementation                                                                    | - Introduce `IamContextFacade` interface to define core IAM operations. - Provide `IamContextFacadeImpl` implementation for user creation and retrieval. - Integrate with `UserCommandService` and `UserQueryService` to handle commands and queries for user management.                                                                                                                                                                                                                                                   |
+| N/A                                                                       | df26144   | feat(iam): add event handler for role seeding on application startup                                                    | - Introduce `ApplicationReadyEventHandler` to verify and initiate roles seeding when the application starts. - Log seeding process details, including timestamps and application context.                                                                                                                                                                                                                                                                                                                                   |
+| N/A                                                                       | f350ac5   | feat(iam): refactor user command services and add role seeding service                                                  | - Replace CRUD operations in `UserCommandServiceImpl` with sign-up and sign-in functionality. - Introduce `RoleCommandServiceImpl` for seeding predefined roles. - Add `HashingService`, `TokenService`, and `RoleRepository` integration in user commands.                                                                                                                                                                                                                                                                 |
+| N/A                                                                       | 77e729f   | feat(iam): implement query services for role and user retrieval                                                         | - Add `RoleQueryServiceImpl` for fetching all roles and roles by name. - Extend `UserQueryServiceImpl` functionality to include user retrieval by username. - Refactor `UserQueryServiceImpl` to simplify code by removing unnecessary exception handling.                                                                                                                                                                                                                                                                  |
+| N/A                                                                       | d1e23e2   | feat(iam): add service interfaces for hashing and token management                                                      | - Introduce `HashingService` interface for password encoding and verification. - Add `TokenService` interface for token generation, validation, and data extraction. Establishes core contract definitions for password hashing and token operations.                                                                                                                                                                                                                                                                       |
+| N/A                                                                       | fead93a   | feat(iam): add WebSecurityConfiguration for centralized security setup                                                  | - Introduce `WebSecurityConfiguration` to configure authentication, authorization, and CORS. - Add `SecurityFilterChain` to define security filters and session management. - Integrate `BearerAuthorizationRequestFilter` for bearer token processing and authentication.                                                                                                                                                                                                                                                  |
+| N/A                                                                       | 2e094f6   | feat(iam): add authorization pipeline with authentication entry point and bearer filter                                 | - Implement `UnauthorizedRequestHandlerEntryPoint` to handle unauthorized requests. - Add `BearerAuthorizationRequestFilter` for processing and validating bearer tokens, setting authentication context.                                                                                                                                                                                                                                                                                                                   |
+| N/A                                                                       | 588449d   | feat(iam): implement UserDetailsService for Spring Security integration                                                 | - Add `UserDetailsServiceImpl` to load user details by username using `UserRepository`. - Enable Spring Security to authenticate users with custom user details.                                                                                                                                                                                                                                                                                                                                                            |
+| N/A                                                                       | f9e14ba   | feat(iam): implement BCrypt-based hashing service                                                                       | - Add `BCryptHashingService` interface extending `HashingService` and `PasswordEncoder`. - Implement `HashingServiceImpl` for password encoding and matching using `BCryptPasswordEncoder`. Provides password hashing and verification functionality using BCrypt.                                                                                                                                                                                                                                                          |
+| N/A                                                                       | 067dacb   | feat(iam): implement JWT token service for authentication                                                               | - Add `TokenServiceImpl` to handle JWT token creation, validation, and extraction. - Introduce `BearerTokenService` interface extending token service for bearer token-specific operations. Provides core token management functionalities for JWT-based authentication.                                                                                                                                                                                                                                                    |
+| N/A                                                                       | 186923f   | feat(iam): add UserDetails and authentication token builder for Spring Security integration                             | - Implement `UserDetailsImpl` to adapt domain `User` for Spring Security. - Add `UsernamePasswordAuthenticationTokenBuilder` for creating authentication tokens with request details. These additions support Spring Security and user authentication.                                                                                                                                                                                                                                                                      |
+| N/A                                                                       | 777ba9f   | feat(iam): reintroduce commands, queries, and services for IAM                                                          | - Add commands for role and user management: `SeedRolesCommand`, `SignInCommand`, and `SignUpCommand`. - Add queries for fetching users and roles by ID, name, and username. - Reintroduce service interfaces for user and role commands and queries. - Implement `RoleRepository` for role persistence and simplify `UserRepository`. - Remove validations from query models for simplicity. Reestablish foundational components for a revised IAM implementation.                                                         |
+| N/A                                                                       | 7eb00a9   | feat(iam): reintroduce domain models and value objects for user and role management                                     | - Add `User`, `Role`, and `Password` domain models to support user and role management. - Introduce `Roles` enum for predefined role types. - Refactor `User` to use `Password` and `Role` for enhanced representation. - Update relationships with many-to-many mapping for user roles. - Replace `HashedPassword` with `Password` as value object for password handling. This lays groundwork for a revised IAM implementation with role-based access control.                                                            |
+| N/A                                                                       | ce6f327   | chore(iam): remove user management and role-based IAM implementation                                                    | - Delete domain models, value objects, commands, queries, and services related to IAM. - Remove REST controllers, DTOs, mappers, and Swagger API documentation for user and role management. - Eliminate CORS configuration and other IAM-related infrastructure setup. Cleanup prepares for revised implementation or migration.                                                                                                                                                                                           |
+| N/A                                                                       | 415cd60   | feat(api): enhance OpenAPI config and introduce JWT authentication setup                                                | - Dynamically configure OpenAPI metadata (title, description, version) using `application.properties`. - Add support for bearer token authentication via OpenAPI security schemes. - Update Swagger documentation with dynamic app-specific details. - Integrate JWT dependencies for token-based authentication. - Update application properties and POM to support JWT configurations.                                                                                                                                    |
+| N/A                                                                       | ad81317   | feat(iam): add REST controller for user management                                                                      | Introduce `UserControllerImpl` to handle user CRUD operations: - Create, retrieve by ID, retrieve all, update, and delete user endpoints. - Integrates with command and query services for domain logic. Add `UserController` interface for Swagger API annotations, improving API documentation and usability. This completes the REST layer for user management in IAM.                                                                                                                                                   |
+| N/A                                                                       | 881582a   | feat(iam): add resource DTOs and mappers for user management                                                            | Introduce DTOs for user creation, update, and response: - `CreateUserResource` and `UpdateUserResource` with validation - `UserResource` for response representation Add mappers to convert between resources and domain models: - `CreateUserCommandFromResourceAssembler` and `UpdateUserCommandFromResourceAssembler` for command assembly - `UserResourceFromEntityAssembler` for response assembly These additions enable request/response handling and domain model mapping for IAM.                                  |
+| N/A                                                                       | 09b8368   | feat(iam): implement user command and query service implementations                                                     | Introduce `UserCommandServiceImpl` and `UserQueryServiceImpl`: - `UserCommandServiceImpl` handles user creation, update, and deletion. - `UserQueryServiceImpl` handles retrieval of users by ID and all users. These implementations complete the IAM command-query segregation pattern.                                                                                                                                                                                                                                   |
+| N/A                                                                       | 0fa5392   | feat(iam): add UserRepository interface for user persistence                                                            | Introduce `UserRepository` to handle user data persistence using JPA. Add methods to: - Check existence by `Username` and `EmailAddress` - Retrieve users by `Username` and `EmailAddress` This enables repository-level user data operations for IAM.                                                                                                                                                                                                                                                                      |
+| N/A                                                                       | c2894da   | feat(iam): add command and query models for user management                                                             | Introduce commands and queries for user management: - Commands: `CreateUserCommand`, `UpdateUserCommand`, `DeleteUserCommand` with input validation. - Queries: `GetAllUsersQuery`, `GetUserByIdQuery` with validation for non-null and non-blank IDs. Add `UserCommandService` and `UserQueryService` interfaces to handle user-related operations, supporting command and query segregation.                                                                                                                              |
+| N/A                                                                       | ad578f0   | feat(auth): add domain models for user and role management                                                              | Introduce domain models and value objects for IAM: - `User` and `Role` aggregates to manage users and roles. - Value objects include `Username`, `RoleName`, `RoleType`, `AccountStatus`, `Permission`, and `HashedPassword`. These additions support role-based access control and user management.                                                                                                                                                                                                                        |
+| N/A                                                                       | da406aa   | Merge pull request #6 from EcoLutions/feature/user-profile-management                                                   | Add CRUD profile endpoints                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| N/A                                                                       | 6f42d3f   | Merge pull request #5 from EcoLutions/feature/notification-request-and-delivery-attempt-and-message-template-management | Add CRUD notifications endpoints                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| feature/user-profile-management                                           | c4ee2a6   | feat(profile): integrate storage service for photo URLs                                                                 | Introduce `StorageService` to handle photo URL generation in `UserProfileControllerImpl`. Update mappers and DTOs to reflect changes: - Replace `photoUrl` with `photoPath` for consistency with file storage. - Add `temporalPhotoUrl` to response resource for generated URLs. - Use `StorageService` to provide fresh photo URLs during profile retrievals. Include error handling for photo URL generation failures.                                                                                                    |
+| N/A                                                                       | c121baa   | refactor(profile): add utility methods for value objects                                                                | Introduce `toStringOrNull` static methods in `UserType` and `Language` enums for converting values to strings or handling null. Add `@NotNull` validation annotation to enhance type safety                                                                                                                                                                                                                                                                                                                                 |
+| N/A                                                                       | 82684cb   | refactor(profile): enhance value object usage in mappers                                                                | Replace raw string fields with strongly-typed value objects in `CreateUserProfileCommandFromResourceAssembler` and `UpdateUserProfileCommandFromResourceAssembler`. This change ensures stricter validation and better domain modeling. Update corresponding request DTOs (`CreateUserProfileResource` and `UpdateUserProfileResource`) to use string fields for compatibility with HTTP requests. Add validation for non-null and non-blank fields in the constructors.                                                    |
+| N/A                                                                       | 8027f98   | refactor(storage): simplify UUID usage in file naming                                                                   | Update `buildFilePath` to use simplified UUID string generation for file names. Clean up unused `IOException` import from `PhotoCommandServiceImpl`.                                                                                                                                                                                                                                                                                                                                                                        |
+| N/A                                                                       | f134031   | feat(profile): add user profile REST controller and queries                                                             | Introduce `UserProfileControllerImpl` to handle user profile operations: - Create, update, delete, and retrieve user profiles. - Handle requests via `UserProfileCommandService` and `UserProfileQueryService`. Add query classes `GetAllUserProfilesQuery` and `GetUserProfileByIdQuery` for fetching user profiles. Implement validation in `GetUserProfileByIdQuery` for non-null, non-blank IDs                                                                                                                         |
+| N/A                                                                       | aaf21b8   | feat(profile): add mappers and DTOs for user profile operations                                                         | Introduce mappers to convert between domain models and DTOs: - `UpdateUserProfileCommandFromResourceAssembler` and `CreateUserProfileCommandFromResourceAssembler` map resources to command objects. - `UserProfileResourceFromEntityAssembler` maps entities to response resources. Add DTOs for user profile API: - `CreateUserProfileResource` and `UpdateUserProfileResource` for request payloads. - `UserProfileResource` for response payloads.                                                                      |
+| notification-request-and-delivery-attempt-and-message-template-management | 21a3292   | feat: add REST controller and Swagger interface for MessageTemplate                                                     | - Introduced `MessageTemplateControllerImpl` implementation with endpoints for CRUD operations on message templates. - Added `MessageTemplateController` Swagger interface for API documentation and request/response management.                                                                                                                                                                                                                                                                                           |
+| N/A                                                                       | 31399d6   | feat: add mapper for UpdateMessageTemplateCommand assembly                                                              | - Introduced `UpdateMessageTemplateCommandFromResourceAssembler` to convert from `UpdateMessageTemplateResource` DTO to `UpdateMessageTemplateCommand`.                                                                                                                                                                                                                                                                                                                                                                     |
+| N/A                                                                       | 922cd73   | feat(profile): implement user profile command and query services                                                        | Add `UserProfileCommandServiceImpl` and `UserProfileQueryServiceImpl` classes to handle user profile-related commands and queries. Commands include creating, updating, and deleting user profiles with detailed field validations. Queries enable fetching all user profiles or retrieving a user profile by ID. Integrate `UserProfileRepository` for persistence operations. Throw descriptive exceptions on failure to enhance error handling.                                                                          |
+| N/A                                                                       | 742034e   | feat(profile): add user profile command and query services                                                              | Introduce `UserProfileCommandService` and `UserProfileQueryService` interfaces for handling user profile-related commands and queries. Commands include creating, updating, and deleting user profiles, with validation for required fields in corresponding command classes. Queries enable fetching all user profiles or retrieving one by ID. Enhance `UserProfile` aggregate to support additional fields such as phone number, language, timezone, photo, and district ID.                                             |
+| N/A                                                                       | 6405894   | feat: add DTOs and mappers for MessageTemplate management                                                               | - Introduced `MessageTemplateResource`, `CreateMessageTemplateResource`, and `UpdateMessageTemplateResource` DTOs with validation for request/response handling. - Added mappers: `CreateMessageTemplateCommandFromResourceAssembler` and `MessageTemplateResourceFromEntityAssembler` for converting between entities, commands, and DTOs.                                                                                                                                                                                 |
+| N/A                                                                       | b0e2107   | feat: add MessageTemplateRepository for JPA persistence                                                                 | - Introduced `MessageTemplateRepository` interface with custom methods for checking existence by name, fetching by category, and filtering active templates.                                                                                                                                                                                                                                                                                                                                                                |
+| N/A                                                                       | 86aa3f7   | feat: implement MessageTemplate command and query service implementations                                               | - Added `MessageTemplateCommandServiceImpl` for handling create, update, and delete operations on message templates. - Added `MessageTemplateQueryServiceImpl` for retrieving message template data by ID and all templates. - Integrated `MessageTemplateRepository` for JPA persistence.                                                                                                                                                                                                                                  |
+| N/A                                                                       | a6a3f10   | feat: add MessageTemplate command and query services                                                                    | - Introduced `MessageTemplateCommandService` and `MessageTemplateQueryService` interfaces for handling message template operations. - Added commands: `CreateMessageTemplateCommand`, `UpdateMessageTemplateCommand`, and `DeleteMessageTemplateCommand` with validation logic. - Added queries: `GetMessageTemplateByIdQuery` and `GetAllMessageTemplatesQuery` for data retrieval.                                                                                                                                        |
+| N/A                                                                       | f78a274   | refactor(storage): change default firebase basePath                                                                     | Update default `firebase.storage.base-path` from "evidences" to "wastetrack" in `application.properties` to align with updated naming conventions.                                                                                                                                                                                                                                                                                                                                                                          |
+| N/A                                                                       | 59ffa00   | refactor(storage): update firebase basePath for storage                                                                 | Change default `basePath` in `FirebaseProperties` storage configuration from "evidences" to "wastetrack" for better alignment with naming conventions and use cases.                                                                                                                                                                                                                                                                                                                                                        |
+| N/A                                                                       | 0ae3ad9   | feat(profile): add photo upload controller                                                                              | Introduce `PhotoController` interface with Swagger annotations for photo upload API documentation. Implement `PhotoControllerImpl` to handle photo upload requests. Integrate with `PhotoCommandService` to process and store uploaded photos. Return `PhotoResource` on successful uploads or a bad request response for invalid files.                                                                                                                                                                                    |
+| N/A                                                                       | 887dadd   | feat(profile): add photo resource and mapper                                                                            | Introduce `PhotoResource` DTO for representing photo data. Add `PhotoResourceFromStringAssembler` to map file paths into `PhotoResource` instances.                                                                                                                                                                                                                                                                                                                                                                         |
+| N/A                                                                       | baef3c0   | feat(profile): implement photo command service                                                                          | Add `PhotoCommandServiceImpl` for handling photo uploads. Integrate with `StorageService` to store user photos in the designated directory. Throw `IllegalArgumentException` on upload failure to inform the caller of issues.                                                                                                                                                                                                                                                                                              |
+| N/A                                                                       | 6d50492   | feat(profile): add photo command service and upload validation                                                          | Introduce `PhotoCommandService` interface for handling photo-related commands. Add `UploadPhotoCommand` with validations for file nullity, size (max 5MB), and MIME type (images only). Ensure command enforces constraints to prevent invalid uploads.                                                                                                                                                                                                                                                                     |
+| N/A                                                                       | 7f2d918   | feat(profile): add user profile repository interface                                                                    | Create `UserProfileRepository` extending `JpaRepository` for managing `UserProfile` entity persistence. Mark it with `@Repository` for Spring component scanning.                                                                                                                                                                                                                                                                                                                                                           |
+| N/A                                                                       | f3d4808   | feat(profile): add user profile domain model                                                                            | Introduce `UserProfile` aggregate for managing user details, including user type, contact information, notification preferences, and device tokens. Add supporting value objects: - `UserType` enum for categorizing users. - `Language` enum for user language preferences. - `Photo` embeddable for managing user photo file paths with validation. Provide default settings for user profile initialization.                                                                                                             |
+| N/A                                                                       | 7d79779   | refactor(storage): move storage services to shared module                                                               | Relocate storage service-related classes and configurations to the shared module for improved reusability across components. Update all relevant package paths and imports accordingly.                                                                                                                                                                                                                                                                                                                                     |
+| N/A                                                                       | db7c03e   | feat: add DeliveryAttemptController with REST endpoints                                                                 | - Introduced `DeliveryAttemptController` interface and `DeliveryAttemptControllerImpl` implementation for managing delivery attempts. - Added REST endpoints for create, retrieve (by ID and all), update, and delete operations with Swagger annotations for documentation.                                                                                                                                                                                                                                                |
+| N/A                                                                       | b75ebdb   | feat: add mappers and DTOs for delivery attempt operations                                                              | - Introduced `DeliveryAttemptResource` and `UpdateDeliveryAttemptResource` DTOs with validation logic. - Added mappers: `CreateDeliveryAttemptCommandFromResourceAssembler`, `UpdateDeliveryAttemptCommandFromResourceAssembler`, and `DeliveryAttemptResourceFromEntityAssembler` for conversion between entities, commands, and DTOs. - Enhanced partial update functionality for notification request commands in `NotificationRequestCommandServiceImpl`.                                                               |
+| N/A                                                                       | 201ca03   | feat: implement delivery attempt command and query services                                                             | - Added `DeliveryAttemptCommandService` and `DeliveryAttemptQueryService` interfaces for handling delivery attempt operations. - Implemented `DeliveryAttemptCommandServiceImpl` and `DeliveryAttemptQueryServiceImpl` for create, update, delete, and retrieval functionalities. - Introduced `DeliveryAttemptRepository` for JPA persistence of delivery attempts.                                                                                                                                                        |
+| N/A                                                                       | 4121873   | feat: add delivery attempt commands, queries, and request DTO                                                           | - Introduced `CreateDeliveryAttemptResource` DTO with validation logic to handle delivery attempt creation requests. - Added commands: `DeleteDeliveryAttemptCommand` and `UpdateDeliveryAttemptCommand` for managing delivery attempt lifecycle. - Added queries: `GetDeliveryAttemptByIdQuery` and `GetAllDeliveryAttemptsQuery` for retrieving delivery attempt data.                                                                                                                                                    |
+| N/A                                                                       | 93af61e   | Merge pull request #4 from EcoLutions/feature/citizen-report-management                                                 | Add CRUD citizen, report and evidence management                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| feature/citizen-report-management                                         | e46c221   | feat(community-relations): add evidence controller and implementation                                                   | Introduce `EvidenceController` interface with Swagger annotations for API documentation, managing evidence operations such as uploading, retrieving by ID, and listing all evidences. Implement `EvidenceControllerImpl` to handle controller logic, integrating with command and query services, as well as storage service for file operations.                                                                                                                                                                           |
+| N/A                                                                       | 1bacddf   | feat(community-relations): add evidence resource DTOs and mappers                                                       | Introduce `CreateEvidenceResource` for handling evidence creation requests with file validation. Add `EvidenceResource` DTO for evidence response representation. Implement mappers: - `UploadEvidenceCommandFromResourceAssembler` to map request DTOs to commands. - `EvidenceResourceFromEntityAssembler` to map entities to response DTOs with or without file URLs.                                                                                                                                                    |
+| N/A                                                                       | 0698360   | feat(community-relations): implement evidence command and query services                                                | Introduce `EvidenceCommandServiceImpl` to handle evidence uploads with file storage and database persistence. Add `EvidenceQueryServiceImpl` to process evidence retrieval, including by ID and all evidences. Include a method for generating temporary file URLs for evidences.                                                                                                                                                                                                                                           |
+| N/A                                                                       | 45db245   | feat(community-relations): introduce evidence commands and queries                                                      | Add `UploadEvidenceCommand` for handling evidence uploads with validation. Add queries (`GetEvidenceByIdQuery` and `GetAllEvidencesQuery`) for retrieving evidence data. Update `EvidenceCommandService` to handle `UploadEvidenceCommand`. Introduce `EvidenceQueryService` for processing evidence-related queries.                                                                                                                                                                                                       |
+| N/A                                                                       | adfd47d   | feat(community-relations): add mime type mapping and update evidence fields                                             | Introduce `fromMimeType` method in `EvidenceType` to derive evidence type based on MIME type. Add new `DOCUMENT` type to `EvidenceType`. Refactor `Evidence` entity by renaming fields: `fileUrl` to `filePath` and `fileName` to `originalFileName` for better clarity. Enhance constructor to align with new field names.                                                                                                                                                                                                 |
+| N/A                                                                       | 1b3fa0c   | feat(community-relations): enhance firebase configuration setup                                                         | Add validation for Firebase configuration JSON and project ID extraction. Replace validation annotations with runtime checks for flexible error handling. Introduce Gson dependency for parsing JSON configuration. Refactor `FirebaseConfig` to improve clarity and ensure Google Cloud Storage initialization uses project-specific credentials. Enable `@ConfigurationPropertiesScan` in the main application to scan Firebase properties. Update Firebase properties to use `@Component` for Spring context management. |
+| N/A                                                                       | 575cbc2   | feat(community-relations): add EvidenceRepository interface                                                             | Introduce `EvidenceRepository` extending `JpaRepository` to handle `Evidence` entity persistence operations. Mark the repository with `@Repository` for Spring component scanning.                                                                                                                                                                                                                                                                                                                                          |
+| N/A                                                                       | 9d0a1ea   | feat(community-relations): add firebase integration for storage                                                         | Introduce Firebase configuration and properties for Google Cloud Storage integration. Provide `FirebaseStorageService` for file upload, retrieval, deletion, and validation. Add support for dynamic bucket and base path configurations via properties. Define `StorageService` interface for storage functionality abstraction. Update `application.properties` with Firebase configuration placeholders.                                                                                                                 |
+| N/A                                                                       | c07a386   | feat(build): add firebase and google cloud storage dependencies                                                         | Include `firebase-admin` (v9.7.0) and `google-cloud-storage` (v2.58.0) dependencies in `pom.xml` for Firebase and Google Cloud Storage integration.                                                                                                                                                                                                                                                                                                                                                                         |
+| N/A                                                                       | 84c1a30   | feat(community-relations): add ReportController and implementation                                                      | Introduce `ReportController` interface and its implementation `ReportControllerImpl` for managing CRUD operations on reports. Add Swagger annotations for better API documentation, including operation summaries and response codes. Enhance `CitizenController` with missing `@RequestBody` annotation and refactor HTTP response return methods for consistency.                                                                                                                                                         |
+| N/A                                                                       | c782cf4   | feat(community-relations): add report query and command interfaces                                                      | Introduce `ReportQueryService` to handle queries for getting all reports and a single report by ID. Introduce `ReportCommandService` to handle commands for creating, updating, and deleting reports. These interfaces define the contracts for managing reports in the community relations domain.                                                                                                                                                                                                                         |
+| N/A                                                                       | a260a3b   | feat(community-relations): add report resource DTOs and mappers                                                         | Introduce `CreateReportResource` and `UpdateReportResource` for handling report creation and updates with validation. Add `ReportResource` DTO for representing report data in responses. Implement mappers for converting between entities and commands: - `CreateReportCommandFromResourceAssembler` - `UpdateReportCommandFromResourceAssembler` - `ReportResourceFromEntityAssembler`                                                                                                                                   |
+| N/A                                                                       | 2405053   | feat(community-relations): implement report command and query services                                                  | Add `ReportCommandServiceImpl` to handle Create, Update, and Delete commands, with validation logic for report data. Add `ReportQueryServiceImpl` to handle GetAllReports and GetReportById queries for fetching report details. Integrate these services with `ReportRepository` for persistence operations.                                                                                                                                                                                                               |
+| N/A                                                                       | 1831b22   | feat(community-relations): add report commands and queries                                                              | Introduce commands (Create, Update, Delete) and queries (GetAllReports, GetReportById) to support report management with validation. Enhance the `Report` aggregate with new constructors and integration for additional fields, including `containerId`. Add utility methods in value objects `Location`, `ReportStatus`, and `ReportType` to handle nullable cases gracefully.                                                                                                                                            |
+| N/A                                                                       | 0bf3f04   | feat(community-relations): add ReportRepository interface                                                               | Introduce `ReportRepository` extending `JpaRepository` to manage `Report` aggregate persistence operations.                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| N/A                                                                       | d9dcaa1   | feat: add NotificationRequestController with API endpoints                                                              | - Introduced `NotificationRequestController` interface and `NotificationRequestControllerImpl` implementation for managing notification requests. - Added endpoints to create, retrieve, update, and delete notification requests. - Enhanced API with Swagger annotations for documentation and response handling.                                                                                                                                                                                                         |
+| N/A                                                                       | 3fc872e   | feat: add DTOs and mappers for notification request handling                                                            | - Introduced `NotificationRequestResource`, `CreateNotificationRequestResource`, and `UpdateNotificationRequestResource` DTOs for managing notification request operations. - Added mappers for converting between entities, DTOs, and commands, including `CreateNotificationRequestCommandFromResourceAssembler` and `UpdateNotificationRequestCommandFromResourceAssembler`. - Implemented `NotificationRequestResourceFromEntityAssembler` for mapping entity data to response DTO.                                     |
+| N/A                                                                       | 212b005   | feat: implement notification command and query services                                                                 | - Added `NotificationRequestCommandServiceImpl` to handle create, update, and delete operations for notification requests. - Added `NotificationRequestQueryServiceImpl` to handle data retrieval for notification requests. - Introduced `NotificationRequestRepository` for JPA persistence of notification requests.                                                                                                                                                                                                     |
+| N/A                                                                       | 6feb846   | feat: add notification request commands, queries, and services                                                          | - Introduced `CreateNotificationRequestCommand`, `UpdateNotificationRequestCommand`, and `DeleteNotificationRequestCommand` for notification management. - Added support for retrieving notification data with `GetNotificationRequestByIdQuery` and `GetAllNotificationRequestsQuery`. - Implemented `NotificationRequestCommandService` and `NotificationRequestQueryService` interfaces for handling commands and queries with validation logic.                                                                         |
+| N/A                                                                       | 91ef4aa   | feat: implement CitizenController and CitizenControllerImpl for citizen management operations                           |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| N/A                                                                       | c88a2bb   | feat: add Create and Update Citizen resource DTOs and command assemblers                                                |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| N/A                                                                       | b971ffe   | feat: implement Citizen command and query services for create, update, delete, and retrieval operations                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| N/A                                                                       | 1f10e0e   | feat: implement Citizen command services and commands for create, update, and delete operations                         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| N/A                                                                       | 491c1e0   | feat: add CitizenRepository and update ContainerController to include request body annotations                          |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| N/A                                                                       | e0ba74e   | feat: introduce domain model and value objects for communication hub                                                    | - Added domain models `NotificationRequest`, `DeliveryAttempt`, and `MessageTemplate` to handle communication hub operations. - Introduced supporting value objects and enums, including `NotificationChannel`, `AttemptStatus`, `MessageType`, `ProviderType`, `RequestStatus`, `RecipientType`, `SourceContext`, `TemplateCategory`, and `NotificationPriority`. - Implemented utility methods for conversions, validations, and status management within entities and value objects.                                     |
+| N/A                                                                       | 307f062   | feat: add Evidence entity and integrate with Report aggregate                                                           |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| N/A                                                                       | dee4b27   | feat(community-relations): add Citizen and Report aggregates with membership and reporting functionality                |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| N/A                                                                       | d1c43fc   | Merge pull request #3 from EcoLutions/feature/district-driver-vehicle-management                                        | Add basic CRUD endpoints for District, Driver and Vehicle                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| feature/district-driver-vehicle-management                                | a03716b   | feat: add VehicleController and implementation                                                                          | - Introduced `VehicleController` interface with REST endpoints for managing vehicles, including create, update, delete, retrieve by ID, and list all vehicles. - Implemented `VehicleControllerImpl` to handle endpoint functionality by integrating with services and mappers. - Enhanced API documentation using Swagger annotations for better usability.                                                                                                                                                                |
+| N/A                                                                       | e8296e3   | feat: add DTOs and mappers for vehicle operations                                                                       | - Introduced `CreateVehicleResource`, `UpdateVehicleResource`, and `VehicleResource` DTOs for vehicle API requests and responses. - Added mappers for converting between entities, DTOs, and commands, including `CreateVehicleCommandFromResourceAssembler` and `UpdateVehicleCommandFromResourceAssembler`. - Implemented validation logic within DTOs to ensure data consistency.                                                                                                                                        |
+| N/A                                                                       | d8ffe94   | feat: implement VehicleCommandServiceImpl and VehicleQueryServiceImpl                                                   | - Added `VehicleCommandServiceImpl` to handle vehicle creation, updates, and deletions. - Added `VehicleQueryServiceImpl` to retrieve vehicle information by ID or retrieve all vehicles. - Integrated exception handling for better error feedback.                                                                                                                                                                                                                                                                        |
+| N/A                                                                       | fc368f9   | feat: introduce vehicle commands, queries, and services for municipal operations                                        | - Added `CreateVehicleCommand`, `UpdateVehicleCommand`, and `DeleteVehicleCommand` for vehicle lifecycle management. - Implemented `GetVehicleByIdQuery` and `GetAllVehiclesQuery` for vehicle data retrieval. - Added `VehicleCommandService` and `VehicleQueryService` interfaces for handling commands and queries. - Integrated validation logic into commands and queries to ensure data integrity.                                                                                                                    |
+| N/A                                                                       | 04115f1   | feat: add utility methods for nullable conversions and enhance license plate validation                                 | - Added `toStringOrNull` and `toIntegerOrNull` utility methods across value objects for nullable conversions. - Implemented license plate format validation using regex and updated error messages for better clarity.                                                                                                                                                                                                                                                                                                      |
+| N/A                                                                       | e3ec848   | feat(municipal-ops): add driver controller and implementation                                                           | Introduce `DriverController` interface and `DriverControllerImpl` implementation to handle REST endpoints for driver management. - Add Swagger annotations for creating, retrieving, updating, and deleting drivers. - Implement `GetAllDriversQuery` and `GetDriverByIdQuery` with validation for reliable query operations. - Integrate command and query services into the controller for handling driver operations. Enhance API documentation and functionality for managing drivers.                                  |
+| N/A                                                                       | 813edaf   | feat(municipal-ops): add driver mappers and DTOs                                                                        | Introduce mappers for transforming driver-related resources: - Add `CreateDriverCommandFromResourceAssembler` and `UpdateDriverCommandFromResourceAssembler` for mapping request DTOs to commands. - Add `DriverResourceFromEntityAssembler` for converting driver entities to response DTOs. Include `CreateDriverResource`, `UpdateDriverResource`, and `DriverResource` records to standardize driver resource structure and enhance validation.                                                                         |
+| N/A                                                                       | 8f04d6b   | feat(municipal-ops): implement driver command and query services                                                        | Add `DriverCommandServiceImpl` and `DriverQueryServiceImpl` to handle driver commands (create, update, delete) and queries (fetch by ID, fetch all). Enhance driver management with robust error handling and integration with `DriverRepository`.                                                                                                                                                                                                                                                                          |
+| N/A                                                                       | 2f05591   | feat(municipal-ops): add driver command and query services                                                              | Introduce `DriverCommandService` and `DriverQueryService` interfaces to handle driver management operations, including create, update, delete, and retrieve functionalities. - Add `CreateDriverCommand`, `UpdateDriverCommand`, and `DeleteDriverCommand` with validation. - Add query handlers for fetch operations (`GetDriverByIdQuery` and `GetAllDriversQuery`). These additions support the modular handling of driver-related commands and queries.                                                                 |
+| N/A                                                                       | 8b76f0e   | refactor(municipal-ops): update models and repositories                                                                 | - Add `toStringOrNull` utility methods for `DriverStatus`, `DriverLicense`, and `FullName`. - Replace `District` with `Driver` in `DriverRepository` for repository alignment. - Enhance `DistrictCommandServiceImpl` to handle null and blank values in update commands.                                                                                                                                                                                                                                                   |
+| N/A                                                                       | 193a074   | feat(district): add district controller and implementation                                                              | Introduce `DistrictController` interface and `DistrictControllerImpl` implementation to handle district management REST endpoints. Includes endpoints for creating, retrieving, updating, and deleting districts. - Add Swagger annotations to the controller for API documentation. - Integrate command and query services within the implementation. - Implement request and response DTO handling with mapping utilities.                                                                                                |
+| N/A                                                                       | 8d03c94   | feat(district): add command and resource classes for district creation and update                                       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| N/A                                                                       | c18dca0   | feat(district): implement command and query services for district management                                            |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| N/A                                                                       | 46be93b   | feat(district): implement district management commands and queries                                                      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| N/A                                                                       | 36c436c   | refactor(municipal-ops): replace @Column with @AttributeOverride                                                        | Update Driver aggregate to use @AttributeOverride annotations for embedded value objects (DocumentNumber, PhoneNumber, UserId, and EmailAddress). This ensures better column name customization and alignment with database schema.                                                                                                                                                                                                                                                                                         |
+| N/A                                                                       | ff37467   | feat(municipal-ops): add domain models and repositories                                                                 | Introduce aggregates (Driver, Vehicle, District), value objects (LicensePlate, Mileage, WeightCapacity, VolumeCapacity, etc.), and repositories for municipal operations. - Add core domain models for managing drivers, vehicles, and districts. - Implement validation logic for value objects and enums. - Provide repositories for persisting vehicles, drivers, and districts. These additions lay the groundwork for municipal operations management.                                                                 |
+| N/A                                                                       | dff494c   | Merge pull request #2 from EcoLutions/feature/route-and-way-point-management                                            | Add basic CRUD endpoint for route and way point management                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| feature/route-and-way-point-management                                    | ba4a5e3   | feat(waypoint): filter waypoints by routeId                                                                             | - Adds functionality to retrieve waypoints based on a route ID. - If no route ID is provided, all waypoints are returned.                                                                                                                                                                                                                                                                                                                                                                                                   |
+| N/A                                                                       | 6eb4adb   | feat(waypoint): implement waypoint management                                                                           | - Introduces WayPointControllerImpl to handle waypoint operations. - Adds CRUD operations for waypoints including creation, retrieval, update, and deletion. - Implements request and response DTOs (CreateWayPointResource, UpdateWayPointResource, WayPointResource). - Includes mappers for converting between DTOs and domain entities/commands. - Updates Route aggregate to include addWayPoint method.                                                                                                               |
+| N/A                                                                       | 7ff9539   | feat(waypoint): implements waypoint management                                                                          | Implements waypoint management functionality including creation, update, and deletion. - Adds `WayPointCommandServiceImpl` for handling waypoint commands (create, update, delete). - Adds `WayPointQueryServiceImpl` for handling waypoint queries (get by ID, get all, get by route ID). - Implements necessary validation and exception handling.                                                                                                                                                                        |
+| N/A                                                                       | 0130119   | feat(waypoint): implements waypoint commands and queries                                                                | - Adds commands for creating, updating, and deleting waypoints. - Implements queries for retrieving waypoints by ID, route ID, and all waypoints. - Introduces command and query service interfaces for waypoint management.                                                                                                                                                                                                                                                                                                |
+| N/A                                                                       | 1adec4d   | feat(route): implements route management REST API                                                                       | - Adds REST endpoints for creating, updating, deleting, and retrieving routes - Defines request and response DTOs for route management - Implements mappers for converting between resource and domain objects                                                                                                                                                                                                                                                                                                              |
+| N/A                                                                       | 9533537   | feat(route): implements route management                                                                                | Implements route creation, update, and deletion functionalities through command services, and retrieval functionalities through query services. Adds necessary domain services and repositories for route management.                                                                                                                                                                                                                                                                                                       |
+| N/A                                                                       | 76eb2f0   | feat(route): implements route management commands and queries                                                           | - Introduces commands for creating, updating, and deleting routes. - Introduces queries for retrieving all routes and a route by ID. - Adds validation to command and query records to ensure required fields are not null or blank.                                                                                                                                                                                                                                                                                        |
+| N/A                                                                       | f6a2b8b   | feat(shared): add DTOs and assemblers                                                                                   | Adds DistanceResource and DurationResource DTOs. Implements DistanceResourceFromEntityAssembler and DurationResourceFromEntityAssembler to convert entities to resources.                                                                                                                                                                                                                                                                                                                                                   |
+| N/A                                                                       | a937e5f   | feat(route-planning): add route planning domain model                                                                   | - Introduces aggregates, entities, and value objects for route planning. - Implements core logic for managing routes and waypoints. - Defines route lifecycle and state transitions.                                                                                                                                                                                                                                                                                                                                        |
+| N/A                                                                       | 184efa2   | Merge pull request #1 from EcoLutions/feature/container-and-sensor-reading-management                                   | Add crud endpoints for container and sensor reading entities                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| feature/container-and-sensor-reading-management                           | b9f3bfa   | feat: implement update and delete                                                                                       | - Adds functionality to update sensor readings via PUT request. - Adds functionality to delete sensor readings via DELETE request. - Includes new DTO for updating sensor readings and a mapper. - Implements validation for input parameters.                                                                                                                                                                                                                                                                              |
+| N/A                                                                       | 92c4979   | feat: implement sensor reading endpoints                                                                                | - Adds REST controller for managing sensor readings. - Includes endpoints for creating, retrieving by ID, and retrieving all sensor readings. - Defines request and response DTOs for sensor reading data. - Implements mappers for converting between entities and DTOs, and resources and commands.                                                                                                                                                                                                                       |
+| N/A                                                                       | e37c906   | feat: implement sensor reading management                                                                               | Adds command and query services for managing sensor readings, including creation, update, deletion, and retrieval operations. These services provide the application logic for handling sensor reading data within the container monitoring system.                                                                                                                                                                                                                                                                         |
+| N/A                                                                       | 396e410   | feat: add sensor readings commands and queries                                                                          | - Implements commands for creating, updating, and deleting sensor readings. - Adds queries for retrieving sensor readings by ID and retrieving all sensor readings. - Includes validation for command parameters.                                                                                                                                                                                                                                                                                                           |
+| N/A                                                                       | 76b99ac   | fix(container): corrects ID type and endpoint params                                                                    | - Updates SensorReadingRepository to use String as ID type. - Uses @PathVariable to correctly pass ID in ContainerController endpoints.                                                                                                                                                                                                                                                                                                                                                                                     |
+| N/A                                                                       | b84ed92   | feat: implement update and delete                                                                                       | - Adds update and delete functionalities for containers. - Introduces `UpdateContainerResource` DTO and assembler for request handling. - Implements `updateContainer` and `deleteContainer` endpoints in the controller. - Includes validation for `UpdateContainerResource` fields.                                                                                                                                                                                                                                       |
+| N/A                                                                       | 4648809   | feat(container): implements container management API                                                                    | - Adds REST endpoints for creating, retrieving, and listing containers. - Includes DTOs for request and response payloads. - Implements mappers for converting between entities and DTOs.                                                                                                                                                                                                                                                                                                                                   |
+| N/A                                                                       | e859eb1   | feat(container): implements container management                                                                        | Implements container creation, update, and deletion functionalities through command services. Also implements query services for retrieving container by ID and all containers.                                                                                                                                                                                                                                                                                                                                             |
+| N/A                                                                       | af982d8   | feat: add command and query models                                                                                      | - Defines data models for container management commands (Create, Update, Delete) and queries (GetById, GetAll). - Includes validation logic within the record constructors to ensure data integrity. - Introduces interfaces for command and query services to handle container operations.                                                                                                                                                                                                                                 |
+| N/A                                                                       | 2d581eb   | feat(container): add sensorId to Container                                                                              | - Modifies the `Container` aggregate to include a `sensorId`. - Adds `sensorId` to the constructor. - Adds `dateToStringOrNull` in `DateTimeUtils` to format dates.                                                                                                                                                                                                                                                                                                                                                         |
+| N/A                                                                       | 591eb07   | feat: add base container and sensor reading repositories                                                                |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| N/A                                                                       | 7a7f08f   | feat: add Container and SensorReading entities                                                                          | - Introduces `Container` aggregate root with properties like location, capacity, type, fill level, and status. - Implements methods for updating fill level, marking as collected, and determining collection requirement. - Introduces `SensorReading` aggregate root for storing sensor data related to a container. - Includes validation logic for sensor readings.                                                                                                                                                     |
+| N/A                                                                       | 0eded49   | feat: add value objects for container monitoring                                                                        | - Introduces value objects for representing key aspects of container monitoring domain. - Includes BatteryLevel, CollectionFrequency, ContainerCapacity, ContainerStatus, ContainerType, CurrentFillLevel, SensorId, Temperature, and ValidationStatus. - Implements validation logic within each value object to ensure data integrity.                                                                                                                                                                                    |
+| N/A                                                                       | 200aa04   | chore: add docs and kilocode folder to gitignore                                                                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| N/A                                                                       | 2a91544   | feat(shared): add value objects                                                                                         | - Implements value objects for core domain concepts. - Includes CitizenId, ContainerId, DistrictId, DocumentNumber, DriverId, EmailAddress, FullName, Location, Money, NotificationRequestId, PaymentMethodId, PhoneNumber, RoleId, SubscriptionId, UserId, and VehicleId. - Adds validation to ensure data integrity.                                                                                                                                                                                                      |
+| N/A                                                                       | 80fd180   | chore: update PostgreSQL datasource port in application properties                                                      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| N/A                                                                       | dc50845   | feat: configure application properties for PostgreSQL, JPA, and Swagger                                                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| N/A                                                                       | 101aff1   | feat: add OpenAPI configuration for WasteTrack Platform API documentation                                               |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| N/A                                                                       | a5ab04b   | feat: enable JPA auditing and configure CORS settings                                                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| N/A                                                                       | beb5be5   | feat: add strategy physical naming to follow snake case rules                                                           |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| N/A                                                                       | ebf44e8   | feat: add shared domain layer                                                                                           | This commit introduces a shared domain layer with auditable entities, domain events, and utility classes. - Creates `AuditableAbstractAggregateRoot` and `AuditableModel` to provide common fields (createdAt, updatedAt) and auditing functionality for aggregate roots and entities. - Introduces `DomainEvent` interface for domain event handling. - Adds `DateTimeUtils` and `StringUtils` for date/time and string manipulation. - Defines `MessageResource` for standardized message responses.                      |
+| N/A                                                                       | 5185158   | feat: add pluralize and spring doc open api dependencies                                                                |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| N/A                                                                       | 3149b7b   | Initial commit                                                                                                          | (END) - Introduces `DomainEvent` interface for domain event handling. - Adds `DateTimeUtils` and `StringUtils` for date/time and string manipulation. - Defines `MessageResource` for standardized message responses.                                                                                                                                                                                                                                                                                                       |
+| N/A                                                                       | 5185158   | feat: add pluralize and spring doc open api dependencies                                                                |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| N/A                                                                       | 3149b7b   | Initial commit                                                                                                          |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 
 ---
 
 #### 6.2.1.5. Testing Suite Evidence for Sprint Review
 
-El objetivo de este conjunto de pruebas es validar las funcionalidades desarrolladas en el sprint 1 de WasteTrack, centradas en la gestión de contenedores, el monitoreo de sensores IoT y la optimización de rutas de recolección. Las pruebas abarcan la visualización de datos de llenado, la gestión de alertas, y la creación de rutas de recolección optimizadas, con el fin de garantizar que el sistema cumpla con los requerimientos operativos definidos por los usuarios.
+Esta sección presenta la evidencia de las pruebas realizadas para validar las historias de usuario completadas durante el Sprint 1. Las pruebas cubren múltiples niveles, desde unitarias hasta pruebas de sistema (End-to-End), garantizando la calidad y el correcto funcionamiento de las funcionalidades entregadas.
+
+### **Pruebas Unitarias de Entidades Core**
+
+Se validaron los *aggregates* principales del dominio para asegurar que las reglas de negocio se cumplan de forma aislada.
+
+#### **Container Monitoring**
+
+* **Aggregate: `Container`**
+    * **User Story Relacionada:** `US11 – Configuración de parámetros de contenedores`.
+    * **Resumen de Pruebas:** Se confirmó que la creación del contenedor inicializa los estados por defecto. Se validó la correcta actualización del nivel de llenado, el reinicio de valores tras una recolección, la detección de desbordes y el cambio de estado operacional (`MAINTENANCE`, `ACTIVE`).
+    * **Evidencia de ejecución:**
+      ![ContainerTest-Execution](assets/6.product-verification-validation/6.1.testing-suites-validation/6.1.1.core-entities-unit-tests/container-test-unit.png)
+
+* **Aggregate: `SensorReading`**
+    * **User Story Relacionada:** `TS04 – API de datos de sensores IoT`.
+    * **Resumen de Pruebas:** Se aseguró que se generen lecturas válidas con estado `VALID`. Se probó la correcta identificación de anomalías (como batería baja) y el lanzamiento de excepciones ante valores inválidos (nivel de llenado fuera de rango).
+    * **Evidencia de ejecución:**
+      ![SensorReadingTest-Execution](assets/6.product-verification-validation/6.1.testing-suites-validation/6.1.1.core-entities-unit-tests/sensor-reading-test-unit.png)
+
+#### **Municipal Operations**
+
+* **Aggregate: `Driver`**
+    * **User Story Relacionada:** `US04 – Gestión de conductores por administrador`.
+    * **Resumen de Pruebas:** Se verificó el ciclo de vida del estado del conductor (`AVAILABLE`, `ON_ROUTE`), la correcta asignación y desasignación de vehículos y la suspensión de la cuenta.
+    * **Evidencia de ejecución:**
+      ![DriverTest-Execution](assets/6.product-verification-validation/6.1.testing-suites-validation/6.1.1.core-entities-unit-tests/driver-test-unit.png)
+
+* **Aggregate: `Vehicle`**
+    * **User Story Relacionada:** `US22 – Monitoreo de flota de vehículos`.
+    * **Resumen de Pruebas:** Se validaron las reglas de negocio para la creación de vehículos, incluyendo el formato correcto de la placa y la validación de capacidad (volumen y peso).
+    * **Evidencia de ejecución:**
+      ![VehicleTest-Execution](assets/6.product-verification-validation/6.1.testing-suites-validation/6.1.1.core-entities-unit-tests/vehicle-test-unit.png)
 
 ---
 
-**Feature: Visualización del porcentaje de llenado del contenedor**
+### **Pruebas de Integración**
 
-  **Scenario: Mostrar porcentaje de llenado de un contenedor activo**  
-    Given que el usuario accede a la vista de contenedores  
-    When el sistema carga los datos de llenado  
-    Then se debe mostrar el porcentaje actual de llenado para cada contenedor  
-    And el valor debe ser un número entre 0% y 100%
+Se validaron los controladores de la API para asegurar la correcta integración entre la capa de presentación (endpoints REST) y la lógica de negocio.
 
----
+* **Controlador: `RouteController`**
+    * **User Story Relacionada:** `US12 – Generación automática de rutas optimizadas`.
+    * **Resumen de Pruebas:** Se ejecutaron peticiones HTTP reales para verificar el funcionamiento de los endpoints CRUD para las rutas. Se validó la creación (`POST`), listado (`GET`), actualización (`PUT`) y eliminación (`DELETE`), confirmando los códigos de estado correctos.
+    * **Evidencia de ejecución:**
+      ![RouteControllerTest](assets/6.product-verification-validation/6.1.testing-suites-validation/6.1.2.core-integration-tests/route-integration-test.png)
 
-**Feature: Filtrar contenedores por estado**
-
-  **Scenario: Filtrar solo contenedores activos**  
-    Given que el usuario selecciona el filtro "Activos"  
-    When se aplica el filtro  
-    Then solo deben mostrarse los contenedores con estado "activo"  
-
-  **Scenario: Filtrar solo contenedores inactivos**  
-    Given que el usuario selecciona el filtro "Inactivos"  
-    When se aplica el filtro  
-    Then solo deben mostrarse los contenedores con estado "inactivo"
+* **Controlador: `WaypointController`**
+    * **Resumen de Pruebas:** Se verificó el correcto funcionamiento de los endpoints CRUD para los `Waypoints`, asegurando que las solicitudes de creación, obtención, listado, actualización y eliminación se procesan correctamente.
+    * **Evidencia de ejecución:**
+      ![WaypointControllerTest](assets/6.product-verification-validation/6.1.testing-suites-validation/6.1.2.core-integration-tests/waypoint-integration-test.png)
 
 ---
 
-**Feature: Generar alerta por sobrellenado de contenedor**
+### **Pruebas de Comportamiento (BDD)**
 
-  **Scenario: Detectar sobrellenado de un contenedor**  
-    Given que un contenedor reporta un nivel de llenado mayor al 90%  
-    When se actualizan los datos del sensor  
-    Then el sistema debe mostrar una alerta visual de sobrellenado  
-    And se debe registrar un evento de alerta en el sistema
+Se validaron escenarios de comportamiento desde la perspectiva del usuario utilizando Cucumber.
 
----
+* **Comportamiento: Gestión de Conductores**
+    * **User Story Relacionada:** `US04 – Gestión de conductores por administrador`.
+    * **Resumen de Escenarios:** Se probaron los flujos de creación de una cuenta de conductor, el cambio de estado al iniciar y finalizar una ruta y la suspensión de un conductor.
+    * **Evidencia de ejecución:**
+      ![DriverBDDTest](assets/6.product-verification-validation/6.1.testing-suites-validation/6.1.3.core-behavior-driven-development/driver-bdd-test.png)
 
-**Feature: Generar rutas óptimas de recolección**
-
-  **Scenario: Generar ruta considerando niveles de llenado**  
-    Given que el usuario solicita una nueva ruta  
-    And hay contenedores con nivel de llenado mayor al 80%  
-    When se genera la ruta  
-    Then los contenedores más llenos deben tener prioridad  
-    And se debe mostrar el orden sugerido de recolección
+* **Comportamiento: API de Datos de Sensores**
+    * **User Story Relacionada:** `TS04 – API de datos de sensores IoT`.
+    * **Resumen de Escenarios:** Se validó la recepción de lecturas de sensores, la detección de anomalías (batería baja), el rechazo de valores inválidos y el requisito de autenticación en el endpoint.
+    * **Evidencia de ejecución:**
+      ![SensorReadingBDDTest](assets/6.product-verification-validation/6.1.testing-suites-validation/6.1.3.core-behavior-driven-development/sensor-reading-bdd-test.png)
 
 ---
 
-**Feature: Registro de sensores IoT**
+### **Pruebas de Sistema (End-to-End con Postman)**
 
-  **Scenario: Registrar un nuevo sensor en el sistema**  
-    Given que el usuario accede al formulario de registro de sensores  
-    When se ingresan los datos válidos del sensor  
-    And se presiona el botón "Registrar"  
-    Then el sensor debe aparecer en la lista con estado "activo"
+Se ejecutaron flujos completos a través de la API para validar la interacción entre los diferentes componentes del sistema.
 
----
+* **Flujo de Autenticación (`US03`, `TS01`)**
+    * **Resumen de Pruebas:** Se confirmó que un usuario puede registrarse (`sign-up`) y recibir un estado `201 Created`, y posteriormente iniciar sesión (`sign-in`) para obtener un token JWT con un estado `200 OK`.
+    * **Evidencia de Registro:**
+      ![Registro de usuarios](./assets/6.product-verification-validation/6.1.testing-suites-validation/6.1.4.core-system-tests/sign-up.png)
+    * **Evidencia de Inicio de Sesión:**
+      ![Inicio de sesión](./assets/6.product-verification-validation/6.1.testing-suites-validation/6.1.4.core-system-tests/sign-in.png)
 
-**Feature: Visualización de último dato del sensor**
+* **Flujo de Creación de Entidades Core (`US01`, `US05`, `US22`, `US12`)**
+    * **Resumen de Pruebas:** Utilizando el token de autenticación, se validó la creación y visualización de las entidades principales del sistema: distritos, contenedores, ciudadanos, vehículos y rutas.
+    * **Evidencia de Distritos:**
+      ![Creación de un distrito](./assets/6.product-verification-validation/6.1.testing-suites-validation/6.1.4.core-system-tests/districts-post.png)
+      ![Visualización de distritos](./assets/6.product-verification-validation/6.1.testing-suites-validation/6.1.4.core-system-tests/districts-get.png)
+    * **Evidencia de Contenedores:**
+      ![Creación de un contenedor](./assets/6.product-verification-validation/6.1.testing-suites-validation/6.1.4.core-system-tests/containers-post.png)
+    * **Evidencia de Ciudadanos:**
+      ![Creación de un ciudadano](./assets/6.product-verification-validation/6.1.testing-suites-validation/6.1.4.core-system-tests/citizens-post.png)
+      ![Visualización de ciudadanos](./assets/6.product-verification-validation/6.1.testing-suites-validation/6.1.4.core-system-tests/citizens-get.png)
+    * **Evidencia de Vehículos:**
+      ![Creación de un vehículo](./assets/6.product-verification-validation/6.1.testing-suites-validation/6.1.4.core-system-tests/vehicles-post.png)
+    * **Evidencia de Rutas:**
+      ![Creación de una ruta](./assets/6.product-verification-validation/6.1.testing-suites-validation/6.1.4.core-system-tests/routes-post.png)
 
-  **Scenario: Consultar la última lectura recibida**  
-    Given que el usuario selecciona un sensor registrado  
-    When visualiza los detalles del sensor  
-    Then se debe mostrar la fecha y hora de la última lectura válida
-
----
-
-**Feature: Monitorear estado del sensor**
-
-  **Scenario: Mostrar estado de sensor inactivo**  
-    Given que un sensor no ha enviado datos en las últimas 24 horas  
-    When se consulta su estado  
-    Then el sistema debe mostrar el estado como "inactivo"  
-    And se debe generar una advertencia visual 
-
----
 
 #### 6.2.1.6. Execution Evidence for Sprint Review
 
 A continuación, se presentan las evidencias de implementación y despliegue de los distintos componentes desarrollados durante el **Sprint 1**, correspondientes a la Landing Page, Frontend, Backend e IoT del sistema **WasteTrack**.
 
----
+### 5.2.2. Implemented Landing Page Evidence
 
-- **Landing Page:**  
+**Enlace de la landing page:** [https://wastetracklanding.vercel.app/](https://wastetracklanding.vercel.app/)
 
-Página principal del sistema WasteTrack, donde se comunica la propuesta de valor, beneficios y enlaces directos a las aplicaciones móviles y web.  
+![landing page](./assets/5.product-implementation/5.2.implementation&deployment/landingPageEcolution.png)
 
-![landing-1.png](assets/images/chapter5/landing-1.png)  
+Pasos para desplegar un landing page en Vercel
 
-[Link del proyecto desplegado: https://v0-wastetrack-landing-page.vercel.app/](https://v0-wastetrack-landing-page.vercel.app/)  
+![vercel](./assets/5.product-implementation/5.2.implementation&deployment/vercel.png)
 
----
+1. Preparación del repositorio funcional en ambiente local
+2. Crear una cuenta en Vercel
+3. Desplegar desde GitHub
+    - Build command: `npm run build` o `yarn build`
+    - Publish directory: `build`
+4. Desplegar la aplicación
 
-- **Frontend:**  
+### 5.2.3. Implemented Frontend-Web Application Evidence
 
-Interfaz web que permite visualizar el nivel de llenado de los contenedores, su estado actual y realizar acciones de gestión por parte de los funcionarios municipales.  
+**Enlace de la aplicacion web de administrador municipal** [https://waste-track-admin-app.netlify.app/dashboard](https://waste-track-admin-app.netlify.app/dashboard)
 
-![frontend-1.png](assets/images/chapter5/frontend-1.png)  
+#### Imagenes de la aplicación web para administrador municipal
 
-[Link del proyecto desplegado: https://waste-track.netlify.app/](https://waste-track.netlify.app/)  
+![dashboard.png](assets/5.product-implementation/web-application/dashboard.png)
 
----
+![collaborator_list.png](assets/5.product-implementation/web-application/collaborator_list.png)
 
-- **Backend:**  
+![add_collaborator.png](assets/5.product-implementation/web-application/add_collaborator.png)
 
-Servicio que gestiona los endpoints principales del sistema, incluyendo autenticación, gestión de usuarios y control de contenedores.  
-Cuenta con documentación técnica mediante **Swagger UI**, asegurando transparencia en la comunicación entre servicios.  
+![edit_collaborator.png](assets/5.product-implementation/web-application/edit_collaborator.png)
 
-![backend-1.png](assets/images/chapter5/backend-1.png)  
+![deactivate_collaborator.png](assets/5.product-implementation/web-application/deactivate_collaborator.png)
 
-[Link del proyecto desplegado: https://wastetrack-api.onrender.com/docs#/](https://wastetrack-api.onrender.com/docs#/)  
+![no_registered_vehicles.png](assets/5.product-implementation/web-application/no_registered_vehicles.png)
 
----
+![fleet_list.png](assets/5.product-implementation/web-application/fleet_list.png)
 
-- **IoT:**  
+![add_vehicle.png](assets/5.product-implementation/web-application/add_vehicle.png)
 
-Prototipo funcional desarrollado en **Wokwi**, encargado de simular el comportamiento de los sensores IoT que miden en tiempo real el nivel de llenado de los contenedores y transmiten los datos al sistema central.  
+![edit_vehicle.png](assets/5.product-implementation/web-application/edit_vehicle.png)
 
-![wokwi-1.png](assets/images/chapter5/wokwi-1.png)  
+![deleteVehicle.png](assets/5.product-implementation/web-application/deleteVehicle.png)
 
-[ Link del proyecto desplegado: https://wokwi.com/projects/433761407805975553](https://wokwi.com/projects/433761407805975553)  
+![no_iot_device.png](assets/5.product-implementation/web-application/no_iot_device.png)
 
+![iot_list.png](assets/5.product-implementation/web-application/iot_list.png)
 
----
+![add_iot_device.png](assets/5.product-implementation/web-application/add_iot_device.png)
+
+![configure_iot_device.png](assets/5.product-implementation/web-application/configure_iot_device.png)
+
+![deleteIotDevice.png](assets/5.product-implementation/web-application/deleteIotDevice.png)
+
+#### Implemented Mobile Application Evidence
+
+#### WasteTrack Citizen mobile app
+
+![splashImage.png](assets/5.product-implementation/mobile_application/citizen_mobile_app/splashImage.png)
+
+![welcomeView.png](assets/5.product-implementation/mobile_application/citizen_mobile_app/welcomeView.png)
+
+![selectMunicipality1.png](assets/5.product-implementation/mobile_application/citizen_mobile_app/selectMunicipality1.png)
+
+![selectMunicipality2.png](assets/5.product-implementation/mobile_application/citizen_mobile_app/selectMunicipality2.png)
+
+![home_view.png](assets/5.product-implementation/mobile_application/citizen_mobile_app/home_view.png)
+
+![changeMunicipality.png](assets/5.product-implementation/mobile_application/citizen_mobile_app/changeMunicipality.png)
+
+![notifications.png](assets/5.product-implementation/mobile_application/citizen_mobile_app/notifications.png)
+
+![report.png](assets/5.product-implementation/mobile_application/citizen_mobile_app/report.png)
 
 #### 6.2.1.7. Services Documentation Evidence for Sprint Review
 
-Durante el **Sprint 1**, se documentaron todos los servicios desarrollados en la capa de backend del sistema WasteTrack, con el objetivo de garantizar trazabilidad, mantenibilidad y estandarización en las futuras iteraciones.  
+#### Documentación de la API RESTful
+Para garantizar la correcta integración, escalabilidad y mantenimiento de los servicios del backend, se ha documentado exhaustivamente la API RESTful del proyecto Waste Track Platform. Se utilizó el estándar OpenAPI 3.0 y la herramienta Swagger UI para generar una documentación interactiva que no solo describe los endpoints, sino que también permite probarlos directamente desde el navegador.
 
-##### Auth Endpoints
-<table>
-  <thead>
-    <tr>
-      <th>Endpoint</th>
-      <th>Method</th>
-      <th>Description</th>
-      <th>Parameters</th>
-      <th>Request Body</th>
-      <th>Response Example</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>/api/v1/auth/signup</td>
-      <td>POST</td>
-      <td>Register a new user</td>
-      <td>None</td>
-      <td>
-        <pre><code>{
-  "name": "John Doe",
-  "email": "john@example.com",
-  "password": "securepassword",
-  "role": "citizen",
-  "address": "123 Main St",
-  "phone": "+1234567890"
-}</code></pre>
-      </td>
-      <td>
-        <pre><code>// Status: 201 Created
-{
-  "message": "User created successfully",
-  "user_id": "550e8400-e29b-41d4-a716-446655440000"
-}</code></pre>
-      </td>
-    </tr>
-    <tr>
-      <td>/api/v1/auth/signin</td>
-      <td>POST</td>
-      <td>User login and token generation</td>
-      <td>None</td>
-      <td>
-        <pre><code>{
-  "email": "john@example.com",
-  "password": "securepassword"
-}</code></pre>
-      </td>
-      <td>
-        <pre><code>// Status: 200 OK
-{
-  "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
-  "token_type": "bearer",
-  "user": {
-    "guid": "550e8400-e29b-41d4-a716-446655440000",
-    "name": "John Doe",
-    "email": "john@example.com",
-    "role": "citizen"
-  }
-}</code></pre>
-      </td>
-    </tr>
-  </tbody>
-</table>
+Esta documentación sirve como un contrato claro entre el backend y cualquier cliente que consuma la API (como la aplicación móvil o futuras integraciones).
 
-##### User Endpoints
+![1.jpeg](assets/5.product-implementation/backend/apiDocumentation/1.jpeg)
 
-<table>
-  <thead>
-    <tr>
-      <th>Endpoint</th>
-      <th>Method</th>
-      <th>Description</th>
-      <th>Parameters</th>
-      <th>Request Body</th>
-      <th>Response Example</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>/api/v1/user/{guid}</td>
-      <td>GET</td>
-      <td>Get user by GUID</td>
-      <td>Path parameter: guid (string, required)</td>
-      <td>None</td>
-      <td>
-        <pre><code>// Status: 200 OK
-{
-  "guid": "550e8400-e29b-41d4-a716-446655440000",
-  "name": "John Doe",
-  "email": "john@example.com",
-  "role": "citizen",
-  "address": "123 Main St",
-  "phone": "+1234567890",
-  "latitude": "37.7749",
-  "longitude": "-122.4194",
-  "created_at": "2023-06-01T10:00:00Z"
-}</code></pre>
-      </td>
-    </tr>
-    <tr>
-      <td>/api/v1/user/</td>
-      <td>PUT</td>
-      <td>Update user information</td>
-      <td>None</td>
-      <td>
-        <pre><code>{
-  "name": "John Updated",
-  "phone": "+1987654321",
-  "role": "citizen"
-}</code></pre>
-      </td>
-      <td>
-        <pre><code>// Status: 200 OK
-{
-  "message": "User updated successfully",
-  "user": {
-    "guid": "550e8400-e29b-41d4-a716-446655440000",
-    "name": "John Updated"
-  }
-}</code></pre>
-      </td>
-    </tr>
-    <tr>
-      <td>/api/v1/user/</td>
-      <td>DELETE</td>
-      <td>Delete current user</td>
-      <td>None</td>
-      <td>None</td>
-      <td>
-        <pre><code>// Status: 200 OK
-{
-  "message": "User deleted successfully"
-}</code></pre>
-      </td>
-    </tr>
-  </tbody>
-</table>
+Estructura y Endpoints Disponibles
+La API está organizada en controladores que agrupan funcionalidades relacionadas con los recursos principales del sistema. Cada recurso cuenta con un conjunto completo de operaciones CRUD (Crear, Leer, Actualizar, Eliminar), siguiendo las convenciones estándar de los métodos HTTP (POST, GET, PUT, DELETE).
 
-##### Container Endpoints
+A continuación, se presenta una visión general de los endpoints documentados:
 
-<table>
-  <thead>
-    <tr>
-      <th>Endpoint</th>
-      <th>Method</th>
-      <th>Description</th>
-      <th>Parameters</th>
-      <th>Request Body</th>
-      <th>Response Example</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>/api/v1/containers/</td>
-      <td>GET</td>
-      <td>Get a list of all containers</td>
-      <td>None</td>
-      <td>None</td>
-      <td>
-        <pre><code>// Status: 200 OK
-[
-  {
-    "guid": "550e8400-e29b-41d4-a716-446655440001",
-    "name": "Container A",
-    "latitude": "37.7749",
-    "longitude": "-122.4194",
-    "capacity": 75,
-    "status": "active",
-    "isFavorite": false
-  },
-  {
-    "guid": "550e8400-e29b-41d4-a716-446655440002",
-    "name": "Container B",
-    "latitude": "37.7848",
-    "longitude": "-122.4294",
-    "capacity": 30,
-    "status": "active",
-    "isFavorite": true
-  }
-]</code></pre>
-      </td>
-    </tr>
-    <tr>
-      <td>/api/v1/containers/</td>
-      <td>POST</td>
-      <td>Create a new container</td>
-      <td>None</td>
-      <td>
-        <pre><code>{
-  "name": "Container C",
-  "latitude": "37.7849",
-  "longitude": "-122.4295",
-  "capacity": 100
-}</code></pre>
-      </td>
-      <td>
-        <pre><code>// Status: 201 Created
-{
-  "message": "Container created successfully",
-  "container_id": "550e8400-e29b-41d4-a716-446655440003"
-}</code></pre>
-      </td>
-    </tr>
-    <tr>
-      <td>/api/v1/containers/{guid}</td>
-      <td>GET</td>
-      <td>Get a container by GUID</td>
-      <td>Path parameter: guid (string, required)</td>
-      <td>None</td>
-      <td>
-        <pre><code>// Status: 200 OK
-{
-  "guid": "550e8400-e29b-41d4-a716-446655440001",
-  "name": "Container A",
-  "latitude": "37.7749",
-  "longitude": "-122.4194",
-  "capacity": 75,
-  "status": "active",
-  "isFavorite": false
-}</code></pre>
-      </td>
-    </tr>
-    <tr>
-      <td>/api/v1/containers/{guid}</td>
-      <td>PUT</td>
-      <td>Update a container by GUID</td>
-      <td>Path parameter: guid (string, required)</td>
-      <td>
-        <pre><code>{
-  "name": "Container A Updated",
-  "latitude": "37.7750",
-  "longitude": "-122.4195",
-  "capacity": 80,
-  "status": "active",
-  "isFavorite": true
-}</code></pre>
-      </td>
-      <td>
-        <pre><code>// Status: 200 OK
-{
-  "message": "Container updated successfully",
-  "container": {
-    "guid": "550e8400-e29b-41d4-a716-446655440001",
-    "name": "Container A Updated"
-  }
-}</code></pre>
-      </td>
-    </tr>
-    <tr>
-      <td>/api/v1/containers/{guid}</td>
-      <td>DELETE</td>
-      <td>Delete a container by GUID</td>
-      <td>Path parameter: guid (string, required)</td>
-      <td>None</td>
-      <td><pre><code>// Status: 204 No Content</code></pre></td>
-    </tr>
-    <tr>
-      <td>/api/v1/containers/status/{status}</td>
-      <td>GET</td>
-      <td>Get containers by status</td>
-      <td>Path parameter: status (string, required)</td>
-      <td>None</td>
-      <td>
-        <pre><code>// Status: 200 OK
-[
-  {
-    "guid": "550e8400-e29b-41d4-a716-446655440001",
-    "name": "Container A",
-    "latitude": "37.7749",
-    "longitude": "-122.4194",
-    "capacity": 75,
-    "status": "active",
-    "isFavorite": false
-  },
-  {
-    "guid": "550e8400-e29b-41d4-a716-446655440002",
-    "name": "Container B",
-    "latitude": "37.7848",
-    "longitude": "-122.4294",
-    "capacity": 30,
-    "status": "active",
-    "isFavorite": true
-  }
-]</code></pre>
-      </td>
-    </tr>
-    <tr>
-      <td>/api/v1/containers/{guid}/alert</td>
-      <td>POST</td>
-      <td>Send capacity alert for a container</td>
-      <td>Path parameter: guid (string, required)</td>
-      <td>None</td>
-      <td>
-        <pre><code>// Status: 200 OK
-{
-  "message": "Alert sent successfully",
-  "container_id": "550e8400-e29b-41d4-a716-446655440001"
-}</code></pre>
-      </td>
-    </tr>
-    <tr>
-      <td>/api/v1/containers/{guid}/status</td>
-      <td>PUT</td>
-      <td>Update container status</td>
-      <td>
-        Path parameter: guid (string, required)<br>
-        Query parameter: new_status (string, required)
-      </td>
-      <td>None</td>
-      <td>
-        <pre><code>// Status: 200 OK
-{
-  "message": "Container status updated successfully",
-  "container": {
-    "guid": "550e8400-e29b-41d4-a716-446655440001",
-    "status": "inactive"
-  }
-}</code></pre>
-      </td>
-    </tr>
-    <tr>
-      <td>/api/v1/containers/{guid}/favorite</td>
-      <td>PUT</td>
-      <td>Update isFavorite status</td>
-      <td>Path parameter: guid (string, required)</td>
-      <td>
-        <pre><code>{
-  "isFavorite": true
-}</code></pre>
-      </td>
-      <td>
-        <pre><code>// Status: 200 OK
-{
-  "message": "Favorite status updated successfully",
-  "container": {
-    "guid": "550e8400-e29b-41d4-a716-446655440001",
-    "isFavorite": true
-  }
-}</code></pre>
-      </td>
-    </tr>
-    <tr>
-      <td>/api/v1/containers/{guid}/capacity</td>
-      <td>PUT</td>
-      <td>Update container capacity</td>
-      <td>Path parameter: guid (string, required)</td>
-      <td>
-        <pre><code>{
-  "capacity": 85
-}</code></pre>
-      </td>
-      <td>
-        <pre><code>// Status: 200 OK
-{
-  "message": "Container capacity updated successfully",
-  "container": {
-    "guid": "550e8400-e29b-41d4-a716-446655440001",
-    "capacity": 85
-  }
-}</code></pre>
-      </td>
-    </tr>
-  </tbody>
-</table>
+1. Gestión de Autenticación y Usuarios (/authentication, /users, /roles)
 
-##### Capturas
+Endpoints cruciales para la seguridad y la gestión de acceso. Permiten el registro (sign-up), inicio de sesión (sign-in) y la obtención de información sobre usuarios y sus roles.
 
-<img src="assets/images/chapter5/backend-1.png">
+![2.jpeg](assets/5.product-implementation/backend/apiDocumentation/2.jpeg)
 
-Parámetros y Responses de los endpoints **"User"**
+2. Gestión de Entidades Centrales (/containers, /vehicles, /routes)
 
-<img src="assets/images/chapter5/backend-2.png">
+Manejan la lógica de negocio principal, incluyendo la administración de contenedores de residuos, vehículos de recolección y las rutas que estos siguen.
 
-Parámetros y Responses de los endpoints **"Containers"**
+![3.jpeg](assets/5.product-implementation/backend/apiDocumentation/3.jpeg)
 
-<img src="assets/images/chapter5/backend-3.png">
+![4.jpeg](assets/5.product-implementation/backend/apiDocumentation/4.jpeg)
 
-<img src="assets/images/chapter5/backend-4.png">
+3. Gestión de Datos Geográficos y Operativos (/districts, /waypoints, /sensor-readings)
 
-**Link de los web services:**  
-[https://wastetrack-api.onrender.com/docs#/](https://wastetrack-api.onrender.com/docs#/)
+Endpoints dedicados a la gestión de distritos, puntos de referencia en las rutas (waypoints) y la recolección de datos de sensores.
 
- 
----
+![5.jpeg](assets/5.product-implementation/backend/apiDocumentation/5.jpeg)
+
+![6.jpeg](assets/5.product-implementation/backend/apiDocumentation/6.jpeg)
+
+4. Gestión de Perfiles y Actores (/citizens, /drivers, /user-profiles)
+
+Permiten administrar la información de los diferentes tipos de usuarios que interactúan con la plataforma, como ciudadanos, conductores y sus perfiles detallados.
+
+![7.jpeg](assets/5.product-implementation/backend/apiDocumentation/7.jpeg)
+
+![8.jpeg](assets/5.product-implementation/backend/apiDocumentation/8.jpeg)
+
 
 #### 6.2.1.8. Software Deployment Evidence for Sprint Review
 
@@ -6735,50 +6648,113 @@ Pasos para desplegar un landing page en Vercel
 
 - **Despliegue de Frontend:**
 
-Pasos para desplegar un frontend React en Netlify
+#### Mobile application
 
-<img src="assets/images/chapter5/netlify.png"> 
+#### Generar apk
+Para la compilación de la aplicación y la generación del archivo de instalación de Android (.apk), se siguieron los siguientes pasos utilizando el entorno de desarrollo Android Studio.
 
-1. Preparación del proyecto React (Verificar que el `package.json` incluya el script de build: `"build": "react-scripts build"`)  
-2. Crear una cuenta en Netlify  
-3. Desplegar desde GitHub  
-   - Build command: `npm run build` o `yarn build`  
-   - Publish directory: `build`  
-4. Desplegar la aplicación  
+**Apertura del Terminal**
+Dentro del proyecto de Flutter, se abrió el terminal integrado en Android Studio para tener acceso a la línea de comandos.
 
-<img src="assets/images/chapter5/deploy-frontend.png">  
+**Ejecución del Comando de Compilación**
+Se procedió a ejecutar el comando para construir la versión de lanzamiento de la aplicación. Se utilizó el flag --release para asegurar que el APK generado estuviera optimizado para producción, ofuscado y sin información de depuración.
 
----
+flutter build apk --release
+
+**Ubicación del Archivo Generado**
+Una vez finalizado el proceso de compilación, el archivo app-release.apk fue localizado en el directorio de salida correspondiente dentro de la estructura del proyecto:
+
+build/app/outputs/flutter-apk/app-release.apk
+
+Este archivo es la versión final que fue utilizada para las pruebas de despliegue y la distribución.
+
+#### Web App Municipal admin
+
+#### Pasos de despliegue en Netlify
+
+Elegir a GitHub como Git provider
+
+![connectToGit.png](assets/5.product-implementation/web-application/deploy/connectToGit.png)
+
+Conectar con la organización EcoLutions de GitHub
+
+![selectRepo.png](assets/5.product-implementation/web-application/deploy/selectRepo.png)
+
+Configurar proyecto y deploy command
+
+![lastStep.png](assets/5.product-implementation/web-application/deploy/lastStep.png)
+![lastStep2.png](assets/5.product-implementation/web-application/deploy/lastStep2.png)
+
+Vista final con deploy logs en estado completado
+
+![deployLogs.png](assets/5.product-implementation/web-application/deploy/deployLogs.png)
+
+**Enlace de la aplicacion web de administrador municipal** [https://waste-track-admin-app.netlify.app/dashboard](https://waste-track-admin-app.netlify.app/dashboard)
+
 
 - **Despliegue de Backend:**
 
-Pasos para desplegar una API de FastAPI en Render
+Para el proyecto WasteTrack, se ha implementado una infraestructura de backend robusta y escalable en la nube, utilizando servicios de Microsoft Azure. El proceso abarcó desde el aprovisionamiento de un servidor virtual hasta su configuración para el despliegue automatizado de la API RESTful mediante contenedores.
 
-<img src="assets/images/chapter5/render.png"> 
+A continuación, se detalla el proceso realizado, respaldado por la evidencia visual adjunta.
 
-1. Preparación del repositorio (Un archivo requirements.txt con todas las dependencias)  
-2. Crear cuenta en Render  
-3. Crear un nuevo Web Service  
-4. Conectar el repositorio de GitHub  
-5. Configurar el servicio  
-```
-  Nombre: Escoger un nombre para el servicio
-  Runtime: Seleccionar "Python 3"
-  Región: Eligir la ubicación del servidor más cercana
-  Branch: Seleccionar la rama principal (main/master)
-  Build Command: pip install -r requirements.txt
-  Start Command: uvicorn app:app --host 0.0.0.0 --port $PORT
-  ```
-  6. Configurar variables de entorno
-  ```
-  SECRET_KEY
-  ALGORITHM
-  ACCESS_TOKEN_EXPIRE_MINUTES
-  DATABASE_URL
-  ```
-  7. Desplegar la aplicación
+1. Aprovisionamiento de la Infraestructura en la Nube
 
-<img src="./assets/images/chapter5/deploy-backend.jpg"> 
+El primer paso fue crear los recursos necesarios en Microsoft Azure. Se configuró una máquina virtual (VM) con las siguientes especificaciones para alojar el backend:
+
+Nombre del Recurso: waste-track-platform
+
+Sistema Operativo: Linux (Ubuntu 22.04 LTS)
+
+Capacidad: 4 vCPUs y 16 GB de RAM
+
+Región: Sur de Brasil (South America)
+
+IP Pública Asignada: 20.206.240.65
+
+Este proceso, visible en las capturas del portal de Azure, estableció la base del servidor donde se ejecutará nuestra aplicación.
+
+![1.jpeg](assets/5.product-implementation/backend/implementation/1.jpeg)
+
+![4.jpeg](assets/5.product-implementation/backend/implementation/4.jpeg)
+
+2. Configuración y Acceso Seguro al Servidor
+
+Una vez creada la VM, se estableció una conexión segura desde un equipo local utilizando el protocolo SSH (Secure Shell). Para ello, se gestionó una clave privada (.pem) con los permisos adecuados (chmod 400) para garantizar un acceso restringido y seguro al servidor.
+
+Inmediatamente después de la conexión, se actualizaron todos los paquetes del sistema operativo con sudo apt update && sudo apt upgrade para asegurar que el entorno base estuviera actualizado y protegido.
+
+![3.jpeg](assets/5.product-implementation/backend/implementation/3.jpeg)
+
+![6.jpeg](assets/5.product-implementation/backend/implementation/6.jpeg)
+
+3. Implementación del Entorno de Contenedores con Docker
+
+Para asegurar un despliegue consistente, aislado y escalable de la API, se instaló y configuró un entorno de containerización.
+
+Se instaló Docker y Docker Compose en el servidor Ubuntu.
+
+Se habilitó el servicio de Docker para que se inicie automáticamente con el sistema (systemctl enable docker).
+
+Se configuraron los permisos de usuario para gestionar Docker sin necesidad de privilegios de superusuario en cada comando.
+
+Este entorno permite empaquetar la API RESTful y todas sus dependencias en contenedores, facilitando su despliegue y gestión.
+
+![7.jpeg](assets/5.product-implementation/backend/implementation/7.jpeg)
+
+![9.jpeg](assets/5.product-implementation/backend/implementation/9.jpeg)
+
+4. Preparación para el Despliegue Automatizado (CI/CD)
+
+Finalmente, se preparó el terreno para la Integración y Despliegue Continuo (CI/CD) utilizando GitHub Actions. Se configuraron los "Secrets" en el repositorio del proyecto en GitHub, que incluyen:
+
+Credenciales del servidor (PROD_HOST, PROD_USER, PROD_SSH_KEY): Para que GitHub Actions pueda conectarse al servidor de Azure y desplegar nuevas versiones.
+
+Variables de entorno de la aplicación (PROD_DATABASE_*, JWT_SECRET): Para configurar la aplicación en el entorno de producción de forma segura sin exponer datos sensibles en el código.
+
+Esta configuración es la pieza clave que permite automatizar el despliegue de la API RESTful, haciendo que cualquier cambio en la rama principal del repositorio se refleje automáticamente en el servidor de producción.
+
+![8.jpeg](assets/5.product-implementation/backend/implementation/8.jpeg)
 
 #### 6.2.1.9. Team Collaboration Insights during Sprint
 
@@ -6802,6 +6778,16 @@ El desarrollo del **Sprint 1** se caracterizó por una **colaboración ágil y m
 - Consolidación de un flujo de trabajo estable con integración continua.  
 
 ![teamCollaboration.png](assets/images/chapter5/insights.jpg)
+
+#### Fronted insights
+#### Municipality Admin Web Application
+![frontendMunicipalityAdmin.png](assets/5.product-implementation/insights/frontendMunicipalityAdmin.png)
+
+#### WasteTrack Citizen Mobile Application
+![wasteTrackCitizenMobileApp.png](assets/5.product-implementation/insights/wasteTrackCitizenMobileApp.png)
+
+#### Backend insights
+![backend.png](assets/5.product-implementation/insights/backend.png)
 
 ---
 
