@@ -2570,32 +2570,31 @@ Representa el agregado principal del dominio, encapsulando toda la información 
 
 **Atributos principales:**
 
-| Atributo             | Tipo                  | Visibilidad | Descripción                                         |
-|----------------------|-----------------------|-------------|-----------------------------------------------------|
-| `id`                 | `Long`                | `private`   | Identificador único del contenedor en base de datos |
-| `containerId`        | `ContainerId`         | `private`   | Identificador de dominio del contenedor             |
-| `location`           | `Location`            | `private`   | Ubicación geográfica del contenedor                 |
-| `capacity`           | `ContainerCapacity`   | `private`   | Capacidad máxima del contenedor                     |
-| `currentFillLevel`   | `FillLevel`           | `private`   | Nivel actual de llenado del contenedor              |
-| `status`             | `ContainerStatus`     | `private`   | Estado operacional del contenedor                   |
-| `type`               | `ContainerType`       | `private`   | Tipo de residuos que almacena                       |
-| `lastCollectionDate` | `LocalDateTime`       | `private`   | Fecha de la última recolección                      |
-| `sensorReadings`     | `List<SensorReading>` | `private`   | Historial de lecturas de sensores                   |
-| `version`            | `Long`                | `private`   | Control de versión para optimistic locking          |
+| Atributo               | Tipo                  | Visibilidad | Descripción                                   |
+|------------------------|-----------------------|-------------|-----------------------------------------------|
+| `id`                   | `String`              | `private`   | Identificador único del contenedor            |
+| `location`             | `Location`            | `private`   | Ubicación geográfica del contenedor           |
+| `capacity`             | `ContainerCapacity`   | `private`   | Capacidad máxima del contenedor               |
+| `currentFillLevel`     | `FillLevel`           | `private`   | Nivel actual de llenado del contenedor        |
+| `status`               | `ContainerStatus`     | `private`   | Estado operacional del contenedor             |
+| `sensorId`             | `SensorId`            | `private`   | Identificador unico del sensor                |
+| `lastReadingTimestamp` | `LocalDateTime`       | `private`   | Fecha de la última lectura del sensor         |
+| `districtId`           | `DistrictId`          | `private`   | Identificador unico del distrito              |
+| `lastCollectionDate`   | `LocalDateTime`       | `private`   | Fecha de la última recolección                |
+| `collectionFrequency`  | `CollectionFrequency` | `private`   | Frecuencia de recoleccion en dias             |
+| `createdAt`            | `LocalDateTime`       | `private`   | Fecha de cuando fue creado                    |
+| `updatedAt`            | `LocalDateTime`       | `private`   | Fecha de cuando fue actualizado recientemente |
 
 **Métodos principales:**
 
-| Método                                | Tipo de Retorno | Visibilidad | Descripción                                                   |
-|---------------------------------------|-----------------|-------------|---------------------------------------------------------------|
-| `Container()`                         | `Constructor`   | `protected` | Constructor protegido para repositorio                        |
-| `Container(location, capacity, type)` | `Constructor`   | `public`    | Constructor con parámetros esenciales                         |
-| `Container(command)`                  | `Constructor`   | `public`    | Constructor desde comando usando Factory pattern              |
-| `addSensorReading(reading)`           | `void`          | `public`    | Agrega nueva lectura de sensor validando reglas de negocio    |
-| `updateFillLevel(newLevel)`           | `void`          | `public`    | Actualiza nivel de llenado y publica eventos de dominio       |
-| `markAsCollected()`                   | `void`          | `public`    | Marca contenedor como recolectado y resetea métricas          |
-| `isOverflowing()`                     | `boolean`       | `public`    | Verifica si el contenedor está desbordándose                  |
-| `needsCollection()`                   | `boolean`       | `public`    | Determina si requiere recolección basado en reglas de negocio |
-| `calculateFillRate()`                 | `double`        | `public`    | Calcula tasa de llenado para análisis predictivo              |
+| Método                                 | Tipo de Retorno | Visibilidad | Descripción                                                                |
+|----------------------------------------|-----------------|-------------|----------------------------------------------------------------------------|
+| `updateFillLevel(newLevel, timestamp)` | `void`          | `public`    | Actualiza nivel de llenado y publica eventos de dominio                    |
+| `markAsCollected(collectedAt)`         | `void`          | `public`    | Marca contenedor como recolectado y resetea métricas                       |
+| `requiresCollection()`                 | `boolean`       | `public`    | Marca contenedor como necesitado de ser recolectado                        |
+| `isOverflowing()`                      | `boolean`       | `public`    | Verifica si el contenedor está desbordándose                               |
+| `assignSensor(sensorId)`               | `boolean`       | `public`    | Asignar un sensor a un contenedor                                          |
+| `SchedulemantainanceDueToSensor()`     | `void`          | `public`    | Gestiona el mantenimiento de un contenedor segun la informacion del sensor |
 
 2. **`SensorReading` (Entity)**
 
@@ -2603,17 +2602,20 @@ Entidad que representa una lectura individual de los sensores IoT instalados en 
 
 **Atributos principales:**
 
-| Atributo       | Tipo              | Visibilidad | Descripción                            |
-|----------------|-------------------|-------------|----------------------------------------|
-| `id`           | `Long`            | `private`   | Identificador único de la lectura      |
-| `readingId`    | `SensorReadingId` | `private`   | Identificador de dominio de la lectura |
-| `containerId`  | `ContainerId`     | `private`   | Referencia al contenedor asociado      |
-| `sensorId`     | `SensorId`        | `private`   | Identificador del sensor físico        |
-| `timestamp`    | `LocalDateTime`   | `private`   | Momento de la lectura                  |
-| `fillLevel`    | `FillLevel`       | `private`   | Nivel de llenado registrado            |
-| `temperature`  | `Temperature`     | `private`   | Temperatura ambiente registrada        |
-| `sensorHealth` | `SensorHealth`    | `private`   | Estado de salud del sensor             |
-| `isValidated`  | `boolean`         | `private`   | Indica si la lectura ha sido validada  |
+| Atributo           | Tipo               | Visibilidad | Descripción                                   |
+|--------------------|--------------------|-------------|-----------------------------------------------|
+| `id`               | `Long`             | `private`   | Identificador único de la lectura             |
+| `containerId`      | `ContainerId`      | `private`   | Referencia al contenedor asociado             |
+| `fillLevel`        | `FillLevel`        | `private`   | Nivel de llenado registrado                   |
+| `batteryLevel`     | `BatteryLevel`     | `private`   | Nivel de bateria del sensor                   |
+| `isValidated`      | `boolean`          | `private`   | Indica si la lectura ha sido validada         |
+| `validationStatus` | `validationStatus` | `private`   | Cambia el estado si se valido el registro     |
+| `recordedAt`       | `LocalDateTime`    | `private`   | Fecha de cuando fue registro la informacion   |
+| `receivedAt`       | `LocalDateTime`    | `private`   | Fecha de cuando se recibio el registro        |
+| `createdAt`        | `LocalDateTime`    | `private`   | Fecha de cuando fue creado                    |
+| `updatedAt`        | `LocalDateTime`    | `private`   | Fecha de cuando fue actualizado recientemente |
+
+
 
 **Métodos principales:**
 
@@ -2626,12 +2628,14 @@ Entidad que representa una lectura individual de los sensores IoT instalados en 
 
 Los value objects implementan inmutabilidad y encapsulan validaciones de dominio específicas:
 
-- **`ContainerId`**: Identificador único con validaciones de formato
 - **`FillLevel`**: Porcentaje de llenado con métodos `isCritical()`, `isNearFull()`
 - **`ContainerCapacity`**: Volumen y peso máximo con cálculo de utilización
 - **`ContainerStatus`**: Estado operacional con transiciones válidas
-- **`SensorHealth`**: Estado de salud del sensor con indicadores de mantenimiento
 - **`Temperature`**: Temperatura con conversiones y validaciones de rango
+- **`ContainerType`**: Tipo de contenedor
+- **`CollectionFrequency`**: Los dias en que no ha sido recoggido el contenedor
+- **`BatteryLevel`**: Porcentaje de carga de la bateria del sensor
+- **`ValidationStatus`**: Estado de validacion del reporte del sensor
 
 **Factories (Creational Pattern):**
 
@@ -2771,9 +2775,6 @@ El diseño de base de datos implementa el modelo de dominio con las siguientes c
 **Tablas principales:**
 - **containers**: Aggregate root con datos principales y metadatos de auditoría
 - **sensor_readings**: Entity con optimizaciones para datos time-series
-- **maintenance_events**: Gestión de eventos de mantenimiento
-- **container_events**: Almacenamiento de domain events para procesamiento asíncrono
-- **container_analytics_cache**: Cache de análisis para optimización de rendimiento
 
 **Optimizaciones implementadas:**
 - **Índices geoespaciales**: GIST indexes para consultas por ubicación
@@ -2790,7 +2791,7 @@ El diseño de base de datos implementa el modelo de dominio con las siguientes c
 
 El esquema está optimizado para las operaciones identificadas en el dominio, incluyendo consultas geoespaciales, análisis de tendencias, y procesamiento de grandes volúmenes de datos IoT.
 
-### 4.2.2. Bounded Context: Route Planning
+### 4.2.2. Bounded Context: Route Planning & Execution
 
 En esta sección se presenta el análisis detallado del bounded context Route Planning, que encapsula toda la lógica de negocio relacionada con la optimización de rutas de recolección, la planificación inteligente de recorridos, y el seguimiento en tiempo real de la ejecución de rutas para maximizar la eficiencia operacional y minimizar costos ambientales.
 
@@ -2806,35 +2807,36 @@ Representa el agregado principal del dominio, encapsulando toda la información 
 
 **Atributos principales:**
 
-| Atributo              | Tipo                  | Visibilidad | Descripción                                     |
-|-----------------------|-----------------------|-------------|-------------------------------------------------|
-| `id`                  | `Long`                | `private`   | Identificador único de la ruta en base de datos |
-| `routeId`             | `RouteId`             | `private`   | Identificador de dominio de la ruta             |
-| `name`                | `String`              | `private`   | Nombre descriptivo de la ruta                   |
-| `municipalityId`      | `MunicipalityId`      | `private`   | Municipalidad propietaria de la ruta            |
-| `driverId`            | `DriverId`            | `private`   | Conductor asignado a la ruta                    |
-| `vehicleId`           | `VehicleId`           | `private`   | Vehículo asignado para la ejecución             |
-| `routeType`           | `RouteType`           | `private`   | Tipo de ruta (regular, emergencia, especial)    |
-| `status`              | `RouteStatus`         | `private`   | Estado actual de la ruta                        |
-| `scheduledDate`       | `LocalDateTime`       | `private`   | Fecha programada de ejecución                   |
-| `waypoints`           | `List<Waypoint>`      | `private`   | Lista ordenada de puntos de recolección         |
-| `optimizationMetrics` | `OptimizationMetrics` | `private`   | Métricas de optimización y rendimiento          |
-| `version`             | `Long`                | `private`   | Control de versión para optimistic locking      |
+| Atributo            | Tipo             | Visibilidad | Descripción                                     |
+|---------------------|------------------|-------------|-------------------------------------------------|
+| `id`                | `Long`           | `private`   | Identificador único de la ruta en base de datos |
+| `districtId`        | `DistrictId`     | `private`   | Identificador del distrito                      |
+| `driverId`          | `DriverId`       | `private`   | Conductor asignado a la ruta                    |
+| `vehicleId`         | `VehicleId`      | `private`   | Vehículo asignado para la ejecución             |
+| `routeType`         | `RouteType`      | `private`   | Tipo de ruta (regular, emergencia, especial)    |
+| `status`            | `RouteStatus`    | `private`   | Estado actual de la ruta                        |
+| `scheduledDate`     | `LocalDateTime`  | `private`   | Fecha programada de ejecución                   |
+| `startedAt`         | `LocalDateTime`  | `private`   | Fecha de cuando se inicio la ruta               |
+| `completedAt`       | `LocalDateTime`  | `private`   | Fecha de cuando se completo la ruta             |
+| `waypoints`         | `List<Waypoint>` | `private`   | Lista ordenada de puntos de recolección         |
+| `totalDistance`     | `Distance`       | `private`   | Distancia recorrida                             |
+| `estimatedDuration` | `Duration`       | `private`   | Duracion del recorrido estimada                 |
+| `estimatedDuration` | `Duration`       | `private`   | Duracion del recorrido final                    |
+| `createdAt`         | `LocalDateTime`  | `private`   | Fecha de cuando fue creado                      |
+| `updatedAt`         | `LocalDateTime`  | `private`   | Fecha de cuando fue actualizado recientemente   |
 
 **Métodos principales:**
 
-| Método                                   | Tipo de Retorno | Visibilidad | Descripción                                           |
-|------------------------------------------|-----------------|-------------|-------------------------------------------------------|
-| `Route()`                                | `Constructor`   | `protected` | Constructor protegido para repositorio                |
-| `Route(name, municipalityId, routeType)` | `Constructor`   | `public`    | Constructor con parámetros esenciales                 |
-| `addWaypoint(waypoint)`                  | `void`          | `public`    | Agrega waypoint validando restricciones de capacidad  |
-| `removeWaypoint(waypointId)`             | `void`          | `public`    | Elimina waypoint y recalcula secuencia                |
-| `startExecution()`                       | `void`          | `public`    | Inicia ejecución publicando eventos de dominio        |
-| `completeExecution()`                    | `void`          | `public`    | Marca ruta como completada y calcula métricas finales |
-| `optimizeWaypoints(strategy)`            | `void`          | `public`    | Optimiza orden de waypoints usando Strategy pattern   |
-| `updateProgress(currentLocation)`        | `void`          | `public`    | Actualiza progreso de ejecución en tiempo real        |
-| `isExecutable()`                         | `boolean`       | `public`    | Verifica si la ruta puede ser ejecutada               |
-| `canBeModified()`                        | `boolean`       | `public`    | Determina si la ruta permite modificaciones           |
+| Método                                         | Tipo de Retorno | Visibilidad | Descripción                                              |
+|------------------------------------------------|-----------------|-------------|----------------------------------------------------------|
+| `addWaypoint(containerId, priority)`           | `void`          | `public`    | Agrega waypoint validando restricciones de capacidad     |
+| `removeWaypoint(waypointId)`                   | `void`          | `public`    | Elimina waypoint y recalcula secuencia                   |
+| `assignToDriver(driverId, vehicleId)`          | `void`          | `public`    | Asignar conductor a esta ruta                            |
+| `startExecution()`                             | `void`          | `public`    | Inicia ejecución publicando eventos de dominio           |
+| `completeExecution()`                          | `void`          | `public`    | Marca ruta como completada y calcula métricas finales    |
+| `markWaypointAsVisited(waypointId, timestamp)` | `void`          | `public`    | Marca los waypoints visitados en el transcurso del viaje |
+| `canBeModified()`                              | `boolean`       | `public`    | Determina si la ruta permite modificaciones              |
+| `isOverdue()`                                  | `boolean`       | `public`    | Determina socurre un atraso                              |
 
 2. **`Waypoint` (Entity)**
 
@@ -2842,52 +2844,38 @@ Entidad que representa un punto individual de recolección dentro de una ruta, c
 
 **Atributos principales:**
 
-| Atributo               | Tipo             | Visibilidad | Descripción                           |
-|------------------------|------------------|-------------|---------------------------------------|
-| `id`                   | `Long`           | `private`   | Identificador único del waypoint      |
-| `waypointId`           | `WaypointId`     | `private`   | Identificador de dominio del waypoint |
-| `containerId`          | `ContainerId`    | `private`   | Referencia al contenedor a recolectar |
-| `location`             | `Location`       | `private`   | Ubicación geográfica del waypoint     |
-| `priority`             | `Priority`       | `private`   | Nivel de prioridad para optimización  |
-| `estimatedArrivalTime` | `LocalDateTime`  | `private`   | Hora estimada de llegada              |
-| `actualArrivalTime`    | `LocalDateTime`  | `private`   | Hora real de llegada registrada       |
-| `sequenceOrder`        | `Integer`        | `private`   | Orden en la secuencia de la ruta      |
-| `waypointStatus`       | `WaypointStatus` | `private`   | Estado actual del waypoint            |
+| Atributo               | Tipo             | Visibilidad | Descripción                             |
+|------------------------|------------------|-------------|-----------------------------------------|
+| `id`                   | `Long`           | `private`   | Identificador único del waypoint        |
+| `containerId`          | `ContainerId`    | `private`   | Referencia al contenedor a recolectar   |
+| `secuenceOrder`        | `Location`       | `private`   | Orden en la secuencia de la ruta        |
+| `priority`             | `Priority`       | `private`   | Nivel de prioridad para optimización    |
+| `status`               | `WaypointStatus` | `private`   | Estado actual del waypoint              |
+| `estimatedArrivalTime` | `LocalDateTime`  | `private`   | Hora estimada de llegada                |
+| `actualArrivalTime`    | `LocalDateTime`  | `private`   | Hora real de llegada registrada         |
+| `serviceTime`          | `Duration`       | `private`   | Tiempo de servicio del waypoint         |
+| `driverNote`           | `String`         | `private`   | Nota adicional escrita por el conductor |
 
 **Métodos principales:**
 
-| Método                        | Tipo de Retorno | Visibilidad | Descripción                                |
-|-------------------------------|-----------------|-------------|--------------------------------------------|
-| `markAsVisited()`             | `void`          | `public`    | Marca waypoint como visitado con timestamp |
-| `updateServiceTime(duration)` | `void`          | `public`    | Actualiza tiempo de servicio real          |
-| `canBeVisited()`              | `boolean`       | `public`    | Verifica si el waypoint puede ser visitado |
-| `isCompleted()`               | `boolean`       | `public`    | Determina si el waypoint está completado   |
+| Método                                    | Tipo de Retorno | Visibilidad | Descripción                                |
+|-------------------------------------------|-----------------|-------------|--------------------------------------------|
+| `markAsVisited(arrivalTime, serviceTime)` | `void`          | `public`    | Marca waypoint como visitado con timestamp |
+| `markAsSkipped(reason)`                   | `void`          | `public`    | Actualiza tiempo de servicio real          |
+| `canBeVisited()`                          | `boolean`       | `public`    | Verifica si el waypoint puede ser visitado |
+| `isCompleted()`                           | `boolean`       | `public`    | Determina si el waypoint está completado   |
 
-3. **`OptimizationResult` (Entity)**
-
-Entidad que almacena los resultados de algoritmos de optimización aplicados a rutas, permitiendo análisis comparativo y mejora continua.
-
-**Atributos principales:**
-
-| Atributo                   | Tipo                    | Visibilidad | Descripción                              |
-|----------------------------|-------------------------|-------------|------------------------------------------|
-| `algorithmUsed`            | `OptimizationAlgorithm` | `private`   | Algoritmo utilizado para optimización    |
-| `executionTime`            | `Duration`              | `private`   | Tiempo de ejecución del algoritmo        |
-| `optimizationScore`        | `Double`                | `private`   | Puntuación de calidad de la optimización |
-| `totalDistance`            | `Distance`              | `private`   | Distancia total de la ruta optimizada    |
-| `estimatedFuelConsumption` | `Double`                | `private`   | Consumo estimado de combustible          |
-| `co2Emissions`             | `Double`                | `private`   | Emisiones de CO2 estimadas               |
 
 **Value Objects:**
 
 Los value objects implementan inmutabilidad y encapsulan validaciones específicas del dominio:
 
-- **`RouteId`**: Identificador único con validaciones de formato
+- **`RouteType`**: Tipo de ruta de recoleccion
 - **`RouteStatus`**: Estado con transiciones válidas y restricciones de modificación
 - **`WaypointStatus`**: Estado del waypoint con validaciones de progreso
 - **`Priority`**: Nivel de prioridad comparable para algoritmos de optimización
 - **`Distance`**: Distancia con operaciones matemáticas y conversiones
-- **`OptimizationMetrics`**: Métricas complejas con cálculos de eficiencia
+- **`PriorityLevel`**: Nivel de prioridad de cada waypoint
 
 **Factories (Creational Pattern):**
 
@@ -3038,9 +3026,6 @@ El diseño de base de datos implementa el modelo de dominio con optimizaciones e
 **Tablas principales:**
 - **routes**: Aggregate root con métricas de optimización y control de ejecución
 - **waypoints**: Entity con índices geoespaciales para consultas de proximidad
-- **optimization_results**: Histórico de algoritmos con métricas de rendimiento
-- **route_progress**: Seguimiento en tiempo real con actualizaciones frecuentes
-- **algorithm_performance_cache**: Cache de rendimiento para selección automática de algoritmos
 
 **Optimizaciones especializadas:**
 - **Índices geoespaciales**: GIST indexes para consultas de ubicación y proximidad
