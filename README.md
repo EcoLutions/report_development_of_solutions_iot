@@ -69,6 +69,10 @@ En esta sección se documenta la colaboración del equipo en la elaboración del
 * URL del repositorio del Project Report en la organización de GitHub del equipo:
 * [https://github.com/EcoLutions/Report-Desarrollo-de-Soluciones-IoT](https://github.com/EcoLutions/Report-Desarrollo-de-Soluciones-IoT)
 
+Las gráficas y registros de actividad demuestran una participación constante y coordinada entre los miembros del equipo, evidenciando la distribución equilibrada de tareas, el cumplimiento de los plazos establecidos y la coherencia entre los commits realizados y las versiones finales del documento entregado.
+
+![teamCollaboration.png](assets/images/chapter5/insights.jpg)
+
 <div style="page-break-before: always"></div>
 
 # Contenido
