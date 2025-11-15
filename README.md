@@ -6824,8 +6824,21 @@ El desarrollo del **Sprint 1** se caracterizó por una **colaboración ágil y m
 
 #### 6.2.2.2. Aspect Leaders and Collaborators
 
+Durante el **Sprint 2**, se definieron los roles y responsabilidades de cada integrante del equipo con el fin de asegurar una ejecución eficiente de las tareas establecidas en el **Product Backlog**.  
+Cada miembro asumió un rol específico según su área de especialización, garantizando la integración técnica y la colaboración continua entre los distintos componentes del sistema WasteTrack.
+Las responsabilidades y roles de este sprint son casi identicas a las del sprint 1
 
+| Aspecto                        | Líder                   | Colaboradores                    | Responsabilidades Principales                                                                                                                                   |
+|--------------------------------|-------------------------|----------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Backend & API**              | **Jhosepmyr Orlando**   | Eric Hernandez                   | Implementación de microservicios con  **Spring Boot**, desarrollo de controladores REST, conexión con la base de datos y despliegue de servicios en la nube.    |
+| **Frontend Web**               | **Carlos Andrés**       | Joaquín Rivadeneyra y Elmer Riva | Diseño e implementación de la interfaz web administrativa con **React**, integración con los servicios backend y aplicación de principios de diseño responsivo. |
+| **Aplicación Móvil (Flutter)** | **Elmer Riva**          | Joaquín Rivadeneyra              | Desarrollo de la aplicación móvil, diseño de vistas principales, conexión con los endpoints REST y validación de la experiencia de usuario.                     |
+| **Despliegue & DevOps**        | **Eric Hernandez**      | Jhosepmyr Orlando                | Configuración del entorno de despliegue de contenedores con **Docker** y automatización de procesos mediante **pipelines CI/CD**.                               |
+| **Documentación & QA**         | **Joaquín Rivadeneyra** | Todos los integrantes            | Redacción de la documentación técnica, recopilación de evidencias de desarrollo, diseño de casos de prueba y validación de calidad del software.                |
 
+El equipo mantuvo una comunicación constante a través de herramientas colaborativas como **Trello**, **Slack** y **GitHub Projects**, lo que permitió una gestión ágil de tareas, un seguimiento transparente de los avances y una resolución oportuna de incidencias.
+
+---
 
 #### 6.2.2.3. Sprint Backlog 2
 
