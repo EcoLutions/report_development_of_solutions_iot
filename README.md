@@ -6891,6 +6891,47 @@ El equipo mantuvo una comunicación constante a través de herramientas colabora
 #### 6.2.1.9. Team Collaboration Insights during Sprint
 
 
+## 6.3. Validation Interviews
+
+### 6.3.1.  Diseño de Entrevistas
+
+**Entrevista Administrador Municipal**
+
+Por favor, inicia sesión en la plataforma con tu usuario y contraseña.
+
+**Tarea 1: Creación de Conductor**
+
+Imagina que tienes un nuevo conductor. ¿Puedes mostrarme cómo lo registrarías en el sistema?
+
+¿dónde puedes verificar que ese nuevo conductor ya es parte de tu equipo?
+
+**Tarea 2: Creación de Vehículo**
+
+¿Puedes mostrarme cómo lo registrarías en la flota?
+
+¿Cómo confirmarías que el nuevo camión se añadió correctamente a tu inventario?
+
+**Tarea 3: Creación de Contenedor**
+
+¿Puedes mostrarme cómo registrarías ese nuevo dispositivo IoT en la plataforma?
+
+¿Dónde puedes ver que ese nuevo contenedor ya aparece en tu lista o en el mapa?
+
+**Preguntas de Cierre**
+
+En una escala del 1 al 5, donde 1 es "muy difícil" y 5 es "muy fácil", ¿qué tan fácil te pareció registrar estos tres elementos?
+
+¿Cuál de los tres procesos (conductor, camión o contenedor) te pareció el más lento o confuso? ¿Por qué?
+
+
+### 6.3.2.  Registro de Entrevistas
+
+### 6.3.3.  Evaluaciones según heurísticas
+
+### 6.4.  Video About-the-Product
+
+
+
 
 # Conclusiones
 
