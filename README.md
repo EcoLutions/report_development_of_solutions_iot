@@ -6518,11 +6518,11 @@ Se ejecutaron flujos completos a través de la API para validar la interacción 
       ![Creación de una ruta](./assets/6.product-verification-validation/6.1.testing-suites-validation/6.1.4.core-system-tests/routes-post.png)
 
 
-#### 6.2.1.6. Execution Evidence for Sprint Review
+####  Execution Evidence for Sprint Review
 
 A continuación, se presentan las evidencias de implementación y despliegue de los distintos componentes desarrollados durante el **Sprint 1**, correspondientes a la Landing Page, Frontend, Backend e IoT del sistema **WasteTrack**.
 
-### 5.2.2. Implemented Landing Page Evidence
+###  Implemented Landing Page Evidence
 
 **Enlace de la landing page:** [https://wastetracklanding.vercel.app/](https://wastetracklanding.vercel.app/)
 
@@ -6539,7 +6539,7 @@ Pasos para desplegar un landing page en Vercel
     - Publish directory: `build`
 4. Desplegar la aplicación
 
-### 5.2.3. Implemented Frontend-Web Application Evidence
+###  Implemented Frontend-Web Application Evidence
 
 **Enlace de la aplicacion web de administrador municipal** [https://waste-track-admin-app.netlify.app/dashboard](https://waste-track-admin-app.netlify.app/dashboard)
 
@@ -6801,6 +6801,57 @@ El desarrollo del **Sprint 1** se caracterizó por una **colaboración ágil y m
 ![backend.png](assets/5.product-implementation/insights/backend.png)
 
 ---
+
+### 6.2.2. Sprint 2
+
+#### 6.2.2.1. Sprint Planning 2
+
+| **Elemento**                           | **Detalle**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+|----------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Número de Sprint**                   | Sprint 2                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| **Contexto de la planificación**       | Expansión de funcionalidades sobre el "esqueleto funcional" y estabilización del *core* del negocio.                                                                                                                                                                                                                                                                                                                                                                                              |
+| **Fecha**                              | 2025-10-27                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| **Hora**                               | 08:00 AM                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| **Lugar**                              | Sesión virtual vía Discord                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| **Elaborado por**                      | Eric Hernandez                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| **Participantes**                      | Joaquín Rivadeneyra, Jhosepmyr Orlando, Elmer Augusto, Joaquín Rivadeneyra, Carlos Andrés                                                                                                                                                                                                                                                                                                                                                                                                         |
+| **Resumen del Sprint anterior**        | Se completó con éxito el "esqueleto funcional" del ecosistema. La API central (`waste_track_platform`) está desplegada y operativa en **Microsoft Azure**. La aplicación web administrativa (`waste_track_admin_app`) desarrollada en **React** permite la autenticación y la gestión (CRUD) de colaboradores, flota y dispositivos IoT. La aplicación móvil de ciudadano (`waste_track_citizen_app`) en Flutter es funcional, permitiendo el *onboarding* y el envío de reportes de incidencias. |
+| **Resumen retrospectivo**              | Se identificaron cuellos de botella en la integración entre el backend y las aplicaciones cliente (web/móvil). Se necesita mejorar la comunicación de cambios en los *contracts* de la API y formalizar los flujos de pruebas E2E para las nuevas funcionalidades.                                                                                                                                                                                                                                |
+| **Objetivo del Sprint (Sprint Goal)**  | Nuestro enfoque es implementar la lógica de negocio central del sistema, centrándonos en la optimización de rutas y la gestión de flota, e introducir al tercer actor: el Conductor                                                                                                                                                                                                                                                                                                               |
+| **Velocidad del Sprint**               | 30                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| **Total de Story Points en el Sprint** | 30                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+
+
+#### 6.2.2.2. Aspect Leaders and Collaborators
+
+
+
+
+#### 6.2.2.3. Sprint Backlog 2
+
+### **Sprint Backlog - Detalle de Tareas (Sprint 2)**
+
+
+#### 6.2.1.4. Development Evidence for Sprint Review
+
+
+#### 6.2.1.5. Testing Suite Evidence for Sprint Review
+
+
+
+#### 6.2.2.5 Execution Evidence for Sprint Review
+
+
+#### 6.2.1.7. Services Documentation Evidence for Sprint Review
+
+
+
+#### 6.2.1.8. Software Deployment Evidence for Sprint Review
+
+
+#### 6.2.1.9. Team Collaboration Insights during Sprint
+
+
 
 # Conclusiones
 
