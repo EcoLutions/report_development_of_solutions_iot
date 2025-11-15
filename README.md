@@ -7477,7 +7477,52 @@ En una escala del 1 al 5, donde 1 es "muy difícil" y 5 es "muy fácil", ¿qué 
 
 ### 6.3.2.  Registro de Entrevistas
 
+
+
+
 ### 6.3.3.  Evaluaciones según heurísticas
+
+En este capítulo se detalla la evaluación de usabilidad de WasteTrack mediante la técnica de Evaluaciones según Heurísticas de Nielsen, identificando fortalezas y áreas de mejora para optimizar la experiencia tanto de usuarios municipales como de ciudadanos.
+
+
+| #  | Heurística                                                              | Descripción                                              | Hallazgo principal                                                                                                                    | Severidad |
+|:---|:------------------------------------------------------------------------|:---------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------|:----------|
+| 1  | Visibilidad del estado del sistema                                      | Informar al usuario sobre lo que ocurre en todo momento. | El nivel de llenado de contenedores tarda en actualizarse tras cambio de configuración; falta indicador de “actualizando”.            | 3         |
+| 2  | Relación entre sistema y mundo real                                     | Utilizar lenguaje y metáforas familiares.                | El icono de “tipo de residuo” usa símbolos poco intuitivos (p.ej., triángulo en lugar de contenedor orgánico).                        | 2         |
+| 3  | Control y libertad del usuario                                          | Permitir deshacer/rehacer fácilmente acciones.           | No existe opción de revertir masivamente cambios en umbrales tras guardarlos; cada contenedor debe ajustarse individualmente.         | 3         |
+| 4  | Consistencia y estándares                                               | Homogeneidad en operaciones, términos y diseños.         | Botones “Guardar” y “Aplicar” en diferentes pantallas generan confusión.                                                              | 2         |
+| 5  | Prevención de errores                                                   | Diseñar de modo que se eviten errores graves.            | El umbral de llenado acepta valores fuera de rango (por ejemplo, 120%), lo que provoca rutas erróneas.                                | 4         |
+| 6  | Reconocer antes que recordar                                            | Minimizar carga de memoria, mostrar opciones y ayudas.   | Falta texto descriptivo en las selecciones de horario de recolección; solo aparecen abreviaturas (“08–10”) sin aclarar si es AM o PM. | 2         |
+| 7  | Flexibilidad y eficiencia de uso                                        | Atajos para usuarios frecuentes, personalización.        | No hay atajos (p. ej., copiar configuración de un contenedor a otro) ni plantillas predefinidas para tipos de residuo comunes.        | 3         |
+| 8  | Estética y diseño minimalista                                           | Evitar información irrelevante o excesiva.               | El panel municipal muestra demasiados datos (gráficos, listas y botones) en una sola vista, generando sobrecarga visual.              | 2         |
+| 9  | Ayuda a los usuarios a reconocer, diagnosticar y recuperarse de errores | Mensajes claros y apoyo en la corrección.                | El mensaje de error por valor de umbral fuera de rango es genérico (“Valor inválido”) sin indicar rango permitido.                    | 4         |
+| 10 | Ayuda y documentación                                                   | Soporte accesible e integrado para aprender el sistema.  | No existe sección de ayuda dentro de la interfaz; los usuarios deben consultar un manual externo.                                     | 2         |
+
+A partir de la evualuación realizada, pudimos obtener las siguientes áreas de mejora:
+
+Validación de parámetros
+
+Implementar controles que solo acepten valores numéricos dentro de rangos definidos (0–100% para umbral).
+Mostrar mensajes de error específicos como “Ingrese un valor entre 0% y 100%”.
+Indicadores de actualización
+
+Añadir un spinner o mensaje “Actualizando nivel de llenado…” tras guardar cambios, para reforzar la visibilidad del sistema.
+Atajos y plantillas
+
+Permitir clonar configuraciones de contenedores y crear plantillas por tipo de residuo, reduciendo tiempo de gestión.
+Claridad en iconografía y texto
+
+Revisar iconos de residuos y horarios, añadir leyendas o tooltips descriptivos.
+Ayuda integrada
+
+Incluir un módulo de ayuda contextual, accesible desde cada pantalla, con preguntas frecuentes y guías rápidas.
+Tras haber realizado la serie de evaluaciones a WasteTrack, se han revelado tanto fortalezas (interfaz intuitiva general, configuración detallada de contenedores) como oportunidades de mejora críticas (validación de datos, mensajes de error, y carga cognitiva). Atender estos puntos garantizará:
+
+Mayor eficiencia en la gestión municipal.
+Reducción de errores operativos, evitando rutas incorrectas.
+Mejor satisfacción del ciudadano gracias a una interfaz más clara y predictiva.
+Con la implementación de las recomendaciones, podremos optimizar la usabilidad de WasteTrack y reforzar su misión de mejorar la sostenibilidad urbana.
+
 
 ### 6.4.  Video About-the-Product
 
