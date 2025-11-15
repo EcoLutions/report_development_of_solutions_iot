@@ -7408,7 +7408,25 @@ En una escala del 1 al 5, donde 1 es "muy difícil" y 5 es "muy fácil", ¿qué 
 
 ### 6.3.2.  Registro de Entrevistas
 
+**Segmento Objetivo: Administrador Municipal**
 
+**Entrevista 1:** Salim Ramirez
+
+![EntrevistaValidacion1](assets/6.product-verification-validation/6.3.validation-interviews/entrevistaValiMuni1.png)
+
+Link: [https://upcedupe-my.sharepoint.com/:v:/g/personal/u20221c857_upc_edu_pe/IQBckezM9fDsTYH5fdmoHhuzASES8BJpVa7lkyxUvc-bQIY?e=DSYF0A&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifSwicGxheWJhY2tPcHRpb25zIjp7fX0%3D](https://upcedupe-my.sharepoint.com/:v:/g/personal/u20221c857_upc_edu_pe/IQBckezM9fDsTYH5fdmoHhuzASES8BJpVa7lkyxUvc-bQIY?e=DSYF0A&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifSwicGxheWJhY2tPcHRpb25zIjp7fX0%3D)
+
+Resumen:
+Salim Ramirez es un administrador municipal con experiencia. Durante la entrevista se mostro cooperativo al guiarlo para uitilizar la aplicacion. No tuvo mucha dificultad para crear los conductores y vehiculos, pero si tuvo unos pequeños problemas al registrar los contenedores, ya que no estaba familiarizado con la interfaz y el mapa interactivo. Al final, calificó la experiencia con un 4, indicando que el proceso fue bastante sencillo en general.
+
+**Entrevista 2:** Jose Quispe
+
+![EntrevistaValidacion1](assets/6.product-verification-validation/6.3.validation-interviews/entrevistaValiMuni1.png)
+
+Link: [https://upcedupe-my.sharepoint.com/:v:/g/personal/u20221c857_upc_edu_pe/IQBckezM9fDsTYH5fdmoHhuzASES8BJpVa7lkyxUvc-bQIY?e=BwovBG&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifSwicGxheWJhY2tPcHRpb25zIjp7InN0YXJ0VGltZUluU2Vjb25kcyI6NzMwLjQ1fX0%3D](https://upcedupe-my.sharepoint.com/:v:/g/personal/u20221c857_upc_edu_pe/IQBckezM9fDsTYH5fdmoHhuzASES8BJpVa7lkyxUvc-bQIY?e=BwovBG&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifSwicGxheWJhY2tPcHRpb25zIjp7InN0YXJ0VGltZUluU2Vjb25kcyI6NzMwLjQ1fX0%3D)
+
+Resumen:
+Jose Quispe es un administrador municipal con experiencia en gestión de residuos. Durante la entrevista, mostró confianza al navegar por la aplicación y completar las tareas asignadas. No enfrentó dificultades significativas al crear conductores, vehículos o contenedores. Sin embargo si destaco que antes tuvo dificultades para encontrar el boton para la pestaña de conductores. Al finalizar, calificó la experiencia con un 5, destacando la facilidad de uso y la claridad de la interfaz.
 
 
 ### 6.3.3.  Evaluaciones según heurísticas
