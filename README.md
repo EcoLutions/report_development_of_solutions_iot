@@ -6767,6 +6767,24 @@ Esta configuración es la pieza clave que permite automatizar el despliegue de l
 
 ![8.jpeg](assets/5.product-implementation/backend/implementation/8.jpeg)
 
+
+- **Despliegue de Aplicaciones Mobile:**
+
+Para esta seccion se realizo un despliege de la app en firebase siguiendo la base.
+
+![](/assets/6.product-verification-validation/6.2.implementation/mobileDeploy1.png)
+
+En esta imagen se observa la creacion del projecto en el firebase.
+
+![](/assets/6.product-verification-validation/6.2.implementation/mobileDeploy2.png)
+
+En esta imagen se observa la finalizacion de la subida del apk para enviarlo al desarrolladores que revisaran las funcionalidades.
+
+
+![](/assets/6.product-verification-validation/6.2.implementation/mobileDeploy3.png)
+
+En esta imagen se observa el envio del apk a los que inspeccion de la aplicacion.
+
 #### 6.2.1.9. Team Collaboration Insights during Sprint
 
 El desarrollo del **Sprint 1** se caracterizó por una **colaboración ágil y multidisciplinaria** entre los miembros del equipo, aplicando prácticas del marco **Scrum** y herramientas digitales para optimizar la comunicación y la gestión de tareas.
