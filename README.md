@@ -6873,23 +6873,574 @@ El equipo mantuvo una comunicación constante a través de herramientas colabora
 
 #### 6.2.1.4. Development Evidence for Sprint Review
 
+En esta sección se presentan las principales evidencias de desarrollo del **Sprint 2**, incluyendo commits, ramas, capturas de funcionalidades implementadas y el progreso documentado en los repositorios oficiales del proyecto.  
+Este sprint se centró en la integración avanzada entre módulos, la lógica de optimización de rutas, la creación de la App de Conductores y los nuevos endpoints del núcleo del negocio.
 
-#### 6.2.1.5. Testing Suite Evidence for Sprint Review
+---
 
+## **Development Evidence – Backend**
 
+**Repositorio oficial del backend:**  
+https://github.com/EcoLutions/waste_track_platform
+
+Se incluyen las evidencias de la implementación de la lógica de optimización de rutas, creación de endpoints especializados para Conductor, Dashboard y KPIs, junto con mejoras en la arquitectura interna.
+
+### **Commits relevantes del Sprint 2**
+
+| Repository | Branch | Commit ID | Commit Message | Commit Message Body | Date |
+|-----------|--------|------------|----------------|----------------------|------|
+| waste_track_platform | main | *Varias capturas y PR del Sprint 2* | Implementación del `RouteOptimizationService` | Integración de librería de optimización y generación de secuencia de `Waypoints`. | 2025-10 |
+| waste_track_platform | main | *PR Sprint 2* | Feat: Endpoint `/driver/my-route` | Nuevo endpoint para consulta de ruta asignada a conductor autenticado. | 2025-11 |
+| waste_track_platform | main | *PR Sprint 2* | Feat: KPIs Dashboard | Nuevo endpoint `/dashboard/kpis`. | 2025-11 |
+| waste_track_platform | main | *PR Sprint 2* | Feat: Vehicle Status | Endpoint `/vehicles/status`. | 2025-11 |
+| waste_track_platform | main | *PR Sprint 2* | Feat: Confirm Waypoint | Implementación de `POST /waypoints/{id}/confirm`. | 2025-11 |
+
+---
+
+## **Development Evidence – Frontend Web**
+
+**Repositorio del frontend administrativo:**  
+https://github.com/EcoLutions/waste_track_admin_app
+
+Durante este sprint se añadieron las vistas y componentes del nuevo Dashboard, la integración del generador de rutas optimizadas, mapas y visualización en tiempo real de flota.
+
+### **Commits relevantes del Sprint 2**
+
+| Repository | Branch | Commit ID | Commit Message | Body | Date |
+|-----------|--------|------------|----------------|------|------|
+| wastetrack-frontend | main | 97bb200db61f3d8c28e80c98512f86d87d140529 | add: route optimize with IA | Integración con backend para rutas optimizadas. | 2025-11 |
+| wastetrack-frontend | main | 88acbb0f7ec64fd9612562046f0f8eb18b98496a | add maps config | Configuración de mapas para vista de flota. | 2025-11 |
+| wastetrack-frontend | main | 19b65e165659f7537652db0a34e304ed92ae2c7e | add design | Nuevos componentes UI (Dashboard + Gestión de rutas). | 2025-11 |
+
+## **Development Evidence – Mobile App**
+
+**Repositorio del aplicativo móvil:**  
+https://github.com/EcoLutions/waste_track_citizen_app
+
+Durante este sprint se avanzó en el desarrollo del MVP móvil, incluyendo la autenticación de usuarios, visualización de contenedores geolocalizados, seguimiento de rutas asignadas y mejoras de UI/UX orientadas a conductores y operadores de campo.
+
+### **Commits relevantes del Sprint 2**
+
+| Repository               | Branch | Commit ID                               | Commit Message           | Body                                                                 | Date      |
+|--------------------------|--------|-------------------------------------------|---------------------------|----------------------------------------------------------------------|-----------|
+| waste_track_mobile_app   | main   | c12f3a90afd88912ce1049ffab88e92fcbd11b21 | feat: login & token storage | Implementación del flujo de autenticación y persistencia segura del token. | 2025-11 |
+| waste_track_mobile_app   | main   | 4af2e71cc9e98fa3f903c9ae33291fcd37b44c11 | feat: containers map      | Mapa interactivo mostrando contenedores y estados en tiempo real.   | 2025-11 |
+| waste_track_mobile_app   | main   | 81d923bd047a02d177d4230af61220b363fb71e9 | ui: route overview screen | Pantalla de rutas asignadas con detalles y pasos a seguir.          | 2025-11 |
+
+---
+
+#### 6.2.1.5. **Testing Suite Evidence for Sprint Review – Sprint 2**
+
+Durante el Sprint 2 se realizaron pruebas unitarias, de integración y pruebas funcionales orientadas a validar los nuevos módulos desarrollados: optimización de rutas, panel administrativo, simulación, visualización móvil y gestión avanzada de contenedores.  
+Asimismo, se ejecutaron escenarios BDD (Behavior-Driven Development) para asegurar el cumplimiento de criterios de aceptación del MVP.
+
+A continuación, se presentan los principales escenarios de prueba ejecutados durante este sprint.
+
+---
+
+### **Feature: Simulación de recolección**
+
+**Scenario: Simulación exitosa con datos reales**  
+**Given** que el funcionario ingresa los parámetros de simulación  
+**When** el sistema ejecuta el endpoint `/simulation`  
+**Then** se genera una simulación válida  
+**And** se retornan métricas como tiempo total, distancia y puntos críticos  
+
+---
+
+### **Feature: Gestión de contenedores**
+
+**Scenario: Actualización del límite de un contenedor**  
+**Given** que el usuario administrador modifica el límite de llenado  
+**When** se envía la solicitud al endpoint `/container/{id}/limit`  
+**Then** el sistema actualiza el límite correctamente  
+**And** se refleja en las consultas posteriores  
+
+---
+
+### **Feature: Visualización móvil de contenedores**
+
+**Scenario: Renderización correcta del mapa en la app móvil**  
+**Given** que el conductor abre la vista de mapa  
+**When** la app carga contenedores desde la API  
+**Then** se muestran los contenedores con colores según estado  
+**And** el mapa se actualiza en tiempo real  
+
+---
+
+### **Feature: Alertas por zonas críticas**
+
+**Scenario: Notificación por acumulación en zona prioritaria**  
+**Given** que una zona tiene múltiples contenedores llenos  
+**When** el sistema detecta que se superó el umbral crítico  
+**Then** se envía una notificación al funcionario para priorizar la zona  
+
+---
+
+### **Feature: Alertas por retraso de camión**
+
+**Scenario: Alerta ante demora en recolección**  
+**Given** que un camión no ha pasado por una zona en el tiempo esperado  
+**When** se supera el límite de tiempo estimado  
+**Then** el sistema envía una alerta al ciudadano indicando la demora  
+
+---
+
+### **Feature: Configuración de alertas**
+
+**Scenario: Preferencias personalizadas de notificaciones**  
+**Given** que el ciudadano accede a la sección de configuración  
+**When** selecciona las alertas que desea recibir  
+**Then** el sistema guarda las preferencias  
+**And** solo envía las alertas seleccionadas  
+
+---
+
+### **Feature: Historial de rutas**
+
+**Scenario: Visualización del historial de un camión**  
+**Given** que el funcionario selecciona un camión  
+**When** accede a la sección de historial  
+**Then** el sistema muestra todas las rutas anteriores del vehículo  
+
+---
+
+### **Feature: Reporte semanal**
+
+**Scenario: Exportación de reporte en PDF**  
+**Given** que el administrador define un rango de fechas  
+**When** hace clic en “exportar”  
+**Then** el sistema genera y descarga el archivo PDF correspondiente  
+
+---
+
+### **Feature: Residuos recolectados por tipo**
+
+**Scenario: Desglose por categoría de residuos**  
+**Given** que el funcionario accede al reporte de recolección  
+**When** filtra por tipo de residuo  
+**Then** el sistema muestra los totales recolectados desglosados por categoría  
+
+---
 
 #### 6.2.2.5 Execution Evidence for Sprint Review
+
+A continuación, se presentan las evidencias de implementación y despliegue de los distintos componentes desarrollados durante el **Sprint 1**, correspondientes a la Landing Page, Frontend, Backend e IoT del sistema **WasteTrack**.
+
+###  Implemented Landing Page Evidence
+
+**Enlace de la landing page:** [https://wastetracklanding.vercel.app/](https://wastetracklanding.vercel.app/)
+
+![landing page](./assets/5.product-implementation/5.2.implementation&deployment/landingPageEcolution.png)
+
+Pasos para desplegar un landing page en Vercel
+
+![vercel](./assets/5.product-implementation/5.2.implementation&deployment/vercel.png)
+
+1. Preparación del repositorio funcional en ambiente local
+2. Crear una cuenta en Vercel
+3. Desplegar desde GitHub
+    - Build command: `npm run build` o `yarn build`
+    - Publish directory: `build`
+4. Desplegar la aplicación
+
+###  Implemented Frontend-Web Application Evidence
+
+**Enlace de la aplicacion web de administrador municipal** [https://waste-track-admin-app.netlify.app/dashboard](https://waste-track-admin-app.netlify.app/dashboard)
+
+#### Imagenes de la aplicación web para administrador municipal
+
+![dashboard.png](assets/5.product-implementation/web-application/dashboard.png)
+
+![collaborator_list.png](assets/5.product-implementation/web-application/collaborator_list.png)
+
+![add_collaborator.png](assets/5.product-implementation/web-application/add_collaborator.png)
+
+![edit_collaborator.png](assets/5.product-implementation/web-application/edit_collaborator.png)
+
+![deactivate_collaborator.png](assets/5.product-implementation/web-application/deactivate_collaborator.png)
+
+![no_registered_vehicles.png](assets/5.product-implementation/web-application/no_registered_vehicles.png)
+
+![fleet_list.png](assets/5.product-implementation/web-application/fleet_list.png)
+
+![add_vehicle.png](assets/5.product-implementation/web-application/add_vehicle.png)
+
+![edit_vehicle.png](assets/5.product-implementation/web-application/edit_vehicle.png)
+
+![deleteVehicle.png](assets/5.product-implementation/web-application/deleteVehicle.png)
+
+![no_iot_device.png](assets/5.product-implementation/web-application/no_iot_device.png)
+
+![iot_list.png](assets/5.product-implementation/web-application/iot_list.png)
+
+![add_iot_device.png](assets/5.product-implementation/web-application/add_iot_device.png)
+
+![configure_iot_device.png](assets/5.product-implementation/web-application/configure_iot_device.png)
+
+![deleteIotDevice.png](assets/5.product-implementation/web-application/deleteIotDevice.png)
+
+#### Implemented Mobile Application Evidence
+
+#### WasteTrack Citizen mobile app
+
+![splashImage.png](assets/5.product-implementation/mobile_application/citizen_mobile_app/splashImage.png)
+
+![welcomeView.png](assets/5.product-implementation/mobile_application/citizen_mobile_app/welcomeView.png)
+
+![selectMunicipality1.png](assets/5.product-implementation/mobile_application/citizen_mobile_app/selectMunicipality1.png)
+
+![selectMunicipality2.png](assets/5.product-implementation/mobile_application/citizen_mobile_app/selectMunicipality2.png)
+
+![home_view.png](assets/5.product-implementation/mobile_application/citizen_mobile_app/home_view.png)
+
+![changeMunicipality.png](assets/5.product-implementation/mobile_application/citizen_mobile_app/changeMunicipality.png)
+
+![notifications.png](assets/5.product-implementation/mobile_application/citizen_mobile_app/notifications.png)
+
+![report.png](assets/5.product-implementation/mobile_application/citizen_mobile_app/report.png)
 
 
 #### 6.2.1.7. Services Documentation Evidence for Sprint Review
 
+Durante el **Sprint 2**, se ampliaron y consolidaron los principales servicios del backend Y fronted de *WasteTrack Platform*, incluyendo autenticación, gestión de usuarios, gestión de contenedores, vehículos, alertas, lecturas de sensores y perfiles. Todos los endpoints fueron documentados siguiendo **OpenAPI 3.0** y validados mediante **Swagger UI** y **Postman**.
 
+A continuación se presentan los endpoints actualizados utilizados durante este sprint:
 
-#### 6.2.1.8. Software Deployment Evidence for Sprint Review
+---
 
+## **Auth Endpoints**
+
+<table>
+  <thead>
+    <tr>
+      <th>Endpoint</th>
+      <th>Method</th>
+      <th>Description</th>
+      <th>Parameters</th>
+      <th>Request Body</th>
+      <th>Response Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>/api/v1/auth/signup</td>
+      <td>POST</td>
+      <td>Register a new user</td>
+      <td>None</td>
+      <td>
+<pre><code>{
+  "name": "Joaquin Rivadeneyra",
+  "email": "joaquin@example.com",
+  "password": "wastetrack123",
+  "role": "citizen",
+  "address": "Av. Primavera 123",
+  "phone": "+51987654321"
+}</code></pre>
+      </td>
+      <td>
+<pre><code>// Status: 201 Created
+{
+  "message": "User created successfully",
+  "user_id": "7b191c24-ac11-4be2-8bf8-a92fcd451925"
+}</code></pre>
+      </td>
+    </tr>
+
+    <tr>
+      <td>/api/v1/auth/signin</td>
+      <td>POST</td>
+      <td>User login and token generation</td>
+      <td>None</td>
+      <td>
+<pre><code>{
+  "email": "joaquin@example.com",
+  "password": "wastetrack123"
+}</code></pre>
+      </td>
+      <td>
+<pre><code>// Status: 200 OK
+{
+  "access_token": "eyJh...abc",
+  "token_type": "bearer",
+  "user": {
+    "guid": "7b191c24-ac11-4be2-8bf8-a92fcd451925",
+    "name": "Joaquin Rivadeneyra",
+    "email": "joaquin@example.com",
+    "role": "citizen"
+  }
+}</code></pre>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## **User Endpoints**
+
+<table>
+  <thead>
+    <tr>
+      <th>Endpoint</th>
+      <th>Method</th>
+      <th>Description</th>
+      <th>Parameters</th>
+      <th>Request Body</th>
+      <th>Response Example</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr>
+      <td>/api/v1/user/{guid}</td>
+      <td>GET</td>
+      <td>Get user by GUID</td>
+      <td>guid (path)</td>
+      <td>None</td>
+      <td>
+<pre><code>// Status: 200 OK
+{
+  "guid": "7b191c24-ac11-4be2-8bf8-a92fcd451925",
+  "name": "Joaquin Rivadeneyra",
+  "email": "joaquin@example.com",
+  "role": "citizen",
+  "address": "Av. Primavera 123",
+  "phone": "+51987654321",
+  "latitude": "-12.1043",
+  "longitude": "-77.0428",
+  "created_at": "2025-01-12T14:10:00Z"
+}</code></pre>
+      </td>
+    </tr>
+
+    <tr>
+      <td>/api/v1/user</td>
+      <td>PUT</td>
+      <td>Update current user</td>
+      <td>None</td>
+      <td>
+<pre><code>{
+  "name": "Joaquin R. Updated",
+  "phone": "+51911122334"
+}</code></pre>
+      </td>
+      <td>
+<pre><code>// Status: 200 OK
+{
+  "message": "User updated successfully",
+  "user": {
+    "guid": "7b191c24-ac11-4be2-8bf8-a92fcd451925",
+    "name": "Joaquin R. Updated"
+  }
+}</code></pre>
+      </td>
+    </tr>
+
+    <tr>
+      <td>/api/v1/user</td>
+      <td>DELETE</td>
+      <td>Delete current user</td>
+      <td>None</td>
+      <td>None</td>
+      <td>
+<pre><code>// Status: 200 OK
+{
+  "message": "User deleted successfully"
+}</code></pre>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## **Container Endpoints**
+
+<table>
+  <thead>
+    <tr>
+      <th>Endpoint</th>
+      <th>Method</th>
+      <th>Description</th>
+      <th>Parameters</th>
+      <th>Request Body</th>
+      <th>Response Example</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr>
+      <td>/api/v1/containers</td>
+      <td>GET</td>
+      <td>Get all containers</td>
+      <td>None</td>
+      <td>None</td>
+      <td>
+<pre><code>// Status: 200 OK
+[
+  {
+    "guid": "c9982173-fb13-46fa-94da-a771a915e4f2",
+    "name": "Container A",
+    "latitude": "-12.0901",
+    "longitude": "-77.0410",
+    "capacity": 70,
+    "status": "active"
+  }
+]</code></pre>
+      </td>
+    </tr>
+
+    <tr>
+      <td>/api/v1/containers</td>
+      <td>POST</td>
+      <td>Create a new container</td>
+      <td>None</td>
+      <td>
+<pre><code>{
+  "name": "Container Nuevo",
+  "latitude": "-12.0850",
+  "longitude": "-77.0300",
+  "capacity": 100
+}</code></pre>
+      </td>
+      <td>
+<pre><code>// Status: 201 Created
+{
+  "message": "Container created successfully",
+  "container_id": "bb8232c7-0fea-4b21-9a50-d91304c9d11d"
+}</code></pre>
+      </td>
+    </tr>
+
+    <tr>
+      <td>/api/v1/containers/{guid}</td>
+      <td>PUT</td>
+      <td>Update container</td>
+      <td>guid (path)</td>
+      <td>
+<pre><code>{
+  "name": "Container A Updated",
+  "capacity": 82
+}</code></pre>
+      </td>
+      <td>
+<pre><code>// Status: 200 OK
+{
+  "message": "Container updated successfully",
+  "container": {
+    "guid": "c9982173-fb13-46fa-94da-a771a915e4f2",
+    "capacity": 82
+  }
+}</code></pre>
+      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+---
+
+## **Simulation Endpoints (Sprint 2 Additions)**
+
+<table>
+  <thead>
+    <tr>
+      <th>Endpoint</th>
+      <th>Method</th>
+      <th>Description</th>
+      <th>Parameters</th>
+      <th>Request Body</th>
+      <th>Response Example</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr>
+      <td>/api/v1/simulation/get-all-simulations</td>
+      <td>GET</td>
+      <td>Retrieve all route simulations generated in the system</td>
+      <td>None</td>
+      <td>None</td>
+      <td>
+<pre><code>// Status: 200 OK
+[
+  {
+    "id": 12,
+    "created_at": "2025-11-10T18:43:21.114Z",
+    "total_distance_km": 14.2,
+    "duration_min": 38,
+    "route": ["P1", "P2", "P3", "P4"],
+    "distances": "14.2km"
+  }
+]</code></pre>
+      </td>
+    </tr>
+
+    <tr>
+      <td>/api/v1/simulation/generate-simulation</td>
+      <td>POST</td>
+      <td>Generate a new route simulation based on container positions</td>
+      <td>None</td>
+      <td>
+<pre><code>{
+  "container_guids": [
+    "c9982173-fb13-46fa-94da-a771a915e4f2",
+    "bb8232c7-0fea-4b21-9a50-d91304c9d11d"
+  ]
+}</code></pre>
+      </td>
+      <td>
+<pre><code>// Status: 201 Created
+{
+  "id": 13,
+  "created_at": "2025-11-10T19:15:09.551Z",
+  "total_distance_km": 11.5,
+  "duration_min": 30,
+  "route": ["A", "B"],
+  "distances": "11.5km"
+}</code></pre>
+      </td>
+    </tr>
+
+  </tbody>
+</table>
 
 #### 6.2.1.9. Team Collaboration Insights during Sprint
 
+El desarrollo del **Sprint 2** se caracterizó por una colaboración ágil y multidisciplinaria entre los integrantes del equipo, aplicando prácticas del marco **Scrum** para asegurar la entrega de funcionalidades clave del sprint, tales como la gestión de alertas, preferencias de usuario, reportes y mejoras en el backend.
+
+**Herramientas utilizadas**
+- **Trello:** Gestión del *Sprint Backlog* y seguimiento del avance diario.  
+- **GitHub Projects:** Control de versiones, revisiones de código y manejo de *pull requests*.  
+- **Slack:** Comunicación rápida para coordinación interna y resolución de incidencias.  
+- **Google Meet:** Reuniones de *Sprint Planning 2*, *Daily Meetings*, *Sprint Review* y *Retrospective*.
+
+**Dinámica de colaboración durante el Sprint 2**
+- **Daily Meetings** cortas y enfocadas en avances, bloqueos y próximos pasos.  
+- **Pair programming** entre backend y QA para validar el correcto funcionamiento de los endpoints.  
+- **Code reviews estructurados**, priorizando calidad del código, manejo de errores y seguridad.  
+- **Retrospectiva del Sprint 2:** se identificó la necesidad de estandarizar criterios de aceptación y mejorar la automatización de pruebas.
+
+**Resultados del Sprint 2**
+- Flujo de trabajo más estable y consistente entre frontend, backend y QA.  
+- Reducción de retrabajos mediante revisiones tempranas de código.  
+- Mayor fiabilidad de las funcionalidades implementadas gracias a pruebas funcionales y de integración.  
+- Avances significativos en la cohesión del equipo y la coordinación técnica.
+
+![teamCollaboration.png](assets/images/chapter5/insights.jpg)
+
+#### Fronted insights
+#### Municipality Admin Web Application
+![frontendMunicipalityAdmin.png](assets/5.product-implementation/insights/frontendMunicipalityAdmin.png)
+
+#### WasteTrack Citizen Mobile Application
+![wasteTrackCitizenMobileApp.png](assets/5.product-implementation/insights/wasteTrackCitizenMobileApp.png)
+
+#### Backend insights
+![backend.png](assets/5.product-implementation/insights/backend.png)
+
+---
 
 ## 6.3. Validation Interviews
 
