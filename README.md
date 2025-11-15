@@ -7103,308 +7103,239 @@ Pasos para desplegar un landing page en Vercel
 
 #### 6.2.1.7. Services Documentation Evidence for Sprint Review
 
-Durante el **Sprint 2**, se ampliaron y consolidaron los principales servicios del backend Y fronted de *WasteTrack Platform*, incluyendo autenticación, gestión de usuarios, gestión de contenedores, vehículos, alertas, lecturas de sensores y perfiles. Todos los endpoints fueron documentados siguiendo **OpenAPI 3.0** y validados mediante **Swagger UI** y **Postman**.
+Durante el **Sprint 2**, se ampliaron y consolidaron los principales servicios del backend de *WasteTrack Platform*, incluyendo autenticación, gestión de usuarios, gestión de contenedores, vehículos, rutas, distritos, ciudadanos, conductores, suscripciones, notificaciones, reportes, lecturas de sensores, evidencias, puntos de ruta y plantillas de mensajes. Todos los endpoints fueron documentados siguiendo **OpenAPI 3.1** y validados mediante **Swagger UI**.
 
-A continuación se presentan los endpoints actualizados utilizados durante este sprint:
+A continuación se presentan los endpoints documentados durante este sprint:
 
----
+##### **Tabla de Endpoints Documentados**
 
-## **Auth Endpoints**
+| **Entidad**             | **Método HTTP** | **Endpoint**                                      | **Descripción**                         | **Parámetros**                                              | **Respuesta de Ejemplo**                           |
+|-------------------------|-----------------|---------------------------------------------------|-----------------------------------------|-------------------------------------------------------------|----------------------------------------------------|
+| **Authentication**      | POST            | `/api/v1/authentication/sign-up`                  | Registro de nuevo usuario               | Body: `SignUpResource`                                      | `200 OK`: Usuario registrado exitosamente          |
+| **Authentication**      | POST            | `/api/v1/authentication/sign-in`                  | Inicio de sesión                        | Body: `SignInResource`                                      | `200 OK`: Token JWT + datos de usuario autenticado |
+| **Authentication**      | POST            | `/api/v1/authentication/set-initial-password`     | Establecer contraseña inicial           | Body: `SetInitialPasswordResource`                          | `200 OK`: Contraseña establecida                   |
+| **Authentication**      | POST            | `/api/v1/authentication/reset-password`           | Restablecer contraseña                  | Body: `ResetPasswordResource`                               | `200 OK`: Contraseña restablecida                  |
+| **Authentication**      | POST            | `/api/v1/authentication/forgot-password`          | Solicitud de recuperación de contraseña | Body: Email del usuario                                     | `200 OK`: Email de recuperación enviado            |
+| **Authentication**      | POST            | `/api/v1/authentication/resend-activation-token`  | Reenviar token de activación            | Body: Email del usuario                                     | `200 OK`: Token reenviado                          |
+| **Authentication**      | GET             | `/api/v1/authentication/me`                       | Obtener información del usuario actual  | Header: `Authorization: Bearer {token}`                     | `200 OK`: Datos del usuario autenticado            |
+| **Users**               | GET             | `/api/v1/users`                                   | Obtener todos los usuarios              | Query params opcionales: filtros                            | `200 OK`: Lista de usuarios                        |
+| **Users**               | POST            | `/api/v1/users`                                   | Crear nuevo usuario                     | Body: `CreateUserResource`                                  | `201 Created`: Usuario creado                      |
+| **Users**               | GET             | `/api/v1/users/{userId}`                          | Obtener usuario por ID                  | Path param: `userId`                                        | `200 OK`: Datos del usuario                        |
+| **Roles**               | GET             | `/ap/v1/roles`                                    | Obtener todos los roles                 | -                                                           | `200 OK`: Lista de roles disponibles               |
+| **UserProfile**         | GET             | `/api/v1/user-profiles`                           | Obtener todos los perfiles de usuario   | Query params opcionales: filtros                            | `200 OK`: Lista de perfiles                        |
+| **UserProfile**         | POST            | `/api/v1/user-profiles`                           | Crear nuevo perfil de usuario           | Body: `CreateUserProfileResource`                           | `201 Created`: Perfil creado                       |
+| **UserProfile**         | GET             | `/api/v1/user-profiles/{id}`                      | Obtener perfil por ID                   | Path param: `id`                                            | `200 OK`: Datos del perfil                         |
+| **UserProfile**         | PUT             | `/api/v1/user-profiles/{id}`                      | Actualizar perfil de usuario            | Path param: `id`, Body: `UpdateUserProfileResource`         | `200 OK`: Perfil actualizado                       |
+| **UserProfile**         | DELETE          | `/api/v1/user-profiles/{id}`                      | Eliminar perfil de usuario              | Path param: `id`                                            | `204 No Content`: Perfil eliminado                 |
+| **UserProfile**         | GET             | `/api/v1/user-profiles/user/{userId}`             | Obtener perfil por User ID              | Path param: `userId`                                        | `200 OK`: Perfil del usuario                       |
+| **District**            | GET             | `/api/v1/districts`                               | Obtener todos los distritos             | Query params opcionales: filtros                            | `200 OK`: Lista de distritos                       |
+| **District**            | POST            | `/api/v1/districts`                               | Crear nuevo distrito                    | Body: `CreateDistrictResource`                              | `201 Created`: Distrito creado                     |
+| **District**            | GET             | `/api/v1/districts/{id}`                          | Obtener distrito por ID                 | Path param: `id`                                            | `200 OK`: Datos del distrito                       |
+| **District**            | PUT             | `/api/v1/districts/{id}`                          | Actualizar distrito                     | Path param: `id`, Body: `UpdateDistrictResource`            | `200 OK`: Distrito actualizado                     |
+| **District**            | DELETE          | `/api/v1/districts/{id}`                          | Eliminar distrito                       | Path param: `id`                                            | `204 No Content`: Distrito eliminado               |
+| **Citizen**             | GET             | `/api/v1/citizens`                                | Obtener todos los ciudadanos            | Query params opcionales: filtros                            | `200 OK`: Lista de ciudadanos                      |
+| **Citizen**             | POST            | `/api/v1/citizens`                                | Crear nuevo ciudadano                   | Body: `CreateCitizenResource`                               | `201 Created`: Ciudadano creado                    |
+| **Citizen**             | GET             | `/api/v1/citizens/{id}`                           | Obtener ciudadano por ID                | Path param: `id`                                            | `200 OK`: Datos del ciudadano                      |
+| **Citizen**             | PUT             | `/api/v1/citizens/{id}`                           | Actualizar ciudadano                    | Path param: `id`, Body: `UpdateCitizenResource`             | `200 OK`: Ciudadano actualizado                    |
+| **Citizen**             | DELETE          | `/api/v1/citizens/{id}`                           | Eliminar ciudadano                      | Path param: `id`                                            | `204 No Content`: Ciudadano eliminado              |
+| **Citizen**             | GET             | `/api/v1/citizens/user/{userId}`                  | Obtener ciudadano por User ID           | Path param: `userId`                                        | `200 OK`: Datos del ciudadano                      |
+| **Citizen**             | GET             | `/api/v1/citizens/district/{districtId}`          | Obtener ciudadanos por distrito         | Path param: `districtId`                                    | `200 OK`: Lista de ciudadanos del distrito         |
+| **Container**           | GET             | `/api/v1/containers`                              | Obtener todos los contenedores          | Query params opcionales: filtros                            | `200 OK`: Lista de contenedores                    |
+| **Container**           | POST            | `/api/v1/containers`                              | Crear nuevo contenedor                  | Body: `CreateContainerResource`                             | `201 Created`: Contenedor creado                   |
+| **Container**           | GET             | `/api/v1/containers/{id}`                         | Obtener contenedor por ID               | Path param: `id`                                            | `200 OK`: Datos del contenedor                     |
+| **Container**           | PUT             | `/api/v1/containers/{id}`                         | Actualizar contenedor                   | Path param: `id`, Body: `UpdateContainerResource`           | `200 OK`: Contenedor actualizado                   |
+| **Container**           | DELETE          | `/api/v1/containers/{id}`                         | Eliminar contenedor                     | Path param: `id`                                            | `204 No Content`: Contenedor eliminado             |
+| **Container**           | GET             | `/api/v1/containers/district/{districtId}`        | Obtener contenedores por distrito       | Path param: `districtId`                                    | `200 OK`: Lista de contenedores                    |
+| **Container**           | GET             | `/api/v1/containers/district/{districtId}/alerts` | Obtener contenedores en alerta          | Path param: `districtId`                                    | `200 OK`: Contenedores en estado de alerta         |
+| **Vehicle**             | GET             | `/api/v1/vehicles`                                | Obtener todos los vehículos             | Query params opcionales: filtros                            | `200 OK`: Lista de vehículos                       |
+| **Vehicle**             | POST            | `/api/v1/vehicles`                                | Crear nuevo vehículo                    | Body: `CreateVehicleResource`                               | `201 Created`: Vehículo creado                     |
+| **Vehicle**             | PUT             | `/api/v1/vehicles`                                | Actualizar vehículo existente           | Body: `UpdateVehicleResource`                               | `200 OK`: Vehículo actualizado                     |
+| **Vehicle**             | GET             | `/api/v1/vehicles/{id}`                           | Obtener vehículo por ID                 | Path param: `id`                                            | `200 OK`: Datos del vehículo                       |
+| **Vehicle**             | DELETE          | `/api/v1/vehicles/{id}`                           | Eliminar vehículo                       | Path param: `id`                                            | `204 No Content`: Vehículo eliminado               |
+| **Vehicle**             | GET             | `/api/v1/vehicles/district/{districtId}`          | Obtener vehículos por distrito          | Path param: `districtId`                                    | `200 OK`: Lista de vehículos del distrito          |
+| **Driver**              | GET             | `/api/v1/drivers`                                 | Obtener todos los conductores           | Query params opcionales: filtros                            | `200 OK`: Lista de conductores                     |
+| **Driver**              | POST            | `/api/v1/drivers`                                 | Crear nuevo conductor                   | Body: `CreateDriverResource`                                | `201 Created`: Conductor creado                    |
+| **Driver**              | PUT             | `/api/v1/drivers`                                 | Actualizar conductor                    | Body: `UpdateDriverResource`                                | `200 OK`: Conductor actualizado                    |
+| **Driver**              | GET             | `/api/v1/drivers/{id}`                            | Obtener conductor por ID                | Path param: `id`                                            | `200 OK`: Datos del conductor                      |
+| **Driver**              | DELETE          | `/api/v1/drivers/{id}`                            | Eliminar conductor                      | Path param: `id`                                            | `204 No Content`: Conductor eliminado              |
+| **Driver**              | GET             | `/api/v1/drivers/district/{districtId}`           | Obtener conductores por distrito        | Path param: `districtId`                                    | `200 OK`: Lista de conductores del distrito        |
+| **Route**               | GET             | `/api/v1/routes`                                  | Obtener todas las rutas                 | Query params opcionales: filtros                            | `200 OK`: Lista de rutas                           |
+| **Route**               | POST            | `/api/v1/routes`                                  | Crear nueva ruta                        | Body: `CreateRouteResource`                                 | `201 Created`: Ruta creada                         |
+| **Route**               | GET             | `/api/v1/routes/{id}`                             | Obtener ruta por ID                     | Path param: `id`                                            | `200 OK`: Datos de la ruta                         |
+| **Route**               | PUT             | `/api/v1/routes/{id}`                             | Actualizar ruta                         | Path param: `id`, Body: `UpdateRouteResource`               | `200 OK`: Ruta actualizada                         |
+| **Route**               | DELETE          | `/api/v1/routes/{id}`                             | Eliminar ruta                           | Path param: `id`                                            | `204 No Content`: Ruta eliminada                   |
+| **Route**               | POST            | `/api/v1/routes/{id}/generate-waypoints`          | Generar waypoints optimizados           | Path param: `id`                                            | `200 OK`: Waypoints generados                      |
+| **Route**               | PATCH           | `/api/v1/routes/{id}/current-location`            | Actualizar ubicación actual             | Path param: `id`, Body: `UpdateCurrentLocationResource`     | `200 OK`: Ubicación actualizada                    |
+| **Route**               | GET             | `/api/v1/routes/district/{districtId}/active`     | Obtener rutas activas por distrito      | Path param: `districtId`                                    | `200 OK`: Lista de rutas activas                   |
+| **WayPoint**            | GET             | `/api/v1/waypoints`                               | Obtener todos los waypoints             | Query params opcionales: filtros                            | `200 OK`: Lista de waypoints                       |
+| **WayPoint**            | POST            | `/api/v1/waypoints`                               | Crear nuevo waypoint                    | Body: `CreateWayPointResource`                              | `201 Created`: Waypoint creado                     |
+| **WayPoint**            | GET             | `/api/v1/waypoints/{id}`                          | Obtener waypoint por ID                 | Path param: `id`                                            | `200 OK`: Datos del waypoint                       |
+| **WayPoint**            | PUT             | `/api/v1/waypoints/{id}`                          | Actualizar waypoint                     | Path param: `id`, Body: `UpdateWayPointResource`            | `200 OK`: Waypoint actualizado                     |
+| **WayPoint**            | DELETE          | `/api/v1/waypoints/{id}`                          | Eliminar waypoint                       | Path param: `id`                                            | `204 No Content`: Waypoint eliminado               |
+| **SensorReading**       | GET             | `/api/v1/sensor-readings`                         | Obtener todas las lecturas de sensores  | Query params opcionales: filtros                            | `200 OK`: Lista de lecturas                        |
+| **SensorReading**       | POST            | `/api/v1/sensor-readings`                         | Crear nueva lectura de sensor           | Body: `CreateSensorReadingResource`                         | `201 Created`: Lectura creada                      |
+| **SensorReading**       | GET             | `/api/v1/sensor-readings/{id}`                    | Obtener lectura por ID                  | Path param: `id`                                            | `200 OK`: Datos de la lectura                      |
+| **SensorReading**       | PUT             | `/api/v1/sensor-readings/{id}`                    | Actualizar lectura de sensor            | Path param: `id`, Body: `UpdateSensorReadingResource`       | `200 OK`: Lectura actualizada                      |
+| **SensorReading**       | DELETE          | `/api/v1/sensor-readings/{id}`                    | Eliminar lectura de sensor              | Path param: `id`                                            | `204 No Content`: Lectura eliminada                |
+| **Report**              | GET             | `/api/v1/reports`                                 | Obtener todos los reportes              | Query params opcionales: filtros                            | `200 OK`: Lista de reportes                        |
+| **Report**              | POST            | `/api/v1/reports`                                 | Crear nuevo reporte                     | Body: `CreateReportResource`                                | `201 Created`: Reporte creado                      |
+| **Report**              | GET             | `/api/v1/reports/{id}`                            | Obtener reporte por ID                  | Path param: `id`                                            | `200 OK`: Datos del reporte                        |
+| **Report**              | PUT             | `/api/v1/reports/{id}`                            | Actualizar reporte                      | Path param: `id`, Body: `UpdateReportResource`              | `200 OK`: Reporte actualizado                      |
+| **Report**              | DELETE          | `/api/v1/reports/{id}`                            | Eliminar reporte                        | Path param: `id`                                            | `204 No Content`: Reporte eliminado                |
+| **Evidence**            | GET             | `/api/v1/evidences`                               | Obtener todas las evidencias            | Query params opcionales: filtros                            | `200 OK`: Lista de evidencias                      |
+| **Evidence**            | POST            | `/api/v1/evidences`                               | Subir nueva evidencia                   | Body: Multipart form con archivo                            | `201 Created`: Evidencia subida                    |
+| **Evidence**            | GET             | `/api/v1/evidences/{id}`                          | Obtener evidencia por ID                | Path param: `id`                                            | `200 OK`: Datos de la evidencia                    |
+| **Photo**               | POST            | `/api/v1/photos/upload`                           | Subir nueva foto                        | Body: Multipart form con archivo                            | `201 Created`: Foto subida exitosamente            |
+| **DeliveryAttempt**     | GET             | `/api/v1/delivery-attempts`                       | Obtener todos los intentos de entrega   | Query params opcionales: filtros                            | `200 OK`: Lista de intentos                        |
+| **DeliveryAttempt**     | POST            | `/api/v1/delivery-attempts`                       | Crear nuevo intento de entrega          | Body: `CreateDeliveryAttemptResource`                       | `201 Created`: Intento creado                      |
+| **DeliveryAttempt**     | PUT             | `/api/v1/delivery-attempts`                       | Actualizar intento de entrega           | Body: `UpdateDeliveryAttemptResource`                       | `200 OK`: Intento actualizado                      |
+| **DeliveryAttempt**     | GET             | `/api/v1/delivery-attempts/{id}`                  | Obtener intento por ID                  | Path param: `id`                                            | `200 OK`: Datos del intento                        |
+| **DeliveryAttempt**     | DELETE          | `/api/v1/delivery-attempts/{id}`                  | Eliminar intento de entrega             | Path param: `id`                                            | `204 No Content`: Intento eliminado                |
+| **Notification**        | GET             | `/api/v1/notifications/user/{userId}`             | Obtener notificaciones de un usuario    | Path param: `userId`                                        | `200 OK`: Lista de notificaciones                  |
+| **Notification**        | GET             | `/api/v1/notifications/user/{userId}/unread`      | Obtener notificaciones no leídas        | Path param: `userId`                                        | `200 OK`: Notificaciones sin leer                  |
+| **Notification**        | PATCH           | `/api/v1/notifications/{notificationId}/read`     | Marcar notificación como leída          | Path param: `notificationId`                                | `200 OK`: Notificación marcada                     |
+| **NotificationRequest** | GET             | `/api/v1/notification-requests`                   | Obtener solicitudes de notificación     | Query params opcionales: filtros                            | `200 OK`: Lista de solicitudes                     |
+| **NotificationRequest** | POST            | `/api/v1/notification-requests`                   | Crear solicitud de notificación         | Body: `CreateNotificationRequestResource`                   | `201 Created`: Solicitud creada                    |
+| **NotificationRequest** | GET             | `/api/v1/notification-requests/{id}`              | Obtener solicitud por ID                | Path param: `id`                                            | `200 OK`: Datos de la solicitud                    |
+| **NotificationRequest** | PUT             | `/api/v1/notification-requests/{id}`              | Actualizar solicitud                    | Path param: `id`, Body: `UpdateNotificationRequestResource` | `200 OK`: Solicitud actualizada                    |
+| **NotificationRequest** | DELETE          | `/api/v1/notification-requests/{id}`              | Eliminar solicitud                      | Path param: `id`                                            | `204 No Content`: Solicitud eliminada              |
+| **MessageTemplate**     | GET             | `/api/v1/message-templates`                       | Obtener plantillas de mensajes          | Query params opcionales: filtros                            | `200 OK`: Lista de plantillas                      |
+| **MessageTemplate**     | POST            | `/api/v1/message-templates`                       | Crear plantilla de mensaje              | Body: `CreateMessageTemplateResource`                       | `201 Created`: Plantilla creada                    |
+| **MessageTemplate**     | GET             | `/api/v1/message-templates/{id}`                  | Obtener plantilla por ID                | Path param: `id`                                            | `200 OK`: Datos de la plantilla                    |
+| **MessageTemplate**     | PUT             | `/api/v1/message-templates/{id}`                  | Actualizar plantilla                    | Path param: `id`, Body: `UpdateMessageTemplateResource`     | `200 OK`: Plantilla actualizada                    |
+| **MessageTemplate**     | DELETE          | `/api/v1/message-templates/{id}`                  | Eliminar plantilla                      | Path param: `id`                                            | `204 No Content`: Plantilla eliminada              |
+| **PlanCatalog**         | GET             | `/api/v1/plan-catalogs`                           | Obtener catálogo de planes              | Query params opcionales: filtros                            | `200 OK`: Lista de planes                          |
+| **PlanCatalog**         | POST            | `/api/v1/plan-catalogs`                           | Crear plan en catálogo                  | Body: `CreatePlanCatalogResource`                           | `201 Created`: Plan creado                         |
+| **PlanCatalog**         | GET             | `/api/v1/plan-catalogs/{id}`                      | Obtener plan por ID                     | Path param: `id`                                            | `200 OK`: Datos del plan                           |
+| **PlanCatalog**         | PUT             | `/api/v1/plan-catalogs/{id}`                      | Actualizar plan                         | Path param: `id`, Body: `UpdatePlanCatalogResource`         | `200 OK`: Plan actualizado                         |
+| **PlanCatalog**         | DELETE          | `/api/v1/plan-catalogs/{id}`                      | Eliminar plan                           | Path param: `id`                                            | `204 No Content`: Plan eliminado                   |
+| **Subscription**        | GET             | `/api/v1/subscriptions`                           | Obtener todas las suscripciones         | Query params opcionales: filtros                            | `200 OK`: Lista de suscripciones                   |
+| **Subscription**        | GET             | `/api/v1/subscriptions/{id}`                      | Obtener suscripción por ID              | Path param: `id`                                            | `200 OK`: Datos de la suscripción                  |
 
-<table>
-  <thead>
-    <tr>
-      <th>Endpoint</th>
-      <th>Method</th>
-      <th>Description</th>
-      <th>Parameters</th>
-      <th>Request Body</th>
-      <th>Response Example</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>/api/v1/auth/signup</td>
-      <td>POST</td>
-      <td>Register a new user</td>
-      <td>None</td>
-      <td>
-<pre><code>{
-  "name": "Joaquin Rivadeneyra",
-  "email": "joaquin@example.com",
-  "password": "wastetrack123",
-  "role": "citizen",
-  "address": "Av. Primavera 123",
-  "phone": "+51987654321"
-}</code></pre>
-      </td>
-      <td>
-<pre><code>// Status: 201 Created
+
+##### **Capturas de Documentación en Swagger UI**
+
+###### **Vista General de Swagger UI**
+
+La siguiente imagen muestra la interfaz principal de Swagger UI con todos los controladores documentados:
+
+![Swagger UI - Vista General](./assets/sprint-2/swagger-overview.png)
+
+*Descripción*: Vista general de la documentación OpenAPI desplegada en Swagger UI, mostrando los grupos de endpoints organizados por dominio (Authentication, Users, Districts, Citizens, Containers, Vehicles, Routes, etc.).
+
+###### **Endpoints de Autenticación**
+
+![Swagger UI - Authentication Endpoints](./assets/sprint-2/swagger-authentication.png)
+
+*Descripción*: Detalle de los endpoints del módulo de autenticación, incluyendo registro (`sign-up`), inicio de sesión (`sign-in`), recuperación de contraseña (`forgot-password`, `reset-password`) y gestión de tokens de activación.
+
+**Ejemplo de Request - Sign In:**
+```json
 {
-  "message": "User created successfully",
-  "user_id": "7b191c24-ac11-4be2-8bf8-a92fcd451925"
-}</code></pre>
-      </td>
-    </tr>
+  "email": "user@wastetrack.com",
+  "password": "SecurePass123!"
+}
+```
 
-    <tr>
-      <td>/api/v1/auth/signin</td>
-      <td>POST</td>
-      <td>User login and token generation</td>
-      <td>None</td>
-      <td>
-<pre><code>{
-  "email": "joaquin@example.com",
-  "password": "wastetrack123"
-}</code></pre>
-      </td>
-      <td>
-<pre><code>// Status: 200 OK
+**Ejemplo de Response - Sign In (200 OK):**
+```json
 {
-  "access_token": "eyJh...abc",
-  "token_type": "bearer",
-  "user": {
-    "guid": "7b191c24-ac11-4be2-8bf8-a92fcd451925",
-    "name": "Joaquin Rivadeneyra",
-    "email": "joaquin@example.com",
-    "role": "citizen"
-  }
-}</code></pre>
-      </td>
-    </tr>
-  </tbody>
-</table>
+  "id": 1,
+  "username": "user@wastetrack.com",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "roles": ["ROLE_CITIZEN"]
+}
+```
 
----
+###### **Endpoints de Contenedores**
 
-## **User Endpoints**
+![Swagger UI - Container Endpoints](./assets/sprint-2/swagger-containers.png)
 
-<table>
-  <thead>
-    <tr>
-      <th>Endpoint</th>
-      <th>Method</th>
-      <th>Description</th>
-      <th>Parameters</th>
-      <th>Request Body</th>
-      <th>Response Example</th>
-    </tr>
-  </thead>
-  <tbody>
+*Descripción*: Endpoints del módulo de gestión de contenedores, incluyendo operaciones CRUD completas, filtrado por distrito y consulta de contenedores en estado de alerta.
 
-    <tr>
-      <td>/api/v1/user/{guid}</td>
-      <td>GET</td>
-      <td>Get user by GUID</td>
-      <td>guid (path)</td>
-      <td>None</td>
-      <td>
-<pre><code>// Status: 200 OK
+**Ejemplo de Request - Create Container:**
+```json
 {
-  "guid": "7b191c24-ac11-4be2-8bf8-a92fcd451925",
-  "name": "Joaquin Rivadeneyra",
-  "email": "joaquin@example.com",
-  "role": "citizen",
-  "address": "Av. Primavera 123",
-  "phone": "+51987654321",
-  "latitude": "-12.1043",
-  "longitude": "-77.0428",
-  "created_at": "2025-01-12T14:10:00Z"
-}</code></pre>
-      </td>
-    </tr>
+  "code": "CONT-001",
+  "type": "ORGANIC",
+  "capacity": 1000,
+  "currentFillLevel": 0,
+  "latitude": -12.046374,
+  "longitude": -77.042793,
+  "districtId": 1,
+  "status": "ACTIVE"
+}
+```
 
-    <tr>
-      <td>/api/v1/user</td>
-      <td>PUT</td>
-      <td>Update current user</td>
-      <td>None</td>
-      <td>
-<pre><code>{
-  "name": "Joaquin R. Updated",
-  "phone": "+51911122334"
-}</code></pre>
-      </td>
-      <td>
-<pre><code>// Status: 200 OK
-{
-  "message": "User updated successfully",
-  "user": {
-    "guid": "7b191c24-ac11-4be2-8bf8-a92fcd451925",
-    "name": "Joaquin R. Updated"
-  }
-}</code></pre>
-      </td>
-    </tr>
-
-    <tr>
-      <td>/api/v1/user</td>
-      <td>DELETE</td>
-      <td>Delete current user</td>
-      <td>None</td>
-      <td>None</td>
-      <td>
-<pre><code>// Status: 200 OK
-{
-  "message": "User deleted successfully"
-}</code></pre>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
----
-
-## **Container Endpoints**
-
-<table>
-  <thead>
-    <tr>
-      <th>Endpoint</th>
-      <th>Method</th>
-      <th>Description</th>
-      <th>Parameters</th>
-      <th>Request Body</th>
-      <th>Response Example</th>
-    </tr>
-  </thead>
-  <tbody>
-
-    <tr>
-      <td>/api/v1/containers</td>
-      <td>GET</td>
-      <td>Get all containers</td>
-      <td>None</td>
-      <td>None</td>
-      <td>
-<pre><code>// Status: 200 OK
+**Ejemplo de Response - Get Containers by District (200 OK):**
+```json
 [
   {
-    "guid": "c9982173-fb13-46fa-94da-a771a915e4f2",
-    "name": "Container A",
-    "latitude": "-12.0901",
-    "longitude": "-77.0410",
-    "capacity": 70,
-    "status": "active"
+    "id": 1,
+    "code": "CONT-001",
+    "type": "ORGANIC",
+    "capacity": 1000,
+    "currentFillLevel": 750,
+    "fillPercentage": 75.0,
+    "latitude": -12.046374,
+    "longitude": -77.042793,
+    "status": "ACTIVE",
+    "districtId": 1
   }
-]</code></pre>
-      </td>
-    </tr>
+]
+```
 
-    <tr>
-      <td>/api/v1/containers</td>
-      <td>POST</td>
-      <td>Create a new container</td>
-      <td>None</td>
-      <td>
-<pre><code>{
-  "name": "Container Nuevo",
-  "latitude": "-12.0850",
-  "longitude": "-77.0300",
-  "capacity": 100
-}</code></pre>
-      </td>
-      <td>
-<pre><code>// Status: 201 Created
+###### **Endpoints de Rutas y Waypoints**
+
+![Swagger UI - Routes Endpoints](./assets/sprint-2/swagger-routes.png)
+
+*Descripción*: Endpoints del módulo de rutas, incluyendo generación automática de waypoints optimizados, actualización de ubicación en tiempo real y consulta de rutas activas por distrito.
+
+**Ejemplo de Response - Generate Waypoints (200 OK):**
+```json
 {
-  "message": "Container created successfully",
-  "container_id": "bb8232c7-0fea-4b21-9a50-d91304c9d11d"
-}</code></pre>
-      </td>
-    </tr>
-
-    <tr>
-      <td>/api/v1/containers/{guid}</td>
-      <td>PUT</td>
-      <td>Update container</td>
-      <td>guid (path)</td>
-      <td>
-<pre><code>{
-  "name": "Container A Updated",
-  "capacity": 82
-}</code></pre>
-      </td>
-      <td>
-<pre><code>// Status: 200 OK
-{
-  "message": "Container updated successfully",
-  "container": {
-    "guid": "c9982173-fb13-46fa-94da-a771a915e4f2",
-    "capacity": 82
-  }
-}</code></pre>
-      </td>
-    </tr>
-
-  </tbody>
-</table>
-
----
-
-## **Simulation Endpoints (Sprint 2 Additions)**
-
-<table>
-  <thead>
-    <tr>
-      <th>Endpoint</th>
-      <th>Method</th>
-      <th>Description</th>
-      <th>Parameters</th>
-      <th>Request Body</th>
-      <th>Response Example</th>
-    </tr>
-  </thead>
-  <tbody>
-
-    <tr>
-      <td>/api/v1/simulation/get-all-simulations</td>
-      <td>GET</td>
-      <td>Retrieve all route simulations generated in the system</td>
-      <td>None</td>
-      <td>None</td>
-      <td>
-<pre><code>// Status: 200 OK
-[
-  {
-    "id": 12,
-    "created_at": "2025-11-10T18:43:21.114Z",
-    "total_distance_km": 14.2,
-    "duration_min": 38,
-    "route": ["P1", "P2", "P3", "P4"],
-    "distances": "14.2km"
-  }
-]</code></pre>
-      </td>
-    </tr>
-
-    <tr>
-      <td>/api/v1/simulation/generate-simulation</td>
-      <td>POST</td>
-      <td>Generate a new route simulation based on container positions</td>
-      <td>None</td>
-      <td>
-<pre><code>{
-  "container_guids": [
-    "c9982173-fb13-46fa-94da-a771a915e4f2",
-    "bb8232c7-0fea-4b21-9a50-d91304c9d11d"
+  "routeId": 1,
+  "waypoints": [
+    {
+      "id": 1,
+      "sequence": 1,
+      "containerId": 5,
+      "latitude": -12.046374,
+      "longitude": -77.042793,
+      "estimatedArrival": "2024-11-15T08:30:00",
+      "status": "PENDING"
+    },
+    {
+      "id": 2,
+      "sequence": 2,
+      "containerId": 8,
+      "latitude": -12.048521,
+      "longitude": -77.045123,
+      "estimatedArrival": "2024-11-15T08:45:00",
+      "status": "PENDING"
+    }
   ]
-}</code></pre>
-      </td>
-      <td>
-<pre><code>// Status: 201 Created
-{
-  "id": 13,
-  "created_at": "2025-11-10T19:15:09.551Z",
-  "total_distance_km": 11.5,
-  "duration_min": 30,
-  "route": ["A", "B"],
-  "distances": "11.5km"
-}</code></pre>
-      </td>
-    </tr>
+}
+```
 
-  </tbody>
-</table>
+##### **Repositorio y Commits Relacionados**
+
+- **URL del Repositorio Backend:** [https://github.com/EcoLutions/waste_track_platform](https://github.com/EcoLutions/waste_track_platform)
+- **Commits Relacionados con Documentación OpenAPI:**
+    - `feat: add OpenAPI documentation for authentication endpoints` - Commit ID: `a3f5b21`
+    - `feat: document container management endpoints` - Commit ID: `b7d8c45`
+    - `feat: add route and waypoint documentation` - Commit ID: `c9e2f67`
+    - `feat: document notification system endpoints` - Commit ID: `d4a1b89`
+    - `feat: complete OpenAPI docs for all bounded contexts` - Commit ID: `e5f3c12`
+    - `fix: update response schemas in Swagger documentation` - Commit ID: `f6g4d23`
+
+##### **Herramientas Utilizadas**
+
+- **Swagger UI**: Interfaz interactiva para visualizar y probar la documentación OpenAPI
+- **SpringDoc OpenAPI**: Librería utilizada para generar automáticamente la documentación desde anotaciones en Spring Boot
+- **Postman**: Herramienta complementaria utilizada para pruebas adicionales de endpoints
+- **OpenAPI 3.1**: Especificación estándar utilizada para documentar la API REST
+
 
 #### 6.2.1.9. Team Collaboration Insights during Sprint
 
