@@ -6520,11 +6520,11 @@ Se ejecutaron flujos completos a través de la API para validar la interacción 
       ![Creación de una ruta](./assets/6.product-verification-validation/6.1.testing-suites-validation/6.1.4.core-system-tests/routes-post.png)
 
 
-#### 6.2.1.6. Execution Evidence for Sprint Review
+####  Execution Evidence for Sprint Review
 
 A continuación, se presentan las evidencias de implementación y despliegue de los distintos componentes desarrollados durante el **Sprint 1**, correspondientes a la Landing Page, Frontend, Backend e IoT del sistema **WasteTrack**.
 
-### 5.2.2. Implemented Landing Page Evidence
+###  Implemented Landing Page Evidence
 
 **Enlace de la landing page:** [https://wastetracklanding.vercel.app/](https://wastetracklanding.vercel.app/)
 
@@ -6541,7 +6541,7 @@ Pasos para desplegar un landing page en Vercel
     - Publish directory: `build`
 4. Desplegar la aplicación
 
-### 5.2.3. Implemented Frontend-Web Application Evidence
+###  Implemented Frontend-Web Application Evidence
 
 **Enlace de la aplicacion web de administrador municipal** [https://waste-track-admin-app.netlify.app/dashboard](https://waste-track-admin-app.netlify.app/dashboard)
 
@@ -6769,6 +6769,24 @@ Esta configuración es la pieza clave que permite automatizar el despliegue de l
 
 ![8.jpeg](assets/5.product-implementation/backend/implementation/8.jpeg)
 
+
+- **Despliegue de Aplicaciones Mobile:**
+
+Para esta seccion se realizo un despliege de la app en firebase siguiendo la base.
+
+![](/assets/6.product-verification-validation/6.2.implementation/mobileDeploy1.png)
+
+En esta imagen se observa la creacion del projecto en el firebase.
+
+![](/assets/6.product-verification-validation/6.2.implementation/mobileDeploy2.png)
+
+En esta imagen se observa la finalizacion de la subida del apk para enviarlo al desarrolladores que revisaran las funcionalidades.
+
+
+![](/assets/6.product-verification-validation/6.2.implementation/mobileDeploy3.png)
+
+En esta imagen se observa el envio del apk a los que inspeccion de la aplicacion.
+
 #### 6.2.1.9. Team Collaboration Insights during Sprint
 
 El desarrollo del **Sprint 1** se caracterizó por una **colaboración ágil y multidisciplinaria** entre los miembros del equipo, aplicando prácticas del marco **Scrum** y herramientas digitales para optimizar la comunicación y la gestión de tareas.
@@ -6803,6 +6821,682 @@ El desarrollo del **Sprint 1** se caracterizó por una **colaboración ágil y m
 ![backend.png](assets/5.product-implementation/insights/backend.png)
 
 ---
+
+### 6.2.2. Sprint 2
+
+#### 6.2.2.1. Sprint Planning 2
+
+| **Elemento**                           | **Detalle**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+|----------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Número de Sprint**                   | Sprint 2                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| **Contexto de la planificación**       | Expansión de funcionalidades sobre el "esqueleto funcional" y estabilización del *core* del negocio.                                                                                                                                                                                                                                                                                                                                                                                              |
+| **Fecha**                              | 2025-10-27                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| **Hora**                               | 08:00 AM                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| **Lugar**                              | Sesión virtual vía Discord                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| **Elaborado por**                      | Eric Hernandez                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| **Participantes**                      | Joaquín Rivadeneyra, Jhosepmyr Orlando, Elmer Augusto, Joaquín Rivadeneyra, Carlos Andrés                                                                                                                                                                                                                                                                                                                                                                                                         |
+| **Resumen del Sprint anterior**        | Se completó con éxito el "esqueleto funcional" del ecosistema. La API central (`waste_track_platform`) está desplegada y operativa en **Microsoft Azure**. La aplicación web administrativa (`waste_track_admin_app`) desarrollada en **React** permite la autenticación y la gestión (CRUD) de colaboradores, flota y dispositivos IoT. La aplicación móvil de ciudadano (`waste_track_citizen_app`) en Flutter es funcional, permitiendo el *onboarding* y el envío de reportes de incidencias. |
+| **Resumen retrospectivo**              | Se identificaron cuellos de botella en la integración entre el backend y las aplicaciones cliente (web/móvil). Se necesita mejorar la comunicación de cambios en los *contracts* de la API y formalizar los flujos de pruebas E2E para las nuevas funcionalidades.                                                                                                                                                                                                                                |
+| **Objetivo del Sprint (Sprint Goal)**  | Nuestro enfoque es implementar la lógica de negocio central del sistema, centrándonos en la optimización de rutas y la gestión de flota, e introducir al tercer actor: el Conductor                                                                                                                                                                                                                                                                                                               |
+| **Velocidad del Sprint**               | 30                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| **Total de Story Points en el Sprint** | 31                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+
+
+#### 6.2.2.2. Aspect Leaders and Collaborators
+
+Durante el **Sprint 2**, se definieron los roles y responsabilidades de cada integrante del equipo con el fin de asegurar una ejecución eficiente de las tareas establecidas en el **Product Backlog**.  
+Cada miembro asumió un rol específico según su área de especialización, garantizando la integración técnica y la colaboración continua entre los distintos componentes del sistema WasteTrack.
+Las responsabilidades y roles de este sprint son casi identicas a las del sprint 1
+
+| Aspecto                        | Líder                   | Colaboradores                    | Responsabilidades Principales                                                                                                                                   |
+|--------------------------------|-------------------------|----------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Backend & API**              | **Jhosepmyr Orlando**   | Eric Hernandez                   | Implementación de microservicios con  **Spring Boot**, desarrollo de controladores REST, conexión con la base de datos y despliegue de servicios en la nube.    |
+| **Frontend Web**               | **Carlos Andrés**       | Joaquín Rivadeneyra y Elmer Riva | Diseño e implementación de la interfaz web administrativa con **React**, integración con los servicios backend y aplicación de principios de diseño responsivo. |
+| **Aplicación Móvil (Flutter)** | **Elmer Riva**          | Joaquín Rivadeneyra              | Desarrollo de la aplicación móvil, diseño de vistas principales, conexión con los endpoints REST y validación de la experiencia de usuario.                     |
+| **Despliegue & DevOps**        | **Eric Hernandez**      | Jhosepmyr Orlando                | Configuración del entorno de despliegue de contenedores con **Docker** y automatización de procesos mediante **pipelines CI/CD**.                               |
+| **Documentación & QA**         | **Joaquín Rivadeneyra** | Todos los integrantes            | Redacción de la documentación técnica, recopilación de evidencias de desarrollo, diseño de casos de prueba y validación de calidad del software.                |
+
+El equipo mantuvo una comunicación constante a través de herramientas colaborativas como **Trello**, **Slack** y **GitHub Projects**, lo que permitió una gestión ágil de tareas, un seguimiento transparente de los avances y una resolución oportuna de incidencias.
+
+---
+
+#### 6.2.2.3. Sprint Backlog 2
+
+### Sprint Backlog - Detalle de Tareas (Sprint 2)
+
+| Sprint | User Story | Task Id | Title                                                    | Description                                                                                                                           | Estimation (Hours) | Assigned To         | Status |
+|:-------|:-----------|:--------|:---------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------|:-------------------|:--------------------|:-------|
+| 2      | `SP01`     | T20.1   | (Investigación) Analizar librerías de optimización       | Evaluar librerías Java (ej. JSprit, Google OR-Tools) para el cálculo de rutas (VRP).                                                  | 10                 | Jhosepmyr Gutiérrez | Done   |
+| 2      | `SP01`     | T20.2   | (Investigación) Prototipo de optimización                | Crear un PoC (Prueba de Concepto) con la librería seleccionada, usando data simulada de contenedores y vehículos.                     | 12                 | Jhosepmyr Gutiérrez | Done   |
+| 2      | `US12`     | T21.1   | (Backend) Implementar `RouteOptimizationService`         | Integrar la librería de optimización (PoC) en un servicio de dominio que genere la secuencia de `Waypoints`.                          | 16                 | Jhosepmyr Gutiérrez | Done   |
+| 2      | `US12`     | T21.2   | (Backend) Refactorizar API de Rutas                      | Actualizar `POST /api/v1/routes` para que llame al `RouteOptimizationService` y genere la ruta basada en contenedores críticos.       | 10                 | Eric Hernandez      | Done   |
+| 2      | `US12`     | T21.3   | (Frontend Web) UI de Generación de Rutas                 | Añadir botón "Generar Ruta Optimizada" en la vista de "Gestión de Rutas" y un modal de confirmación.                                  | 10                 | Carlos Andrés       | Done   |
+| 2      | `US12`     | T21.4   | (Frontend Web) Integración de Generación de Rutas        | Conectar la UI con el endpoint de optimización y actualizar la tabla de rutas con el nuevo registro.                                  | 8                  | Carlos Andrés       | Done   |
+| 2      | `US13`     | T22.1   | (Móvil) Creación de App Conductor                        | Inicializar el proyecto Flutter `waste_track_driver_app`, configurar `core` (DI, BLoC, Ruteo) y el tema.                              | 8                  | Elmer Riva          | Done   |
+| 2      | `US13`     | T22.2   | (Móvil) Flujo de Login (Conductor)                       | Implementar la UI de Login y el BLoC para autenticar usuarios con el rol `DRIVER` contra el endpoint de `sign-in` (hecho en S1).      | 12                 | Elmer Riva          | Done   |
+| 2      | `US13`     | T22.3   | (Backend) Endpoint `GET /api/v1/driver/my-route`         | Crear un nuevo endpoint (protegido por rol `DRIVER`) que retorne la ruta asignada al conductor autenticado.                           | 10                 | Eric Hernandez      | Done   |
+| 2      | `US13`     | T22.4   | (Móvil) Vista "Mi Ruta" (Hoja de Ruta)                   | Desarrollar la pantalla principal que consume `.../my-route` y muestra la lista de `Waypoints` (paradas) del día.                     | 14                 | Elmer Riva          | Done   |
+| 2      | `US13`     | T22.5   | (Móvil) Vista de Mapa (Conductor)                        | Integrar Google Maps SDK en la vista "Mi Ruta" para mostrar la polilínea del recorrido y los marcadores de las paradas.               | 12                 | Elmer Riva          | Done   |
+| 2      | `US16`     | T23.1   | (Backend) Endpoint `POST /api/v1/waypoints/{id}/confirm` | Crear endpoint para que el conductor confirme la recolección. El servicio debe actualizar el estado del `Waypoint` y del `Container`. | 10                 | Eric Hernandez      | Done   |
+| 2      | `US16`     | T23.2   | (Móvil) UI/UX de Confirmación de Parada                  | Añadir un botón "Confirmar Recolección" en el detalle de cada `Waypoint` en la app del conductor.                                     | 8                  | Joaquin Rivadeneyra | Done   |
+| 2      | `US16`     | T23.3   | (Móvil) Integración de Confirmación                      | Conectar la UI de confirmación con el endpoint de backend y actualizar el estado de la UI local (marcar como completado).             | 8                  | Joaquin Rivadeneyra | Done   |
+| 2      | `US31`     | T24.1   | (Backend) Endpoint `GET /api/v1/dashboard/kpis`          | Crear un endpoint de agregación que devuelva métricas clave: # contenedores críticos, # rutas activas, # reportes pendientes.         | 12                 | Jhosepmyr Gutiérrez | Done   |
+| 2      | `US31`     | T24.2   | (Frontend Web) UI del Dashboard (Widgets)                | Desarrollar los componentes (Widgets) del Dashboard principal para mostrar los KPIs (ej. "Contenedores Llenos", "Rutas Activas").     | 12                 | Carlos Andrés       | Done   |
+| 2      | `US31`     | T24.3   | (Frontend Web) Integración del Dashboard                 | Conectar los widgets del Dashboard con el nuevo endpoint de KPIs (`.../kpis`) para que muestren datos reales.                         | 8                  | Carlos Andrés       | Done   |
+| 2      | `US22`     | T25.1   | (Backend) Endpoint `GET /api/v1/vehicles/status`         | Crear un endpoint que retorne la lista de vehículos con su estado actual (`EN_RUTA`, `DISPONIBLE`, `MANTENIMIENTO`).                  | 8                  | Eric Hernandez      | Done   |
+| 2      | `US22`     | T25.2   | (Frontend Web) Mapa de Flota en Tiempo Real              | Integrar un mapa en la vista "Gestión de Flota" (hecha en S1) que muestre la ubicación en tiempo real de los vehículos.               | 12                 | Carlos Andrés       | Done   |
+| 2      | `US15`     | T26.1   | (Backend) Endpoint de Reporte de Eficiencia              | Crear `GET /api/v1/reports/route-efficiency` que retorne métricas de rutas completadas (distancia, tiempo, % recolección).            | 14                 | Jhosepmyr Gutiérrez | Done   |
+| 2      | `US15`     | T26.2   | (Frontend Web) UI de Reporte de Eficiencia               | Desarrollar una tabla/gráfico en el Dashboard o en una nueva vista para mostrar los datos del reporte de eficiencia.                  | 10                 | Carlos Andrés       | Done   |
+| 2      | `SP01`     | T27.1   | (Testing) Pruebas BDD para Optimización de Rutas         | Escribir y ejecutar escenarios Cucumber para el `RouteOptimizationService`. (Ej. "Dado 3 contenedores llenos, se genera 1 ruta").     | 8                  | Joaquin Rivadeneyra | Done   |
+| 2      | `US13`     | T27.2   | (Testing) Plan de Pruebas App Conductor                  | Diseñar y ejecutar el plan de QA para la App Conductor, cubriendo el login, visualización de ruta y confirmación de paradas.          | 12                 | Joaquin Rivadeneyra | Done   |
+
+
+#### 6.2.1.4. Development Evidence for Sprint Review
+
+En esta sección se presentan las principales evidencias de desarrollo del **Sprint 2**, incluyendo commits, ramas, capturas de funcionalidades implementadas y el progreso documentado en los repositorios oficiales del proyecto.  
+Este sprint se centró en la integración avanzada entre módulos, la lógica de optimización de rutas, la creación de la App de Conductores y los nuevos endpoints del núcleo del negocio.
+
+---
+
+## **Development Evidence – Backend**
+
+**Repositorio oficial del backend:**  
+https://github.com/EcoLutions/waste_track_platform
+
+Se incluyen las evidencias de la implementación de la lógica de optimización de rutas, creación de endpoints especializados para Conductor, Dashboard y KPIs, junto con mejoras en la arquitectura interna.
+
+### **Commits relevantes del Sprint 2**
+
+| Repository | Branch | Commit ID | Commit Message | Commit Message Body | Date |
+|-----------|--------|------------|----------------|----------------------|------|
+| waste_track_platform | main | *Varias capturas y PR del Sprint 2* | Implementación del `RouteOptimizationService` | Integración de librería de optimización y generación de secuencia de `Waypoints`. | 2025-10 |
+| waste_track_platform | main | *PR Sprint 2* | Feat: Endpoint `/driver/my-route` | Nuevo endpoint para consulta de ruta asignada a conductor autenticado. | 2025-11 |
+| waste_track_platform | main | *PR Sprint 2* | Feat: KPIs Dashboard | Nuevo endpoint `/dashboard/kpis`. | 2025-11 |
+| waste_track_platform | main | *PR Sprint 2* | Feat: Vehicle Status | Endpoint `/vehicles/status`. | 2025-11 |
+| waste_track_platform | main | *PR Sprint 2* | Feat: Confirm Waypoint | Implementación de `POST /waypoints/{id}/confirm`. | 2025-11 |
+
+---
+
+## **Development Evidence – Frontend Web**
+
+**Repositorio del frontend administrativo:**  
+https://github.com/EcoLutions/waste_track_admin_app
+
+Durante este sprint se añadieron las vistas y componentes del nuevo Dashboard, la integración del generador de rutas optimizadas, mapas y visualización en tiempo real de flota.
+
+### **Commits relevantes del Sprint 2**
+
+| Repository | Branch | Commit ID | Commit Message | Body | Date |
+|-----------|--------|------------|----------------|------|------|
+| wastetrack-frontend | main | 97bb200db61f3d8c28e80c98512f86d87d140529 | add: route optimize with IA | Integración con backend para rutas optimizadas. | 2025-11 |
+| wastetrack-frontend | main | 88acbb0f7ec64fd9612562046f0f8eb18b98496a | add maps config | Configuración de mapas para vista de flota. | 2025-11 |
+| wastetrack-frontend | main | 19b65e165659f7537652db0a34e304ed92ae2c7e | add design | Nuevos componentes UI (Dashboard + Gestión de rutas). | 2025-11 |
+
+## **Development Evidence – Mobile App**
+
+**Repositorio del aplicativo móvil:**  
+https://github.com/EcoLutions/waste_track_citizen_app
+
+Durante este sprint se avanzó en el desarrollo del MVP móvil, incluyendo la autenticación de usuarios, visualización de contenedores geolocalizados, seguimiento de rutas asignadas y mejoras de UI/UX orientadas a conductores y operadores de campo.
+
+### **Commits relevantes del Sprint 2**
+
+| Repository               | Branch | Commit ID                               | Commit Message           | Body                                                                 | Date      |
+|--------------------------|--------|-------------------------------------------|---------------------------|----------------------------------------------------------------------|-----------|
+| waste_track_mobile_app   | main   | c12f3a90afd88912ce1049ffab88e92fcbd11b21 | feat: login & token storage | Implementación del flujo de autenticación y persistencia segura del token. | 2025-11 |
+| waste_track_mobile_app   | main   | 4af2e71cc9e98fa3f903c9ae33291fcd37b44c11 | feat: containers map      | Mapa interactivo mostrando contenedores y estados en tiempo real.   | 2025-11 |
+| waste_track_mobile_app   | main   | 81d923bd047a02d177d4230af61220b363fb71e9 | ui: route overview screen | Pantalla de rutas asignadas con detalles y pasos a seguir.          | 2025-11 |
+
+---
+
+#### 6.2.1.5. **Testing Suite Evidence for Sprint Review – Sprint 2**
+
+Durante el Sprint 2 se realizaron pruebas unitarias, de integración y pruebas funcionales orientadas a validar los nuevos módulos desarrollados: optimización de rutas, panel administrativo, simulación, visualización móvil y gestión avanzada de contenedores.  
+Asimismo, se ejecutaron escenarios BDD (Behavior-Driven Development) para asegurar el cumplimiento de criterios de aceptación del MVP.
+
+A continuación, se presentan los principales escenarios de prueba ejecutados durante este sprint.
+
+---
+
+### **Feature: Simulación de recolección**
+
+**Scenario: Simulación exitosa con datos reales**  
+**Given** que el funcionario ingresa los parámetros de simulación  
+**When** el sistema ejecuta el endpoint `/simulation`  
+**Then** se genera una simulación válida  
+**And** se retornan métricas como tiempo total, distancia y puntos críticos  
+
+---
+
+### **Feature: Gestión de contenedores**
+
+**Scenario: Actualización del límite de un contenedor**  
+**Given** que el usuario administrador modifica el límite de llenado  
+**When** se envía la solicitud al endpoint `/container/{id}/limit`  
+**Then** el sistema actualiza el límite correctamente  
+**And** se refleja en las consultas posteriores  
+
+---
+
+### **Feature: Visualización móvil de contenedores**
+
+**Scenario: Renderización correcta del mapa en la app móvil**  
+**Given** que el conductor abre la vista de mapa  
+**When** la app carga contenedores desde la API  
+**Then** se muestran los contenedores con colores según estado  
+**And** el mapa se actualiza en tiempo real  
+
+---
+
+### **Feature: Alertas por zonas críticas**
+
+**Scenario: Notificación por acumulación en zona prioritaria**  
+**Given** que una zona tiene múltiples contenedores llenos  
+**When** el sistema detecta que se superó el umbral crítico  
+**Then** se envía una notificación al funcionario para priorizar la zona  
+
+---
+
+### **Feature: Alertas por retraso de camión**
+
+**Scenario: Alerta ante demora en recolección**  
+**Given** que un camión no ha pasado por una zona en el tiempo esperado  
+**When** se supera el límite de tiempo estimado  
+**Then** el sistema envía una alerta al ciudadano indicando la demora  
+
+---
+
+### **Feature: Configuración de alertas**
+
+**Scenario: Preferencias personalizadas de notificaciones**  
+**Given** que el ciudadano accede a la sección de configuración  
+**When** selecciona las alertas que desea recibir  
+**Then** el sistema guarda las preferencias  
+**And** solo envía las alertas seleccionadas  
+
+---
+
+### **Feature: Historial de rutas**
+
+**Scenario: Visualización del historial de un camión**  
+**Given** que el funcionario selecciona un camión  
+**When** accede a la sección de historial  
+**Then** el sistema muestra todas las rutas anteriores del vehículo  
+
+---
+
+### **Feature: Reporte semanal**
+
+**Scenario: Exportación de reporte en PDF**  
+**Given** que el administrador define un rango de fechas  
+**When** hace clic en “exportar”  
+**Then** el sistema genera y descarga el archivo PDF correspondiente  
+
+---
+
+### **Feature: Residuos recolectados por tipo**
+
+**Scenario: Desglose por categoría de residuos**  
+**Given** que el funcionario accede al reporte de recolección  
+**When** filtra por tipo de residuo  
+**Then** el sistema muestra los totales recolectados desglosados por categoría  
+
+---
+
+#### 6.2.2.5 Execution Evidence for Sprint Review
+
+A continuación, se presentan las evidencias de implementación y despliegue de los distintos componentes desarrollados durante el **Sprint 1**, correspondientes a la Landing Page, Frontend, Backend e IoT del sistema **WasteTrack**.
+
+###  Implemented Landing Page Evidence
+
+**Enlace de la landing page:** [https://wastetracklanding.vercel.app/](https://wastetracklanding.vercel.app/)
+
+![landing page](./assets/5.product-implementation/5.2.implementation&deployment/landingPageEcolution.png)
+
+Pasos para desplegar un landing page en Vercel
+
+![vercel](./assets/5.product-implementation/5.2.implementation&deployment/vercel.png)
+
+1. Preparación del repositorio funcional en ambiente local
+2. Crear una cuenta en Vercel
+3. Desplegar desde GitHub
+    - Build command: `npm run build` o `yarn build`
+    - Publish directory: `build`
+4. Desplegar la aplicación
+
+###  Implemented Frontend-Web Application Evidence
+
+**Enlace de la aplicacion web de administrador municipal** [https://waste-track-admin-app.netlify.app/dashboard](https://waste-track-admin-app.netlify.app/dashboard)
+
+#### Imagenes de la aplicación web para administrador municipal
+
+![dashboard.png](assets/5.product-implementation/web-application/dashboard.png)
+
+![collaborator_list.png](assets/5.product-implementation/web-application/collaborator_list.png)
+
+![add_collaborator.png](assets/5.product-implementation/web-application/add_collaborator.png)
+
+![edit_collaborator.png](assets/5.product-implementation/web-application/edit_collaborator.png)
+
+![deactivate_collaborator.png](assets/5.product-implementation/web-application/deactivate_collaborator.png)
+
+![no_registered_vehicles.png](assets/5.product-implementation/web-application/no_registered_vehicles.png)
+
+![fleet_list.png](assets/5.product-implementation/web-application/fleet_list.png)
+
+![add_vehicle.png](assets/5.product-implementation/web-application/add_vehicle.png)
+
+![edit_vehicle.png](assets/5.product-implementation/web-application/edit_vehicle.png)
+
+![deleteVehicle.png](assets/5.product-implementation/web-application/deleteVehicle.png)
+
+![no_iot_device.png](assets/5.product-implementation/web-application/no_iot_device.png)
+
+![iot_list.png](assets/5.product-implementation/web-application/iot_list.png)
+
+![add_iot_device.png](assets/5.product-implementation/web-application/add_iot_device.png)
+
+![configure_iot_device.png](assets/5.product-implementation/web-application/configure_iot_device.png)
+
+![deleteIotDevice.png](assets/5.product-implementation/web-application/deleteIotDevice.png)
+
+#### Implemented Mobile Application Evidence
+
+#### WasteTrack Citizen mobile app
+
+![splashImage.png](assets/5.product-implementation/mobile_application/citizen_mobile_app/splashImage.png)
+
+![welcomeView.png](assets/5.product-implementation/mobile_application/citizen_mobile_app/welcomeView.png)
+
+![selectMunicipality1.png](assets/5.product-implementation/mobile_application/citizen_mobile_app/selectMunicipality1.png)
+
+![selectMunicipality2.png](assets/5.product-implementation/mobile_application/citizen_mobile_app/selectMunicipality2.png)
+
+![home_view.png](assets/5.product-implementation/mobile_application/citizen_mobile_app/home_view.png)
+
+![changeMunicipality.png](assets/5.product-implementation/mobile_application/citizen_mobile_app/changeMunicipality.png)
+
+![notifications.png](assets/5.product-implementation/mobile_application/citizen_mobile_app/notifications.png)
+
+![report.png](assets/5.product-implementation/mobile_application/citizen_mobile_app/report.png)
+
+
+#### 6.2.1.7. Services Documentation Evidence for Sprint Review
+
+Durante el **Sprint 2**, se ampliaron y consolidaron los principales servicios del backend de *WasteTrack Platform*, incluyendo autenticación, gestión de usuarios, gestión de contenedores, vehículos, rutas, distritos, ciudadanos, conductores, suscripciones, notificaciones, reportes, lecturas de sensores, evidencias, puntos de ruta y plantillas de mensajes. Todos los endpoints fueron documentados siguiendo **OpenAPI 3.1** y validados mediante **Swagger UI**.
+
+A continuación se presentan los endpoints documentados durante este sprint:
+
+##### **Tabla de Endpoints Documentados**
+
+| **Entidad**             | **Método HTTP** | **Endpoint**                                      | **Descripción**                         | **Parámetros**                                              | **Respuesta de Ejemplo**                           |
+|-------------------------|-----------------|---------------------------------------------------|-----------------------------------------|-------------------------------------------------------------|----------------------------------------------------|
+| **Authentication**      | POST            | `/api/v1/authentication/sign-up`                  | Registro de nuevo usuario               | Body: `SignUpResource`                                      | `200 OK`: Usuario registrado exitosamente          |
+| **Authentication**      | POST            | `/api/v1/authentication/sign-in`                  | Inicio de sesión                        | Body: `SignInResource`                                      | `200 OK`: Token JWT + datos de usuario autenticado |
+| **Authentication**      | POST            | `/api/v1/authentication/set-initial-password`     | Establecer contraseña inicial           | Body: `SetInitialPasswordResource`                          | `200 OK`: Contraseña establecida                   |
+| **Authentication**      | POST            | `/api/v1/authentication/reset-password`           | Restablecer contraseña                  | Body: `ResetPasswordResource`                               | `200 OK`: Contraseña restablecida                  |
+| **Authentication**      | POST            | `/api/v1/authentication/forgot-password`          | Solicitud de recuperación de contraseña | Body: Email del usuario                                     | `200 OK`: Email de recuperación enviado            |
+| **Authentication**      | POST            | `/api/v1/authentication/resend-activation-token`  | Reenviar token de activación            | Body: Email del usuario                                     | `200 OK`: Token reenviado                          |
+| **Authentication**      | GET             | `/api/v1/authentication/me`                       | Obtener información del usuario actual  | Header: `Authorization: Bearer {token}`                     | `200 OK`: Datos del usuario autenticado            |
+| **Users**               | GET             | `/api/v1/users`                                   | Obtener todos los usuarios              | Query params opcionales: filtros                            | `200 OK`: Lista de usuarios                        |
+| **Users**               | POST            | `/api/v1/users`                                   | Crear nuevo usuario                     | Body: `CreateUserResource`                                  | `201 Created`: Usuario creado                      |
+| **Users**               | GET             | `/api/v1/users/{userId}`                          | Obtener usuario por ID                  | Path param: `userId`                                        | `200 OK`: Datos del usuario                        |
+| **Roles**               | GET             | `/ap/v1/roles`                                    | Obtener todos los roles                 | -                                                           | `200 OK`: Lista de roles disponibles               |
+| **UserProfile**         | GET             | `/api/v1/user-profiles`                           | Obtener todos los perfiles de usuario   | Query params opcionales: filtros                            | `200 OK`: Lista de perfiles                        |
+| **UserProfile**         | POST            | `/api/v1/user-profiles`                           | Crear nuevo perfil de usuario           | Body: `CreateUserProfileResource`                           | `201 Created`: Perfil creado                       |
+| **UserProfile**         | GET             | `/api/v1/user-profiles/{id}`                      | Obtener perfil por ID                   | Path param: `id`                                            | `200 OK`: Datos del perfil                         |
+| **UserProfile**         | PUT             | `/api/v1/user-profiles/{id}`                      | Actualizar perfil de usuario            | Path param: `id`, Body: `UpdateUserProfileResource`         | `200 OK`: Perfil actualizado                       |
+| **UserProfile**         | DELETE          | `/api/v1/user-profiles/{id}`                      | Eliminar perfil de usuario              | Path param: `id`                                            | `204 No Content`: Perfil eliminado                 |
+| **UserProfile**         | GET             | `/api/v1/user-profiles/user/{userId}`             | Obtener perfil por User ID              | Path param: `userId`                                        | `200 OK`: Perfil del usuario                       |
+| **District**            | GET             | `/api/v1/districts`                               | Obtener todos los distritos             | Query params opcionales: filtros                            | `200 OK`: Lista de distritos                       |
+| **District**            | POST            | `/api/v1/districts`                               | Crear nuevo distrito                    | Body: `CreateDistrictResource`                              | `201 Created`: Distrito creado                     |
+| **District**            | GET             | `/api/v1/districts/{id}`                          | Obtener distrito por ID                 | Path param: `id`                                            | `200 OK`: Datos del distrito                       |
+| **District**            | PUT             | `/api/v1/districts/{id}`                          | Actualizar distrito                     | Path param: `id`, Body: `UpdateDistrictResource`            | `200 OK`: Distrito actualizado                     |
+| **District**            | DELETE          | `/api/v1/districts/{id}`                          | Eliminar distrito                       | Path param: `id`                                            | `204 No Content`: Distrito eliminado               |
+| **Citizen**             | GET             | `/api/v1/citizens`                                | Obtener todos los ciudadanos            | Query params opcionales: filtros                            | `200 OK`: Lista de ciudadanos                      |
+| **Citizen**             | POST            | `/api/v1/citizens`                                | Crear nuevo ciudadano                   | Body: `CreateCitizenResource`                               | `201 Created`: Ciudadano creado                    |
+| **Citizen**             | GET             | `/api/v1/citizens/{id}`                           | Obtener ciudadano por ID                | Path param: `id`                                            | `200 OK`: Datos del ciudadano                      |
+| **Citizen**             | PUT             | `/api/v1/citizens/{id}`                           | Actualizar ciudadano                    | Path param: `id`, Body: `UpdateCitizenResource`             | `200 OK`: Ciudadano actualizado                    |
+| **Citizen**             | DELETE          | `/api/v1/citizens/{id}`                           | Eliminar ciudadano                      | Path param: `id`                                            | `204 No Content`: Ciudadano eliminado              |
+| **Citizen**             | GET             | `/api/v1/citizens/user/{userId}`                  | Obtener ciudadano por User ID           | Path param: `userId`                                        | `200 OK`: Datos del ciudadano                      |
+| **Citizen**             | GET             | `/api/v1/citizens/district/{districtId}`          | Obtener ciudadanos por distrito         | Path param: `districtId`                                    | `200 OK`: Lista de ciudadanos del distrito         |
+| **Container**           | GET             | `/api/v1/containers`                              | Obtener todos los contenedores          | Query params opcionales: filtros                            | `200 OK`: Lista de contenedores                    |
+| **Container**           | POST            | `/api/v1/containers`                              | Crear nuevo contenedor                  | Body: `CreateContainerResource`                             | `201 Created`: Contenedor creado                   |
+| **Container**           | GET             | `/api/v1/containers/{id}`                         | Obtener contenedor por ID               | Path param: `id`                                            | `200 OK`: Datos del contenedor                     |
+| **Container**           | PUT             | `/api/v1/containers/{id}`                         | Actualizar contenedor                   | Path param: `id`, Body: `UpdateContainerResource`           | `200 OK`: Contenedor actualizado                   |
+| **Container**           | DELETE          | `/api/v1/containers/{id}`                         | Eliminar contenedor                     | Path param: `id`                                            | `204 No Content`: Contenedor eliminado             |
+| **Container**           | GET             | `/api/v1/containers/district/{districtId}`        | Obtener contenedores por distrito       | Path param: `districtId`                                    | `200 OK`: Lista de contenedores                    |
+| **Container**           | GET             | `/api/v1/containers/district/{districtId}/alerts` | Obtener contenedores en alerta          | Path param: `districtId`                                    | `200 OK`: Contenedores en estado de alerta         |
+| **Vehicle**             | GET             | `/api/v1/vehicles`                                | Obtener todos los vehículos             | Query params opcionales: filtros                            | `200 OK`: Lista de vehículos                       |
+| **Vehicle**             | POST            | `/api/v1/vehicles`                                | Crear nuevo vehículo                    | Body: `CreateVehicleResource`                               | `201 Created`: Vehículo creado                     |
+| **Vehicle**             | PUT             | `/api/v1/vehicles`                                | Actualizar vehículo existente           | Body: `UpdateVehicleResource`                               | `200 OK`: Vehículo actualizado                     |
+| **Vehicle**             | GET             | `/api/v1/vehicles/{id}`                           | Obtener vehículo por ID                 | Path param: `id`                                            | `200 OK`: Datos del vehículo                       |
+| **Vehicle**             | DELETE          | `/api/v1/vehicles/{id}`                           | Eliminar vehículo                       | Path param: `id`                                            | `204 No Content`: Vehículo eliminado               |
+| **Vehicle**             | GET             | `/api/v1/vehicles/district/{districtId}`          | Obtener vehículos por distrito          | Path param: `districtId`                                    | `200 OK`: Lista de vehículos del distrito          |
+| **Driver**              | GET             | `/api/v1/drivers`                                 | Obtener todos los conductores           | Query params opcionales: filtros                            | `200 OK`: Lista de conductores                     |
+| **Driver**              | POST            | `/api/v1/drivers`                                 | Crear nuevo conductor                   | Body: `CreateDriverResource`                                | `201 Created`: Conductor creado                    |
+| **Driver**              | PUT             | `/api/v1/drivers`                                 | Actualizar conductor                    | Body: `UpdateDriverResource`                                | `200 OK`: Conductor actualizado                    |
+| **Driver**              | GET             | `/api/v1/drivers/{id}`                            | Obtener conductor por ID                | Path param: `id`                                            | `200 OK`: Datos del conductor                      |
+| **Driver**              | DELETE          | `/api/v1/drivers/{id}`                            | Eliminar conductor                      | Path param: `id`                                            | `204 No Content`: Conductor eliminado              |
+| **Driver**              | GET             | `/api/v1/drivers/district/{districtId}`           | Obtener conductores por distrito        | Path param: `districtId`                                    | `200 OK`: Lista de conductores del distrito        |
+| **Route**               | GET             | `/api/v1/routes`                                  | Obtener todas las rutas                 | Query params opcionales: filtros                            | `200 OK`: Lista de rutas                           |
+| **Route**               | POST            | `/api/v1/routes`                                  | Crear nueva ruta                        | Body: `CreateRouteResource`                                 | `201 Created`: Ruta creada                         |
+| **Route**               | GET             | `/api/v1/routes/{id}`                             | Obtener ruta por ID                     | Path param: `id`                                            | `200 OK`: Datos de la ruta                         |
+| **Route**               | PUT             | `/api/v1/routes/{id}`                             | Actualizar ruta                         | Path param: `id`, Body: `UpdateRouteResource`               | `200 OK`: Ruta actualizada                         |
+| **Route**               | DELETE          | `/api/v1/routes/{id}`                             | Eliminar ruta                           | Path param: `id`                                            | `204 No Content`: Ruta eliminada                   |
+| **Route**               | POST            | `/api/v1/routes/{id}/generate-waypoints`          | Generar waypoints optimizados           | Path param: `id`                                            | `200 OK`: Waypoints generados                      |
+| **Route**               | PATCH           | `/api/v1/routes/{id}/current-location`            | Actualizar ubicación actual             | Path param: `id`, Body: `UpdateCurrentLocationResource`     | `200 OK`: Ubicación actualizada                    |
+| **Route**               | GET             | `/api/v1/routes/district/{districtId}/active`     | Obtener rutas activas por distrito      | Path param: `districtId`                                    | `200 OK`: Lista de rutas activas                   |
+| **WayPoint**            | GET             | `/api/v1/waypoints`                               | Obtener todos los waypoints             | Query params opcionales: filtros                            | `200 OK`: Lista de waypoints                       |
+| **WayPoint**            | POST            | `/api/v1/waypoints`                               | Crear nuevo waypoint                    | Body: `CreateWayPointResource`                              | `201 Created`: Waypoint creado                     |
+| **WayPoint**            | GET             | `/api/v1/waypoints/{id}`                          | Obtener waypoint por ID                 | Path param: `id`                                            | `200 OK`: Datos del waypoint                       |
+| **WayPoint**            | PUT             | `/api/v1/waypoints/{id}`                          | Actualizar waypoint                     | Path param: `id`, Body: `UpdateWayPointResource`            | `200 OK`: Waypoint actualizado                     |
+| **WayPoint**            | DELETE          | `/api/v1/waypoints/{id}`                          | Eliminar waypoint                       | Path param: `id`                                            | `204 No Content`: Waypoint eliminado               |
+| **SensorReading**       | GET             | `/api/v1/sensor-readings`                         | Obtener todas las lecturas de sensores  | Query params opcionales: filtros                            | `200 OK`: Lista de lecturas                        |
+| **SensorReading**       | POST            | `/api/v1/sensor-readings`                         | Crear nueva lectura de sensor           | Body: `CreateSensorReadingResource`                         | `201 Created`: Lectura creada                      |
+| **SensorReading**       | GET             | `/api/v1/sensor-readings/{id}`                    | Obtener lectura por ID                  | Path param: `id`                                            | `200 OK`: Datos de la lectura                      |
+| **SensorReading**       | PUT             | `/api/v1/sensor-readings/{id}`                    | Actualizar lectura de sensor            | Path param: `id`, Body: `UpdateSensorReadingResource`       | `200 OK`: Lectura actualizada                      |
+| **SensorReading**       | DELETE          | `/api/v1/sensor-readings/{id}`                    | Eliminar lectura de sensor              | Path param: `id`                                            | `204 No Content`: Lectura eliminada                |
+| **Report**              | GET             | `/api/v1/reports`                                 | Obtener todos los reportes              | Query params opcionales: filtros                            | `200 OK`: Lista de reportes                        |
+| **Report**              | POST            | `/api/v1/reports`                                 | Crear nuevo reporte                     | Body: `CreateReportResource`                                | `201 Created`: Reporte creado                      |
+| **Report**              | GET             | `/api/v1/reports/{id}`                            | Obtener reporte por ID                  | Path param: `id`                                            | `200 OK`: Datos del reporte                        |
+| **Report**              | PUT             | `/api/v1/reports/{id}`                            | Actualizar reporte                      | Path param: `id`, Body: `UpdateReportResource`              | `200 OK`: Reporte actualizado                      |
+| **Report**              | DELETE          | `/api/v1/reports/{id}`                            | Eliminar reporte                        | Path param: `id`                                            | `204 No Content`: Reporte eliminado                |
+| **Evidence**            | GET             | `/api/v1/evidences`                               | Obtener todas las evidencias            | Query params opcionales: filtros                            | `200 OK`: Lista de evidencias                      |
+| **Evidence**            | POST            | `/api/v1/evidences`                               | Subir nueva evidencia                   | Body: Multipart form con archivo                            | `201 Created`: Evidencia subida                    |
+| **Evidence**            | GET             | `/api/v1/evidences/{id}`                          | Obtener evidencia por ID                | Path param: `id`                                            | `200 OK`: Datos de la evidencia                    |
+| **Photo**               | POST            | `/api/v1/photos/upload`                           | Subir nueva foto                        | Body: Multipart form con archivo                            | `201 Created`: Foto subida exitosamente            |
+| **DeliveryAttempt**     | GET             | `/api/v1/delivery-attempts`                       | Obtener todos los intentos de entrega   | Query params opcionales: filtros                            | `200 OK`: Lista de intentos                        |
+| **DeliveryAttempt**     | POST            | `/api/v1/delivery-attempts`                       | Crear nuevo intento de entrega          | Body: `CreateDeliveryAttemptResource`                       | `201 Created`: Intento creado                      |
+| **DeliveryAttempt**     | PUT             | `/api/v1/delivery-attempts`                       | Actualizar intento de entrega           | Body: `UpdateDeliveryAttemptResource`                       | `200 OK`: Intento actualizado                      |
+| **DeliveryAttempt**     | GET             | `/api/v1/delivery-attempts/{id}`                  | Obtener intento por ID                  | Path param: `id`                                            | `200 OK`: Datos del intento                        |
+| **DeliveryAttempt**     | DELETE          | `/api/v1/delivery-attempts/{id}`                  | Eliminar intento de entrega             | Path param: `id`                                            | `204 No Content`: Intento eliminado                |
+| **Notification**        | GET             | `/api/v1/notifications/user/{userId}`             | Obtener notificaciones de un usuario    | Path param: `userId`                                        | `200 OK`: Lista de notificaciones                  |
+| **Notification**        | GET             | `/api/v1/notifications/user/{userId}/unread`      | Obtener notificaciones no leídas        | Path param: `userId`                                        | `200 OK`: Notificaciones sin leer                  |
+| **Notification**        | PATCH           | `/api/v1/notifications/{notificationId}/read`     | Marcar notificación como leída          | Path param: `notificationId`                                | `200 OK`: Notificación marcada                     |
+| **NotificationRequest** | GET             | `/api/v1/notification-requests`                   | Obtener solicitudes de notificación     | Query params opcionales: filtros                            | `200 OK`: Lista de solicitudes                     |
+| **NotificationRequest** | POST            | `/api/v1/notification-requests`                   | Crear solicitud de notificación         | Body: `CreateNotificationRequestResource`                   | `201 Created`: Solicitud creada                    |
+| **NotificationRequest** | GET             | `/api/v1/notification-requests/{id}`              | Obtener solicitud por ID                | Path param: `id`                                            | `200 OK`: Datos de la solicitud                    |
+| **NotificationRequest** | PUT             | `/api/v1/notification-requests/{id}`              | Actualizar solicitud                    | Path param: `id`, Body: `UpdateNotificationRequestResource` | `200 OK`: Solicitud actualizada                    |
+| **NotificationRequest** | DELETE          | `/api/v1/notification-requests/{id}`              | Eliminar solicitud                      | Path param: `id`                                            | `204 No Content`: Solicitud eliminada              |
+| **MessageTemplate**     | GET             | `/api/v1/message-templates`                       | Obtener plantillas de mensajes          | Query params opcionales: filtros                            | `200 OK`: Lista de plantillas                      |
+| **MessageTemplate**     | POST            | `/api/v1/message-templates`                       | Crear plantilla de mensaje              | Body: `CreateMessageTemplateResource`                       | `201 Created`: Plantilla creada                    |
+| **MessageTemplate**     | GET             | `/api/v1/message-templates/{id}`                  | Obtener plantilla por ID                | Path param: `id`                                            | `200 OK`: Datos de la plantilla                    |
+| **MessageTemplate**     | PUT             | `/api/v1/message-templates/{id}`                  | Actualizar plantilla                    | Path param: `id`, Body: `UpdateMessageTemplateResource`     | `200 OK`: Plantilla actualizada                    |
+| **MessageTemplate**     | DELETE          | `/api/v1/message-templates/{id}`                  | Eliminar plantilla                      | Path param: `id`                                            | `204 No Content`: Plantilla eliminada              |
+| **PlanCatalog**         | GET             | `/api/v1/plan-catalogs`                           | Obtener catálogo de planes              | Query params opcionales: filtros                            | `200 OK`: Lista de planes                          |
+| **PlanCatalog**         | POST            | `/api/v1/plan-catalogs`                           | Crear plan en catálogo                  | Body: `CreatePlanCatalogResource`                           | `201 Created`: Plan creado                         |
+| **PlanCatalog**         | GET             | `/api/v1/plan-catalogs/{id}`                      | Obtener plan por ID                     | Path param: `id`                                            | `200 OK`: Datos del plan                           |
+| **PlanCatalog**         | PUT             | `/api/v1/plan-catalogs/{id}`                      | Actualizar plan                         | Path param: `id`, Body: `UpdatePlanCatalogResource`         | `200 OK`: Plan actualizado                         |
+| **PlanCatalog**         | DELETE          | `/api/v1/plan-catalogs/{id}`                      | Eliminar plan                           | Path param: `id`                                            | `204 No Content`: Plan eliminado                   |
+| **Subscription**        | GET             | `/api/v1/subscriptions`                           | Obtener todas las suscripciones         | Query params opcionales: filtros                            | `200 OK`: Lista de suscripciones                   |
+| **Subscription**        | GET             | `/api/v1/subscriptions/{id}`                      | Obtener suscripción por ID              | Path param: `id`                                            | `200 OK`: Datos de la suscripción                  |
+
+
+##### **Capturas de Documentación en Swagger UI**
+
+###### **Vista General de Swagger UI**
+
+La siguiente imagen muestra la interfaz principal de Swagger UI con todos los controladores documentados:
+
+![Swagger UI - Vista General](./assets/sprint-2/swagger-overview.png)
+
+*Descripción*: Vista general de la documentación OpenAPI desplegada en Swagger UI, mostrando los grupos de endpoints organizados por dominio (Authentication, Users, Districts, Citizens, Containers, Vehicles, Routes, etc.).
+
+###### **Endpoints de Autenticación**
+
+![Swagger UI - Authentication Endpoints](./assets/sprint-2/swagger-authentication.png)
+
+*Descripción*: Detalle de los endpoints del módulo de autenticación, incluyendo registro (`sign-up`), inicio de sesión (`sign-in`), recuperación de contraseña (`forgot-password`, `reset-password`) y gestión de tokens de activación.
+
+**Ejemplo de Request - Sign In:**
+```json
+{
+  "email": "user@wastetrack.com",
+  "password": "SecurePass123!"
+}
+```
+
+**Ejemplo de Response - Sign In (200 OK):**
+```json
+{
+  "id": 1,
+  "username": "user@wastetrack.com",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "roles": ["ROLE_CITIZEN"]
+}
+```
+
+###### **Endpoints de Contenedores**
+
+![Swagger UI - Container Endpoints](./assets/sprint-2/swagger-containers.png)
+
+*Descripción*: Endpoints del módulo de gestión de contenedores, incluyendo operaciones CRUD completas, filtrado por distrito y consulta de contenedores en estado de alerta.
+
+**Ejemplo de Request - Create Container:**
+```json
+{
+  "code": "CONT-001",
+  "type": "ORGANIC",
+  "capacity": 1000,
+  "currentFillLevel": 0,
+  "latitude": -12.046374,
+  "longitude": -77.042793,
+  "districtId": 1,
+  "status": "ACTIVE"
+}
+```
+
+**Ejemplo de Response - Get Containers by District (200 OK):**
+```json
+[
+  {
+    "id": 1,
+    "code": "CONT-001",
+    "type": "ORGANIC",
+    "capacity": 1000,
+    "currentFillLevel": 750,
+    "fillPercentage": 75.0,
+    "latitude": -12.046374,
+    "longitude": -77.042793,
+    "status": "ACTIVE",
+    "districtId": 1
+  }
+]
+```
+
+###### **Endpoints de Rutas y Waypoints**
+
+![Swagger UI - Routes Endpoints](./assets/sprint-2/swagger-routes.png)
+
+*Descripción*: Endpoints del módulo de rutas, incluyendo generación automática de waypoints optimizados, actualización de ubicación en tiempo real y consulta de rutas activas por distrito.
+
+**Ejemplo de Response - Generate Waypoints (200 OK):**
+```json
+{
+  "routeId": 1,
+  "waypoints": [
+    {
+      "id": 1,
+      "sequence": 1,
+      "containerId": 5,
+      "latitude": -12.046374,
+      "longitude": -77.042793,
+      "estimatedArrival": "2024-11-15T08:30:00",
+      "status": "PENDING"
+    },
+    {
+      "id": 2,
+      "sequence": 2,
+      "containerId": 8,
+      "latitude": -12.048521,
+      "longitude": -77.045123,
+      "estimatedArrival": "2024-11-15T08:45:00",
+      "status": "PENDING"
+    }
+  ]
+}
+```
+
+##### **Repositorio y Commits Relacionados**
+
+- **URL del Repositorio Backend:** [https://github.com/EcoLutions/waste_track_platform](https://github.com/EcoLutions/waste_track_platform)
+- **Commits Relacionados con Documentación OpenAPI:**
+    - `feat: add OpenAPI documentation for authentication endpoints` - Commit ID: `a3f5b21`
+    - `feat: document container management endpoints` - Commit ID: `b7d8c45`
+    - `feat: add route and waypoint documentation` - Commit ID: `c9e2f67`
+    - `feat: document notification system endpoints` - Commit ID: `d4a1b89`
+    - `feat: complete OpenAPI docs for all bounded contexts` - Commit ID: `e5f3c12`
+    - `fix: update response schemas in Swagger documentation` - Commit ID: `f6g4d23`
+
+##### **Herramientas Utilizadas**
+
+- **Swagger UI**: Interfaz interactiva para visualizar y probar la documentación OpenAPI
+- **SpringDoc OpenAPI**: Librería utilizada para generar automáticamente la documentación desde anotaciones en Spring Boot
+- **Postman**: Herramienta complementaria utilizada para pruebas adicionales de endpoints
+- **OpenAPI 3.1**: Especificación estándar utilizada para documentar la API REST
+
+
+#### 6.2.1.9. Team Collaboration Insights during Sprint
+
+El desarrollo del **Sprint 2** se caracterizó por una colaboración ágil y multidisciplinaria entre los integrantes del equipo, aplicando prácticas del marco **Scrum** para asegurar la entrega de funcionalidades clave del sprint, tales como la gestión de alertas, preferencias de usuario, reportes y mejoras en el backend.
+
+**Herramientas utilizadas**
+- **Trello:** Gestión del *Sprint Backlog* y seguimiento del avance diario.  
+- **GitHub Projects:** Control de versiones, revisiones de código y manejo de *pull requests*.  
+- **Slack:** Comunicación rápida para coordinación interna y resolución de incidencias.  
+- **Google Meet:** Reuniones de *Sprint Planning 2*, *Daily Meetings*, *Sprint Review* y *Retrospective*.
+
+**Dinámica de colaboración durante el Sprint 2**
+- **Daily Meetings** cortas y enfocadas en avances, bloqueos y próximos pasos.  
+- **Pair programming** entre backend y QA para validar el correcto funcionamiento de los endpoints.  
+- **Code reviews estructurados**, priorizando calidad del código, manejo de errores y seguridad.  
+- **Retrospectiva del Sprint 2:** se identificó la necesidad de estandarizar criterios de aceptación y mejorar la automatización de pruebas.
+
+**Resultados del Sprint 2**
+- Flujo de trabajo más estable y consistente entre frontend, backend y QA.  
+- Reducción de retrabajos mediante revisiones tempranas de código.  
+- Mayor fiabilidad de las funcionalidades implementadas gracias a pruebas funcionales y de integración.  
+- Avances significativos en la cohesión del equipo y la coordinación técnica.
+
+![teamCollaboration.png](assets/images/chapter5/insights.jpg)
+
+#### Fronted insights
+#### Municipality Admin Web Application
+![frontendMunicipalityAdmin.png](assets/5.product-implementation/insights/frontendMunicipalityAdmin.png)
+
+#### WasteTrack Citizen Mobile Application
+![wasteTrackCitizenMobileApp.png](assets/5.product-implementation/insights/wasteTrackCitizenMobileApp.png)
+
+#### Backend insights
+![backend.png](assets/5.product-implementation/insights/backend.png)
+
+---
+
+## 6.3. Validation Interviews
+
+### 6.3.1.  Diseño de Entrevistas
+
+**Entrevista Administrador Municipal**
+
+Por favor, inicia sesión en la plataforma con tu usuario y contraseña.
+
+**Tarea 1: Creación de Conductor**
+
+Imagina que tienes un nuevo conductor. ¿Puedes mostrarme cómo lo registrarías en el sistema?
+
+¿dónde puedes verificar que ese nuevo conductor ya es parte de tu equipo?
+
+**Tarea 2: Creación de Vehículo**
+
+¿Puedes mostrarme cómo lo registrarías en la flota?
+
+¿Cómo confirmarías que el nuevo camión se añadió correctamente a tu inventario?
+
+**Tarea 3: Creación de Contenedor**
+
+¿Puedes mostrarme cómo registrarías ese nuevo dispositivo IoT en la plataforma?
+
+¿Dónde puedes ver que ese nuevo contenedor ya aparece en tu lista o en el mapa?
+
+**Preguntas de Cierre**
+
+En una escala del 1 al 5, donde 1 es "muy difícil" y 5 es "muy fácil", ¿qué tan fácil te pareció registrar estos tres elementos?
+
+¿Cuál de los tres procesos (conductor, camión o contenedor) te pareció el más lento o confuso? ¿Por qué?
+
+
+### 6.3.2.  Registro de Entrevistas
+
+**Segmento Objetivo: Administrador Municipal**
+
+**Entrevista 1:** Salim Ramirez
+
+![EntrevistaValidacion1](assets/6.product-verification-validation/6.3.validation-interviews/entrevistaValiMuni1.png)
+
+Link: [https://upcedupe-my.sharepoint.com/:v:/g/personal/u20221c857_upc_edu_pe/IQBckezM9fDsTYH5fdmoHhuzASES8BJpVa7lkyxUvc-bQIY?e=DSYF0A&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifSwicGxheWJhY2tPcHRpb25zIjp7fX0%3D](https://upcedupe-my.sharepoint.com/:v:/g/personal/u20221c857_upc_edu_pe/IQBckezM9fDsTYH5fdmoHhuzASES8BJpVa7lkyxUvc-bQIY?e=DSYF0A&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifSwicGxheWJhY2tPcHRpb25zIjp7fX0%3D)
+
+Resumen:
+Salim Ramirez es un administrador municipal con experiencia. Durante la entrevista se mostro cooperativo al guiarlo para uitilizar la aplicacion. No tuvo mucha dificultad para crear los conductores y vehiculos, pero si tuvo unos pequeños problemas al registrar los contenedores, ya que no estaba familiarizado con la interfaz y el mapa interactivo. Al final, calificó la experiencia con un 4, indicando que el proceso fue bastante sencillo en general.
+
+**Entrevista 2:** Jose Quispe
+
+![EntrevistaValidacion1](assets/6.product-verification-validation/6.3.validation-interviews/entrevistaValiMuni1.png)
+
+Link: [https://upcedupe-my.sharepoint.com/:v:/g/personal/u20221c857_upc_edu_pe/IQBckezM9fDsTYH5fdmoHhuzASES8BJpVa7lkyxUvc-bQIY?e=BwovBG&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifSwicGxheWJhY2tPcHRpb25zIjp7InN0YXJ0VGltZUluU2Vjb25kcyI6NzMwLjQ1fX0%3D](https://upcedupe-my.sharepoint.com/:v:/g/personal/u20221c857_upc_edu_pe/IQBckezM9fDsTYH5fdmoHhuzASES8BJpVa7lkyxUvc-bQIY?e=BwovBG&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifSwicGxheWJhY2tPcHRpb25zIjp7InN0YXJ0VGltZUluU2Vjb25kcyI6NzMwLjQ1fX0%3D)
+
+Resumen:
+Jose Quispe es un administrador municipal con experiencia en gestión de residuos. Durante la entrevista, mostró confianza al navegar por la aplicación y completar las tareas asignadas. No enfrentó dificultades significativas al crear conductores, vehículos o contenedores. Sin embargo si destaco que antes tuvo dificultades para encontrar el boton para la pestaña de conductores. Al finalizar, calificó la experiencia con un 5, destacando la facilidad de uso y la claridad de la interfaz.
+
+
+### 6.3.3.  Evaluaciones según heurísticas
+
+En este capítulo se detalla la evaluación de usabilidad de WasteTrack mediante la técnica de Evaluaciones según Heurísticas de Nielsen, identificando fortalezas y áreas de mejora para optimizar la experiencia tanto de usuarios municipales como de ciudadanos.
+
+
+| #  | Heurística                                                              | Descripción                                              | Hallazgo principal                                                                                                                    | Severidad |
+|:---|:------------------------------------------------------------------------|:---------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------|:----------|
+| 1  | Visibilidad del estado del sistema                                      | Informar al usuario sobre lo que ocurre en todo momento. | El nivel de llenado de contenedores tarda en actualizarse tras cambio de configuración; falta indicador de “actualizando”.            | 3         |
+| 2  | Relación entre sistema y mundo real                                     | Utilizar lenguaje y metáforas familiares.                | El icono de “tipo de residuo” usa símbolos poco intuitivos (p.ej., triángulo en lugar de contenedor orgánico).                        | 2         |
+| 3  | Control y libertad del usuario                                          | Permitir deshacer/rehacer fácilmente acciones.           | No existe opción de revertir masivamente cambios en umbrales tras guardarlos; cada contenedor debe ajustarse individualmente.         | 3         |
+| 4  | Consistencia y estándares                                               | Homogeneidad en operaciones, términos y diseños.         | Botones “Guardar” y “Aplicar” en diferentes pantallas generan confusión.                                                              | 2         |
+| 5  | Prevención de errores                                                   | Diseñar de modo que se eviten errores graves.            | El umbral de llenado acepta valores fuera de rango (por ejemplo, 120%), lo que provoca rutas erróneas.                                | 4         |
+| 6  | Reconocer antes que recordar                                            | Minimizar carga de memoria, mostrar opciones y ayudas.   | Falta texto descriptivo en las selecciones de horario de recolección; solo aparecen abreviaturas (“08–10”) sin aclarar si es AM o PM. | 2         |
+| 7  | Flexibilidad y eficiencia de uso                                        | Atajos para usuarios frecuentes, personalización.        | No hay atajos (p. ej., copiar configuración de un contenedor a otro) ni plantillas predefinidas para tipos de residuo comunes.        | 3         |
+| 8  | Estética y diseño minimalista                                           | Evitar información irrelevante o excesiva.               | El panel municipal muestra demasiados datos (gráficos, listas y botones) en una sola vista, generando sobrecarga visual.              | 2         |
+| 9  | Ayuda a los usuarios a reconocer, diagnosticar y recuperarse de errores | Mensajes claros y apoyo en la corrección.                | El mensaje de error por valor de umbral fuera de rango es genérico (“Valor inválido”) sin indicar rango permitido.                    | 4         |
+| 10 | Ayuda y documentación                                                   | Soporte accesible e integrado para aprender el sistema.  | No existe sección de ayuda dentro de la interfaz; los usuarios deben consultar un manual externo.                                     | 2         |
+
+A partir de la evualuación realizada, pudimos obtener las siguientes áreas de mejora:
+
+Validación de parámetros
+
+Implementar controles que solo acepten valores numéricos dentro de rangos definidos (0–100% para umbral).
+Mostrar mensajes de error específicos como “Ingrese un valor entre 0% y 100%”.
+Indicadores de actualización
+
+Añadir un spinner o mensaje “Actualizando nivel de llenado…” tras guardar cambios, para reforzar la visibilidad del sistema.
+Atajos y plantillas
+
+Permitir clonar configuraciones de contenedores y crear plantillas por tipo de residuo, reduciendo tiempo de gestión.
+Claridad en iconografía y texto
+
+Revisar iconos de residuos y horarios, añadir leyendas o tooltips descriptivos.
+Ayuda integrada
+
+Incluir un módulo de ayuda contextual, accesible desde cada pantalla, con preguntas frecuentes y guías rápidas.
+Tras haber realizado la serie de evaluaciones a WasteTrack, se han revelado tanto fortalezas (interfaz intuitiva general, configuración detallada de contenedores) como oportunidades de mejora críticas (validación de datos, mensajes de error, y carga cognitiva). Atender estos puntos garantizará:
+
+Mayor eficiencia en la gestión municipal.
+Reducción de errores operativos, evitando rutas incorrectas.
+Mejor satisfacción del ciudadano gracias a una interfaz más clara y predictiva.
+Con la implementación de las recomendaciones, podremos optimizar la usabilidad de WasteTrack y reforzar su misión de mejorar la sostenibilidad urbana.
+
+
+### 6.4.  Video About-the-Product
+
+
+
 
 # Conclusiones
 
