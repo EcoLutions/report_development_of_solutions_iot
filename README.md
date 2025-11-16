@@ -7493,8 +7493,7 @@ Con la implementación de las recomendaciones, podremos optimizar la usabilidad 
 
 ### 6.4.  Video About-the-Product
 
-
-
+[https://upcedupe-my.sharepoint.com/:v:/g/personal/u202317638_upc_edu_pe/IQBkpIBzjowPRabGop9sb4KbAfO27obDn1c16Vn_gZ08LGg?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D&e=2VctO5](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202317638_upc_edu_pe/IQBkpIBzjowPRabGop9sb4KbAfO27obDn1c16Vn_gZ08LGg?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D&e=2VctO5)
 
 # Conclusiones
 
