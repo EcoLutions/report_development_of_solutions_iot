@@ -7496,7 +7496,7 @@ Jose Quispe es un administrador municipal con experiencia en gestión de residuo
 
 ### 6.3.3.  Evaluaciones según heurísticas
 
-En este capítulo se detalla la evaluación de usabilidad de WasteTrack mediante la técnica de Evaluaciones según Heurísticas de Nielsen, identificando fortalezas y áreas de mejora para optimizar la experiencia tanto de usuarios municipales como de ciudadanos.
+En este capítulo se detallara la evaluación de usabilidad de WasteTrack mediante la técnica de Evaluaciones según Heurísticas de Nielsen, identificando fortalezas y áreas de mejora para optimizar la experiencia tanto de usuarios municipales como de ciudadanos.
 
 
 | #  | Heurística                                                              | Descripción                                              | Hallazgo principal                                                                                                                    | Severidad |
