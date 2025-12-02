@@ -7714,7 +7714,20 @@ Vista de usuarios ciudadanos registrados
 Vista de inicio de sesion
 ![loginView.png](assets/sprint-3/mobile/loginView.png)
 
+Vista principal de la aplicacion movil para conductores
+![mainView.png](assets/sprint-3/mobile/mainView.png)
 
+Vista del perfil de usuario
+![profileView.png](assets/sprint-3/mobile/profileView.png)
+
+Vista de ruta asignada al conductor, inciada
+![mapRoute.png](assets/sprint-3/mobile/mapRoute.png)
+
+Vista de confirmr recoleccion de contenedor
+![img.png](assets/sprint-3/mobile/img.png)
+
+Vista de ruta completada
+![img_1.png](assets/sprint-3/mobile/img_1.png)
 
 ---
 
