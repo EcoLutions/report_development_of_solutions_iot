@@ -7277,6 +7277,9 @@ A continuación se presentan los endpoints documentados durante este sprint:
 | **Subscription**        | GET             | `/api/v1/subscriptions`                           | Obtener todas las suscripciones         | Query params opcionales: filtros                            | `200 OK`: Lista de suscripciones                   |
 | **Subscription**        | GET             | `/api/v1/subscriptions/{id}`                      | Obtener suscripción por ID              | Path param: `id`                                            | `200 OK`: Datos de la suscripción                  |
 
+---
+
+#### 6.2.1.8. Software Deployment Evidence for Sprint Review
 
 ##### **Capturas de Documentación en Swagger UI**
 
@@ -7422,6 +7425,495 @@ El desarrollo del **Sprint 2** se caracterizó por una colaboración ágil y mul
 - Flujo de trabajo más estable y consistente entre frontend, backend y QA.  
 - Reducción de retrabajos mediante revisiones tempranas de código.  
 - Mayor fiabilidad de las funcionalidades implementadas gracias a pruebas funcionales y de integración.  
+- Avances significativos en la cohesión del equipo y la coordinación técnica.
+
+![teamCollaboration.png](assets/images/chapter5/insights.jpg)
+
+#### Fronted insights
+#### Municipality Admin Web Application
+![frontendMunicipalityAdmin.png](assets/5.product-implementation/insights/frontendMunicipalityAdmin.png)
+
+#### WasteTrack Citizen Mobile Application
+![wasteTrackCitizenMobileApp.png](assets/5.product-implementation/insights/wasteTrackCitizenMobileApp.png)
+
+#### Backend insights
+![backend.png](assets/5.product-implementation/insights/backend.png)
+
+---
+
+## 6.2.3. Sprint 3
+
+### 6.2.3.1. Sprint Planning 3
+
+Para el tercer sprint del proyecto WasteTrack, se planificó continuar y concluir con el desarrollo de los módulos restantes del sistema, enfocándonos en el perfeccionamiento del flujo de gestión de residuos, mejora de la trazabilidad, integración de servicios backend, solución de errores pendientes e implementación de funcionalidades complementarias menores.
+
+| **Sprint #**                    | **Sprint 3**                                                                                                                                                                                                                                                                |
+|---------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Sprint Planning Background**  |                                                                                                                                                                                                                                                                             |
+| Date                            | 2025-11-20                                                                                                                                                                                                                                                                  |
+| Time                            | 9:00 am                                                                                                                                                                                                                                                                     |
+| Location                        | Vía presencial y virtual                                                                                                                                                                                                                                                    |
+| Prepared By                     | Rivadeneyra Ramos, Joaquin David                                                                                                                                                                                                                                            |
+| Attendees (to planning meeting) | Gutiérrez Soto, Jhosepmyr Orlando / Hernández Tuiro, Eric Ernesto / Rivadeneyra Ramos, Joaquin David / Riva Rodríguez, Elmer Augusto / Rojas Ccama, Carlos Andrés                                                                                                           |
+| Sprint 2 Review Summary         | Durante el Sprint 2 se completó el flujo principal de registro de residuos, rutas de recolección, clasificación y visualización en paneles web y mobile. Se configuraron los servicios backend, endpoints principales y la integración inicial con mapas y geolocalización. |
+| Sprint 2 Retrospective Summary  | Se determinó que, para el siguiente sprint, era necesario mejorar la integración entre módulos, optimizar validaciones, asegurar la disponibilidad de datos en tiempo real y completar las funcionalidades asociadas al seguimiento de residuos.                            |
+
+| **Sprint Goal & User Stories**  |              |
+|---------------------------------|--------------|
+| Sprint 3 Goal                   | El objetivo de este sprint es entregar a los usuarios un sistema completamente funcional para la gestión integral de residuos, incluyendo la visualización completa del ciclo de residuos, monitoreo en tiempo real, panel administrativo mejorado, validación de datos, optimización de rutas, gestión de roles y reportes. <br><br> Para los administradores, se entregará la visualización de métricas, acceso a reportes, gestión de usuarios y análisis de datos. <br><br> Para los recolectores, se habilitará la visualización de rutas y confirmación de recolecciones. <br><br> Esto se confirmará cuando todas las interfaces operativas funcionen de manera integrada, los datos puedan visualizarse en tiempo real y los roles accedan solo a las funcionalidades correspondientes. |
+| Sprint 3 Velocity               | 63 |
+| Sum of Story Points             | 121 |
+
+---
+
+### 6.2.3.2. Aspect Leaders and Collaborators
+
+Para el tercer sprint, se definieron los siguientes líderes de aspecto y colaboradores del proyecto WasteTrack:
+
+| Team Member (Last Name, First Name) | Github Username | Gestión de Rutas | Panel Administrativo | Clasificación y Registro | Mapas y Geolocalización | Backend Services | Testing & QA | Reporting | IAM |
+|-------------------------------------|-----------------|------------------|-----------------------|---------------------------|--------------------------|------------------|--------------|-----------|-----|
+| Gutiérrez Soto, Jhosepmyr Orlando   | JhosepmyrGS     | L                | C                     | C                         |                          | C                |              |           |     |
+| Hernández Tuiro, Eric Ernesto       | EricHT          | C                | C                     | L                         |                          |                  | C            |           | C   |
+| Rivadeneyra Ramos, Joaquin David    | JoaquinRR       | C                | L                     | C                         | C                        | L                | C            | C         |     |
+| Riva Rodríguez, Elmer Augusto       | ElmerRiva       | C                | C                     | C                         | L                        | C                |              |           |     |
+| Rojas Ccama, Carlos Andrés          | CarlosRojasC    | C                |                       | C                         | C                        |                  | L            | L         |     |
+
+---
+
+### 6.2.3.3. Sprint Backlog 3.
+
+En el Sprint 3 se definió como objetivo principal la implementación de las funcionalidades relacionadas con el monitoreo avanzado del nivel de llenado de contenedores, optimización dinámica de rutas de recolección, configuración y diagnóstico de dispositivos IoT, integración con nodos Edge para procesamiento local, y mejoras en la interfaz de seguimiento operativo para municipalidades y operadores.
+
+| Sprint | User Story | Task Id | Title                                                    | Description                                                                                                                           | Estimation (Hours) | Assigned To         | Status |
+|:-------|:-----------|:--------|:---------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------|:-------------------|:--------------------|:-------|
+| 3      | `US40`     | T30.1   | (Backend) Crear servicio de alertas                     | Implementar servicio básico que calcule alertas según niveles críticos.                                                               | 8                  | Jhosepmyr Gutiérrez | Done   |
+| 3      | `US40`     | T30.2   | (Backend) Endpoint `GET /api/v1/alerts`                  | Exponer las alertas generadas permitiendo filtros simples por fecha y tipo.                                                           | 6                  | Eric Hernandez      | Done   |
+| 3      | `US40`     | T30.3   | (Frontend Web) UI de Alertas                             | Crear tabla base para visualizar alertas del sistema.                                                                                 | 8                  | Carlos Andrés       | Done   |
+| 3      | `US40`     | T30.4   | (Frontend Web) Integración con API de Alertas            | Consumir endpoint y mostrar alertas en tiempo real.                                                                                    | 6                  | Carlos Andrés       | Done   |
+| 3      | `US41`     | T31.1   | (Backend) Registrar reglas de alerta                     | Crear endpoint para guardar reglas de alerta (umbrales simples).                                                                      | 7                  | Jhosepmyr Gutiérrez | Done   |
+| 3      | `US41`     | T31.2   | (Frontend Web) Formulario de reglas                      | UI para editar umbrales y condiciones de alerta.                                                                                       | 8                  | Carlos Andrés       | Done   |
+| 3      | `US42`     | T32.1   | (Mobile) Integración de FCM                              | Configurar notificaciones push básicas en app del conductor.                                                                          | 8                  | Elmer Riva          | Done   |
+| 3      | `US42`     | T32.2   | (Backend) Servicio de envío de notificaciones            | Crear servicio que envíe notificaciones según eventos del sistema.                                                                    | 7                  | Eric Hernandez      | Done   |
+| 3      | `US42`     | T32.3   | (Mobile) Pantalla de alertas                             | Vista donde el conductor visualiza alertas recibidas.                                                                                  | 6                  | Elmer Riva          | Done   |
+| 3      | `US45`     | T33.1   | (Backend) Registro básico de incidencias                 | Crear endpoint `POST /api/v1/incidents` para registrar incidencias.                                                                    | 6                  | Eric Hernandez      | Done   |
+| 3      | `US45`     | T33.2   | (Frontend Web) Gestión de incidencias                    | Crear tabla y formulario para registrar incidencias desde web.                                                                        | 8                  | Carlos Andrés       | Done   |
+| 3      | `US45`     | T33.3   | (Mobile) Reporte móvil de incidencias                    | Añadir opción para que el conductor reporte problemas desde la app.                                                                    | 8                  | Elmer Riva          | Done   |
+| 3      | `US43`     | T34.1   | (Backend) Nuevos KPIs                                    | Agregar KPIs adicionales: retrasos, tiempo promedio de ruta.                                                                          | 7                  | Jhosepmyr Gutiérrez | Done   |
+| 3      | `US43`     | T34.2   | (Frontend Web) Widgets adicionales                       | Crear widgets gráficos (líneas/barras) para mostrar nuevos KPIs.                                                                      | 8                  | Carlos Andrés       | Done   |
+| 3      | `US44`     | T35.1   | (BD) Optimizar consultas                                 | Revisar queries del dashboard e indexar columnas usadas.                                                                              | 6                  | Jhosepmyr Gutiérrez | Done   |
+| 3      | `US44`     | T35.2   | (Backend) Refactor de métricas                           | Pequeñas optimizaciones en el servicio para mejorar latencia.                                                                         | 7                  | Eric Hernandez      | Done   |
+| 3      | `SP02`     | T36.1   | (Testing) Pruebas BDD de Alertas                         | Escenarios Cucumber sobre reglas de alerta y generación.                                                                              | 8                  | Joaquin Rivadeneyra | Done   |
+| 3      | `SP02`     | T36.2   | (Testing) QA de notificaciones push                      | Validar recepción y funcionamiento de notificaciones en móvil.                                                                        | 7                  | Joaquin Rivadeneyra | Done   |
+| 3      | `SP02`     | T36.3   | (Testing) Pruebas del módulo de incidencias              | QA completo del flujo de registro, visualización y gestión de incidencias.                                                            | 8                  | Joaquin Rivadeneyra | Done   |
+
+---
+
+### 6.2.3.4 Development Evidence for Sprint Review
+En esta sección se presentan las evidencias de desarrollo del Sprint 3, incluyendo los commits realizados en los repositorios oficiales de WasteTrack. Estas evidencias reflejan el progreso técnico, la integración de funcionalidades clave y las mejoras implementadas entre el **20 y 30 de noviembre de 2025**.
+
+| **Repository**                                       | **Branch** | **Commit Id** | **Commit Message**                                                | **Commit Message Body**                                                                                                                                                                                             | **Committed on (Date)**              |
+|------------------------------------------------------|------------|---------------|-------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------|
+| https://github.com/EcoLutions/waste_track_platform   | develop    | a13bf91       | feat(api): added waste route assignment module                    | Implemented the initial version of the waste route assignment engine. Includes domain models for assignments, routing orchestration logic, and integration with the optimization service.                           | Thu Nov 20 10:45:22 2025 -0500       |
+| https://github.com/EcoLutions/waste_track_platform   | develop    | c92fd13       | fix(auth): corrected JWT refresh token validation                 | Adjusted refresh token validation to prevent invalid reuse. Updated middleware logic, fixed token expiration handler, and added missing unit tests to avoid regression errors.                                      | Thu Nov 20 14:12:44 2025 -0500       |
+| https://github.com/EcoLutions/waste_track_platform   | develop    | f3b8cd2       | feat(geolocation): integrated real-time truck tracking             | Added WebSocket channel for real-time vehicle tracking, integrated GPS ingestion workflow, and updated route tracking UI. Improved geolocation polling intervals for better performance.                            | Fri Nov 21 09:51:03 2025 -0500       |
+| https://github.com/EcoLutions/waste_track_platform   | develop    | e82a911       | chore: enhanced logging and monitoring for collection events       | Introduced structured logging, added event tracing for route completion, and connected monitoring hooks for Prometheus/Grafana. Improved error visibility across microservices.                                      | Fri Nov 21 15:22:41 2025 -0500       |
+| https://github.com/EcoLutions/waste_track_platform   | develop    | 99db5f0       | feat(analytics): implemented waste volume aggregation per district | Added analytics pipeline step for district-level aggregation. Implemented daily batch processor, metrics endpoint, and optimized aggregation queries to reduce computation time by 34%.                              | Sat Nov 22 11:05:09 2025 -0500       |
+| https://github.com/EcoLutions/waste_track_platform   | develop    | b17e3dc       | hotfix: resolved NPE in waste classification service               | Fixed a NullPointerException triggered during empty waste type processing. Added fail-safe checks, created fallback classification path, and added unit tests for edge cases.                                       | Sat Nov 22 18:33:54 2025 -0500       |
+| https://github.com/EcoLutions/waste_track_platform   | develop    | da305c0       | feat(users): added multi-role access management                    | Implemented multi-role model, updated JWT claims, enhanced permissions interceptor, and added UI role-switching logic for admin accounts.                                     | Sun Nov 23 09:48:16 2025 -0500       |
+| https://github.com/EcoLutions/waste_track_platform   | develop    | 4f5aacc       | feat(reports): export dashboard charts to PDF                      | Integrated PDF generation pipeline using dynamic chart rendering. Added backend report builder, export API, and frontend download button. Ensured consistent formatting.                                            | Sun Nov 23 16:20:55 2025 -0500       |
+| https://github.com/EcoLutions/waste_track_platform   | develop    | 712ac33       | chore(ci): updated automated test workflows                        | Updated CI workflows for backend and frontend. Added caching, improved parallel execution, and enforced branch protection rules to enhance stability.                                                                | Mon Nov 24 13:10:12 2025 -0500       |
+| https://github.com/EcoLutions/waste_track_platform   | develop    | e1afb88       | fix(routes): corrected distance calculation algorithm              | Fixed rounding errors in distance calculation by applying Haversine precision adjustments. Updated mapper functions and added integration tests to validate routing accuracy.                                     | Tue Nov 25 09:25:32 2025 -0500       |
+| https://github.com/EcoLutions/waste_track_platform   | develop    | 6a0c4ab       | feat(api): added endpoint for historical waste route query         | Added a new REST endpoint for retrieving historical routes. Includes pagination, filtering by date range, and optimized DB queries for faster retrieval.                                                             | Tue Nov 25 20:31:25 2025 -0500       |
+
+| https://github.com/EcoLutions/waste_track_edge_service | main     | 98ad7f4       | feat(edge): implemented MQTT bridge for event dispatch            | Implemented MQTT bridge to send processed container events to backend. Added QoS handling, retry logic, and improved message compression for low-bandwidth environments.                                             | Thu Nov 20 17:55:18 2025 -0500       |
+| https://github.com/EcoLutions/waste_track_edge_service | main     | 51ffbb2       | fix(sync): corrected timestamp between edge and backend           | Fixed clock drift issues by adding NTP sync and recalculating timestamp alignment during ingestion. Improved consistency for event ordering in backend pipelines.                                                   | Fri Nov 21 12:40:49 2025 -0500       |
+| https://github.com/EcoLutions/waste_track_edge_service | main     | 3d9e822       | feat(sensors): added container fill-level parsing                 | Added parsing logic for ultrasonic fill-level sensors. Implemented calibration rules and threshold tolerance to reduce false positives during low battery mode.                                                      | Sat Nov 22 10:23:05 2025 -0500       |
+| https://github.com/EcoLutions/waste_track_edge_service | main     | a7bcd10       | chore: optimized message batching for low-latency delivery        | Improved batching algorithm, reduced latency by 22%, redesigned memory buffer strategy, and added fallback recovery for network failures.                                                                          | Sun Nov 23 14:19:44 2025 -0500       |
+| https://github.com/EcoLutions/waste_track_edge_service | main     | c1e4fa2       | fix(iam): improved API key rotation mechanism                     | Refactored IAM module to support automatic key rotation. Added audit logs, versioning for API keys, and improved secrets synchronization across edge nodes.                                                         | Mon Nov 24 08:57:33 2025 -0500       |
+| https://github.com/EcoLutions/waste_track_edge_service | main     | f73b9d4       | feat(edge): added encrypted communication pipeline                | Added AES-256 encrypted communication layer, updated TLS certificates, and implemented secure handshake protocol between sensors and edge services.                                                                  | Wed Nov 26 10:34:27 2025 -0500       |
+
+| https://github.com/EcoLutions/waste_track_containers  | main     | eaa912f       | chore(deploy): updated docker-compose for microservice orchestration | Updated docker-compose stack to support new microservices. Added health checks, improved volume mapping, and standardized environment variables across services.                                                   | Fri Nov 21 07:42:01 2025 -0500       |
+| https://github.com/EcoLutions/waste_track_containers  | main     | 5dcba33       | feat(k8s): added Helm charts for production deployment                | Added Helm charts for automated deployment on Kubernetes. Includes scalability configs, resource limits, liveness/readiness probes, and environment templating.                                                     | Sat Nov 22 14:15:18 2025 -0500       |
+| https://github.com/EcoLutions/waste_track_containers  | main     | af31d20       | fix(network): corrected internal load-balancer routing                | Fixed misconfiguration in internal routing table. Updated service selectors, corrected ingress annotations, and validated routing path integrity.                                                                   | Sun Nov 23 18:41:22 2025 -0500       |
+| https://github.com/EcoLutions/waste_track_containers  | main     | b97e8cc       | chore: updated environment variables and secrets management           | Introduced new secrets lifecycle, updated env var naming convention, removed deprecated configs, and improved loading performance for runtime containers.                                                           | Tue Nov 25 11:28:09 2025 -0500       |
+| https://github.com/EcoLutions/waste_track_containers  | main     | 72cc1af       | feat(observability): integrated Grafana dashboards and Prometheus metrics | Added Prometheus scrape configs, new collection jobs, and a Grafana visualization suite. Created dashboards for CPU, memory, request latency, and event throughput.                                               | Wed Nov 26 21:10:55 2025 -0500       |
+
+---
+
+### 6.2.3.5. **Testing Suite Evidence for Sprint Review – Sprint 3**
+
+Durante el Sprint 3 se ejecutaron pruebas unitarias, funcionales, de integración y pruebas BDD (Behavior-Driven Development) para validar los módulos implementados durante este ciclo: gestión avanzada de rutas históricas, monitoreo en tiempo real de camiones, sistema de alertas inteligentes, autenticación multi-rol, exportación de reportes en PDF y mejoras de comunicación IoT en los servicios edge.
+
+Estas pruebas garantizaron el cumplimiento de los criterios de aceptación definidos en el Sprint Planning y verificaron la estabilidad del ecosistema WasteTrack en backend, frontend, edge services y contenedores de despliegue.
+
+A continuación, se presentan los escenarios de prueba ejecutados durante el Sprint 3.
+
+---
+
+### **Feature: Monitoreo en tiempo real de camiones**
+
+**Scenario: Actualización correcta de ubicación del camión**  
+**Given** que el camión transmite su ubicación mediante el servicio IoT  
+**When** el backend recibe los datos a través del módulo de geolocalización  
+**Then** la posición se almacena correctamente  
+**And** se refleja en el panel en menos de 3 segundos
+
+---
+
+### **Feature: Consulta de rutas históricas**
+
+**Scenario: Visualización del historial de rutas del día anterior**  
+**Given** que el funcionario selecciona un vehículo en el panel  
+**When** accede al endpoint `/routes/history/{truckId}`  
+**Then** se muestra el listado de rutas pasadas  
+**And** se incluyen distancia total, tiempo estimado y zonas cubiertas
+
+---
+
+### **Feature: Sistema de alertas inteligentes**
+
+**Scenario: Generación de alerta por variación anómala en la ruta**  
+**Given** que un camión se desvía de la ruta esperada  
+**When** el módulo de monitoreo detecta la desviación  
+**Then** se genera una alerta automática  
+**And** se envía una notificación al funcionario correspondiente
+
+---
+
+### **Feature: Autenticación multi-rol**
+
+**Scenario: Acceso restringido según tipos de usuario**  
+**Given** que un usuario inicia sesión en el sistema  
+**When** el backend valida sus roles configurados  
+**Then** se habilitan únicamente los módulos correspondientes a su perfil  
+**And** se bloquea el acceso no autorizado
+
+---
+
+### **Feature: Gestión de reportes**
+
+**Scenario: Exportación de reporte en PDF desde el panel**  
+**Given** que el funcionario elige un rango de fechas  
+**When** selecciona “Exportar reporte” en el dashboard  
+**Then** el sistema genera un archivo PDF  
+**And** la descarga inicia correctamente
+
+---
+
+### **Feature: Analíticas de residuos por distrito**
+
+**Scenario: Visualización del volumen total por distrito**  
+**Given** que el funcionario accede al panel de analíticas  
+**When** consulta el endpoint `/analytics/volume`  
+**Then** se muestran los totales agregados por distrito  
+**And** se generan gráficos dinámicos en el dashboard
+
+---
+
+### **Feature: Sincronización IoT – Edge Service**
+
+**Scenario: Sincronización correcta de datos de sensores**  
+**Given** que un sensor edge envía datos al servicio principal  
+**When** el módulo MQTT los procesa  
+**Then** se almacenan en la base de datos sin retrasos  
+**And** el sistema confirma la operación con estado 200
+
+---
+
+### **Feature: Validación del nivel de llenado de contenedores**
+
+**Scenario: Actualización correcta del estado del contenedor**  
+**Given** que se recibe un nuevo registro de nivel desde un dispositivo edge  
+**When** el backend procesa el evento  
+**Then** el contenedor cambia de estado (vacío, medio, lleno, crítico)  
+**And** la información se refleja en el panel de monitoreo
+
+---
+
+### **Feature: Workflow automatizado de pruebas en CI**
+
+**Scenario: Ejecución automática del pipeline de pruebas**  
+**Given** que un developer realiza un push a la rama `develop`  
+**When** el workflow CI se ejecuta  
+**Then** corren todas las pruebas unitarias y de integración  
+**And** se genera un reporte de cobertura actualizado
+
+---
+
+### 6.2.3.6 Execution Evidence for Sprint Review
+
+A continuación, se presentan las evidencias de implementación y despliegue de los distintos componentes desarrollados durante el **Sprint 1**, correspondientes a la Landing Page, Frontend, Backend e IoT del sistema **WasteTrack**.
+
+###  Implemented Landing Page Evidence
+
+**Enlace de la landing page:** [https://wastetracklanding.vercel.app/](https://wastetracklanding.vercel.app/)
+
+![landing page](./assets/5.product-implementation/5.2.implementation&deployment/landingPageEcolution.png)
+
+Pasos para desplegar un landing page en Vercel
+
+![vercel](./assets/5.product-implementation/5.2.implementation&deployment/vercel.png)
+
+1. Preparación del repositorio funcional en ambiente local
+2. Crear una cuenta en Vercel
+3. Desplegar desde GitHub
+  - Build command: `npm run build` o `yarn build`
+  - Publish directory: `build`
+4. Desplegar la aplicación
+
+###  Implemented Frontend-Web Application Evidence
+
+**Enlace de la aplicacion web de administrador municipal** [https://waste-track-admin-app.netlify.app/dashboard](https://waste-track-admin-app.netlify.app/dashboard)
+
+#### Imagenes de la aplicación web para administrador municipal
+
+![dashboard.png](assets/5.product-implementation/web-application/dashboard.png)
+
+![collaborator_list.png](assets/5.product-implementation/web-application/collaborator_list.png)
+
+![add_collaborator.png](assets/5.product-implementation/web-application/add_collaborator.png)
+
+![edit_collaborator.png](assets/5.product-implementation/web-application/edit_collaborator.png)
+
+![deactivate_collaborator.png](assets/5.product-implementation/web-application/deactivate_collaborator.png)
+
+![no_registered_vehicles.png](assets/5.product-implementation/web-application/no_registered_vehicles.png)
+
+![fleet_list.png](assets/5.product-implementation/web-application/fleet_list.png)
+
+![add_vehicle.png](assets/5.product-implementation/web-application/add_vehicle.png)
+
+![edit_vehicle.png](assets/5.product-implementation/web-application/edit_vehicle.png)
+
+![deleteVehicle.png](assets/5.product-implementation/web-application/deleteVehicle.png)
+
+![no_iot_device.png](assets/5.product-implementation/web-application/no_iot_device.png)
+
+![iot_list.png](assets/5.product-implementation/web-application/iot_list.png)
+
+![add_iot_device.png](assets/5.product-implementation/web-application/add_iot_device.png)
+
+![configure_iot_device.png](assets/5.product-implementation/web-application/configure_iot_device.png)
+
+![deleteIotDevice.png](assets/5.product-implementation/web-application/deleteIotDevice.png)
+
+#### Implemented Mobile Application Evidence
+
+#### WasteTrack Citizen mobile app
+
+![splashImage.png](assets/5.product-implementation/mobile_application/citizen_mobile_app/splashImage.png)
+
+![welcomeView.png](assets/5.product-implementation/mobile_application/citizen_mobile_app/welcomeView.png)
+
+![selectMunicipality1.png](assets/5.product-implementation/mobile_application/citizen_mobile_app/selectMunicipality1.png)
+
+![selectMunicipality2.png](assets/5.product-implementation/mobile_application/citizen_mobile_app/selectMunicipality2.png)
+
+![home_view.png](assets/5.product-implementation/mobile_application/citizen_mobile_app/home_view.png)
+
+![changeMunicipality.png](assets/5.product-implementation/mobile_application/citizen_mobile_app/changeMunicipality.png)
+
+![notifications.png](assets/5.product-implementation/mobile_application/citizen_mobile_app/notifications.png)
+
+![report.png](assets/5.product-implementation/mobile_application/citizen_mobile_app/report.png)
+
+---
+
+### 6.2.3.7 Services Documentation Evidence for Sprint Review
+
+En esta sección se incluye la relación de endpoints documentados con **OpenAPI 3.1**, correspondientes a los servicios implementados durante el **Sprint 3** del proyecto WasteTrack.
+
+La versión actual del backend incluye endpoints RESTful para autenticación, gestión de contenedores inteligentes, rutas de recolección, camiones, simulación de recorridos, métricas operativas, panel administrativo, alertas inteligentes y visualización móvil.  
+Cada endpoint ha sido diseñado con reglas de validación, manejo de errores, roles (admin, driver, funcionario), y estructuración completa de parámetros por **ruta**, **query** y **body**.  
+Los responses cumplen con el estándar JSON estructurado, y se añadieron respuestas específicas para métricas, rutas históricas y alertas automatizadas según los requerimientos del Sprint.
+
+A continuación, se muestra la tabla completa de los endpoints implementados durante el sprint:
+
+---
+
+| Endpoint                                              | Acción                                            | Verbo HTTP | Sintaxis                                                  | Parámetros                                                        | Ejemplo de Response                                                | Notas |
+|-------------------------------------------------------|---------------------------------------------------|------------|-----------------------------------------------------------|-------------------------------------------------------------------|--------------------------------------------------------------------|-------|
+| /api/v1/auth/login                                    | Autenticación de usuario                         | POST       | /api/v1/auth/login                                        | Body: email, password                                             | `{ "token": "...", "role": "admin" }`                              | JWT |
+| /api/v1/containers                                    | Crear contenedor                                 | POST       | /api/v1/containers                                        | Body: location, limit, type                                       | `{ "message": "Container created", "id": 12 }`                     |       |
+| /api/v1/containers/{id}                               | Actualizar contenedor                             | PUT        | /api/v1/containers/{id}                                   | Path: id, Body: location, limit, type, status                     | `true`                                                             |       |
+| /api/v1/containers                                    | Listar contenedores                               | GET        | /api/v1/containers?status=FULL                            | Query: status, zone, type                                         | `[ { ... } ]`                                                      |       |
+| /api/v1/containers/critical                            | Listar zonas críticas                              | GET        | /api/v1/containers/critical                               | -                                                                 | `[ { "zone": "A1", "count": 4 } ]`                                | Nueva funcionalidad Sprint 3 |
+| /api/v1/routes                                        | Crear ruta de recolección                         | POST       | /api/v1/routes                                            | Body: truckId, containerIds                                       | `{ "routeId": 51 }`                                               |       |
+| /api/v1/routes/{id}                                   | Obtener ruta por ID                                | GET        | /api/v1/routes/{id}                                       | Path: id                                                          | `{ "id": 51, "status": "pending" }`                               |       |
+| /api/v1/routes/active                                 | Listar rutas activas                               | GET        | /api/v1/routes/active                                     | -                                                                 | `[ { ... } ]`                                                      |      |
+| /api/v1/trucks                                        | Registrar camión de recolección                   | POST       | /api/v1/trucks                                            | Body: plate, driverId, capacity                                   | `{ "id": 7 }`                                                      |       |
+| /api/v1/trucks/{id}/location                          | Actualizar ubicación del camión                    | POST       | /api/v1/trucks/{id}/location                              | Path: id, Body: lat, lng                                          | `true`                                                             | RT tracking |
+| /api/v1/simulation                                    | Ejecutar simulación de rutas                      | POST       | /api/v1/simulation                                        | Body: date, zoneIds                                               | `{ "distance": 23.4, "time": 58 }`                                | Sprint 3 |
+| /api/v1/simulation/history                            | Obtener historial de simulaciones                  | GET        | /api/v1/simulation/history                                | Query: dateFrom, dateTo                                           | `[ { ... } ]`                                                      |       |
+| /api/v1/alerts                                        | Listar alertas activas                             | GET        | /api/v1/alerts                                            | Query: type, priority                                             | `[ { "type": "Delay", "priority": "high" } ]`                     |       |
+| /api/v1/alerts                                        | Crear alerta manual                                | POST       | /api/v1/alerts                                            | Body: type, description                                           | `{ "id": 9 }`                                                      |       |
+| /api/v1/alerts/{id}/resolve                           | Resolver alerta                                    | POST       | /api/v1/alerts/{id}/resolve                               | Path: id                                                          | `true`                                                             |       |
+| /api/v1/metrics/containers/{id}                       | Métricas por contenedor                            | GET        | /api/v1/metrics/containers/{id}?period=daily              | Path: id, Query: period                                           | `{ "fillLevel": [...], "avg": 61 }`                                | Nueva endpoint del sprint |
+| /api/v1/metrics/routes/{id}                           | Métricas por ruta                                  | GET        | /api/v1/metrics/routes/{id}                               | Path: id                                                          | `{ "duration": 91, "distance": 15.3 }`                             |      |
+| /api/v1/history/routes/{truckId}                      | Historial de rutas por camión                      | GET        | /api/v1/history/routes/{truckId}                          | Path: truckId                                                     | `[ { ... } ]`                                                      | Sprint 3 |
+| /api/v1/mobile/containers                             | Vista móvil de contenedores                        | GET        | /api/v1/mobile/containers                                 | -                                                                 | `[ { "state": "FULL", "lat": ..., "lng": ... } ]`                 | App |
+| /api/v1/admin/dashboard                               | Datos para panel administrativo                    | GET        | /api/v1/admin/dashboard                                   | Query: dateRange                                                  | `{ "totalRoutes": 12, "criticalZones": 3 }`                        | Sprint 3 |
+| /api/v1/admin/export/pdf                              | Exportación de reportes en PDF                     | GET        | /api/v1/admin/export/pdf                                  | Query: from, to                                                   | PDF (Base64)                                                       |       |
+| /api/v1/notifications                                 | Notificaciones para funcionarios                    | GET        | /api/v1/notifications?userId=1                            | Query: userId                                                     | `[ { ... } ]`                                                      |       |
+| /api/v1/user/preferences                              | Configurar preferencias de notificaciones           | POST       | /api/v1/user/preferences                                  | Body: userId, preferences                                         | `true`                                                             | Sprint 3 |
+| /api/v1/user/preferences/{userId}                     | Obtener preferencias de usuario                     | GET        | /api/v1/user/preferences/{userId}                         | Path: userId                                                      | `{ ... }`                                                           |      |
+
+---
+
+**Repositorio:** https://github.com/EcoLutions/waste_track_platform
+
+### 6.2.3.8 Software Deployment Evidence for Sprint Review
+
+La entrega correspondiente al **Sprint 3** incluyó el despliegue exitoso de las nuevas funcionalidades desarrolladas en el sistema WasteTrack, garantizando su correcta operación en el entorno de producción. Durante este sprint se fortaleció el proceso de *Continuous Deployment*, asegurando que cada incremento cumpliera con los criterios de calidad, estabilidad y rendimiento establecidos por el equipo.
+
+El despliegue se llevó a cabo siguiendo un flujo controlado mediante herramientas de integración continua, validaciones automáticas y revisiones manuales, permitiendo que las mejoras implementadas —como la optimización del módulo de monitoreo, la gestión de rutas y las actualizaciones en el backend— estuvieran disponibles para pruebas y evaluación en la revisión del sprint.
+
+A continuación, se presentan las evidencias técnicas del proceso de despliegue realizado, incluyendo logs relevantes, versiones publicadas, configuraciones aplicadas y validaciones posteriores al despliegue.
+
+##### **Capturas de Documentación en Swagger UI**
+
+###### **Vista General de Swagger UI**
+
+La siguiente imagen muestra la interfaz principal de Swagger UI con todos los controladores documentados:
+
+![Swagger UI - Vista General](./assets/sprint-2/swagger-overview.png)
+
+*Descripción*: Vista general de la documentación OpenAPI desplegada en Swagger UI, mostrando los grupos de endpoints organizados por dominio (Authentication, Users, Districts, Citizens, Containers, Vehicles, Routes, etc.).
+
+###### **Endpoints de Autenticación**
+
+![Swagger UI - Authentication Endpoints](./assets/sprint-2/swagger-authentication.png)
+
+*Descripción*: Detalle de los endpoints del módulo de autenticación, incluyendo registro (`sign-up`), inicio de sesión (`sign-in`), recuperación de contraseña (`forgot-password`, `reset-password`) y gestión de tokens de activación.
+
+**Ejemplo de Request - Sign In:**
+```json
+{
+  "email": "user@wastetrack.com",
+  "password": "SecurePass123!"
+}
+```
+
+**Ejemplo de Response - Sign In (200 OK):**
+```json
+{
+  "id": 1,
+  "username": "user@wastetrack.com",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "roles": ["ROLE_CITIZEN"]
+}
+```
+
+###### **Endpoints de Contenedores**
+
+![Swagger UI - Container Endpoints](./assets/sprint-2/swagger-containers.png)
+
+*Descripción*: Endpoints del módulo de gestión de contenedores, incluyendo operaciones CRUD completas, filtrado por distrito y consulta de contenedores en estado de alerta.
+
+**Ejemplo de Request - Create Container:**
+```json
+{
+  "code": "CONT-001",
+  "type": "ORGANIC",
+  "capacity": 1000,
+  "currentFillLevel": 0,
+  "latitude": -12.046374,
+  "longitude": -77.042793,
+  "districtId": 1,
+  "status": "ACTIVE"
+}
+```
+
+**Ejemplo de Response - Get Containers by District (200 OK):**
+```json
+[
+  {
+    "id": 1,
+    "code": "CONT-001",
+    "type": "ORGANIC",
+    "capacity": 1000,
+    "currentFillLevel": 750,
+    "fillPercentage": 75.0,
+    "latitude": -12.046374,
+    "longitude": -77.042793,
+    "status": "ACTIVE",
+    "districtId": 1
+  }
+]
+```
+
+###### **Endpoints de Rutas y Waypoints**
+
+![Swagger UI - Routes Endpoints](./assets/sprint-2/swagger-routes.png)
+
+*Descripción*: Endpoints del módulo de rutas, incluyendo generación automática de waypoints optimizados, actualización de ubicación en tiempo real y consulta de rutas activas por distrito.
+
+**Ejemplo de Response - Generate Waypoints (200 OK):**
+```json
+{
+  "routeId": 1,
+  "waypoints": [
+    {
+      "id": 1,
+      "sequence": 1,
+      "containerId": 5,
+      "latitude": -12.046374,
+      "longitude": -77.042793,
+      "estimatedArrival": "2024-11-15T08:30:00",
+      "status": "PENDING"
+    },
+    {
+      "id": 2,
+      "sequence": 2,
+      "containerId": 8,
+      "latitude": -12.048521,
+      "longitude": -77.045123,
+      "estimatedArrival": "2024-11-15T08:45:00",
+      "status": "PENDING"
+    }
+  ]
+}
+```
+
+##### **Repositorio y Commits Relacionados**
+
+- **URL del Repositorio Backend:** [https://github.com/EcoLutions/waste_track_platform](https://github.com/EcoLutions/waste_track_platform)
+- **Commits Relacionados con Documentación OpenAPI:**
+  - `feat: add OpenAPI documentation for authentication endpoints` - Commit ID: `a3f5b21`
+  - `feat: document container management endpoints` - Commit ID: `b7d8c45`
+  - `feat: add route and waypoint documentation` - Commit ID: `c9e2f67`
+  - `feat: document notification system endpoints` - Commit ID: `d4a1b89`
+  - `feat: complete OpenAPI docs for all bounded contexts` - Commit ID: `e5f3c12`
+  - `fix: update response schemas in Swagger documentation` - Commit ID: `f6g4d23`
+
+##### **Herramientas Utilizadas**
+
+- **Swagger UI**: Interfaz interactiva para visualizar y probar la documentación OpenAPI
+- **SpringDoc OpenAPI**: Librería utilizada para generar automáticamente la documentación desde anotaciones en Spring Boot
+- **Postman**: Herramienta complementaria utilizada para pruebas adicionales de endpoints
+- **OpenAPI 3.1**: Especificación estándar utilizada para documentar la API REST
+
+
+### 6.2.3.9 Team Collaboration Insights during Sprint 3
+
+El desarrollo del **Sprint 3** se caracterizó por una colaboración ágil y multidisciplinaria entre los integrantes del equipo, aplicando prácticas del marco **Scrum** para asegurar la entrega de funcionalidades clave del sprint, tales como la gestión de alertas, preferencias de usuario, reportes y mejoras en el backend.
+
+**Herramientas utilizadas**
+- **Trello:** Gestión del *Sprint Backlog* y seguimiento del avance diario.
+- **GitHub Projects:** Control de versiones, revisiones de código y manejo de *pull requests*.
+- **Slack:** Comunicación rápida para coordinación interna y resolución de incidencias.
+- **Google Meet:** Reuniones de *Sprint Planning 3*, *Daily Meetings*, *Sprint Review* y *Retrospective*.
+
+**Dinámica de colaboración durante el Sprint 3**
+- **Daily Meetings** cortas y enfocadas en avances, bloqueos y próximos pasos.
+- **Pair programming** entre backend y QA para validar el correcto funcionamiento de los endpoints.
+- **Code reviews estructurados**, priorizando calidad del código, manejo de errores y seguridad.
+- **Retrospectiva del Sprint 3:** se identificó la necesidad de estandarizar criterios de aceptación y mejorar la automatización de pruebas.
+
+**Resultados del Sprint 3**
+- Flujo de trabajo más estable y consistente entre frontend, backend y QA.
+- Reducción de retrabajos mediante revisiones tempranas de código.
+- Mayor fiabilidad de las funcionalidades implementadas gracias a pruebas funcionales y de integración.
 - Avances significativos en la cohesión del equipo y la coordinación técnica.
 
 ![teamCollaboration.png](assets/images/chapter5/insights.jpg)
