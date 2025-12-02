@@ -37,7 +37,7 @@
             </tr>
         </table>
     </div>
-    <p style="text-align: center">Septiembre 2025</p>
+    <p style="text-align: center">Diciembre 2025</p>
 </body>
 
 <div style="page-break-before: always"></div>
@@ -59,6 +59,11 @@
 | v1.2.0    | 12/09/2025 | Jhosepmyr                                       | Diseño de entrevistas, estrategia competitiva, referencias y mejoras menores                                                                                                                   |
 | v1.1.0    | 09/09/2025 | Jhosepmyr                                       | Estructura base del repositorio, portada y archivos iniciales                                                                                                                                  |
 | v1.0.0    | 05/09/2025 | Jhosepmyr                                       | Commit inicial, configuración de gitignore y base del proyecto                                                                                                                                 |
+| v2.1.0    | 09/10/2025   | Jhosepmyr, Eric, Andrés, Elmer, Joaquin, Carlos | Integración de la suite completa de pruebas (Unit, Integration, BDD, E2E con Postman). Consolidación y redacción de la sección de evidencia de pruebas para el informe del Sprint Review.              |
+| v2.0.0    | 06/10/2025   | Elmer, Joaquin, Jhosepmy                        | Desarrollo de interfaces para la App Web de Admin (Gestión de Dispositivos/Colaboradores) y la App Móvil (Onboarding/Mapa). Despliegue de infraestructura en Azure y configuración de Docker.         |
+| v3.3.0    | 30/11/2025   | Jhosepmyr, Joaquin, Eric                        | Despliegue final del Sprint 3. Optimización del pipeline CI/CD, validación post-deploy, verificación de logs en producción y consolidación de la evidencia de despliegue para el Sprint Review.        |
+| v3.2.0    | 28/11/2025   | Elmer, Andrés, Carlos                           | Actualización del módulo de monitoreo de rutas, integración del nuevo servicio de telemetría y ajuste de configuraciones en Docker Compose para el entorno productivo.                                |
+| v3.1.0    | 26/11/2025   | Joaquin, Eric                                    | Implementación de mejoras en el servicio de alertas, corrección de errores en el motor de notificaciones y despliegue incremental en el entorno de staging.                                           |
 
 <div style="page-break-before: always"></div>
 
