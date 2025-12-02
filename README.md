@@ -7095,7 +7095,7 @@ A continuación, se presentan los principales escenarios de prueba ejecutados du
 
 #### 6.2.2.5 Execution Evidence for Sprint Review
 
-A continuación, se presentan las evidencias de implementación y despliegue de los distintos componentes desarrollados durante el **Sprint 1**, correspondientes a la Landing Page, Frontend, Backend e IoT del sistema **WasteTrack**.
+A continuación, se presentan las evidencias de implementación y despliegue de los distintos componentes desarrollados durante el **Sprint 2**, correspondientes a la Landing Page, Frontend, Backend e IoT del sistema **WasteTrack**.
 
 ###  Implemented Landing Page Evidence
 
@@ -7645,24 +7645,7 @@ A continuación, se presentan los escenarios de prueba ejecutados durante el Spr
 
 ### 6.2.3.6 Execution Evidence for Sprint Review
 
-A continuación, se presentan las evidencias de implementación y despliegue de los distintos componentes desarrollados durante el **Sprint 1**, correspondientes a la Landing Page, Frontend, Backend e IoT del sistema **WasteTrack**.
-
-###  Implemented Landing Page Evidence
-
-**Enlace de la landing page:** [https://wastetracklanding.vercel.app/](https://wastetracklanding.vercel.app/)
-
-![landing page](./assets/5.product-implementation/5.2.implementation&deployment/landingPageEcolution.png)
-
-Pasos para desplegar un landing page en Vercel
-
-![vercel](./assets/5.product-implementation/5.2.implementation&deployment/vercel.png)
-
-1. Preparación del repositorio funcional en ambiente local
-2. Crear una cuenta en Vercel
-3. Desplegar desde GitHub
-  - Build command: `npm run build` o `yarn build`
-  - Publish directory: `build`
-4. Desplegar la aplicación
+A continuación, se presentan las evidencias de implementación y despliegue de los distintos componentes desarrollados durante el **Sprint 3**, correspondientes a Frontend, Backend e IoT del sistema **WasteTrack**.
 
 ###  Implemented Frontend-Web Application Evidence
 
@@ -7670,55 +7653,68 @@ Pasos para desplegar un landing page en Vercel
 
 #### Imagenes de la aplicación web para administrador municipal
 
-![dashboard.png](assets/5.product-implementation/web-application/dashboard.png)
+Vista del dashboard principal 
+![dashboard.png](assets/sprint-3/dashboard.png)
 
-![collaborator_list.png](assets/5.product-implementation/web-application/collaborator_list.png)
+Vista de monitoreo de contenedores inteligentes
+![containerMonitoring.png](assets/sprint-3/containerMonitoring.png)
 
-![add_collaborator.png](assets/5.product-implementation/web-application/add_collaborator.png)
+Vista modal para editar contenedor inteligente
+![editContainer.png](assets/sprint-3/editContainer.png)
 
-![edit_collaborator.png](assets/5.product-implementation/web-application/edit_collaborator.png)
+Vista de la barra de filt visualizacion de contenedores inteligentes
+![filtersOnContainers.png](assets/sprint-3/filtersOnContainers.png)
 
-![deactivate_collaborator.png](assets/5.product-implementation/web-application/deactivate_collaborator.png)
+Vista de creacion de contenedor (paso 1)
+![createContainerStep1.png](assets/sprint-3/createContainerStep1.png)
 
-![no_registered_vehicles.png](assets/5.product-implementation/web-application/no_registered_vehicles.png)
+Vista de creacion de contenedor (paso 2)
+![createContainerStep2.png](assets/sprint-3/createContainerStep2.png)
 
-![fleet_list.png](assets/5.product-implementation/web-application/fleet_list.png)
+Vista de creacion de contenedor (paso 3)
+![createContainerStep3.png](assets/sprint-3/createContainerStep3.png)
 
-![add_vehicle.png](assets/5.product-implementation/web-application/add_vehicle.png)
+Vista de creacion de contenedor (paso 4)
+![createContainerStep4.png](assets/sprint-3/createContainerStep4.png)
 
-![edit_vehicle.png](assets/5.product-implementation/web-application/edit_vehicle.png)
+Vista de creacion de ruta de recoleccion
+![createRouteView.png](assets/sprint-3/createRouteView.png)
 
-![deleteVehicle.png](assets/5.product-implementation/web-application/deleteVehicle.png)
+Vista de rutas activas 
+![activeRoute.png](assets/sprint-3/activeRoute.png)
 
-![no_iot_device.png](assets/5.product-implementation/web-application/no_iot_device.png)
+Vista de rutas activas con detalle de un ruta
+![activeRouteDetail.png](assets/sprint-3/activeRouteDetail.png)
 
-![iot_list.png](assets/5.product-implementation/web-application/iot_list.png)
+Vista de Gestion de flota (camiones de recoleccion)
+![fleetManagementView.png](assets/sprint-3/fleetManagementView.png)
 
-![add_iot_device.png](assets/5.product-implementation/web-application/add_iot_device.png)
+Vista de creacion de camiones de recoleccion
+![createNewVehicleView.png](assets/sprint-3/createNewVehicleView.png)
 
-![configure_iot_device.png](assets/5.product-implementation/web-application/configure_iot_device.png)
+Vista de reporte de incidencias
+![citizenReportsView.png](assets/sprint-3/citizenReportsView.png)
 
-![deleteIotDevice.png](assets/5.product-implementation/web-application/deleteIotDevice.png)
+Vista de creacion de reporte de incidencias
+![createReportView.png](assets/sprint-3/createReportView.png)
+
+Vista de usuarios conductores registrados
+![DriversListView.png](assets/sprint-3/DriversListView.png)
+
+Vista de creacion de nuevo usuario conductor
+![createNewDriver.png](assets/sprint-3/createNewDriver.png)
+
+Vista de usuarios ciudadanos registrados
+![citizensListView.png](assets/sprint-3/citizensListView.png)
 
 #### Implemented Mobile Application Evidence
 
-#### WasteTrack Citizen mobile app
+#### WasteTrack Driver Mobile Application
 
-![splashImage.png](assets/5.product-implementation/mobile_application/citizen_mobile_app/splashImage.png)
+Vista de inicio de sesion
+![loginView.png](assets/sprint-3/mobile/loginView.png)
 
-![welcomeView.png](assets/5.product-implementation/mobile_application/citizen_mobile_app/welcomeView.png)
 
-![selectMunicipality1.png](assets/5.product-implementation/mobile_application/citizen_mobile_app/selectMunicipality1.png)
-
-![selectMunicipality2.png](assets/5.product-implementation/mobile_application/citizen_mobile_app/selectMunicipality2.png)
-
-![home_view.png](assets/5.product-implementation/mobile_application/citizen_mobile_app/home_view.png)
-
-![changeMunicipality.png](assets/5.product-implementation/mobile_application/citizen_mobile_app/changeMunicipality.png)
-
-![notifications.png](assets/5.product-implementation/mobile_application/citizen_mobile_app/notifications.png)
-
-![report.png](assets/5.product-implementation/mobile_application/citizen_mobile_app/report.png)
 
 ---
 
